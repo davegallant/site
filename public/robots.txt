@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://davegallant.github.io/sitemap.xml

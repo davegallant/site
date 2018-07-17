@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="https://davegallant.github.io/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://davegallant.github.io/post/first-post/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/categories/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/tags/golang/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/tags/javascript/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/post/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/tags/python/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/categories/random/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://davegallant.github.io/tags/</loc>
+    <lastmod>2018-07-13T08:52:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
