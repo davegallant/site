@@ -1,5 +1,5 @@
 ---
-title: "Why Python Is My Goto"
+title: "Why Learn Python?"
 date: 2018-07-14T22:48:15-04:00
 draft: true
 keywords: []
@@ -40,9 +40,7 @@ sequenceDiagrams:
 
 Python is a high-level, general-purpose language that has a wide range of use cases.
 
-Back-end web server? Sure, Django, Flask, Pyramid?
-
-Test automation? Pytest
+Simple script? Web crawling? Back-end web server? Test automation? Python is likely up for the task.
 
 <!--more-->
 
@@ -56,4 +54,4 @@ print(requests.get('https://www.theregister.co.uk/').text)
 
 {{< /highlight >}}
 
-After that, there is any number of things to do with it.
+After that, there is any number of things that can be done with it.
