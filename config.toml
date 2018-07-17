@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "davegallant.github.io"
+title = "davegallant.github.io - tech micro-blog"
 theme = "xmin"
 googleAnalytics = "UA-98710982-2"
 disqusShortname = "https-davegallant-github-io"
