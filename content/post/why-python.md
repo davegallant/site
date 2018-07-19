@@ -44,11 +44,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 After that, there is any number of things that can be done with the results.
 
-As you can probably note, the syntax is simple and clean, which makes returning to your code months later less of jarring experience.
+As you can probably note, the syntax is simple and clean, which makes returning to your code months later less of a jarring experience.
 
 ## Popularity
 
-According to [Stack Overflow Stats](https://insights.stackoverflow.com/survey/2018/), Python has surpassed C## and PHP in popularity and is the 3rd most loved language, after Rust and Kotlin. Interestingly, it is "the most wanted language" for the second year in a row.
+According to [Stack Overflow Stats](https://insights.stackoverflow.com/survey/2018/), Python has surpassed C# and PHP in popularity and is the 3rd most loved language, after Rust and Kotlin. Interestingly, it is "the most wanted language" for the second year in a row.
 
 ## Drawbacks
 
@@ -67,7 +67,7 @@ So should you learn it? or stick with shell scripting?
 
 Because of Python's simple syntax, dynamic typing and abundant Package Index, it makes the language a great asset to have in your toolchain.
 
-And it hasn't hurt that giants like Google, Facebook and Microsoft have leaned heavily on Python.
+And it hasn't hurt that giants like Google, Facebook and Microsoft have invested heavily on Python.
 
 ## Resources
 
