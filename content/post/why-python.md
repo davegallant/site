@@ -67,7 +67,7 @@ So should you learn it? or stick with shell scripting?
 
 Because of Python's simple syntax, dynamic typing and abundant Package Index, it makes the language a great asset to have in your toolchain.
 
-And it hasn't hurt that giants like Google, Facebook and Microsoft have invested heavily on Python.
+And it hasn't hurt that giants like Google, Facebook and Microsoft have invested heavily in Python.
 
 ## Resources
 
