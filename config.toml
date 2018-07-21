@@ -7,9 +7,11 @@ disqusShortname = "https-davegallant-github-io"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
+enableRobotsTXT = true
+canonifyURLs = true
 
 [permalinks]
-    post = "/post/:year/:month/:day/:slug/"
+    post = "/blog/:year/:month/:day/:slug/"
     note = "/note/:year/:month/:day/:slug/"
 
 [[menu.main]]

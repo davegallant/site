@@ -1,6 +1,5 @@
 ---
 title: About
-author: Dave Gallant
 ---
 
 I work as a software developer in the realm of security.
