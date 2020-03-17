@@ -149,9 +149,11 @@ if True: # Since we are not using Fedora :)
 
 # Conclusion
 
-It turns out there are [breaking changes](https://github.com/pymssql/pymssql/pull/659) in Python3.8
+It turns out there are [breaking changes](https://docs.python.org/3.7/library/platform.html#platform.linux_distribution) in Python3.8.
+
+The docs that say `Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.`
 
 I guess this highlights one of the caveats of relying upon system python.
 
-Enjoy your safe, Zero-Trust networking.
+Enjoy.
 
