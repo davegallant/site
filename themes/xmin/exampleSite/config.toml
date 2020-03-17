@@ -1,17 +1,15 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "davegallant.github.io - tech micro-blog"
-theme = "xmin"
-googleAnalytics = "UA-98710982-2"
-disqusShortname = "https-davegallant-github-io"
+title = "A minimal Hugo website"
+theme = "hugo-xmin"
+googleAnalytics = ""
+disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
-enableRobotsTXT = true
-canonifyURLs = true
 
 [permalinks]
-    post = "/blog/:year/:month/:day/:slug/"
+    post = "/post/:year/:month/:day/:slug/"
     note = "/note/:year/:month/:day/:slug/"
 
 [[menu.main]]
@@ -36,4 +34,4 @@ canonifyURLs = true
 
 [params]
     description = "A website built through Hugo and blogdown."
-    footer = "&copy; Dave Gallant 2018 | [Github](https://github.com/davegallant) | [Twitter](https://twitter.com/__dave_g__)"
+    footer = "&copy; [Yihui Xie](https://yihui.name) 2017 -- 2018 | [Github](https://github.com/yihui) | [Twitter](https://twitter.com/xieyihui)"
