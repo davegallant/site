@@ -4,6 +4,7 @@ title = "davegallant.github.io - tech micro-blog"
 theme = "xmin"
 googleAnalytics = "UA-98710982-2"
 disqusShortname = "https-davegallant-github-io"
+staticDir = ["static"]
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
@@ -36,4 +37,4 @@ canonifyURLs = true
 
 [params]
     description = "A website built through Hugo and blogdown."
-    footer = "&copy; Dave Gallant 2018 | [Github](https://github.com/davegallant) | [Twitter](https://twitter.com/__dave_g__)"
+    footer = "&copy; Dave Gallant 2020 | [Github](https://github.com/davegallant) | [Twitter](https://twitter.com/dgallant0)"
