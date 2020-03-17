@@ -40,4 +40,4 @@ sequenceDiagrams:
 
 ---
 
-Hello. This is the first post. My plan is to pour useful code snippets, tips and tricks into these pages. I have a fond interest in programming (especially with Python, TypeScript and Golang). Hopefully something within these pages will help you out in your journey.
+Hello. My plan is to pour useful code snippets, tips and tricks into these pages. I have a fond interest in programming (especially with Python, TypeScript and Golang). Hopefully something within these pages will help you out in your journey.

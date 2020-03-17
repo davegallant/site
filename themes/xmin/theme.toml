@@ -1,0 +1,12 @@
+name = "BootMin"
+license = "MIT"
+licenselink = "https://github.com/LICENSE.md"
+description = "Minimal Hugo theme with BootStrap 4.1.1"
+homepage = "https://davegallant.github.io"
+tags = ["minimal", "blog", "personal", "clean", "simple", "starter", "minimalist"]
+features = ["blog"]
+min_version = "0.1"
+
+[author]
+  name = "Dave Gallant"
+  homepage = "https://davegallant.github.io"
