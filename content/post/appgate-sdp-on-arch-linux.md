@@ -151,7 +151,7 @@ if True: # Since we are not using Fedora :)
 
 It turns out there are [breaking changes](https://docs.python.org/3.7/library/platform.html#platform.linux_distribution) in Python3.8.
 
-The docs that say `Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.`
+The docs say `Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.`
 
-I guess this highlights one of the caveats of relying upon system python.
+I suppose this highlights one of the caveats of relying upon the system's python, rather than having an isolated, dedicated environment for all of its dependencies.
 

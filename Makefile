@@ -13,16 +13,6 @@ endif
 server:
 > hugo server -D
 
-## deploy: deploy the website to github pages
-deploy:
-> @echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
-> hugo -t xmin
-> cd public || exit; \
-	git add .; \
-	msg="rebuilding site $$(date)"; \
-	git commit -m "$$msg"; \
-	git push origin main;
-
 ## help: Print this help message
 help:
 > @echo
