@@ -113,7 +113,8 @@ taxonomies:
   tag: tags
 
 permalinks:
-  page: '/:slug/'
+  post: '/blog/:year/:month/:day/:slug/'
+  note: '/note/:year/:month/:day/:slug/'
 
 blackfriday:
   hrefTargetBlank: true

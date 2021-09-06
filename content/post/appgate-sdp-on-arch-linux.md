@@ -5,7 +5,6 @@ draft: false
 keywords: ['linux', 'vpn']
 description: ""
 tags: ['linux', 'vpn', 'python']
-categories: ['linux']
 author: "Dave Gallant"
 ---
 
@@ -19,7 +18,7 @@ These steps highlight how to get it working with `Python3.8` by making a 1 line 
 
 # Packaging
 
-We already know the community package is out of date, so let's clone it:
+We already know the community package is currently out of date, so let's clone it:
 
 ```shell
 git clone https://aur.archlinux.org/appgate-sdp.git
@@ -121,7 +120,7 @@ Ok, let's install it:
 $ sudo python3.8 -m pip install dbus-python
 ```
 
-It should work now... right?
+Will it work now? Not yet. There's another issue:
 
 ```shell
 $ sudo /opt/appgate/linux/set_dns
@@ -153,5 +152,5 @@ It turns out there are [breaking changes](https://docs.python.org/3.7/library/pl
 
 The docs say `Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.`
 
-I suppose this highlights one of the caveats of relying upon the system's python, rather than having an isolated, dedicated environment for all of its dependencies.
+I suppose this highlights one of the caveats of relying upon the system's python, rather than having an isolated, dedicated environment for all dependencies.
 
