@@ -5,7 +5,6 @@ draft: false
 keywords: ['linux', 'vpn']
 description: ""
 tags: ['linux', 'vpn', 'python']
-categories: ['linux']
 author: "Dave Gallant"
 ---
 
