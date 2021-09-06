@@ -21,8 +21,7 @@ deploy:
 	git add .; \
 	msg="rebuilding site $$(date)"; \
 	git commit -m "$$msg"; \
-	git push origin main; \
-	cd .. || exit;
+	git push origin main;
 
 ## help: Print this help message
 help:
