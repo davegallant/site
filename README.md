@@ -1,10 +1,11 @@
-# hugo-blog
+# blog
 
-Hugo source for davegallant.github.io.
-
+Source for https://davegallant.github.io.
 
 ## Deploy
 
+Requires hugo.
+
 ```shell
-./deploy.sh
+make deploy
 ```

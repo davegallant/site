@@ -155,5 +155,3 @@ The docs that say `Deprecated since version 3.5, will be removed in version 3.8:
 
 I guess this highlights one of the caveats of relying upon system python.
 
-Enjoy.
-
