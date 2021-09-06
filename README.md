@@ -2,10 +2,10 @@
 
 Source for https://davegallant.github.io.
 
-## Deploy
+## Run locally
 
 Requires hugo.
 
 ```shell
-make deploy
+make server
 ```

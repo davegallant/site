@@ -17,7 +17,7 @@ As of right now, the latest AUR is `4.2.2-1`.
 
 These steps highlight how to get it working with `Python3.8` by making a 1 line modification to AppGate source code.
 
-# Package
+# Packaging
 
 We already know the community package is out of date, so let's clone it:
 
@@ -75,7 +75,7 @@ Now, let's install it:
 makepkg -si
 ```
 
-# Run
+# Running the client
 
 Ok, let's run the client by executing `appgate`.
 
@@ -89,7 +89,7 @@ sudo systemctl start appgatedriver.service
 
 Now we should be connected... but DNS is not working?
 
-# Fix DNS
+# Fixing the DNS
 
 Running `resolvectl` should display that something is not right.
 
@@ -147,7 +147,7 @@ Aha! So this is in the local AppGate source code. This should be an easy fix. Le
 if True: # Since we are not using Fedora :)
 ```
 
-# Conclusion
+# Wrapping up
 
 It turns out there are [breaking changes](https://docs.python.org/3.7/library/platform.html#platform.linux_distribution) in Python3.8.
 
