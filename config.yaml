@@ -11,13 +11,12 @@ ignoreFiles:
   - _cache$
 languageCode: en-us
 preserveTaxonomyNames: true
+pygmentsCodefences: true
+enableEmoji: true
 staticDir:
   - static
-theme: xmin
-title: davegallant.github.io - blog
-permalinks:
-  post: '/blog/:year/:month/:day/:slug/'
-  note: '/note/:year/:month/:day/:slug/'
+theme: minimo
+title: davegallant
 menu:
   main:
     - name: Home
@@ -26,17 +25,102 @@ menu:
     - name: About
       url: /about/
       weight: 2
-    - name: Categories
-      url: /categories/
-      weight: 3
-    - name: Tags
-      url: /tags/
-      weight: 4
     - name: Subscribe
       url: /index.xml
+
 params:
-  description: A website built through Hugo and blogdown.
-  footer: >-
-    &copy; Dave Gallant 2021 | [Github](https://github.com/davegallant) |
-    [Twitter](https://twitter.com/Dave_Gallant_)
+  info:
+    description: tech blog
+    title404: Nothing's here!
+  assets:
+    favicon: favicon.ico
+    # customCSS:
+    #   - css/custom.css
+    # customJS:
+    #   - js/custom.js
+    gopher: ''
+  copyright:
+    prefix: ''
+    holder: Dave Gallant
+    startYear: '2020'
+    suffix: ''
+  settings:
+    dateFormat: '2006, Jan 02'
+    listDateFormat: '2006, Jan 02'
+    archiveDateFormat: Jan 02
+    hideEntryNavigation:
+      - page
+    hideEntryMeta:
+      - page
+    showReadingTime: true
+    showLastmod: true
+    taxonomyCloudShuffle: true
+    accentColor: '#ffcd00'
+    hideMainMenu: false
+  sidebar:
+    enable: true
+  widgets:
+    header:
+      - breadcrumbs
+    homepage:
+      - recent_posts
+    sidebar:
+      - about
+      - sidebar_menu
+      - taxonomy_cloud
+      - social_menu
+  opengraph:
+    facebook:
+      admins: []
+      appID: ''
+      pageID: ''
+    twitter:
+      page: ''
+  seo:
+    titleSeparator: •
+  social:
+    email: davegallant@gmail.com
+    github: davegallant
+    linkedin: dave-gallant
+    twitter: dave_gallant_
+  comments:
+    enable: false
+    isso:
+      enable: false
+      scriptSrc: ''
+      dataAttrs: ''
+    staticman:
+      enable: true
+      apiEndpoint: 'https://api.staticman.net/v2/entry'
+      maxDepth: 2
+      username: MunifTanjim
+      repository: minimo
+    utterances:
+      enable: false
+      issueTerm: pathname
+      label: ''
+      theme: github-light
+      github:
+        username: MunifTanjim
+        repository: minimo
+  search:
+    client: fuse
+
+taxonomies:
+  author: authors
+  category: categories
+  series: series
+  tag: tags
+
+permalinks:
+  page: '/:slug/'
+
+blackfriday:
+  hrefTargetBlank: true
+
+languages:
+  en:
+    lang: en
+    languageName: English
+    weight: 1
 
