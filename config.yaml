@@ -1,0 +1,42 @@
+baseurl: /
+canonifyURLs: true
+disqusShortname: https-davegallant-github-io
+enableRobotsTXT: true
+footnotereturnlinkcontents: ↩
+googleAnalytics: UA-98710982-2
+ignoreFiles:
+  - \.Rmd$
+  - \.Rmarkdown$
+  - _files$
+  - _cache$
+languageCode: en-us
+preserveTaxonomyNames: true
+staticDir:
+  - static
+theme: xmin
+title: davegallant.github.io - blog
+permalinks:
+  post: '/blog/:year/:month/:day/:slug/'
+  note: '/note/:year/:month/:day/:slug/'
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 1
+    - name: About
+      url: /about/
+      weight: 2
+    - name: Categories
+      url: /categories/
+      weight: 3
+    - name: Tags
+      url: /tags/
+      weight: 4
+    - name: Subscribe
+      url: /index.xml
+params:
+  description: A website built through Hugo and blogdown.
+  footer: >-
+    &copy; Dave Gallant 2021 | [Github](https://github.com/davegallant) |
+    [Twitter](https://twitter.com/Dave_Gallant_)
+
