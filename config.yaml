@@ -25,7 +25,7 @@ menu:
     - name: About
       url: /about/
       weight: 2
-    - name: Subscribe
+    - name: RSS
       url: /index.xml
 
 params:
@@ -82,25 +82,7 @@ params:
     linkedin: dave-gallant
     twitter: dave_gallant_
   comments:
-    enable: false
-    isso:
-      enable: false
-      scriptSrc: ''
-      dataAttrs: ''
-    staticman:
-      enable: true
-      apiEndpoint: 'https://api.staticman.net/v2/entry'
-      maxDepth: 2
-      username: MunifTanjim
-      repository: minimo
-    utterances:
-      enable: false
-      issueTerm: pathname
-      label: ''
-      theme: github-light
-      github:
-        username: MunifTanjim
-        repository: minimo
+    enable: true
   search:
     client: fuse
 
