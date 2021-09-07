@@ -55,13 +55,11 @@ params:
     showReadingTime: true
     showLastmod: true
     taxonomyCloudShuffle: true
-    accentColor: '#ffcd00'
+    accentColor: '#8979b3'
     hideMainMenu: false
   sidebar:
     enable: true
   widgets:
-    header:
-      - breadcrumbs
     homepage:
       - recent_posts
     sidebar:
