@@ -25,7 +25,7 @@ menu:
     - name: About
       url: /about/
       weight: 2
-    - name: Subscribe
+    - name: RSS
       url: /index.xml
 
 params:
@@ -55,13 +55,11 @@ params:
     showReadingTime: true
     showLastmod: true
     taxonomyCloudShuffle: true
-    accentColor: '#ffcd00'
+    accentColor: '#8979b3'
     hideMainMenu: false
   sidebar:
     enable: true
   widgets:
-    header:
-      - breadcrumbs
     homepage:
       - recent_posts
     sidebar:
@@ -84,25 +82,7 @@ params:
     linkedin: dave-gallant
     twitter: dave_gallant_
   comments:
-    enable: false
-    isso:
-      enable: false
-      scriptSrc: ''
-      dataAttrs: ''
-    staticman:
-      enable: true
-      apiEndpoint: 'https://api.staticman.net/v2/entry'
-      maxDepth: 2
-      username: MunifTanjim
-      repository: minimo
-    utterances:
-      enable: false
-      issueTerm: pathname
-      label: ''
-      theme: github-light
-      github:
-        username: MunifTanjim
-        repository: minimo
+    enable: true
   search:
     client: fuse
 
@@ -114,7 +94,6 @@ taxonomies:
 
 permalinks:
   post: '/blog/:year/:month/:day/:slug/'
-  note: '/note/:year/:month/:day/:slug/'
 
 blackfriday:
   hrefTargetBlank: true
