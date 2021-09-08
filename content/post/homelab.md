@@ -22,24 +22,26 @@ Having multiple machines/nodes provides the advantage of increased redundancy, b
 
 ## Virtualization
 
-![image](https://user-images.githubusercontent.com/4519234/132440142-3acd9c41-86e9-447d-b507-08b9a22b1cc6.png)
-
 Virtualizing your hardware is an organized way of dividing up your machine's resources. This can be done with something such as a *Virtual Machine* or something lighter like a container using *LXC* or *runC*.
 Containers have much less overhead in terms of boot time and storage allocation. This [Stack Overflow answer](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-virtual-machine) sums it up nicely.
 
+![image](https://user-images.githubusercontent.com/4519234/132440142-3acd9c41-86e9-447d-b507-08b9a22b1cc6.png)
+
+A hypervisor such as [Proxmox](https://www.proxmox.com/en/proxmox-ve/get-started) can be installed in minutes on a new machine. It provides a web interface and a straight-forward way to spin up new VMs and containers. You'll want to ensure that VT-d and VT-X are enabled in the BIOS if you decide to install a hypervisor to manage your virtualization.
+
 ## Services
 
-So what are some useful services to run a homelab?
+So what are some useful services to deploy?
 
 - [Plex](https://www.plex.tv/) - basically a self-hosted Netflix that can be used to stream from multiple devices, and the best part is that you manage the content!
 - [changedetection](https://github.com/dgtlmoon/changedetection.io) - is a self-hosted equivalent to something like [visualping.io](https://visualping.io/) that will notify you when a webpage changes and keep track of the diffs
 - [Adguard](https://github.com/AdguardTeam/AdGuardHome) or [Pihole](https://pi-hole.net/) - can block a list of known trackers for all clients on your local network. I've used pihole for a long time, but have recently switched to Adguard since the UI is more modern and it has the ability to toggle on/off a pre-defined list of services, including Netflix (this is useful if you have stealthy young kids). Either of these will speed up your internet experience, simply because you won't need to download all of the extra tracking bloat.
 
-Of course, there is much much more you can self-host, including your own applications that you might be developing.
+There is a large number of services you can self-host, including your own applications that you might be developing. [awesome-self-hosted](https://github.com/awesome-selfhosted/awesome-selfhosted) provides a curated list of services that might be of interest to you.
 
 ## VPN
 
-You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes has a hostname of `plex`, you can simply access it by referring to its hostname (i.e `ssh plex@plex`).
+You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes has a hostname of `plex`, you can simply access it by referring to its hostname (i.e `ssh plex@plex`). This way you can create a secure tunnel to your homelab from anywhere in the world!
 
 ## Monitoring
 
