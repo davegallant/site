@@ -5,7 +5,7 @@ lastmod: 2021-09-06T01:12:54-04:00
 draft: false
 keywords: []
 description: ""
-tags: ['linux', 'homelab']
+tags: ['tailscale', 'homelab', 'netdata', 'plex', 'pihole', 'virtualization', 'linux', 'adguard']
 author: "Dave Gallant"
 ---
 
@@ -39,7 +39,7 @@ Of course, there is much much more you can self-host, including your own applica
 
 ## VPN
 
-You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes names is `plex`, you can simply access it by referring to its name (i.e `ssh plex@plex`).
+You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes has a hostname of `plex`, you can simply access it by referring to its hostname (i.e `ssh plex@plex`).
 
 ## Monitoring
 
