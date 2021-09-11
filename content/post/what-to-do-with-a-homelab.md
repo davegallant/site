@@ -5,7 +5,7 @@ lastmod: 2021-09-06T01:12:54-04:00
 draft: false
 keywords: []
 description: ""
-tags: ['tailscale', 'homelab', 'netdata', 'plex', 'pihole', 'virtualization', 'linux', 'adguard']
+tags: ['tailscale', 'homelab', 'netdata', 'jellyfin', 'plex', 'pihole', 'virtualization', 'adguard', 'grafana']
 author: "Dave Gallant"
 ---
 
@@ -15,9 +15,7 @@ Do you want host your own Media server? Ad blocker? Web server?
 Are you interested in learning more about Linux? Virtualization? Networking? Security?
 Building a homelab can be an entertaining playground to enhance your computer skills.
 
-One of the best parts about building a homelab is that it doesn't have to be a large investment in terms hardware.
-
-One of the simplest ways to build a homelab is out of a [refurbished computer](https://ca.refurb.io/products/hp-800-g1-usff-intel-core-i5-4570s-16gb-ram-512gb-ssd-wifi-windows-10-pro?variant=33049503825943).
+One of the best parts about building a homelab is that it doesn't have to be a large investment in terms hardware. One of the simplest ways to build a homelab is out of a [refurbished computer](https://ca.refurb.io/products/hp-800-g1-usff-intel-core-i5-4570s-16gb-ram-512gb-ssd-wifi-windows-10-pro?variant=33049503825943).
 Having multiple machines/nodes provides the advantage of increased redundancy, but starting out with a single node is enough to reap many of the benefits of having a homelab.
 
 ## Virtualization
@@ -33,7 +31,7 @@ A hypervisor such as [Proxmox](https://www.proxmox.com/en/proxmox-ve/get-started
 
 So what are some useful services to deploy?
 
-- [Plex](https://www.plex.tv/) - basically a self-hosted Netflix that can be used to stream from multiple devices, and the best part is that you manage the content!
+- [Jellyfin](https://jellyfin.org/) or [Plex](https://www.plex.tv/) - basically a self-hosted Netflix that can be used to stream from multiple devices, and the best part is that you manage the content! Unlike Plex, Jellyfin is open source and can be found [here](https://github.com/jellyfin/jellyfin).
 - [changedetection](https://github.com/dgtlmoon/changedetection.io) - is a self-hosted equivalent to something like [visualping.io](https://visualping.io/) that will notify you when a webpage changes and keep track of the diffs
 - [Adguard](https://github.com/AdguardTeam/AdGuardHome) or [Pihole](https://pi-hole.net/) - can block a list of known trackers for all clients on your local network. I've used pihole for a long time, but have recently switched to Adguard since the UI is more modern and it has the ability to toggle on/off a pre-defined list of services, including Netflix (this is useful if you have stealthy young kids). Either of these will speed up your internet experience, simply because you won't need to download all of the extra tracking bloat.
 
@@ -49,7 +47,7 @@ Monitoring can become an important aspect of your homelab after it starts to bec
 
 Additionally, all of these different agents can be connected to *netdata cloud*, which can alert you when some of your infrastructure is down or in a degraded state. Adding additional nodes to netdata cloud is as simple as a 1 line shell command.
 
-[Grafana](https://grafana.com/) is another popular way of visualizing metrics, although it requires more initial setup.
+[Grafana](https://grafana.com/) is another open source analytics and monitoring solution. It is a powerful tool that many companies use in production. If you are looking for ideas, check out [Wikimedia](https://www.wikimedia.org/)'s [public Grafana](https://grafana.wikimedia.org/).
 
 ## In Summary
 
