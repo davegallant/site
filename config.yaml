@@ -30,8 +30,8 @@ menu:
 
 params:
   info:
-    description: tech blog
-    title404: Nothing's here!
+    description: personal blog
+    title404: This page no longer exists, or maybe it never did? Try https://archive.org?
   assets:
     favicon: favicon.ico
     # customCSS:
