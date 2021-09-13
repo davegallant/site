@@ -43,12 +43,14 @@ You could certainly setup and manage your own VPN by using something like [OpenV
 
 ## Monitoring
 
+![dashboard](https://user-images.githubusercontent.com/4519234/133014770-4b799051-e34f-4b29-86c0-fbb9480cd63f.png)
+
 Monitoring can become an important aspect of your homelab after it starts to become something that is relied upon. One of the simplest ways to setup some monitoring is using [netdata](https://www.netdata.cloud/). It can be installed on individual containers, VMs, and also a hypervisor (such as Proxmox). All of the monitoring works out of the box by detecting disks, memory, network interfaces, etc.
 
-Additionally, all of these different agents can be connected to *netdata cloud*, which can alert you when some of your infrastructure is down or in a degraded state. Adding additional nodes to netdata cloud is as simple as a 1 line shell command.
+Additionally, agents installed on different machines can all be centrally viewed in netdata, and it can alert you when some of your infrastructure is down or in a degraded state. Adding additional nodes to netdata is as simple as a 1-line shell command.
 
-[Grafana](https://grafana.com/) is another open source analytics and monitoring solution. It is a powerful tool that many companies use in production. If you are looking for ideas, check out [Wikimedia](https://www.wikimedia.org/)'s [public Grafana](https://grafana.wikimedia.org/).
+[Grafana](https://grafana.com/) is another open source analytics and monitoring solution. If you are looking for ideas, check out [Wikimedia](https://www.wikimedia.org/)'s [public Grafana](https://grafana.wikimedia.org/).
 
 ## In Summary
 
-Building out a homelab can be incredibly rewarding and it doesn't always require buying a rack full of expensive servers to get a significant amount of utility.
+Building out a homelab can be a rewarding experience and it doesn't require buying a rack full of expensive servers to get a significant amount of utility. There are many services you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to from anywhere.
