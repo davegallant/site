@@ -197,6 +197,12 @@ This basic configuration above is also defining your `~/.config/git/config` and 
 
 If you run `cat ~/.zshrc`, you will see the way these configuration files are generated.
 
+You can extend this configuration for programs such as (neo)vim, emacs, alacritty, ssh, etc. To see other programs, take a look at [home-manager/modules/programs](https://github.com/nix-community/home-manager/tree/master/modules/programs).
+
+## Gateway To Nix
+
+In ways, home-manager can be seen as a gateway to the nix ecosystem. If you have enjoyed the way you can declare user configuration with home-manager, you may be interested in expanding your configuration to include other system dependencies and configuration. For example, in Linux you can define your entire system's configuration (including the kernel, kernel modules, networking, filesystems, etc) in nix. For macOS, there is [nix-darwin](https://github.com/LnL7/nix-darwin) that includes nix modules for configuring launchd, dock, and other preferences and services. You may also want to check out [Nix Flakes](https://nixos.wiki/wiki/Flakes): a more recent feature that allows you declare dependencies, and have them automatically pinned and hashed in `flake.lock`, similar to that of many modern package managers.
+
 ## Wrapping up
 
-And that is how you can get started defining your user configuration with home-manager. You can extend this configuration for programs such as (neo)vim, emacs, alacritty, ssh, etc. To see other programs, take a look at [home-manager/modules/programs](https://github.com/nix-community/home-manager/tree/master/modules/programs).
+The title of this post is slightly misleading, since it's possible to retain some of your dotfiles and have them intermingle with home-manager by including them alongside nix. The idea of defining user configuration using nix can provide a clean way to maintain your configuration, and allow it to be portable across platforms. Is it worth the effort to migrate away from more from shell scripts and dotfiles? I'd say so.
