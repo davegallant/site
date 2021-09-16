@@ -102,14 +102,14 @@ Now, to start off with a basic configuration, open up `~/.config/nixpkgs/home.ni
     git = {
       enable = true;
       aliases = {
-        "aa" = "add -A .";
-        "br" = "branch";
-        "c" = "commit -S";
-        "ca" = "commit -S --amend";
-        "cb" = "checkout -b";
-        "co" = "checkout";
-        "d" = "diff";
-        "l" =
+        aa = "add -A .";
+        br = "branch";
+        c = "commit -S";
+        ca = "commit -S --amend";
+        cb = "checkout -b";
+        co = "checkout";
+        d = "diff";
+        l =
           "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       };
 

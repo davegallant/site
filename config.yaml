@@ -34,8 +34,8 @@ params:
     title404: This page no longer exists, or maybe it never did? Try https://archive.org?
   assets:
     favicon: favicon.ico
-    # customCSS:
-    #   - css/custom.css
+    customCSS:
+      - css/custom.css
     # customJS:
     #   - js/custom.js
     gopher: ''
