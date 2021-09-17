@@ -81,7 +81,14 @@ params:
     linkedin: dave-gallant
     twitter: dave_gallant_
   comments:
-    enable: false
+    enable: true
+    utterances:
+      enable: true
+      issueTerm: "pathname"
+      theme: preferred-color-scheme
+      github:
+        username: davegallant
+        repository: davegallant.github.io
   search:
     client: fuse
 
