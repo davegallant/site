@@ -1,6 +1,5 @@
 baseurl: /
 canonifyURLs: true
-disqusShortname: https-davegallant-github-io
 enableRobotsTXT: true
 footnotereturnlinkcontents: ↩
 googleAnalytics: UA-98710982-2
@@ -82,7 +81,7 @@ params:
     linkedin: dave-gallant
     twitter: dave_gallant_
   comments:
-    enable: true
+    enable: false
   search:
     client: fuse
 
