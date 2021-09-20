@@ -15,7 +15,7 @@ Do you want host your own Media server? Ad blocker? Web server?
 Are you interested in learning more about Linux? Virtualization? Networking? Security?
 Building a homelab can be an entertaining playground to enhance your computer skills.
 
-One of the best parts about building a homelab is that it doesn't have to be a large investment in terms hardware. One of the simplest ways to build a homelab is out of a [refurbished computer](https://ca.refurb.io/products/hp-800-g1-usff-intel-core-i5-4570s-16gb-ram-512gb-ssd-wifi-windows-10-pro?variant=33049503825943).
+One of the best parts about building a homelab is that it doesn't have to be a large investment in terms of hardware. One of the simplest ways to build a homelab is out of a [refurbished computer](https://ca.refurb.io/products/hp-800-g1-usff-intel-core-i5-4570s-16gb-ram-512gb-ssd-wifi-windows-10-pro?variant=33049503825943).
 Having multiple machines/nodes provides the advantage of increased redundancy, but starting out with a single node is enough to reap many of the benefits of having a homelab.
 
 ## Virtualization
@@ -53,4 +53,4 @@ Additionally, agents installed on different machines can all be centrally viewed
 
 ## In Summary
 
-Building out a homelab can be a rewarding experience and it doesn't require buying a rack full of expensive servers to get a significant amount of utility. There are many services you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to from anywhere.
+Building out a homelab can be a rewarding experience and it doesn't require buying a rack full of expensive servers to get a significant amount of utility. There are many services that you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to from anywhere.
