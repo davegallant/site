@@ -1,6 +1,6 @@
 # blog
 
-Source for https://davegallant.github.io.
+Source for blog, powered by [hugo](https://github.com/gohugoio/hugo).
 
 ## Run locally
 
