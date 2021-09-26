@@ -11,6 +11,7 @@ ignoreFiles:
 languageCode: en-us
 preserveTaxonomyNames: true
 pygmentsCodefences: true
+PygmentsStyle: manni
 enableEmoji: true
 staticDir:
   - static
@@ -85,7 +86,7 @@ params:
     utterances:
       enable: true
       issueTerm: "pathname"
-      theme: preferred-color-scheme
+      theme: github-light # the css inverts this when dark is preferred
       github:
         username: davegallant
         repository: davegallant.github.io
