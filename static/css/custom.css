@@ -1,3 +1,13 @@
+@media (prefers-color-scheme: dark) {
+  html {
+      filter: invert(80%);
+  }
+
+  html img {
+      filter: invert(100%);
+  }
+}
+
 .container{
    max-width: 1200px;
 }
