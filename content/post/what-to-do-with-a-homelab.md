@@ -39,7 +39,7 @@ There is a large number of services you can self-host, including your own applic
 
 ## VPN
 
-You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes has a hostname of `plex`, you can simply access it by referring to its hostname (i.e `ssh plex@plex`). This way you can create a secure tunnel to your homelab from anywhere in the world!
+You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes has a hostname of `plex`, you can simply access it by referring to its hostname (i.e `ssh plex@plex`). This way you can create a secure tunnel to your homelab from anywhere.
 
 ## Monitoring
 
@@ -53,4 +53,4 @@ Additionally, agents installed on different machines can all be centrally viewed
 
 ## In Summary
 
-Building out a homelab can be a rewarding experience and it doesn't require buying a rack full of expensive servers to get a significant amount of utility. There are many services that you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to from anywhere.
+Building out a homelab can be a rewarding experience and it doesn't require buying a rack full of expensive servers to get a significant amount of utility. There are many services that you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to remotely.
