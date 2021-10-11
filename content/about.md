@@ -1,7 +1,6 @@
 ---
 title: About
 weight: -210
-menu: "main"
 disable_comments: true
 ---
 

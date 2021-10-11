@@ -9,9 +9,9 @@ ifeq ($(origin .RECIPEPREFIX), undefined)
 endif
 .RECIPEPREFIX = >
 
-## server: run server locally on port 1313
+## server: run server locally on port 51313
 server:
-> hugo server -D
+> hugo server -D -p 51313
 
 ## help: Print this help message
 help:
