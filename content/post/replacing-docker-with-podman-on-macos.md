@@ -159,8 +159,10 @@ This should more or less provide the same results you would come to expect with 
 
 ### Summary
 
-Installing podman on macOS was not seamless, but it was manageable well within 30 minutes. I would recommend podman to anyone who is unhappy with experiencing forced docker updates, or who wants to use a more modern technology for managing containers.
+> Update: After further usage, bind mounts do not seem to work when the client and host are on different machines. See [this issue](https://github.com/containers/podman/issues/8016).
 
-One caveat to mention is that there isn't a graphical user interface for podman, but there is an [open issue](https://github.com/containers/podman/issues/11494) considering one. If you rely heavily on Docker Desktop's UI, you may not be as interested in using podman yet.
+Installing podman on macOS was not seamless, but it was manageable well within 30 minutes. I would recommend giving podman a try to anyone who is unhappy with experiencing forced docker updates, or who wants to use a more modern technology for managing containers.
+
+One caveat to mention is that there isn't an official graphical user interface for podman, but there is an [open issue](https://github.com/containers/podman/issues/11494) considering one. If you rely heavily on Docker Desktop's UI, you may not be as interested in using podman yet.
 
 I had been experimenting with podman on Linux before writing this, but after listening to this [podcast episode](https://kubernetespodcast.com/episode/164-podman/), I was inspired to give podman a try on macOS.
