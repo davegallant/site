@@ -25,7 +25,7 @@ flowchartDiagrams:
   enable: false
   options: ""
 
-sequenceDiagrams: 
+sequenceDiagrams:
   enable: false
   options: ""
 
@@ -40,6 +40,7 @@ There are a number of reasons why you might want to replace docker, especially o
 
 Docker has been one of the larger influencers in the container world, helping to standardize the [OCI Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/spec.md). For many developers, containers have become synonymous with terms like `docker` and `Dockerfile` (a file containing build instructions for a container image). Docker has certainly made it very convenient to build and run containers, but it is not the only solution for doing so.
 
+This post briefly describes my experience swapping out docker for podman on macOS.
 
 ### What is a container?
 
@@ -53,17 +54,17 @@ One of the most interesting features of podman is that it is daemonless. There i
 
 Podman is rootless by default. It is now possible to [run the docker daemon rootless](https://docs.docker.com/engine/security/rootless/) as well, but it's still not the default behaviour.
 
-I've also observed that so far my 2019 16" Macbook Pro has not yet sounded like a jet engine.
+I've also observed that so far my 2019 16" Macbook Pro hasn't sounded like a jet engine, although I haven't performed any disk-intensive operations yet.
 
 ### Installing podman
 
-Running podman on macOS is more involved than on Linux, because the podman-machine must run Linux inside a virtual machine. Fortunately, the installation is made simple with [brew](https://brew.sh/) (read [this](https://podman.io/getting-started/installation#linux-distributions) if you're installing podman on Linux):
+Running podman on macOS is more involved than on Linux, because the podman-machine must run Linux inside of a virtual machine. Fortunately, the installation is made simple with [brew](https://formulae.brew.sh/formula/podman) (read [this](https://podman.io/getting-started/installation#linux-distributions) if you're installing podman on Linux):
 
 ```sh
 brew install podman
 ```
 
-If on macOS, the podman machine must be started:
+The podman machine must be started:
 
 ```sh
 # This is not necessary on Linux
@@ -93,7 +94,7 @@ $ podman run --rm -ti alpine
 Error: error preparing container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b for attach: error configuring network namespace for container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b: error adding pod unruffled_bohr_unruffled_bohr to CNI network "podman": unexpected end of JSON input
 ```
 
-What does this error mean? A bit of googling lead to [this github issue](https://github.com/containers/podman/issues/11837).
+What does this error mean? A bit of searching lead to [this github issue](https://github.com/containers/podman/issues/11837).
 
 Until the fix is released, a workaround is to just specify a port (even when it's not needed):
 
