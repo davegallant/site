@@ -34,7 +34,7 @@ sequenceDiagrams:
 
 <!--more-->
 
-It has been a while since I've actively used Kubernetes and wanted to explore the evolution of tools such as [Helm](https://helm.sh) and [Tekton](https://tekton.dev). I decided to deploy [K3s](https://k3s.io), since I've had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it'd be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to squeeze as much out of the machine resources as possible.
+It has been a while since I've actively used Kubernetes and wanted to explore the evolution of tools such as [Helm](https://helm.sh) and [Tekton](https://tekton.dev). I decided to deploy [K3s](https://k3s.io), since I've had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it'd be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine's resources.
 
 ## What is K3s?
 
@@ -42,7 +42,7 @@ K3s is a Kubernetes distro that advertises itself as a lightweight binary with a
 
 ## Configure Proxmox
 
-This [gist](https://gist.github.com/triangletodd/02f595cd4c0dc9aac5f7763ca2264185) contains snippets and discussion on how to deploy K3s in LXC on proxmox. It mentions that `bridge-nf-call-iptables` should be loaded, but I did not understand the benefit of doing this.
+This [gist](https://gist.github.com/triangletodd/02f595cd4c0dc9aac5f7763ca2264185) contains snippets and discussion on how to deploy K3s in LXC on Proxmox. It mentions that `bridge-nf-call-iptables` should be loaded, but I did not understand the benefit of doing this.
 
 ## Disable swap
 
@@ -122,7 +122,7 @@ If all goes well, you should see a path to the `kubeconfig` generated. I moved t
 
 ## Wrapping up
 
-Installing K3s in LXC on proxmox works with a few tweaks to the default configuration. I later followed the Tekton's [Getting Started](https://tekton.dev/docs/getting-started/) guide and was able to deploy it in a few commands.
+Installing K3s in LXC on Proxmox works with a few tweaks to the default configuration. I later followed the Tekton's [Getting Started](https://tekton.dev/docs/getting-started/) guide and was able to deploy it in a few commands.
 
 
 ```console

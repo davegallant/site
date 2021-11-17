@@ -42,7 +42,7 @@ Before understanding home-manager, it is worth briefly discussing what nix is. [
 For example, I have used nix to install the package [bind](https://search.nixos.org/packages?channel=unstable&show=bind&from=0&size=50&sort=relevance&type=packages&query=bind) which includes `dig`. You can see that it is available on multiple platforms. The absolute path of `dig` can be found by running:
 
 ```console
-❯ ls -lh $(which dig)
+$ ls -lh $(which dig)
 lrwxr-xr-x 73 root 31 Dec  1969 /run/current-system/sw/bin/dig -> /nix/store/0r4qdyprljd3dki57jn6c6a8dh2rbg9g-bind-9.16.16-dnsutils/bin/dig
 ```
 
