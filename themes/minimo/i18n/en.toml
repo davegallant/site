@@ -102,7 +102,7 @@ one = "One min read"
 other = "{{ .Count }} mins read"
 
 [recentPosts]
-other = "Recent Posts"
+other = "Entries"
 
 [reply]
 other = "Reply"
