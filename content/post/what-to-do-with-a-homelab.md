@@ -23,9 +23,9 @@ Having multiple machines/nodes provides the advantage of increased redundancy, b
 Virtualizing your hardware is an organized way of dividing up your machine's resources. This can be done with something such as a *Virtual Machine* or something lighter like a container using *LXC* or *runC*.
 Containers have much less overhead in terms of boot time and storage allocation. This [Stack Overflow answer](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-virtual-machine) sums it up nicely.
 
-![image](https://user-images.githubusercontent.com/4519234/132440142-3acd9c41-86e9-447d-b507-08b9a22b1cc6.png)
+![image](/images/proxmox.png)
 
-A hypervisor such as [Proxmox](https://www.proxmox.com/en/proxmox-ve/get-started) can be installed in minutes on a new machine. It provides a web interface and a straight-forward way to spin up new VMs and containers. You'll want to ensure that VT-d and VT-X are enabled in the BIOS if you decide to install a hypervisor to manage your virtualization.
+A hypervisor such as [Proxmox](https://www.proxmox.com/en/proxmox-ve/get-started) can be installed in minutes on a new machine. It provides a web interface and a straight-forward way to spin up new VMs and containers. Even if your plan is to run mostly docker containers, Proxmox can be a useful abstraction for managing VMs, disks and running scheduled backups. You can even run docker within an LXC container by enabling nested virtualization. You'll want to ensure that VT-d and VT-x are enabled in the BIOS if you decide to install a hypervisor to manage your virtualization.
 
 ## Services
 
@@ -34,22 +34,27 @@ So what are some useful services to deploy?
 - [Jellyfin](https://jellyfin.org/) or [Plex](https://www.plex.tv/) - basically a self-hosted Netflix that can be used to stream from multiple devices, and the best part is that you manage the content! Unlike Plex, Jellyfin is open source and can be found [here](https://github.com/jellyfin/jellyfin).
 - [changedetection](https://github.com/dgtlmoon/changedetection.io) - is a self-hosted equivalent to something like [visualping.io](https://visualping.io/) that will notify you when a webpage changes and keep track of the diffs
 - [Adguard](https://github.com/AdguardTeam/AdGuardHome) or [Pihole](https://pi-hole.net/) - can block a list of known trackers for all clients on your local network. I've used pihole for a long time, but have recently switched to Adguard since the UI is more modern and it has the ability to toggle on/off a pre-defined list of services, including Netflix (this is useful if you have stealthy young kids). Either of these will speed up your internet experience, simply because you won't need to download all of the extra tracking bloat.
+- [Gitea](https://gitea.io/) - A lightweight git server. I use this to mirror git repos from GitHub, GitLab, etc.
+- [Homer](https://github.com/bastienwirtz/homer) - A customizable landing page for services you need to access (including the ability to quickly search).
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma) - A fancy tool for monitoring the uptime of services.
 
 There is a large number of services you can self-host, including your own applications that you might be developing. [awesome-self-hosted](https://github.com/awesome-selfhosted/awesome-selfhosted) provides a curated list of services that might be of interest to you.
 
 ## VPN
 
-You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. And by using its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), it is a truly magical solution. If one of your nodes has a hostname of `plex`, you can simply access it by referring to its hostname (i.e `ssh plex@plex`). This way you can create a secure tunnel to your homelab from anywhere.
+You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. With its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), your can reference the names of machines like `homer` rather than using an IP address. By using this mesh-like VPN, you can easily create a secure tunnel to your homelab from anywhere.
 
 ## Monitoring
 
-![dashboard](https://user-images.githubusercontent.com/4519234/133014770-4b799051-e34f-4b29-86c0-fbb9480cd63f.png)
+![dashboard](/images/netdata.png)
 
 Monitoring can become an important aspect of your homelab after it starts to become something that is relied upon. One of the simplest ways to setup some monitoring is using [netdata](https://www.netdata.cloud/). It can be installed on individual containers, VMs, and also a hypervisor (such as Proxmox). All of the monitoring works out of the box by detecting disks, memory, network interfaces, etc.
 
 Additionally, agents installed on different machines can all be centrally viewed in netdata, and it can alert you when some of your infrastructure is down or in a degraded state. Adding additional nodes to netdata is as simple as a 1-line shell command.
 
-[Grafana](https://grafana.com/) is another open source analytics and monitoring solution. If you are looking for ideas, check out [Wikimedia](https://www.wikimedia.org/)'s [public Grafana](https://grafana.wikimedia.org/).
+As mentioned above, [Uptime Kuma](https://github.com/louislam/uptime-kuma) is a convenient way to track uptime and monitor the availability of your services.
+
+![uptime-kuma](/images/uptime-kuma.png)
 
 ## In Summary
 
