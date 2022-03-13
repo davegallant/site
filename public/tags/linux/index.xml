@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on davegallant</title>
+    <link>/tags/linux/</link>
+    <description>Recent content in linux on davegallant</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Mar 2020 22:00:15 -0400</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AppGate SDP on Arch Linux</title>
+      <link>/blog/2020/03/16/appgate-sdp-on-arch-linux/</link>
+      <pubDate>Mon, 16 Mar 2020 22:00:15 -0400</pubDate>
+      
+      <guid>/blog/2020/03/16/appgate-sdp-on-arch-linux/</guid>
+      <description>&lt;p&gt;AppGate SDP provides a Zero Trust network. This post describes how to get AppGate SDP &lt;code&gt;4.3.2&lt;/code&gt; working on Arch Linux.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

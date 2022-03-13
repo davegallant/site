@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lxc on davegallant</title>
+    <link>/tags/lxc/</link>
+    <description>Recent content in lxc on davegallant</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Nov 2021 10:07:03 -0500</lastBuildDate><atom:link href="/tags/lxc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Running K3s in LXC on Proxmox</title>
+      <link>/blog/2021/11/14/running-k3s-in-lxc-on-proxmox/</link>
+      <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
+      
+      <guid>/blog/2021/11/14/running-k3s-in-lxc-on-proxmox/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
