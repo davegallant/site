@@ -1,0 +1,23 @@
+@media (prefers-color-scheme: dark) {
+  html {
+      filter: invert(80%);
+  }
+
+  html img {
+      filter: invert(100%);
+  }
+}
+
+.container{
+   max-width: 900px;
+}
+
+.site {
+   max-width: 1200px;
+}
+
+.twitter-tweet-rendered {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}

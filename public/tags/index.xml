@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on davegallant</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on davegallant</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Nov 2021 10:07:03 -0500</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k3s</title>
+      <link>/tags/k3s/</link>
+      <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
+      
+      <guid>/tags/k3s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lxc</title>
+      <link>/tags/lxc/</link>
+      <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
+      
+      <guid>/tags/lxc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxmox</title>
+      <link>/tags/proxmox/</link>
+      <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
+      
+      <guid>/tags/proxmox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>containers</title>
+      <link>/tags/containers/</link>
+      <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
+      
+      <guid>/tags/containers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>/tags/docker/</link>
+      <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
+      
+      <guid>/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>podman</title>
+      <link>/tags/podman/</link>
+      <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
+      
+      <guid>/tags/podman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>/tags/aws/</link>
+      <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
+      <guid>/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws-vault</title>
+      <link>/tags/aws-vault/</link>
+      <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
+      <guid>/tags/aws-vault/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>/tags/python/</link>
+      <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>/tags/security/</link>
+      <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
+      <guid>/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotfiles</title>
+      <link>/tags/dotfiles/</link>
+      <pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate>
+      
+      <guid>/tags/dotfiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>home-manager</title>
+      <link>/tags/home-manager/</link>
+      <pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate>
+      
+      <guid>/tags/home-manager/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nix</title>
+      <link>/tags/nix/</link>
+      <pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate>
+      
+      <guid>/tags/nix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>adguard</title>
+      <link>/tags/adguard/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/adguard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>/tags/grafana/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>homelab</title>
+      <link>/tags/homelab/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/homelab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jellyfin</title>
+      <link>/tags/jellyfin/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/jellyfin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>netdata</title>
+      <link>/tags/netdata/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/netdata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pihole</title>
+      <link>/tags/pihole/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/pihole/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plex</title>
+      <link>/tags/plex/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/plex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tailscale</title>
+      <link>/tags/tailscale/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/tailscale/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>virtualization</title>
+      <link>/tags/virtualization/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/tags/virtualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Mon, 16 Mar 2020 22:00:15 -0400</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vpn</title>
+      <link>/tags/vpn/</link>
+      <pubDate>Mon, 16 Mar 2020 22:00:15 -0400</pubDate>
+      
+      <guid>/tags/vpn/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

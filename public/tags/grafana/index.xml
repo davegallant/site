@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grafana on davegallant</title>
+    <link>/tags/grafana/</link>
+    <description>Recent content in grafana on davegallant</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Sep 2021 01:12:54 -0400</lastBuildDate><atom:link href="/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What To Do With A Homelab</title>
+      <link>/blog/2021/09/06/what-to-do-with-a-homelab/</link>
+      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
+      <guid>/blog/2021/09/06/what-to-do-with-a-homelab/</guid>
+      <description>&lt;p&gt;A homelab can be an inexpensive way to host a multitude of internal/external services and learn &lt;em&gt;a lot&lt;/em&gt; in the process.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

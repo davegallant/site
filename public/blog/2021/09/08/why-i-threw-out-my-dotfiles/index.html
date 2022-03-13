@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang='en' dir='auto'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content=''>
+<meta name='theme-color' content='#8979b3'>
+
+<meta property='og:title' content='Why I Threw Out My Dotfiles • davegallant'>
+<meta property='og:description' content=''>
+<meta property='og:url' content='/blog/2021/09/08/why-i-threw-out-my-dotfiles/'>
+<meta property='og:site_name' content='davegallant'>
+<meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='nix'><meta property='article:tag' content='dotfiles'><meta property='article:tag' content='home-manager'><meta property='article:published_time' content='2021-09-08T00:42:33-04:00'/><meta property='article:modified_time' content='2021-09-08T00:42:33-04:00'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.92.2" />
+
+  <title>Why I Threw Out My Dotfiles • davegallant</title>
+  <link rel='canonical' href='/blog/2021/09/08/why-i-threw-out-my-dotfiles/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.ab98e12b.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#8979b3;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98710982-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <div class='logo'>
+      <a href='/'>
+        <img src='/images/logo.png'>
+      </a>
+    </div>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      davegallant
+      </a>
+    </h2>
+    <div class='desc'>
+    personal blog
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud'><li>
+        <a href='/tags/adguard/' style='font-size:1em'>adguard</a>
+      </li><li>
+        <a href='/tags/aws/' style='font-size:1em'>aws</a>
+      </li><li>
+        <a href='/tags/aws-vault/' style='font-size:1em'>aws-vault</a>
+      </li><li>
+        <a href='/tags/containers/' style='font-size:1em'>containers</a>
+      </li><li>
+        <a href='/tags/docker/' style='font-size:1em'>docker</a>
+      </li><li>
+        <a href='/tags/dotfiles/' style='font-size:1em'>dotfiles</a>
+      </li><li>
+        <a href='/tags/grafana/' style='font-size:1em'>grafana</a>
+      </li><li>
+        <a href='/tags/home-manager/' style='font-size:1em'>home-manager</a>
+      </li><li>
+        <a href='/tags/homelab/' style='font-size:1em'>homelab</a>
+      </li><li>
+        <a href='/tags/jellyfin/' style='font-size:1em'>jellyfin</a>
+      </li><li>
+        <a href='/tags/k3s/' style='font-size:1em'>k3s</a>
+      </li><li>
+        <a href='/tags/linux/' style='font-size:1em'>linux</a>
+      </li><li>
+        <a href='/tags/lxc/' style='font-size:1em'>lxc</a>
+      </li><li>
+        <a href='/tags/netdata/' style='font-size:1em'>netdata</a>
+      </li><li>
+        <a href='/tags/nix/' style='font-size:1em'>nix</a>
+      </li><li>
+        <a href='/tags/pihole/' style='font-size:1em'>pihole</a>
+      </li><li>
+        <a href='/tags/plex/' style='font-size:1em'>plex</a>
+      </li><li>
+        <a href='/tags/podman/' style='font-size:1em'>podman</a>
+      </li><li>
+        <a href='/tags/proxmox/' style='font-size:1em'>proxmox</a>
+      </li><li>
+        <a href='/tags/python/' style='font-size:2em'>python</a>
+      </li><li>
+        <a href='/tags/security/' style='font-size:1em'>security</a>
+      </li><li>
+        <a href='/tags/tailscale/' style='font-size:1em'>tailscale</a>
+      </li><li>
+        <a href='/tags/virtualization/' style='font-size:1em'>virtualization</a>
+      </li><li>
+        <a href='/tags/vpn/' style='font-size:1em'>vpn</a>
+      </li></ul>
+</div>
+
+
+</section>
+<section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/davegallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/dave_gallant_' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:davegallant@gmail.com' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Contact via Email</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+<polyline points="22,6 12,13 2,6" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/dave-gallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+<rect x="2" y="9" width="4" height="12" />
+<circle cx="4" cy="4" r="2" />
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section></div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="3" y1="12" x2="21" y2="12" />
+<line x1="3" y1="6" x2="21" y2="6" />
+<line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+</span>
+  <span class='close'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="18" y1="6" x2="6" y2="18" />
+<line x1="6" y1="6" x2="18" y2="18" />
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li><li class='item'>
+        <a href='/index.xml'>RSS</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Why I Threw Out My Dotfiles</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+<line x1="16" y1="2" x2="16" y2="6" />
+<line x1="8" y1="2" x2="8" y2="6" />
+<line x1="3" y1="10" x2="21" y2="10" />
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2021-09-08T00:42:33-04:00'>2021, Sep 08</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><circle cx="12" cy="12" r="10" />
+<polyline points="12 6 12 12 15 15" />
+</svg>
+5 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p>Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (<code>~/.zshrc</code>, <code>~/.config/git/config</code>, <code>~/.config/tmux/tmux.conf</code>, etc). I have tried several different ways to manage them, including <a href="https://www.atlassian.com/git/tutorials/dotfiles">bare git repos</a> and utilities such as <a href="https://www.gnu.org/software/stow/">GNU Stow</a>. These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: <a href="https://github.com/nix-community/home-manager">home-manager</a>.</p>
+<h2 id="what-is-home-manager">What is home-manager?</h2>
+<p>Before understanding home-manager, it is worth briefly discussing what nix is. <a href="https://nixos.org/">nix</a> is a package manager that originally spawned from a <a href="https://edolstra.github.io/pubs/phd-thesis.pdf">PhD thesis</a>. Unlike other package managers, it uses symbolic links to keep track of the currently installed packages, keeping around the old ones in case you may want to rollback.</p>
+<p>For example, I have used nix to install the package <a href="https://search.nixos.org/packages?channel=unstable&amp;show=bind&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=bind">bind</a> which includes <code>dig</code>. You can see that it is available on multiple platforms. The absolute path of <code>dig</code> can be found by running:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>ls -lh <span style="color:#069;font-weight:bold">$(</span>which dig<span style="color:#069;font-weight:bold">)</span>
+<span style="color:#aaa">lrwxr-xr-x 73 root 31 Dec  1969 /run/current-system/sw/bin/dig -&gt; /nix/store/0r4qdyprljd3dki57jn6c6a8dh2rbg9g-bind-9.16.16-dnsutils/bin/dig
+</span></code></pre></div><p>Notice that there is a hash included in the file path? This is a nix store path and is computed by the nix package manager. This <a href="https://nixos.org/guides/nix-pills/nix-store-paths.html">nix pill</a> does a good job explaining how this hash is computed. All of the nix pills are worth a read, if you are interested in learning more about nix itself. However, using home-manager does not require extensive knowledge of nix.</p>
+<p>Part of the nix ecosystem includes <a href="https://github.com/NixOS/nixpkgs">nixpkgs</a>. Many popular tools can be found already packaged in this repository. As you can see with these <a href="https://repology.org/repositories/statistics/total">stats</a>, there is a large number of existing packages that are being maintained by the community. Contributing a new package is easy, and anyone can do it!</p>
+<p>home-manager leverages the nix package manager (and nixpkgs), as well the nix language so that you can declaratively define your system configuration. I store my <a href="https://github.com/davegallant/nix-config">nix-config</a> in git so that I can keep track of my packages and configurations, and retain a clean and informative git commit history so that I can understand what changed and why.</p>
+<h2 id="setting-up-home-manager">Setting up home-manager</h2>
+<blockquote>
+<p>⚠️ If you run this on your main machine, make sure you backup your configuration files first. home-manager is pretty good about not overwriting existing configuration, but it is better to have a backup! Alternatively, you could test this out on a VM or cloud instance.</p>
+</blockquote>
+<p>The first thing you should do is <a href="https://nixos.org/guides/install-nix.html">install nix</a>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -L https://nixos.org/nix/install | sh
+</code></pre></div><p>It&rsquo;s not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a peak before executing it!</p>
+<p>Open up a new shell in your terminal and running <code>nix</code> <em>should</em> work. If not, run <code>. ~/.nix-profile/etc/profile.d/nix.sh</code></p>
+<p>Now, <a href="https://github.com/nix-community/home-manager#installation">install home-manager</a>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell <span style="color:#c30">&#39;&lt;home-manager&gt;&#39;</span> -A install
+</code></pre></div><p>You should see a wave of <code>/nix/store/*</code> paths being displayed on your screen.</p>
+<p>Now, to start off with a basic configuration, open up <code>~/.config/nixpkgs/home.nix</code> in the editor of your choice and paste this in (you will want to change <code>userName</code> and <code>homeDirectory</code>):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nix" data-lang="nix">{ config<span style="color:#555">,</span> pkgs<span style="color:#555">,</span> <span style="color:#555">...</span> }:
+
+{
+  programs<span style="color:#555">.</span>home-manager<span style="color:#555">.</span>enable <span style="color:#555">=</span> <span style="color:#360">true</span>;
+
+  home <span style="color:#555">=</span> {
+    username <span style="color:#555">=</span> <span style="color:#c30">&#34;dave&#34;</span>;
+    homeDirectory <span style="color:#555">=</span> <span style="color:#c30">&#34;/home/dave&#34;</span>;
+    stateVersion <span style="color:#555">=</span> <span style="color:#c30">&#34;21.11&#34;</span>;
+    packages <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">with</span> pkgs; [
+      bind
+      exa
+      fd
+      ripgrep
+    ];
+  };
+
+  programs <span style="color:#555">=</span> {
+
+    git <span style="color:#555">=</span> {
+      enable <span style="color:#555">=</span> <span style="color:#360">true</span>;
+      aliases <span style="color:#555">=</span> {
+        aa <span style="color:#555">=</span> <span style="color:#c30">&#34;add -A .&#34;</span>;
+        br <span style="color:#555">=</span> <span style="color:#c30">&#34;branch&#34;</span>;
+        c <span style="color:#555">=</span> <span style="color:#c30">&#34;commit -S&#34;</span>;
+        ca <span style="color:#555">=</span> <span style="color:#c30">&#34;commit -S --amend&#34;</span>;
+        cb <span style="color:#555">=</span> <span style="color:#c30">&#34;checkout -b&#34;</span>;
+        co <span style="color:#555">=</span> <span style="color:#c30">&#34;checkout&#34;</span>;
+        d <span style="color:#555">=</span> <span style="color:#c30">&#34;diff&#34;</span>;
+        l <span style="color:#555">=</span>
+          <span style="color:#c30">&#34;log --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&#34;</span>;
+      };
+
+      delta <span style="color:#555">=</span> {
+        enable <span style="color:#555">=</span> <span style="color:#360">true</span>;
+
+        options <span style="color:#555">=</span> {
+          features <span style="color:#555">=</span> <span style="color:#c30">&#34;line-numbers decorations&#34;</span>;
+          whitespace-error-style <span style="color:#555">=</span> <span style="color:#c30">&#34;22 reverse&#34;</span>;
+          plus-style <span style="color:#555">=</span> <span style="color:#c30">&#34;green bold ul &#39;#198214&#39;&#34;</span>;
+          decorations <span style="color:#555">=</span> {
+            commit-decoration-style <span style="color:#555">=</span> <span style="color:#c30">&#34;bold yellow box ul&#34;</span>;
+            file-style <span style="color:#555">=</span> <span style="color:#c30">&#34;bold yellow ul&#34;</span>;
+            file-decoration-style <span style="color:#555">=</span> <span style="color:#c30">&#34;none&#34;</span>;
+          };
+        };
+      };
+
+      extraConfig <span style="color:#555">=</span> {
+        push <span style="color:#555">=</span> { default <span style="color:#555">=</span> <span style="color:#c30">&#34;current&#34;</span>; };
+        pull <span style="color:#555">=</span> { rebase <span style="color:#555">=</span> <span style="color:#360">true</span>; };
+      };
+
+    };
+
+    starship <span style="color:#555">=</span> {
+      enable <span style="color:#555">=</span> <span style="color:#360">true</span>;
+      enableZshIntegration <span style="color:#555">=</span> <span style="color:#360">true</span>;
+
+      settings <span style="color:#555">=</span> {
+        add_newline <span style="color:#555">=</span> <span style="color:#360">false</span>;
+        scan_timeout <span style="color:#555">=</span> <span style="color:#f60">10</span>;
+      };
+    };
+
+    zsh <span style="color:#555">=</span> {
+      enable <span style="color:#555">=</span> <span style="color:#360">true</span>;
+      enableAutosuggestions <span style="color:#555">=</span> <span style="color:#360">true</span>;
+      enableSyntaxHighlighting <span style="color:#555">=</span> <span style="color:#360">true</span>;
+      history<span style="color:#555">.</span>size <span style="color:#555">=</span> <span style="color:#f60">1000000</span>;
+
+      localVariables <span style="color:#555">=</span> {
+        CASE_SENSITIVE <span style="color:#555">=</span> <span style="color:#c30">&#34;true&#34;</span>;
+        DISABLE_UNTRACKED_FILES_DIRTY <span style="color:#555">=</span> <span style="color:#c30">&#34;true&#34;</span>;
+        RPROMPT <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;</span>; <span style="color:#09f;font-style:italic"># override because macOS defaults to filepath</span>
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE <span style="color:#555">=</span> <span style="color:#c30">&#34;fg=#838383,underline&#34;</span>;
+        ZSH_DISABLE_COMPFIX <span style="color:#555">=</span> <span style="color:#c30">&#34;true&#34;</span>;
+      };
+
+      initExtra <span style="color:#555">=</span> <span style="color:#c30">&#39;&#39;
+</span><span style="color:#c30">        export PAGER=less
+</span><span style="color:#c30">      &#39;&#39;</span>;
+
+      shellAliases <span style="color:#555">=</span> {
+        <span style="color:#c30">&#34;..&#34;</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cd ..&#34;</span>;
+        grep <span style="color:#555">=</span> <span style="color:#c30">&#34;rg --smart-case&#34;</span>;
+        ls <span style="color:#555">=</span> <span style="color:#c30">&#34;exa -la --git&#34;</span>;
+      };
+
+      <span style="color:#c30">&#34;oh-my-zsh&#34;</span> <span style="color:#555">=</span> {
+        enable <span style="color:#555">=</span> <span style="color:#360">true</span>;
+        plugins <span style="color:#555">=</span> [
+          <span style="color:#c30">&#34;gitfast&#34;</span>
+          <span style="color:#c30">&#34;last-working-dir&#34;</span>
+        ];
+      };
+
+    };
+
+  };
+}
+</code></pre></div><p>Save the file and run:</p>
+<pre tabindex="0"><code>home-manager switch
+</code></pre><p>You should see another wave of <code>/nix/store/*</code> paths. The new configuration should now be active.</p>
+<p>If you run <code>zsh</code>, you should see that you have <a href="https://starship.rs/">starship</a> and access to several other utils such as <code>rg</code>, <code>fd</code>, and <code>exa</code>.</p>
+<p>This basic configuration above is also defining your <code>~/.config/git/config</code> and <code>.zshrc</code>. If you already have either of these files, home-manager will complain about them already existing.</p>
+<p>If you run <code>cat ~/.zshrc</code>, you will see the way these configuration files are generated.</p>
+<p>You can extend this configuration for programs such as (neo)vim, emacs, alacritty, ssh, etc. To see other programs, take a look at <a href="https://github.com/nix-community/home-manager/tree/master/modules/programs">home-manager/modules/programs</a>.</p>
+<h2 id="gateway-to-nix">Gateway To Nix</h2>
+<p>In ways, home-manager can be seen as a gateway to the nix ecosystem. If you have enjoyed the way you can declare user configuration with home-manager, you may be interested in expanding your configuration to include other system dependencies and configuration. For example, in Linux you can define your entire system&rsquo;s configuration (including the kernel, kernel modules, networking, filesystems, etc) in nix. For macOS, there is <a href="https://github.com/LnL7/nix-darwin">nix-darwin</a> that includes nix modules for configuring launchd, dock, and other preferences and services. You may also want to check out <a href="https://nixos.wiki/wiki/Flakes">Nix Flakes</a>: a more recent feature that allows you declare dependencies, and have them automatically pinned and hashed in <code>flake.lock</code>, similar to that of many modern package managers.</p>
+<h2 id="wrapping-up">Wrapping up</h2>
+<p>The title of this post is slightly misleading, since it&rsquo;s possible to retain some of your dotfiles and have them intermingle with home-manager by including them alongside nix. The idea of defining user configuration using nix can provide a clean way to maintain your configuration, and allow it to be portable across platforms. Is it worth the effort to migrate away from shell scripts and dotfiles? I&rsquo;d say so.</p>
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z" />
+<line x1="7" y1="7" x2="7" y2="7" />
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/nix/'>nix</a>, <a class='tag' href='/tags/dotfiles/'>dotfiles</a>, <a class='tag' href='/tags/home-manager/'>home-manager</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/blog/2021/09/06/what-to-do-with-a-homelab/'>
+        <span aria-hidden='true'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="20" y1="12" x2="4" y2="12" />
+<polyline points="10 18 4 12 10 6" />
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>What To Do With A Homelab</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/blog/2021/09/17/automatically-rotating-aws-access-keys/'>
+        <span class='screen-reader-text'>Next post: </span>Automatically Rotating AWS Access Keys<span aria-hidden='true'>Next <svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="4" y1="12" x2="20" y2="12" />
+<polyline points="14 6 20 12 14 18" />
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><script src='https://utteranc.es/client.js'
+  repo='davegallant/davegallant.github.io'
+  issue-term='pathname'
+  
+  theme='github-light'
+  crossorigin='anonymous' async>
+</script>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2020-2022 Dave Gallant </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.c3bcf2df.js'></script>
+
+</body>
+
+</html>
+

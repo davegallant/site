@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang='en' dir='auto'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content=''>
+<meta name='theme-color' content='#8979b3'>
+
+<meta property='og:title' content='Replacing docker with podman on macOS (and Linux) • davegallant'>
+<meta property='og:description' content=''>
+<meta property='og:url' content='/blog/2021/10/11/replacing-docker-with-podman-on-macos-and-linux/'>
+<meta property='og:site_name' content='davegallant'>
+<meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='docker'><meta property='article:tag' content='podman'><meta property='article:tag' content='containers'><meta property='article:published_time' content='2021-10-11T10:43:35-04:00'/><meta property='article:modified_time' content='2021-10-11T10:43:35-04:00'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.92.2" />
+
+  <title>Replacing docker with podman on macOS (and Linux) • davegallant</title>
+  <link rel='canonical' href='/blog/2021/10/11/replacing-docker-with-podman-on-macos-and-linux/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.ab98e12b.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#8979b3;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98710982-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <div class='logo'>
+      <a href='/'>
+        <img src='/images/logo.png'>
+      </a>
+    </div>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      davegallant
+      </a>
+    </h2>
+    <div class='desc'>
+    personal blog
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud'><li>
+        <a href='/tags/adguard/' style='font-size:1em'>adguard</a>
+      </li><li>
+        <a href='/tags/aws/' style='font-size:1em'>aws</a>
+      </li><li>
+        <a href='/tags/aws-vault/' style='font-size:1em'>aws-vault</a>
+      </li><li>
+        <a href='/tags/containers/' style='font-size:1em'>containers</a>
+      </li><li>
+        <a href='/tags/docker/' style='font-size:1em'>docker</a>
+      </li><li>
+        <a href='/tags/dotfiles/' style='font-size:1em'>dotfiles</a>
+      </li><li>
+        <a href='/tags/grafana/' style='font-size:1em'>grafana</a>
+      </li><li>
+        <a href='/tags/home-manager/' style='font-size:1em'>home-manager</a>
+      </li><li>
+        <a href='/tags/homelab/' style='font-size:1em'>homelab</a>
+      </li><li>
+        <a href='/tags/jellyfin/' style='font-size:1em'>jellyfin</a>
+      </li><li>
+        <a href='/tags/k3s/' style='font-size:1em'>k3s</a>
+      </li><li>
+        <a href='/tags/linux/' style='font-size:1em'>linux</a>
+      </li><li>
+        <a href='/tags/lxc/' style='font-size:1em'>lxc</a>
+      </li><li>
+        <a href='/tags/netdata/' style='font-size:1em'>netdata</a>
+      </li><li>
+        <a href='/tags/nix/' style='font-size:1em'>nix</a>
+      </li><li>
+        <a href='/tags/pihole/' style='font-size:1em'>pihole</a>
+      </li><li>
+        <a href='/tags/plex/' style='font-size:1em'>plex</a>
+      </li><li>
+        <a href='/tags/podman/' style='font-size:1em'>podman</a>
+      </li><li>
+        <a href='/tags/proxmox/' style='font-size:1em'>proxmox</a>
+      </li><li>
+        <a href='/tags/python/' style='font-size:2em'>python</a>
+      </li><li>
+        <a href='/tags/security/' style='font-size:1em'>security</a>
+      </li><li>
+        <a href='/tags/tailscale/' style='font-size:1em'>tailscale</a>
+      </li><li>
+        <a href='/tags/virtualization/' style='font-size:1em'>virtualization</a>
+      </li><li>
+        <a href='/tags/vpn/' style='font-size:1em'>vpn</a>
+      </li></ul>
+</div>
+
+
+</section>
+<section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/davegallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/dave_gallant_' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:davegallant@gmail.com' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Contact via Email</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+<polyline points="22,6 12,13 2,6" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/dave-gallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+<rect x="2" y="9" width="4" height="12" />
+<circle cx="4" cy="4" r="2" />
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section></div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="3" y1="12" x2="21" y2="12" />
+<line x1="3" y1="6" x2="21" y2="6" />
+<line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+</span>
+  <span class='close'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="18" y1="6" x2="6" y2="18" />
+<line x1="6" y1="6" x2="18" y2="18" />
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li><li class='item'>
+        <a href='/index.xml'>RSS</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Replacing docker with podman on macOS (and Linux)</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+<line x1="16" y1="2" x2="16" y2="6" />
+<line x1="8" y1="2" x2="8" y2="6" />
+<line x1="3" y1="10" x2="21" y2="10" />
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2021-10-11T10:43:35-04:00'>2021, Oct 11</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><circle cx="12" cy="12" r="10" />
+<polyline points="12 6 12 12 15 15" />
+</svg>
+5 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p>There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">...ignoring Docker updates is a paid feature now?? <a href="https://t.co/ZxKW3b9LQM">pic.twitter.com/ZxKW3b9LQM</a></p>&mdash; Brendan Dolan-Gavitt (@moyix) <a href="https://twitter.com/moyix/status/1388586550682861568?ref_src=twsrc%5Etfw">May 1, 2021</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Docker has been one of the larger influencers in the container world, helping to standardize the <a href="https://github.com/opencontainers/image-spec/blob/main/spec.md">OCI Image Format Specification</a>. For many developers, containers have become synonymous with terms like <code>docker</code> and <code>Dockerfile</code> (a file containing build instructions for a container image). Docker has certainly made it very convenient to build and run containers, but it is not the only solution for doing so.</p>
+<p>This post briefly describes my experience swapping out docker for podman on macOS.</p>
+<h3 id="what-is-a-container">What is a container?</h3>
+<p>A container is a standard unit of software that packages up all application dependencies within it. Multiple containers can be run on a host machine all sharing the same kernel as the host. Linux namespaces help provide an isolated view of the system, including mnt, pid, net, ipc, uid, cgroup, and time. There is an <a href="https://www.youtube.com/watch?v=sK5i-N34im8">in-depth video</a> that discusses what containers are made from, and <a href="https://youtu.be/sK5i-N34im8?t=2468">near the end</a> there is a demonstration on how to build your own containers from the command line.</p>
+<p>By easily allowing the necessary dependencies to live alongside the application code, containers make the &ldquo;works on my machine&rdquo; problem less of a problem.</p>
+<h3 id="benefits-of-podman">Benefits of Podman</h3>
+<p>One of the most interesting features of Podman is that it is daemonless. There isn&rsquo;t a process running on your system managing your containers. In contrast, the docker client is reliant upon the docker daemon (often running as root) to be able to build and run containers.</p>
+<p>Podman is rootless by default. It is now possible to <a href="https://docs.docker.com/engine/security/rootless/">run the docker daemon rootless</a> as well, but it&rsquo;s still not the default behaviour.</p>
+<p>I&rsquo;ve also observed that so far my 2019 16&quot; Macbook Pro hasn&rsquo;t sounded like a jet engine, although I haven&rsquo;t performed any disk-intensive operations yet.</p>
+<h3 id="installing-podman">Installing Podman</h3>
+<p>Running Podman on macOS is more involved than on Linux, because the podman-machine must run Linux inside of a virtual machine. Fortunately, the installation is made simple with <a href="https://formulae.brew.sh/formula/podman">brew</a> (read <a href="https://podman.io/getting-started/installation#linux-distributions">this</a> if you&rsquo;re installing Podman on Linux):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install podman
+</code></pre></div><p>The podman-machine must be started:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># This is not necessary on Linux</span>
+podman machine init
+podman machine start
+</code></pre></div><h3 id="running-a-container">Running a container</h3>
+<p>Let&rsquo;s try to pull an image:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>podman pull alpine
+<span style="color:#aaa">Trying to pull docker.io/library/alpine:latest...
+</span><span style="color:#aaa">Getting image source signatures
+</span><span style="color:#aaa">Copying blob sha256:a0d0a0d46f8b52473982a3c466318f479767577551a53ffc9074c9fa7035982e
+</span><span style="color:#aaa">Copying config sha256:14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
+</span><span style="color:#aaa">Writing manifest to image destination
+</span><span style="color:#aaa">Storing signatures
+</span><span style="color:#aaa">14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
+</span></code></pre></div><blockquote>
+<p>If you&rsquo;re having an issue pulling images, you may need to remove <code>~/.docker/config.json</code> or remove the set of auths in the configuration as mentioned <a href="https://stackoverflow.com/a/69121873/1191286">here</a>.</p>
+</blockquote>
+<p>and then run and exec into the container:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>podman run --rm -ti alpine
+<span style="color:#aaa">Error: error preparing container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b for attach: error configuring network namespace for container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b: error adding pod unruffled_bohr_unruffled_bohr to CNI network &#34;podman&#34;: unexpected end of JSON input
+</span></code></pre></div><p>What does this error mean? A bit of searching lead to <a href="https://github.com/containers/podman/issues/11837">this github issue</a>.</p>
+<p>Until the fix is released, a workaround is to just specify a port (even when it&rsquo;s not needed):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">podman run -p <span style="color:#f60">4242</span> --rm -ti alpine
+</code></pre></div><p>If you&rsquo;re reading this from the future, there is a good chance specifying a port won&rsquo;t be needed.</p>
+<p>Another example of running a container with Podman can be found in the <a href="https://jellyfin.org/docs/general/administration/installing.html#podman">Jellyfin Documentation</a>.</p>
+<h3 id="aliasing-docker-with-podman">Aliasing docker with podman</h3>
+<p>Force of habit (or other scripts) may have you calling <code>docker</code>. To work around this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">alias</span> <span style="color:#033">docker</span><span style="color:#555">=</span>podman
+</code></pre></div><h3 id="podman-compose">podman-compose</h3>
+<p>You may be wondering: what about docker-compose? Well, there <em>claims</em> to be a drop-in replacement for it: <a href="https://github.com/containers/podman-compose">podman-compose</a>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip3 install --user podman-compose
+</code></pre></div><p>Now let&rsquo;s create a <code>docker-compose.yml</code> file to test:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cat <span style="color:#c30">&lt;&lt; EOF &gt;&gt; docker-compose.yml
+</span><span style="color:#c30">version: &#39;2&#39;
+</span><span style="color:#c30">services:
+</span><span style="color:#c30">  hello_world:
+</span><span style="color:#c30">    image: ubuntu
+</span><span style="color:#c30">    command: [/bin/echo, &#39;Hello world&#39;]
+</span><span style="color:#c30">EOF</span>
+</code></pre></div><p>Now run:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>podman-compose up
+<span style="color:#aaa">podman pod create --name=davegallant.github.io --share net
+</span><span style="color:#aaa">40d61dc6e95216c07d2b21cea6dcb30205bfcaf1260501fe652f05bddf7e595e
+</span><span style="color:#aaa">0
+</span><span style="color:#aaa">podman create --name=davegallant.github.io_hello_world_1 --pod=davegallant.github.io -l io.podman.compose.config-hash=123 -l io.podman.compose.project=davegallant.github.io -l io.podman.compose.version=0.0.1 -l com.docker.compose.container-number=1 -l com.docker.compose.service=hello_world --add-host hello_world:127.0.0.1 --add-host davegallant.github.io_hello_world_1:127.0.0.1 ubuntu /bin/echo Hello world
+</span><span style="color:#aaa">Resolved &#34;ubuntu&#34; as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+</span><span style="color:#aaa">Trying to pull docker.io/library/ubuntu:latest...
+</span><span style="color:#aaa">Getting image source signatures
+</span><span style="color:#aaa">Copying blob sha256:f3ef4ff62e0da0ef761ec1c8a578f3035bef51043e53ae1b13a20b3e03726d17
+</span><span style="color:#aaa">Copying blob sha256:f3ef4ff62e0da0ef761ec1c8a578f3035bef51043e53ae1b13a20b3e03726d17
+</span><span style="color:#aaa">Copying config sha256:597ce1600cf4ac5f449b66e75e840657bb53864434d6bd82f00b172544c32ee2
+</span><span style="color:#aaa">Writing manifest to image destination
+</span><span style="color:#aaa">Storing signatures
+</span><span style="color:#aaa">1a68b2fed3fdf2037b7aef16d770f22929eec1d799219ce30541df7876918576
+</span><span style="color:#aaa">0
+</span><span style="color:#aaa">podman start -a davegallant.github.io_hello_world_1
+</span><span style="color:#aaa">Hello world
+</span></code></pre></div><p>This should more or less provide the same results you would come to expect with docker. The README does clearly state that podman-compose is under development.</p>
+<h3 id="summary">Summary</h3>
+<p>Installing Podman on macOS was not seamless, but it was manageable well within 30 minutes. I would recommend giving Podman a try to anyone who is unhappy with experiencing forced docker updates, or who is interested in using a more modern technology for running containers.</p>
+<p>One caveat to mention is that there isn&rsquo;t an official graphical user interface for Podman, but there is an <a href="https://github.com/containers/podman/issues/11494">open issue</a> considering one. If you rely heavily on Docker Desktop&rsquo;s UI, you may not be as interested in using podman yet.</p>
+<blockquote>
+<p>Update: After further usage, bind mounts do not seem to work out of the box when the client and host are on different machines. A rather involved solution using <a href="https://en.wikipedia.org/wiki/SSHFS">sshfs</a> was shared <a href="https://github.com/containers/podman/issues/8016#issuecomment-920015800">here</a>.</p>
+</blockquote>
+<p>I had been experimenting with Podman on Linux before writing this, but after listening to this <a href="https://kubernetespodcast.com/episode/164-podman/">podcast episode</a>, I was inspired to give Podman a try on macOS.</p>
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z" />
+<line x1="7" y1="7" x2="7" y2="7" />
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/docker/'>docker</a>, <a class='tag' href='/tags/podman/'>podman</a>, <a class='tag' href='/tags/containers/'>containers</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/blog/2021/09/17/automatically-rotating-aws-access-keys/'>
+        <span aria-hidden='true'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="20" y1="12" x2="4" y2="12" />
+<polyline points="10 18 4 12 10 6" />
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Automatically Rotating AWS Access Keys</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/blog/2021/11/14/running-k3s-in-lxc-on-proxmox/'>
+        <span class='screen-reader-text'>Next post: </span>Running K3s in LXC on Proxmox<span aria-hidden='true'>Next <svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="4" y1="12" x2="20" y2="12" />
+<polyline points="14 6 20 12 14 18" />
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><script src='https://utteranc.es/client.js'
+  repo='davegallant/davegallant.github.io'
+  issue-term='pathname'
+  
+  theme='github-light'
+  crossorigin='anonymous' async>
+</script>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2020-2022 Dave Gallant </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.c3bcf2df.js'></script>
+
+</body>
+
+</html>
+
