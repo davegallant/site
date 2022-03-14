@@ -9,9 +9,12 @@ ifeq ($(origin .RECIPEPREFIX), undefined)
 endif
 .RECIPEPREFIX = >
 
-## server: run server locally on port 51313
+build:
+> hugo
+
+## server: run server locally on port 1313 and open in a browser
 server:
-> hugo server -D -p 51313
+> xdg-open http://localhost:1313 && hugo server
 
 ## help: Print this help message
 help:
