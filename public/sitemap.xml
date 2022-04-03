@@ -4,13 +4,40 @@
   <url>
     <loc>/about/</loc>
   </url><url>
+    <loc>/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/openwrt/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/pfsense/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/proxmox/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/router/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/router-on-a-stick/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/blog/2022/04/02/virtualizing-my-router-with-pfsense/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
+    <loc>/tags/vlan/</loc>
+    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+  </url><url>
     <loc>/blog/2022/03/13/backing-up-gmail-with-synology/</loc>
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
     <loc>/tags/backup/</loc>
-    <lastmod>2022-03-13T18:49:10-04:00</lastmod>
-  </url><url>
-    <loc>/</loc>
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
     <loc>/tags/degoogle/</loc>
@@ -19,25 +46,16 @@
     <loc>/tags/gmail/</loc>
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
-    <lastmod>2022-03-13T18:49:10-04:00</lastmod>
-  </url><url>
     <loc>/tags/ransomware/</loc>
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
     <loc>/tags/synology/</loc>
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2022-03-13T18:49:10-04:00</lastmod>
-  </url><url>
     <loc>/tags/k3s/</loc>
     <lastmod>2021-11-14T10:07:03-05:00</lastmod>
   </url><url>
     <loc>/tags/lxc/</loc>
-    <lastmod>2021-11-14T10:07:03-05:00</lastmod>
-  </url><url>
-    <loc>/tags/proxmox/</loc>
     <lastmod>2021-11-14T10:07:03-05:00</lastmod>
   </url><url>
     <loc>/blog/2021/11/14/running-k3s-in-lxc-on-proxmox/</loc>

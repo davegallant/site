@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pfsense on davegallant</title>
+    <link>/tags/pfsense/</link>
+    <description>Recent content in pfsense on davegallant</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Apr 2022 18:50:09 -0400</lastBuildDate><atom:link href="/tags/pfsense/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Virtualizing My Router With pfSense</title>
+      <link>/blog/2022/04/02/virtualizing-my-router-with-pfsense/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/blog/2022/04/02/virtualizing-my-router-with-pfsense/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

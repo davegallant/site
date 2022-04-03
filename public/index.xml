@@ -6,7 +6,7 @@
     <description>Recent content on davegallant</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Mar 2022 18:49:10 -0400</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Apr 2022 18:50:09 -0400</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>/about/</link>
@@ -14,6 +14,15 @@
       
       <guid>/about/</guid>
       <description>I&amp;rsquo;m a software engineer with a passion for open-source, infrastructure, tooling and security.</description>
+    </item>
+    
+    <item>
+      <title>Virtualizing My Router With pfSense</title>
+      <link>/blog/2022/04/02/virtualizing-my-router-with-pfsense/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/blog/2022/04/02/virtualizing-my-router-with-pfsense/</guid>
+      <description></description>
     </item>
     
     <item>

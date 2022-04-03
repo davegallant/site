@@ -14,7 +14,7 @@ build:
 
 ## server: run server locally on port 1313 and open in a browser
 server:
-> xdg-open http://localhost:1313 && hugo server
+> hugo server --buildDrafts
 
 ## help: Print this help message
 help:
