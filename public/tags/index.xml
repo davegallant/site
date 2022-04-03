@@ -6,7 +6,61 @@
     <description>Recent content in Tags on davegallant</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Mar 2022 18:49:10 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Apr 2022 18:50:09 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>openwrt</title>
+      <link>/tags/openwrt/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/tags/openwrt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pfsense</title>
+      <link>/tags/pfsense/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/tags/pfsense/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxmox</title>
+      <link>/tags/proxmox/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/tags/proxmox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>router</title>
+      <link>/tags/router/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/tags/router/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>router-on-a-stick</title>
+      <link>/tags/router-on-a-stick/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/tags/router-on-a-stick/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vlan</title>
+      <link>/tags/vlan/</link>
+      <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
+      <guid>/tags/vlan/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>backup</title>
       <link>/tags/backup/</link>
@@ -67,15 +121,6 @@
       <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
       
       <guid>/tags/lxc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>proxmox</title>
-      <link>/tags/proxmox/</link>
-      <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
-      
-      <guid>/tags/proxmox/</guid>
       <description></description>
     </item>
     
