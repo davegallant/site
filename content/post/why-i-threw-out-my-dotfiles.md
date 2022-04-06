@@ -62,7 +62,7 @@ The first thing you should do is [install nix](https://nixos.org/guides/install-
 curl -L https://nixos.org/nix/install | sh
 ```
 
-It's not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a peak before executing it!
+It's generally not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a look before executing it!
 
 Open up a new shell in your terminal and running `nix` *should* work. If not, run `. ~/.nix-profile/etc/profile.d/nix.sh`
 
