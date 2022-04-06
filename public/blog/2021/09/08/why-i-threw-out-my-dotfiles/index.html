@@ -321,7 +321,7 @@ if (!doNotTrack) {
 </blockquote>
 <p>The first thing you should do is <a href="https://nixos.org/guides/install-nix.html">install nix</a>:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -L https://nixos.org/nix/install | sh
-</code></pre></div><p>It&rsquo;s not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a peak before executing it!</p>
+</code></pre></div><p>It&rsquo;s generally not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a look before executing it!</p>
 <p>Open up a new shell in your terminal and running <code>nix</code> <em>should</em> work. If not, run <code>. ~/.nix-profile/etc/profile.d/nix.sh</code></p>
 <p>Now, <a href="https://github.com/nix-community/home-manager#installation">install home-manager</a>:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
