@@ -71,4 +71,4 @@ Encrypting your shared volumes should also be done, since unfortunately [DSM doe
 
 ## Summary
 
-Having backups of various forms of cloud data is a good investment, especially in these [uncertain times](https://en.wikipedia.org/wiki/2022_Ukraine_cyberattacks). I certainly feel more at ease for having backed up my emails.
+Having backups of various forms of cloud data is a good investment, especially in [times of war](https://en.wikipedia.org/wiki/2022_Ukraine_cyberattacks). I certainly feel more at ease for having backed up my emails.

@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='davegallant'>
 <meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='k3s'><meta property='article:tag' content='proxmox'><meta property='article:tag' content='lxc'><meta property='article:published_time' content='2021-11-14T10:07:03-05:00'/><meta property='article:modified_time' content='2021-11-14T10:07:03-05:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.99.1" />
 
   <title>Running K3s in LXC on Proxmox • davegallant</title>
   <link rel='canonical' href='/blog/2021/11/14/running-k3s-in-lxc-on-proxmox/'>
@@ -318,11 +318,11 @@ swapoff -a
 </code></pre><p>It might be worth experimenting with swap enabled in the future to see how that might affect performance.</p>
 <h3 id="enable-ip-forwarding">Enable IP Forwarding</h3>
 <p>To avoid IP Forwarding issues with Traefik, run the following on the host:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo sysctl net.ipv4.ip_forward<span style="color:#555">=</span><span style="color:#f60">1</span>
-sudo sysctl net.ipv6.conf.all.forwarding<span style="color:#555">=</span><span style="color:#f60">1</span>
-sudo sed -i <span style="color:#c30">&#39;s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g&#39;</span> /etc/sysctl.conf
-sudo sed -i <span style="color:#c30">&#39;s/#net.ipv6.conf.all.forwarding=1/net.ipv6.conf.all.forwarding=1/g&#39;</span> /etc/sysctl.conf
-</code></pre></div><h2 id="create-lxc-container">Create LXC container</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo sysctl net.ipv4.ip_forward<span style="color:#555">=</span><span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>sudo sysctl net.ipv6.conf.all.forwarding<span style="color:#555">=</span><span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#c30">&#39;s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g&#39;</span> /etc/sysctl.conf
+</span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#c30">&#39;s/#net.ipv6.conf.all.forwarding=1/net.ipv6.conf.all.forwarding=1/g&#39;</span> /etc/sysctl.conf
+</span></span></code></pre></div><h2 id="create-lxc-container">Create LXC container</h2>
 <p>Create an LXC container in the Proxmox interface as you normally would. Remember to:</p>
 <ul>
 <li>Uncheck <code>unprivileged container</code></li>
@@ -333,11 +333,11 @@ sudo sed -i <span style="color:#c30">&#39;s/#net.ipv6.conf.all.forwarding=1/net.
 <h3 id="modify-container-config">Modify container config</h3>
 <p>Now back on the host run <code>pct list</code> to determine what VMID it was given.</p>
 <p>Open <code>/etc/pve/lxc/$VMID.conf</code> and append:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">lxc.apparmor.profile: unconfined
-lxc.cap.drop:
-lxc.mount.auto: <span style="color:#c30">&#34;proc:rw sys:rw&#34;</span>
-lxc.cgroup2.devices.allow: c 10:200 rwm
-</code></pre></div><p>All of the above configurations are described in the <a href="https://linuxcontainers.org/lxc/manpages/man5/lxc.container.conf.5.html">manpages</a>.
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>lxc.apparmor.profile: unconfined
+</span></span><span style="display:flex;"><span>lxc.cap.drop:
+</span></span><span style="display:flex;"><span>lxc.mount.auto: <span style="color:#c30">&#34;proc:rw sys:rw&#34;</span>
+</span></span><span style="display:flex;"><span>lxc.cgroup2.devices.allow: c 10:200 rwm
+</span></span></code></pre></div><p>All of the above configurations are described in the <a href="https://linuxcontainers.org/lxc/manpages/man5/lxc.container.conf.5.html">manpages</a>.
 Notice that <code>cgroup2</code> is used since Proxmox VE 7.0 has switched to a <a href="https://pve.proxmox.com/pve-docs/chapter-pct.html#pct_cgroup">pure cgroupv2 environment</a>.</p>
 <p>Thankfully cgroup v2 support has been supported in k3s with these contributions:</p>
 <ul>
@@ -346,44 +346,44 @@ Notice that <code>cgroup2</code> is used since Proxmox VE 7.0 has switched to a 
 </ul>
 <h2 id="enable-shared-host-mounts">Enable shared host mounts</h2>
 <p>From within the container, run:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">echo</span> <span style="color:#c30">&#39;#!/bin/sh -e
-</span><span style="color:#c30">ln -s /dev/console /dev/kmsg
-</span><span style="color:#c30">mount --make-rshared /&#39;</span> &gt; /etc/rc.local
-chmod +x /etc/rc.local
-reboot
-</code></pre></div><h2 id="install-k3s">Install K3s</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#39;#!/bin/sh -e
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">ln -s /dev/console /dev/kmsg
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">mount --make-rshared /&#39;</span> &gt; /etc/rc.local
+</span></span><span style="display:flex;"><span>chmod +x /etc/rc.local
+</span></span><span style="display:flex;"><span>reboot
+</span></span></code></pre></div><h2 id="install-k3s">Install K3s</h2>
 <p>One of the simplest ways to install K3s on a remote host is to use <a href="https://github.com/alexellis/k3sup">k3sup</a>.
 Ensure that you supply a valid <code>CONTAINER_IP</code> and choose the <code>k3s-version</code> you prefer.
 As of 2021/11, it is still defaulting to the 1.19 channel, so I overrode it to 1.22 for cgroup v2 support. See the published releases <a href="https://github.com/k3s-io/k3s/releases">here</a>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ssh-copy-id root@<span style="color:#033">$CONTAINER_IP</span>
-k3sup install --ip <span style="color:#033">$CONTAINER_IP</span> --user root --k3s-version v1.22.3+k3s1
-</code></pre></div><p>If all goes well, you should see a path to the <code>kubeconfig</code> generated. I moved this into <code>~/.kube/config</code> so that kubectl would read this by default.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh-copy-id root@<span style="color:#033">$CONTAINER_IP</span>
+</span></span><span style="display:flex;"><span>k3sup install --ip <span style="color:#033">$CONTAINER_IP</span> --user root --k3s-version v1.22.3+k3s1
+</span></span></code></pre></div><p>If all goes well, you should see a path to the <code>kubeconfig</code> generated. I moved this into <code>~/.kube/config</code> so that kubectl would read this by default.</p>
 <h2 id="wrapping-up">Wrapping up</h2>
 <p>Installing K3s in LXC on Proxmox works with a few tweaks to the default configuration. I later followed the Tekton&rsquo;s <a href="https://tekton.dev/docs/getting-started/">Getting Started</a> guide and was able to deploy it in a few commands.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>kubectl get all --namespace tekton-pipelines
-<span style="color:#aaa">NAME                                               READY   STATUS    RESTARTS      AGE
-</span><span style="color:#aaa">pod/tekton-pipelines-webhook-8566ff9b6b-6rnh8      1/1     Running   1 (50m ago)   12h
-</span><span style="color:#aaa">pod/tekton-dashboard-6bf858f977-qt4hr              1/1     Running   1 (50m ago)   11h
-</span><span style="color:#aaa">pod/tekton-pipelines-controller-69fd7498d8-f57m4   1/1     Running   1 (50m ago)   12h
-</span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                              AGE
-</span><span style="color:#aaa">service/tekton-pipelines-controller   ClusterIP   10.43.44.245    &lt;none&gt;        9090/TCP,8080/TCP                    12h
-</span><span style="color:#aaa">service/tekton-pipelines-webhook      ClusterIP   10.43.183.242   &lt;none&gt;        9090/TCP,8008/TCP,443/TCP,8080/TCP   12h
-</span><span style="color:#aaa">service/tekton-dashboard              ClusterIP   10.43.87.97     &lt;none&gt;        9097/TCP                             11h
-</span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                          READY   UP-TO-DATE   AVAILABLE   AGE
-</span><span style="color:#aaa">deployment.apps/tekton-pipelines-webhook      1/1     1            1           12h
-</span><span style="color:#aaa">deployment.apps/tekton-dashboard              1/1     1            1           11h
-</span><span style="color:#aaa">deployment.apps/tekton-pipelines-controller   1/1     1            1           12h
-</span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                                     DESIRED   CURRENT   READY   AGE
-</span><span style="color:#aaa">replicaset.apps/tekton-pipelines-webhook-8566ff9b6b      1         1         1       12h
-</span><span style="color:#aaa">replicaset.apps/tekton-dashboard-6bf858f977              1         1         1       11h
-</span><span style="color:#aaa">replicaset.apps/tekton-pipelines-controller-69fd7498d8   1         1         1       12h
-</span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
-</span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                                           REFERENCE                             TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
-</span><span style="color:#aaa">horizontalpodautoscaler.autoscaling/tekton-pipelines-webhook   Deployment/tekton-pipelines-webhook   9%/100%   1         5         1          12h
-</span></code></pre></div><p>I made sure to install Tailscale in the container so that I can easily access K3s from anywhere.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> kubectl get all --namespace tekton-pipelines
+</span></span><span style="display:flex;"><span><span style="color:#aaa">NAME                                               READY   STATUS    RESTARTS      AGE
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">pod/tekton-pipelines-webhook-8566ff9b6b-6rnh8      1/1     Running   1 (50m ago)   12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">pod/tekton-dashboard-6bf858f977-qt4hr              1/1     Running   1 (50m ago)   11h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">pod/tekton-pipelines-controller-69fd7498d8-f57m4   1/1     Running   1 (50m ago)   12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                              AGE
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">service/tekton-pipelines-controller   ClusterIP   10.43.44.245    &lt;none&gt;        9090/TCP,8080/TCP                    12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">service/tekton-pipelines-webhook      ClusterIP   10.43.183.242   &lt;none&gt;        9090/TCP,8008/TCP,443/TCP,8080/TCP   12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">service/tekton-dashboard              ClusterIP   10.43.87.97     &lt;none&gt;        9097/TCP                             11h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                          READY   UP-TO-DATE   AVAILABLE   AGE
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">deployment.apps/tekton-pipelines-webhook      1/1     1            1           12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">deployment.apps/tekton-dashboard              1/1     1            1           11h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">deployment.apps/tekton-pipelines-controller   1/1     1            1           12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                                     DESIRED   CURRENT   READY   AGE
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">replicaset.apps/tekton-pipelines-webhook-8566ff9b6b      1         1         1       12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">replicaset.apps/tekton-dashboard-6bf858f977              1         1         1       11h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">replicaset.apps/tekton-pipelines-controller-69fd7498d8   1         1         1       12h
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa"></span><span style="color:#a00;background-color:#faa">
+</span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                                           REFERENCE                             TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">horizontalpodautoscaler.autoscaling/tekton-pipelines-webhook   Deployment/tekton-pipelines-webhook   9%/100%   1         5         1          12h
+</span></span></span></code></pre></div><p>I made sure to install Tailscale in the container so that I can easily access K3s from anywhere.</p>
 <p>If I&rsquo;m feeling adventurous, I might experiment with <a href="https://rancher.com/docs/k3s/latest/en/advanced/#running-k3s-with-rootless-mode-experimental">K3s rootless</a>.</p>
 </div>
 
