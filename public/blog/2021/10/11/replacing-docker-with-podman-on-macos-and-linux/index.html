@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='davegallant'>
 <meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='docker'><meta property='article:tag' content='podman'><meta property='article:tag' content='containers'><meta property='article:published_time' content='2021-10-11T10:43:35-04:00'/><meta property='article:modified_time' content='2021-10-11T10:43:35-04:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.92.2" />
+<meta name="generator" content="Hugo 0.99.1" />
 
   <title>Replacing docker with podman on macOS (and Linux) • davegallant</title>
   <link rel='canonical' href='/blog/2021/10/11/replacing-docker-with-podman-on-macos-and-linux/'>
@@ -321,65 +321,65 @@ if (!doNotTrack) {
 <p>I&rsquo;ve also observed that so far my 2019 16&quot; Macbook Pro hasn&rsquo;t sounded like a jet engine, although I haven&rsquo;t performed any disk-intensive operations yet.</p>
 <h3 id="installing-podman">Installing Podman</h3>
 <p>Running Podman on macOS is more involved than on Linux, because the podman-machine must run Linux inside of a virtual machine. Fortunately, the installation is made simple with <a href="https://formulae.brew.sh/formula/podman">brew</a> (read <a href="https://podman.io/getting-started/installation#linux-distributions">this</a> if you&rsquo;re installing Podman on Linux):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install podman
-</code></pre></div><p>The podman-machine must be started:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#09f;font-style:italic"># This is not necessary on Linux</span>
-podman machine init
-podman machine start
-</code></pre></div><h3 id="running-a-container">Running a container</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>brew install podman
+</span></span></code></pre></div><p>The podman-machine must be started:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># This is not necessary on Linux</span>
+</span></span><span style="display:flex;"><span>podman machine init
+</span></span><span style="display:flex;"><span>podman machine start
+</span></span></code></pre></div><h3 id="running-a-container">Running a container</h3>
 <p>Let&rsquo;s try to pull an image:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>podman pull alpine
-<span style="color:#aaa">Trying to pull docker.io/library/alpine:latest...
-</span><span style="color:#aaa">Getting image source signatures
-</span><span style="color:#aaa">Copying blob sha256:a0d0a0d46f8b52473982a3c466318f479767577551a53ffc9074c9fa7035982e
-</span><span style="color:#aaa">Copying config sha256:14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
-</span><span style="color:#aaa">Writing manifest to image destination
-</span><span style="color:#aaa">Storing signatures
-</span><span style="color:#aaa">14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
-</span></code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> podman pull alpine
+</span></span><span style="display:flex;"><span><span style="color:#aaa">Trying to pull docker.io/library/alpine:latest...
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Getting image source signatures
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Copying blob sha256:a0d0a0d46f8b52473982a3c466318f479767577551a53ffc9074c9fa7035982e
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Copying config sha256:14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Writing manifest to image destination
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Storing signatures
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
+</span></span></span></code></pre></div><blockquote>
 <p>If you&rsquo;re having an issue pulling images, you may need to remove <code>~/.docker/config.json</code> or remove the set of auths in the configuration as mentioned <a href="https://stackoverflow.com/a/69121873/1191286">here</a>.</p>
 </blockquote>
 <p>and then run and exec into the container:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>podman run --rm -ti alpine
-<span style="color:#aaa">Error: error preparing container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b for attach: error configuring network namespace for container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b: error adding pod unruffled_bohr_unruffled_bohr to CNI network &#34;podman&#34;: unexpected end of JSON input
-</span></code></pre></div><p>What does this error mean? A bit of searching lead to <a href="https://github.com/containers/podman/issues/11837">this github issue</a>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> podman run --rm -ti alpine
+</span></span><span style="display:flex;"><span><span style="color:#aaa">Error: error preparing container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b for attach: error configuring network namespace for container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b: error adding pod unruffled_bohr_unruffled_bohr to CNI network &#34;podman&#34;: unexpected end of JSON input
+</span></span></span></code></pre></div><p>What does this error mean? A bit of searching lead to <a href="https://github.com/containers/podman/issues/11837">this github issue</a>.</p>
 <p>Until the fix is released, a workaround is to just specify a port (even when it&rsquo;s not needed):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">podman run -p <span style="color:#f60">4242</span> --rm -ti alpine
-</code></pre></div><p>If you&rsquo;re reading this from the future, there is a good chance specifying a port won&rsquo;t be needed.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>podman run -p <span style="color:#f60">4242</span> --rm -ti alpine
+</span></span></code></pre></div><p>If you&rsquo;re reading this from the future, there is a good chance specifying a port won&rsquo;t be needed.</p>
 <p>Another example of running a container with Podman can be found in the <a href="https://jellyfin.org/docs/general/administration/installing.html#podman">Jellyfin Documentation</a>.</p>
 <h3 id="aliasing-docker-with-podman">Aliasing docker with podman</h3>
 <p>Force of habit (or other scripts) may have you calling <code>docker</code>. To work around this:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#366">alias</span> <span style="color:#033">docker</span><span style="color:#555">=</span>podman
-</code></pre></div><h3 id="podman-compose">podman-compose</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">alias</span> <span style="color:#033">docker</span><span style="color:#555">=</span>podman
+</span></span></code></pre></div><h3 id="podman-compose">podman-compose</h3>
 <p>You may be wondering: what about docker-compose? Well, there <em>claims</em> to be a drop-in replacement for it: <a href="https://github.com/containers/podman-compose">podman-compose</a>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">pip3 install --user podman-compose
-</code></pre></div><p>Now let&rsquo;s create a <code>docker-compose.yml</code> file to test:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cat <span style="color:#c30">&lt;&lt; EOF &gt;&gt; docker-compose.yml
-</span><span style="color:#c30">version: &#39;2&#39;
-</span><span style="color:#c30">services:
-</span><span style="color:#c30">  hello_world:
-</span><span style="color:#c30">    image: ubuntu
-</span><span style="color:#c30">    command: [/bin/echo, &#39;Hello world&#39;]
-</span><span style="color:#c30">EOF</span>
-</code></pre></div><p>Now run:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console"><span style="color:#009;font-weight:bold">$ </span>podman-compose up
-<span style="color:#aaa">podman pod create --name=davegallant.github.io --share net
-</span><span style="color:#aaa">40d61dc6e95216c07d2b21cea6dcb30205bfcaf1260501fe652f05bddf7e595e
-</span><span style="color:#aaa">0
-</span><span style="color:#aaa">podman create --name=davegallant.github.io_hello_world_1 --pod=davegallant.github.io -l io.podman.compose.config-hash=123 -l io.podman.compose.project=davegallant.github.io -l io.podman.compose.version=0.0.1 -l com.docker.compose.container-number=1 -l com.docker.compose.service=hello_world --add-host hello_world:127.0.0.1 --add-host davegallant.github.io_hello_world_1:127.0.0.1 ubuntu /bin/echo Hello world
-</span><span style="color:#aaa">Resolved &#34;ubuntu&#34; as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
-</span><span style="color:#aaa">Trying to pull docker.io/library/ubuntu:latest...
-</span><span style="color:#aaa">Getting image source signatures
-</span><span style="color:#aaa">Copying blob sha256:f3ef4ff62e0da0ef761ec1c8a578f3035bef51043e53ae1b13a20b3e03726d17
-</span><span style="color:#aaa">Copying blob sha256:f3ef4ff62e0da0ef761ec1c8a578f3035bef51043e53ae1b13a20b3e03726d17
-</span><span style="color:#aaa">Copying config sha256:597ce1600cf4ac5f449b66e75e840657bb53864434d6bd82f00b172544c32ee2
-</span><span style="color:#aaa">Writing manifest to image destination
-</span><span style="color:#aaa">Storing signatures
-</span><span style="color:#aaa">1a68b2fed3fdf2037b7aef16d770f22929eec1d799219ce30541df7876918576
-</span><span style="color:#aaa">0
-</span><span style="color:#aaa">podman start -a davegallant.github.io_hello_world_1
-</span><span style="color:#aaa">Hello world
-</span></code></pre></div><p>This should more or less provide the same results you would come to expect with docker. The README does clearly state that podman-compose is under development.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip3 install --user podman-compose
+</span></span></code></pre></div><p>Now let&rsquo;s create a <code>docker-compose.yml</code> file to test:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat <span style="color:#c30">&lt;&lt; EOF &gt;&gt; docker-compose.yml
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">version: &#39;2&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">services:
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">  hello_world:
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">    image: ubuntu
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">    command: [/bin/echo, &#39;Hello world&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">EOF</span>
+</span></span></code></pre></div><p>Now run:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> podman-compose up
+</span></span><span style="display:flex;"><span><span style="color:#aaa">podman pod create --name=davegallant.github.io --share net
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">40d61dc6e95216c07d2b21cea6dcb30205bfcaf1260501fe652f05bddf7e595e
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">0
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">podman create --name=davegallant.github.io_hello_world_1 --pod=davegallant.github.io -l io.podman.compose.config-hash=123 -l io.podman.compose.project=davegallant.github.io -l io.podman.compose.version=0.0.1 -l com.docker.compose.container-number=1 -l com.docker.compose.service=hello_world --add-host hello_world:127.0.0.1 --add-host davegallant.github.io_hello_world_1:127.0.0.1 ubuntu /bin/echo Hello world
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Resolved &#34;ubuntu&#34; as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Trying to pull docker.io/library/ubuntu:latest...
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Getting image source signatures
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Copying blob sha256:f3ef4ff62e0da0ef761ec1c8a578f3035bef51043e53ae1b13a20b3e03726d17
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Copying blob sha256:f3ef4ff62e0da0ef761ec1c8a578f3035bef51043e53ae1b13a20b3e03726d17
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Copying config sha256:597ce1600cf4ac5f449b66e75e840657bb53864434d6bd82f00b172544c32ee2
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Writing manifest to image destination
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Storing signatures
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">1a68b2fed3fdf2037b7aef16d770f22929eec1d799219ce30541df7876918576
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">0
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">podman start -a davegallant.github.io_hello_world_1
+</span></span></span><span style="display:flex;"><span><span style="color:#aaa">Hello world
+</span></span></span></code></pre></div><p>This should more or less provide the same results you would come to expect with docker. The README does clearly state that podman-compose is under development.</p>
 <h3 id="summary">Summary</h3>
 <p>Installing Podman on macOS was not seamless, but it was manageable well within 30 minutes. I would recommend giving Podman a try to anyone who is unhappy with experiencing forced docker updates, or who is interested in using a more modern technology for running containers.</p>
 <p>One caveat to mention is that there isn&rsquo;t an official graphical user interface for Podman, but there is an <a href="https://github.com/containers/podman/issues/11494">open issue</a> considering one. If you rely heavily on Docker Desktop&rsquo;s UI, you may not be as interested in using podman yet.</p>
