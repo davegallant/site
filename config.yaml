@@ -77,10 +77,11 @@ params:
   seo:
     titleSeparator: •
   social:
-    email: davegallant@gmail.com
+    email: dave.gallant@gmail.com
     github: davegallant
     linkedin: dave-gallant
     twitter: dave_gallant_
+    mastodon: https://fosstodon.org/@davegallant
   comments:
     enable: true
     utterances:
