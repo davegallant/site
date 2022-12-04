@@ -36,7 +36,7 @@ sequenceDiagrams:
 
  I've used gmail since the beta launched touting a whopping 1GB of storage. I thought this was a massive leap in email technology at the time. I was lucky enough to get an invite fairly quickly. Not suprisingly, I have many years of emails, attachments, and photos. I certainly do not want to lose the content of many of these emails. Despite the redundancy of the data that Google secures, I still feel better retaining a copy of this data on my own physical machines.
 
-The thought of completely de-googling has crossed my mind on occassion. The convenience coupled with my admiration for their engineering has prevented me from doing so thus far. Though, I may end up doing so at some point in the future.
+The thought of completely de-googling has crossed my mind on occassion. Convenience, coupled with my admiration for Google engineering, has prevented me from doing so thus far. Though, I may end up doing so at some point in the future.
 
 ## Synology MailPlus Server
 
