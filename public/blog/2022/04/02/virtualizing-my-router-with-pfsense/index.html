@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='davegallant'>
 <meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='pfsense'><meta property='article:tag' content='router'><meta property='article:tag' content='openwrt'><meta property='article:tag' content='router-on-a-stick'><meta property='article:tag' content='proxmox'><meta property='article:tag' content='vlan'><meta property='article:published_time' content='2022-04-02T18:50:09-04:00'/><meta property='article:modified_time' content='2022-04-02T18:50:09-04:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.107.0">
+<meta name="generator" content="Hugo 0.106.0">
 
   <title>Virtualizing My Router With pfSense • davegallant</title>
   <link rel='canonical' href='/blog/2022/04/02/virtualizing-my-router-with-pfsense/'>
@@ -320,7 +320,7 @@ if (!doNotTrack) {
 
   <div class='container entry-content'>
   <h2 id="the-problem">The problem</h2>
-<p>My aging router has been running <a href="https://en.wikipedia.org/wiki/OpenWrt">OpenWrt</a> for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a <a href="https://openwrt.org/packages/index/start">large index of packages</a>. Ever since I&rsquo;ve connected some standalone wireless access points, I&rsquo;ve had less of a need for an off-the-shelf all-in-one wireless router combo. I&rsquo;ve also recently been experiencing instability with my router (likely the result of a combination of setting tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!</p>
+<p>My aging router has been running <a href="https://en.wikipedia.org/wiki/OpenWrt">OpenWrt</a> for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a <a href="https://openwrt.org/packages/index/start">large index of packages</a>. Ever since I&rsquo;ve connected some standalone wireless access points, I&rsquo;ve had less of a need for an off-the-shelf all-in-one wireless router combo. I&rsquo;ve also recently been experiencing instability with my router (likely the result of a combination of configuration tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!</p>
 <h2 id="pfsense">pfSense</h2>
 <p>I figured this would be a good opportunity to try <a href="https://en.wikipedia.org/wiki/PfSense">pfSense</a>. I&rsquo;ve heard nothing but positive things about pfSense and the fact it&rsquo;s been around since 2004, based on FreeBSD, and written in PHP gave me the impression that it would be relatively stable (and I&rsquo;d expect nothing less because it has an important job to do!). pfSense can be run on many different machines, and there are even some <a href="https://www.netgate.com/appliances">officially supported appliances</a>. Since I already have a machine running Proxmox, why not just run it in a VM? It&rsquo;d allow for automatic snapshotting of the machine. There is a good <a href="https://www.youtube.com/watch?v=hdoBQNI_Ab8">video</a> on this by Techno Tim. Tim has a lot of good videos, and this one is about virtualizing pfSense.</p>
 <h2 id="router-on-a-stick">Router on a stick</h2>
