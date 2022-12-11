@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang='en' dir='auto'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content=''>
+<meta name='theme-color' content='#8979b3'>
+
+<meta property='og:title' content='Watching YouTube in Private • davegallant'>
+<meta property='og:description' content=''>
+<meta property='og:url' content='/blog/2022/12/10/watching-youtube-in-private/'>
+<meta property='og:site_name' content='davegallant'>
+<meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='invidious'><meta property='article:tag' content='degoogle'><meta property='article:tag' content='youtube'><meta property='article:tag' content='yewtu.be'><meta property='article:tag' content='tailscale'><meta property='article:published_time' content='2022-12-10T21:46:55-05:00'/><meta property='article:modified_time' content='2022-12-10T21:46:55-05:00'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.108.0">
+
+  <title>Watching YouTube in Private • davegallant</title>
+  <link rel='canonical' href='/blog/2022/12/10/watching-youtube-in-private/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.ab98e12b.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#8979b3;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98710982-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <div class='logo'>
+      <a href='/'>
+        <img src='/images/logo.png'>
+      </a>
+    </div>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      davegallant
+      </a>
+    </h2>
+    <div class='desc'>
+    personal blog
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud'><li>
+        <a href='/tags/adguard/' style='font-size:1em'>adguard</a>
+      </li><li>
+        <a href='/tags/aws/' style='font-size:1em'>aws</a>
+      </li><li>
+        <a href='/tags/aws-vault/' style='font-size:1em'>aws-vault</a>
+      </li><li>
+        <a href='/tags/backup/' style='font-size:1em'>backup</a>
+      </li><li>
+        <a href='/tags/containers/' style='font-size:1em'>containers</a>
+      </li><li>
+        <a href='/tags/degoogle/' style='font-size:2em'>degoogle</a>
+      </li><li>
+        <a href='/tags/docker/' style='font-size:1em'>docker</a>
+      </li><li>
+        <a href='/tags/dotfiles/' style='font-size:1em'>dotfiles</a>
+      </li><li>
+        <a href='/tags/gmail/' style='font-size:1em'>gmail</a>
+      </li><li>
+        <a href='/tags/grafana/' style='font-size:1em'>grafana</a>
+      </li><li>
+        <a href='/tags/home-manager/' style='font-size:1em'>home-manager</a>
+      </li><li>
+        <a href='/tags/homelab/' style='font-size:1em'>homelab</a>
+      </li><li>
+        <a href='/tags/invidious/' style='font-size:1em'>invidious</a>
+      </li><li>
+        <a href='/tags/jellyfin/' style='font-size:1em'>jellyfin</a>
+      </li><li>
+        <a href='/tags/k3s/' style='font-size:1em'>k3s</a>
+      </li><li>
+        <a href='/tags/linux/' style='font-size:1em'>linux</a>
+      </li><li>
+        <a href='/tags/lxc/' style='font-size:1em'>lxc</a>
+      </li><li>
+        <a href='/tags/netdata/' style='font-size:1em'>netdata</a>
+      </li><li>
+        <a href='/tags/nix/' style='font-size:1em'>nix</a>
+      </li><li>
+        <a href='/tags/openwrt/' style='font-size:1em'>openwrt</a>
+      </li><li>
+        <a href='/tags/pfsense/' style='font-size:1em'>pfsense</a>
+      </li><li>
+        <a href='/tags/pihole/' style='font-size:1em'>pihole</a>
+      </li><li>
+        <a href='/tags/plex/' style='font-size:1em'>plex</a>
+      </li><li>
+        <a href='/tags/podman/' style='font-size:1em'>podman</a>
+      </li><li>
+        <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
+      </li><li>
+        <a href='/tags/python/' style='font-size:2em'>python</a>
+      </li><li>
+        <a href='/tags/ransomware/' style='font-size:1em'>ransomware</a>
+      </li><li>
+        <a href='/tags/router/' style='font-size:1em'>router</a>
+      </li><li>
+        <a href='/tags/router-on-a-stick/' style='font-size:1em'>router-on-a-stick</a>
+      </li><li>
+        <a href='/tags/security/' style='font-size:1em'>security</a>
+      </li><li>
+        <a href='/tags/synology/' style='font-size:1em'>synology</a>
+      </li><li>
+        <a href='/tags/tailscale/' style='font-size:2em'>tailscale</a>
+      </li><li>
+        <a href='/tags/virtualization/' style='font-size:1em'>virtualization</a>
+      </li><li>
+        <a href='/tags/vlan/' style='font-size:1em'>vlan</a>
+      </li><li>
+        <a href='/tags/vpn/' style='font-size:1em'>vpn</a>
+      </li><li>
+        <a href='/tags/yewtu.be/' style='font-size:1em'>yewtu.be</a>
+      </li><li>
+        <a href='/tags/youtube/' style='font-size:1em'>youtube</a>
+      </li></ul>
+</div>
+
+
+</section>
+<section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/davegallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/dave_gallant_' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://fosstodon.org/@davegallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Mastodon account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path fill="#ccc" d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127C.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611c.118 1.24.325 2.47.62 3.68c.55 2.237 2.777 4.098 4.96 4.857c2.336.792 4.849.923 7.256.38c.265-.061.527-.132.786-.213c.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041a.053.053 0 0 0-.046-.01a20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433a.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546c.376 0 .75 0 1.125-.01c1.57-.044 3.224-.124 4.768-.422c.038-.008.077-.015.11-.024c2.435-.464 4.753-1.92 4.989-5.604c.008-.145.03-1.52.03-1.67c.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976c-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35c-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12c.696-.77 1.608-1.164 2.74-1.164c1.311 0 2.302.5 2.962 1.498l.638 1.06l.638-1.06c.66-.999 1.65-1.498 2.96-1.498c1.13 0 2.043.395 2.74 1.164c.675.77 1.012 1.81 1.012 3.12z"/>
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:dave.gallant@gmail.com' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Contact via Email</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+<polyline points="22,6 12,13 2,6" />
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/dave-gallant' target='_blank' rel='noopener me'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+<rect x="2" y="9" width="4" height="12" />
+<circle cx="4" cy="4" r="2" />
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section></div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="3" y1="12" x2="21" y2="12" />
+<line x1="3" y1="6" x2="21" y2="6" />
+<line x1="3" y1="18" x2="21" y2="18" />
+</svg>
+</span>
+  <span class='close'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="18" y1="6" x2="6" y2="18" />
+<line x1="6" y1="6" x2="18" y2="18" />
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li><li class='item'>
+        <a href='/index.xml'>RSS</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Watching YouTube in Private</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+<line x1="16" y1="2" x2="16" y2="6" />
+<line x1="8" y1="2" x2="8" y2="6" />
+<line x1="3" y1="10" x2="21" y2="10" />
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2022-12-10T21:46:55-05:00'>2022, Dec 10</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><circle cx="12" cy="12" r="10" />
+<polyline points="12 6 12 12 15 15" />
+</svg>
+2 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p>I recently stumbled upon <a href="https://yewtu.be">yewtu.be</a> and found it intriguing. It not only allows for you to watch YouTube without <em>being on YouTube</em>, but it also allows you to create an account and subscribe to channels without a Google account. I wondered what sort of wizardry was going on under the hood and discovered that it&rsquo;s a hosted instance of <a href="https://invidious.io/">invidious</a>.</p>
+<p><img src="/images/watching-youtube-in-private/computerphile.png" alt="requestly"></p>
+<p>Wow, this is cool, and <strong>JavaScript is not required</strong>.</p>
+<p>I started to use yewtu.be as my primary client for watching videos. I subscribe to about a dozen channels and I really only want to a see list of the latest videos from my subscriptions, and not have so much of my data collected and used. A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious.</p>
+<p>There are several other hosted instances listed <a href="https://docs.invidious.io/instances/">here</a>, but being able to easily backup my own instance (along with watch history) is more compelling in my case.</p>
+<h3 id="hosting-invidious">Hosting invidious</h3>
+<p>The quickest way to get invidious up is with docker-compose as mentioned in the <a href="https://docs.invidious.io/installation/">docs</a>.</p>
+<p>I made a few modifications (such as pinning the container&rsquo;s tag), and ended up with:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#309;font-weight:bold">version</span>:<span style="color:#bbb"> </span><span style="color:#c30">&#34;3&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#309;font-weight:bold">services</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#309;font-weight:bold">invidious</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">image</span>:<span style="color:#bbb"> </span>quay.io/invidious/invidious:5160d8bae39dc5cc5d51abee90571a03c08d0f2b<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>unless-stopped<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">ports</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- <span style="color:#c30">&#34;0.0.0.0:3000:3000&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">environment</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">INVIDIOUS_CONFIG</span>:<span style="color:#bbb"> </span>|<span style="color:#c30;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">        db:
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          dbname: invidious
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          user: kemal
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          password: kemal
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          host: invidious-db
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">          port: 5432
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-style:italic">        check_tables: true</span><span style="color:#bbb">        
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">healthcheck</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">test</span>:<span style="color:#bbb"> </span>wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">interval</span>:<span style="color:#bbb"> </span>30s<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">timeout</span>:<span style="color:#bbb"> </span>5s<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">retries</span>:<span style="color:#bbb"> </span><span style="color:#f60">2</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">depends_on</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- invidious-db<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#309;font-weight:bold">invidious-db</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">image</span>:<span style="color:#bbb"> </span>docker.io/library/postgres:14<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">restart</span>:<span style="color:#bbb"> </span>unless-stopped<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- postgresdata:/var/lib/postgresql/data<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- ./config/sql:/config/sql<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span>- ./docker/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">environment</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">POSTGRES_DB</span>:<span style="color:#bbb"> </span>invidious<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">POSTGRES_USER</span>:<span style="color:#bbb"> </span>kemal<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">POSTGRES_PASSWORD</span>:<span style="color:#bbb"> </span>kemal<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#309;font-weight:bold">healthcheck</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">      </span><span style="color:#309;font-weight:bold">test</span>:<span style="color:#bbb"> </span>[<span style="color:#c30">&#34;CMD-SHELL&#34;</span>,<span style="color:#bbb"> </span><span style="color:#c30">&#34;pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB&#34;</span>]<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#309;font-weight:bold">volumes</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#309;font-weight:bold">postgresdata</span>:<span style="color:#bbb">
+</span></span></span></code></pre></div><p>After invidious was up and running, I installed <a href="https://tailscale.com/">Tailscale</a> on it to leverage its MagicDNS, and I&rsquo;m now able to access this instance from anywhere at <a href="http://invidious:3000/feed/subscriptions">http://invidious:3000/feed/subscriptions</a>.</p>
+<h3 id="redirecting-youtube-links">Redirecting YouTube links</h3>
+<p>I figured it would be nice to redirect existing YouTube links that others send me, so that I could seamlessly watch the videos using invidious.</p>
+<p>Without subjecting my entire household to this, I went looking for a way to redirect paths at the browser level. I found the lightweight proxy <a href="https://requestly.io/">requestly</a>, which can be used to modify http requests in my browser. I created the following rules:</p>
+<p><img src="/images/watching-youtube-in-private/requestly-rules.png" alt="requestly"></p>
+<p>Now the link <a href="https://www.youtube.com/watch?v=-lz30by8-sU">https://www.youtube.com/watch?v=-lz30by8-sU</a> will redirect to <a href="http://invidious:3000/watch?v=-lz30by8-sU">http://invidious:3000/watch?v=-lz30by8-sU</a></p>
+<p>I&rsquo;m still looking for ways to improve this invidious setup. There doesn&rsquo;t appear to be a way to stream in 4K yet.</p>
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z" />
+<line x1="7" y1="7" x2="7" y2="7" />
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/invidious/'>invidious</a>, <a class='tag' href='/tags/degoogle/'>degoogle</a>, <a class='tag' href='/tags/youtube/'>youtube</a>, <a class='tag' href='/tags/yewtu.be/'>yewtu.be</a>, <a class='tag' href='/tags/tailscale/'>tailscale</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/blog/2022/04/02/virtualizing-my-router-with-pfsense/'>
+        <span aria-hidden='true'><svg
+  class="icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewbox="0 0 24 24"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  aria-hidden="true"
+><line x1="20" y1="12" x2="4" y2="12" />
+<polyline points="10 18 4 12 10 6" />
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Virtualizing My Router With pfSense</a>
+    </div></div>
+</nav>
+
+
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><script src='https://utteranc.es/client.js'
+  repo='davegallant/davegallant.github.io'
+  issue-term='pathname'
+  
+  theme='github-light'
+  crossorigin='anonymous' async>
+</script>
+</div>
+  </div>
+</section>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2020-2022 Dave Gallant </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.c3bcf2df.js'></script>
+
+</body>
+
+</html>
+

@@ -5,15 +5,36 @@
     <loc>/about/</loc>
   </url><url>
     <loc>/</loc>
-    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/tags/degoogle/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/tags/invidious/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/tags/tailscale/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/blog/2022/12/10/watching-youtube-in-private/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/tags/yewtu.be/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+  </url><url>
+    <loc>/tags/youtube/</loc>
+    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
   </url><url>
     <loc>/tags/openwrt/</loc>
     <lastmod>2022-04-02T18:50:09-04:00</lastmod>
   </url><url>
     <loc>/tags/pfsense/</loc>
-    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
-  </url><url>
-    <loc>/post/</loc>
     <lastmod>2022-04-02T18:50:09-04:00</lastmod>
   </url><url>
     <loc>/tags/proxmox/</loc>
@@ -23,9 +44,6 @@
     <lastmod>2022-04-02T18:50:09-04:00</lastmod>
   </url><url>
     <loc>/tags/router-on-a-stick/</loc>
-    <lastmod>2022-04-02T18:50:09-04:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2022-04-02T18:50:09-04:00</lastmod>
   </url><url>
     <loc>/blog/2022/04/02/virtualizing-my-router-with-pfsense/</loc>
@@ -38,9 +56,6 @@
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
     <loc>/tags/backup/</loc>
-    <lastmod>2022-03-13T18:49:10-04:00</lastmod>
-  </url><url>
-    <loc>/tags/degoogle/</loc>
     <lastmod>2022-03-13T18:49:10-04:00</lastmod>
   </url><url>
     <loc>/tags/gmail/</loc>
@@ -119,9 +134,6 @@
     <lastmod>2021-09-06T01:12:54-04:00</lastmod>
   </url><url>
     <loc>/tags/plex/</loc>
-    <lastmod>2021-09-06T01:12:54-04:00</lastmod>
-  </url><url>
-    <loc>/tags/tailscale/</loc>
     <lastmod>2021-09-06T01:12:54-04:00</lastmod>
   </url><url>
     <loc>/tags/virtualization/</loc>
