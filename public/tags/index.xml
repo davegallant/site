@@ -6,7 +6,52 @@
     <description>Recent content in Tags on davegallant</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Apr 2022 18:50:09 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Dec 2022 21:46:55 -0500</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>degoogle</title>
+      <link>/tags/degoogle/</link>
+      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
+      <guid>/tags/degoogle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>invidious</title>
+      <link>/tags/invidious/</link>
+      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
+      <guid>/tags/invidious/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tailscale</title>
+      <link>/tags/tailscale/</link>
+      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
+      <guid>/tags/tailscale/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>yewtu.be</title>
+      <link>/tags/yewtu.be/</link>
+      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
+      <guid>/tags/yewtu.be/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>youtube</title>
+      <link>/tags/youtube/</link>
+      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
+      <guid>/tags/youtube/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>openwrt</title>
       <link>/tags/openwrt/</link>
@@ -67,15 +112,6 @@
       <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
       
       <guid>/tags/backup/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>degoogle</title>
-      <link>/tags/degoogle/</link>
-      <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
-      
-      <guid>/tags/degoogle/</guid>
       <description></description>
     </item>
     
@@ -274,15 +310,6 @@
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
       
       <guid>/tags/plex/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tailscale</title>
-      <link>/tags/tailscale/</link>
-      <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
-      
-      <guid>/tags/tailscale/</guid>
       <description></description>
     </item>
     

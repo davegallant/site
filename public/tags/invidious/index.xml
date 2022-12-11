@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>invidious on davegallant</title>
+    <link>/tags/invidious/</link>
+    <description>Recent content in invidious on davegallant</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Dec 2022 21:46:55 -0500</lastBuildDate><atom:link href="/tags/invidious/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Watching YouTube in Private</title>
+      <link>/blog/2022/12/10/watching-youtube-in-private/</link>
+      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
+      <guid>/blog/2022/12/10/watching-youtube-in-private/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
