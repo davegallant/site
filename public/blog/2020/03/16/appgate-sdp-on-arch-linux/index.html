@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,8 +326,7 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <p>AppGate SDP provides a Zero Trust network. This post describes how to get AppGate SDP <code>4.3.2</code> working on Arch Linux.</p>
+  <div class='container entry-content'><p>AppGate SDP provides a Zero Trust network. This post describes how to get AppGate SDP <code>4.3.2</code> working on Arch Linux.</p>
 <p>Depending on the AppGate SDP Server that is running, you may require a client that is more recent than the latest package on <a href="https://aur.archlinux.org/packages/appgate-sdp/">AUR</a>.
 As of right now, the latest AUR is <code>4.2.2-1</code>.</p>
 <p>These steps highlight how to get it working with <code>Python3.8</code> by making a 1 line modification to AppGate source code.</p>
@@ -408,8 +409,7 @@ Let&rsquo;s try to run it.</p>
 </span></span></code></pre></div><h1 id="wrapping-up">Wrapping up</h1>
 <p>It turns out there are <a href="https://docs.python.org/3.7/library/platform.html#platform.linux_distribution">breaking changes</a> in Python3.8.</p>
 <p>The docs say <code>Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.</code></p>
-<p>I suppose this highlights one of the caveats of relying upon the system&rsquo;s python, rather than having an isolated, dedicated environment for all dependencies.</p>
-</div>
+<p>I suppose this highlights one of the caveats of relying upon the system&rsquo;s python, rather than having an isolated, dedicated environment for all dependencies.</p></div>
 
   
 <footer class='entry-footer'>

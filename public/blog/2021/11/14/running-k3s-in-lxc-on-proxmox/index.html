@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,24 +326,23 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <p>It has been a while since I&rsquo;ve actively used Kubernetes and wanted to explore the evolution of tools such as <a href="https://helm.sh">Helm</a> and <a href="https://tekton.dev">Tekton</a>. I decided to deploy <a href="https://k3s.io">K3s</a>, since I&rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine&rsquo;s resources.</p>
-<h2 id="what-is-k3s">What is K3s?</h2>
+  <div class='container entry-content'><p>It has been a while since I&rsquo;ve actively used Kubernetes and wanted to explore the evolution of tools such as <a href="https://helm.sh">Helm</a> and <a href="https://tekton.dev">Tekton</a>. I decided to deploy <a href="https://k3s.io">K3s</a>, since I&rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine&rsquo;s resources.</p>
+<h2 id="what-is-k3s">What is K3s?<a href="#what-is-k3s" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>K3s is a Kubernetes distro that advertises itself as a lightweight binary with a much smaller memory-footprint than traditional k8s. K3s is not a fork of k8s as it seeks to remain as close to upstream as it possibly can.</p>
-<h2 id="configure-proxmox">Configure Proxmox</h2>
+<h2 id="configure-proxmox">Configure Proxmox<a href="#configure-proxmox" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>This <a href="https://gist.github.com/triangletodd/02f595cd4c0dc9aac5f7763ca2264185">gist</a> contains snippets and discussion on how to deploy K3s in LXC on Proxmox. It mentions that <code>bridge-nf-call-iptables</code> should be loaded, but I did not understand the benefit of doing this.</p>
-<h2 id="disable-swap">Disable swap</h2>
+<h2 id="disable-swap">Disable swap<a href="#disable-swap" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>There is an issue on Kubernetes regarding swap <a href="https://github.com/kubernetes/kubernetes/issues/53533">here</a>. There claims to be support for swap in 1.22, but for now let&rsquo;s disable it:</p>
 <pre tabindex="0"><code>sysctl vm.swappiness=0
 swapoff -a
 </code></pre><p>It might be worth experimenting with swap enabled in the future to see how that might affect performance.</p>
-<h3 id="enable-ip-forwarding">Enable IP Forwarding</h3>
+<h3 id="enable-ip-forwarding">Enable IP Forwarding<a href="#enable-ip-forwarding" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>To avoid IP Forwarding issues with Traefik, run the following on the host:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo sysctl net.ipv4.ip_forward<span style="color:#555">=</span><span style="color:#f60">1</span>
 </span></span><span style="display:flex;"><span>sudo sysctl net.ipv6.conf.all.forwarding<span style="color:#555">=</span><span style="color:#f60">1</span>
 </span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#c30">&#39;s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g&#39;</span> /etc/sysctl.conf
 </span></span><span style="display:flex;"><span>sudo sed -i <span style="color:#c30">&#39;s/#net.ipv6.conf.all.forwarding=1/net.ipv6.conf.all.forwarding=1/g&#39;</span> /etc/sysctl.conf
-</span></span></code></pre></div><h2 id="create-lxc-container">Create LXC container</h2>
+</span></span></code></pre></div><h2 id="create-lxc-container">Create LXC container<a href="#create-lxc-container" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Create an LXC container in the Proxmox interface as you normally would. Remember to:</p>
 <ul>
 <li>Uncheck <code>unprivileged container</code></li>
@@ -349,7 +350,7 @@ swapoff -a
 <li>In memory, set swap to 0</li>
 <li>Create and start the container</li>
 </ul>
-<h3 id="modify-container-config">Modify container config</h3>
+<h3 id="modify-container-config">Modify container config<a href="#modify-container-config" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>Now back on the host run <code>pct list</code> to determine what VMID it was given.</p>
 <p>Open <code>/etc/pve/lxc/$VMID.conf</code> and append:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>lxc.apparmor.profile: unconfined
@@ -363,21 +364,21 @@ Notice that <code>cgroup2</code> is used since Proxmox VE 7.0 has switched to a 
 <li><a href="https://github.com/k3s-io/k3s/pull/2584">https://github.com/k3s-io/k3s/pull/2584</a></li>
 <li><a href="https://github.com/k3s-io/k3s/pull/2844">https://github.com/k3s-io/k3s/pull/2844</a></li>
 </ul>
-<h2 id="enable-shared-host-mounts">Enable shared host mounts</h2>
+<h2 id="enable-shared-host-mounts">Enable shared host mounts<a href="#enable-shared-host-mounts" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>From within the container, run:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#39;#!/bin/sh -e
 </span></span></span><span style="display:flex;"><span><span style="color:#c30">ln -s /dev/console /dev/kmsg
 </span></span></span><span style="display:flex;"><span><span style="color:#c30">mount --make-rshared /&#39;</span> &gt; /etc/rc.local
 </span></span><span style="display:flex;"><span>chmod +x /etc/rc.local
 </span></span><span style="display:flex;"><span>reboot
-</span></span></code></pre></div><h2 id="install-k3s">Install K3s</h2>
+</span></span></code></pre></div><h2 id="install-k3s">Install K3s<a href="#install-k3s" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>One of the simplest ways to install K3s on a remote host is to use <a href="https://github.com/alexellis/k3sup">k3sup</a>.
 Ensure that you supply a valid <code>CONTAINER_IP</code> and choose the <code>k3s-version</code> you prefer.
 As of 2021/11, it is still defaulting to the 1.19 channel, so I overrode it to 1.22 for cgroup v2 support. See the published releases <a href="https://github.com/k3s-io/k3s/releases">here</a>.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh-copy-id root@<span style="color:#033">$CONTAINER_IP</span>
 </span></span><span style="display:flex;"><span>k3sup install --ip <span style="color:#033">$CONTAINER_IP</span> --user root --k3s-version v1.22.3+k3s1
 </span></span></code></pre></div><p>If all goes well, you should see a path to the <code>kubeconfig</code> generated. I moved this into <code>~/.kube/config</code> so that kubectl would read this by default.</p>
-<h2 id="wrapping-up">Wrapping up</h2>
+<h2 id="wrapping-up">Wrapping up<a href="#wrapping-up" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Installing K3s in LXC on Proxmox works with a few tweaks to the default configuration. I later followed the Tekton&rsquo;s <a href="https://tekton.dev/docs/getting-started/">Getting Started</a> guide and was able to deploy it in a few commands.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> kubectl get all --namespace tekton-pipelines
 </span></span><span style="display:flex;"><span><span style="color:#aaa">NAME                                               READY   STATUS    RESTARTS      AGE
@@ -403,8 +404,7 @@ As of 2021/11, it is still defaulting to the 1.19 channel, so I overrode it to 1
 </span></span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa"></span><span style="color:#aaa">NAME                                                           REFERENCE                             TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 </span></span></span><span style="display:flex;"><span><span style="color:#aaa">horizontalpodautoscaler.autoscaling/tekton-pipelines-webhook   Deployment/tekton-pipelines-webhook   9%/100%   1         5         1          12h
 </span></span></span></code></pre></div><p>I made sure to install Tailscale in the container so that I can easily access K3s from anywhere.</p>
-<p>If I&rsquo;m feeling adventurous, I might experiment with <a href="https://rancher.com/docs/k3s/latest/en/advanced/#running-k3s-with-rootless-mode-experimental">K3s rootless</a>.</p>
-</div>
+<p>If I&rsquo;m feeling adventurous, I might experiment with <a href="https://rancher.com/docs/k3s/latest/en/advanced/#running-k3s-with-rootless-mode-experimental">K3s rootless</a>.</p></div>
 
   
 <footer class='entry-footer'>

@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,10 +326,8 @@ One min read
   
   
 
-  <div class='container entry-content'>
-  <p>Rotating credentials is a security best practice. This morning, I read a question about automatically rotating AWS Access Keys without having to go through the hassle of navigating the AWS console. There are some existing solutions already, but I decided to write a <a href="https://gist.github.com/davegallant/2c042686a78684a657fe99e20fa7a924#file-aws_access_key_rotator-py">script</a> since it was incredibly simple. The script could be packed up as a systemd/launchd service to continually rotate access keys in the background.</p>
-<p>In the longer term, migrating my local workflows to <a href="https://github.com/99designs/aws-vault">aws-vault</a> seems like a more secure solution. This would mean that credentials (even temporary session credentials) never have to be written in plaintext to disk (i.e. where <a href="https://docs.aws.amazon.com/sdkref/latest/guide/file-location.html">AWS suggests</a>). Any existing applications, such as terraform, could be have their credentials passed to them from aws-vault, which retrieves them from the OS&rsquo;s secure keystore. There is even a <a href="https://github.com/99designs/aws-vault/blob/master/USAGE.md#rotating-credentials">rotate command</a> included.</p>
-</div>
+  <div class='container entry-content'><p>Rotating credentials is a security best practice. This morning, I read a question about automatically rotating AWS Access Keys without having to go through the hassle of navigating the AWS console. There are some existing solutions already, but I decided to write a <a href="https://gist.github.com/davegallant/2c042686a78684a657fe99e20fa7a924#file-aws_access_key_rotator-py">script</a> since it was incredibly simple. The script could be packed up as a systemd/launchd service to continually rotate access keys in the background.</p>
+<p>In the longer term, migrating my local workflows to <a href="https://github.com/99designs/aws-vault">aws-vault</a> seems like a more secure solution. This would mean that credentials (even temporary session credentials) never have to be written in plaintext to disk (i.e. where <a href="https://docs.aws.amazon.com/sdkref/latest/guide/file-location.html">AWS suggests</a>). Any existing applications, such as terraform, could be have their credentials passed to them from aws-vault, which retrieves them from the OS&rsquo;s secure keystore. There is even a <a href="https://github.com/99designs/aws-vault/blob/master/USAGE.md#rotating-credentials">rotate command</a> included.</p></div>
 
   
 <footer class='entry-footer'>

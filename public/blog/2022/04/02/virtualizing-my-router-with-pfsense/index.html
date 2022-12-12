@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,12 +326,11 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <h2 id="the-problem">The problem</h2>
+  <div class='container entry-content'><h2 id="the-problem">The problem<a href="#the-problem" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>My aging router has been running <a href="https://en.wikipedia.org/wiki/OpenWrt">OpenWrt</a> for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a <a href="https://openwrt.org/packages/index/start">large index of packages</a>. Ever since I&rsquo;ve connected some standalone wireless access points, I&rsquo;ve had less of a need for an off-the-shelf all-in-one wireless router combo. I&rsquo;ve also recently been experiencing instability with my router (likely the result of a combination of configuration tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!</p>
-<h2 id="pfsense">pfSense</h2>
+<h2 id="pfsense">pfSense<a href="#pfsense" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>I figured this would be a good opportunity to try <a href="https://en.wikipedia.org/wiki/PfSense">pfSense</a>. I&rsquo;ve heard nothing but positive things about pfSense and the fact it&rsquo;s been around since 2004, based on FreeBSD, and written in PHP gave me the impression that it would be relatively stable (and I&rsquo;d expect nothing less because it has an important job to do!). pfSense can be run on many different machines, and there are even some <a href="https://www.netgate.com/appliances">officially supported appliances</a>. Since I already have a machine running Proxmox, why not just run it in a VM? It&rsquo;d allow for automatic snapshotting of the machine. There is a good <a href="https://www.youtube.com/watch?v=hdoBQNI_Ab8">video</a> on this by Techno Tim. Tim has a lot of good videos, and this one is about virtualizing pfSense.</p>
-<h2 id="router-on-a-stick">Router on a stick</h2>
+<h2 id="router-on-a-stick">Router on a stick<a href="#router-on-a-stick" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>I had initially made the assumption that in order to build a router, you would need more than a single NIC (or a dual-port NIC) in order to support both WAN and LAN. This is simply <a href="https://en.wikipedia.org/wiki/Router_on_a_stick">not the case</a>, because VLANs are awesome! In order to create a router, all you need is a single port NIC and a network switch that supports VLANs (also marketed as a managed switch). I picked up the Netgear GS308E because it has both a sufficient amount of ports for my needs, and it supports VLANs. It also has a nice sturdy metal frame which was a pleasant surprise.</p>
 <p>After setting up this Netgear switch, it shoud be possible to access the web interface at <a href="http://192.168.0.239">http://192.168.0.239</a>. It may be at a different address. To find the address, try checking your DHCP leases in your router interface (if you plugged it into an existing router). I realized I was unable to access this interface because I was on a different subnet, so I set my machine&rsquo;s address to <code>192.168.0.22</code> in order to temporarily setup this switch. I assigned a static ip address to the switch (in <code>System &gt; Switch Information</code>) so that it was in the same subnet as the rest of my network.</p>
 <p>The web interface is nothing spectactular, but it allows for managing VLANs.</p>
@@ -349,7 +350,7 @@ if (!doNotTrack) {
 <p>Now, go into <code>Port PVID</code> and ensure that port 8 is set to PVID 10.</p>
 <p><img src="/images/virtualizing-a-router-with-pfsense/netgear-port-pvid.png" alt="vlan-port-pvid"></p>
 <p>This above configuration will dedicate two of the eight ports to WAN and LAN. This will allow the internet to flow into the pfSense from the modem.</p>
-<h2 id="setting-up-pfsense">Setting up pfSense</h2>
+<h2 id="setting-up-pfsense">Setting up pfSense<a href="#setting-up-pfsense" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>pfSense is fairly easy to setup. Just <a href="https://www.pfsense.org/download/">download the latest ISO</a> and boot up the virtual machine.
 When setting up the machine, I mostly went with all of the defaults. Configuration can be changed later in the web interface, which is quite a bit simpler.</p>
 <p>Since VLANs are going to be leveraged, when you go to <code>Assign Interfaces</code>, VLANs should be setup now like the following:</p>
@@ -361,9 +362,8 @@ When setting up the machine, I mostly went with all of the defaults. Configurati
 <p>If all goes well, the web interface should be running at <a href="https://192.168.1.1">https://192.168.1.1</a>.</p>
 <p><img src="/images/virtualizing-a-router-with-pfsense/pfsense-dashboard.png" alt="pfsense-dashboard"></p>
 <p>And this is where the fun begins. There are many tutorials and blogs about how to setup pfSense and various services and packages that can be installed. I&rsquo;ve already installed <a href="https://docs.netgate.com/pfsense/en/latest/packages/pfblocker.html">pfBlocker-NG</a>.</p>
-<h2 id="summary">Summary</h2>
-<p>It is fairly simple to setup a router with pfSense from within a virtual machine. A physical dedicated routing machine is not necessary and often does not perform as well as software running on faster and more reliable hardware. So far, pfSense has been running for over a week without a single hiccup. pfSense is a mature piece of software that is incredibly powerful and flexible. To avoid some of the instability I had experienced with OpenWrt, I enabled <a href="https://docs.netgate.com/pfsense/en/latest/backup/autoconfigbackup.html">AutoConfigBackup</a>, which is capable of automatically backing up configuration upon every change. I plan to explore and experiment with more services and configuration in the future, so the ability to track all of these changes gives me the peace of mind that experimentation is safe.</p>
-</div>
+<h2 id="summary">Summary<a href="#summary" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>It is fairly simple to setup a router with pfSense from within a virtual machine. A physical dedicated routing machine is not necessary and often does not perform as well as software running on faster and more reliable hardware. So far, pfSense has been running for over a week without a single hiccup. pfSense is a mature piece of software that is incredibly powerful and flexible. To avoid some of the instability I had experienced with OpenWrt, I enabled <a href="https://docs.netgate.com/pfsense/en/latest/backup/autoconfigbackup.html">AutoConfigBackup</a>, which is capable of automatically backing up configuration upon every change. I plan to explore and experiment with more services and configuration in the future, so the ability to track all of these changes gives me the peace of mind that experimentation is safe.</p></div>
 
   
 <footer class='entry-footer'>
