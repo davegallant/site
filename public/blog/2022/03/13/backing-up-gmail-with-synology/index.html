@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,10 +326,9 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <p>I&rsquo;ve used gmail since the beta launched touting a whopping 1GB of storage. I thought this was a massive leap in email technology at the time. I was lucky enough to get an invite fairly quickly. Not suprisingly, I have many years of emails, attachments, and photos. I certainly do not want to lose the content of many of these emails. Despite the redundancy of the data that Google secures, I still feel better retaining a copy of this data on my own physical machines.</p>
+  <div class='container entry-content'><p>I&rsquo;ve used gmail since the beta launched touting a whopping 1GB of storage. I thought this was a massive leap in email technology at the time. I was lucky enough to get an invite fairly quickly. Not suprisingly, I have many years of emails, attachments, and photos. I certainly do not want to lose the content of many of these emails. Despite the redundancy of the data that Google secures, I still feel better retaining a copy of this data on my own physical machines.</p>
 <p>The thought of completely de-googling has crossed my mind on occassion. Convenience, coupled with my admiration for Google engineering, has prevented me from doing so thus far. Though, I may end up doing so at some point in the future.</p>
-<h2 id="synology-mailplus-server">Synology MailPlus Server</h2>
+<h2 id="synology-mailplus-server">Synology MailPlus Server<a href="#synology-mailplus-server" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Synology products are reasonably priced for what you get (essentially a cloud-in-a-box) and there is very little maintenance required. I&rsquo;ve recently been in interested in syncing and snapshotting my personal data. I&rsquo;ve setup <a href="https://www.synology.com/en-ca/dsm/feature/cloud_sync">Synology&rsquo;s Cloud Sync</a> and keep copies of most of my cloud data.</p>
 <p>I&rsquo;ve used tools such as <a href="http://www.gmvault.org">gmvault</a> with success in the past. Setting this up on a cron seems like a viable option. However, I don&rsquo;t really need a lot of the features it offers and do not plan to restore this data to another account.</p>
 <p>Synology&rsquo;s MailPlus seems to be a good candidate for backing up this data. By enabling POP3 fetching, it&rsquo;s possible to fetch all existing emails, as well as periodically fetch all new emails. If a disaster ever did occur, having these emails would be beneficial, as they are an extension of my memory bank.</p>
@@ -340,12 +341,11 @@ if (!doNotTrack) {
 <p>After this, mail started coming in.</p>
 <p><img src="/images/backing-up-gmail-with-synology/mail-plus-incoming-mail.png" alt="image"></p>
 <p>After fetching 19 years worth of emails, I tried searching for some emails. It only took a few seconds to search through ~50K emails, which is a relief if I ever did have to search for something important.</p>
-<h2 id="securing-synology">Securing Synology</h2>
+<h2 id="securing-synology">Securing Synology<a href="#securing-synology" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Since Synology devices are not hermetically sealed, it&rsquo;s best to secure them by <a href="https://kb.synology.com/en-us/DSM/tutorial/How_to_add_extra_security_to_your_Synology_NAS#x_anchor_id8">enabling MFA</a> to help prevent being the <a href="https://www.bleepingcomputer.com/news/security/qlocker-ransomware-returns-to-target-qnap-nas-devices-worldwide/">victim of ransomware</a>. It is also wise to backup your system settings and volumes to the cloud using a tool such as <a href="https://www.synology.com/en-ca/dsm/feature/hyper_backup">Hyper Backup</a>.
 Encrypting your shared volumes should also be done, since unfortunately <a href="https://community.synology.com/enu/forum/12/post/144665">DSM does not support full disk encryption</a>.</p>
-<h2 id="summary">Summary</h2>
-<p>Having backups of various forms of cloud data is a good investment, especially in <a href="https://en.wikipedia.org/wiki/2022_Ukraine_cyberattacks">times of war</a>. I certainly feel more at ease for having backed up my emails.</p>
-</div>
+<h2 id="summary">Summary<a href="#summary" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>Having backups of various forms of cloud data is a good investment, especially in <a href="https://en.wikipedia.org/wiki/2022_Ukraine_cyberattacks">times of war</a>. I certainly feel more at ease for having backed up my emails.</p></div>
 
   
 <footer class='entry-footer'>

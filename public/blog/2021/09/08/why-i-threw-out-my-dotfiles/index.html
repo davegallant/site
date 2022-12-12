@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,9 +326,8 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <p>Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (<code>~/.zshrc</code>, <code>~/.config/git/config</code>, <code>~/.config/tmux/tmux.conf</code>, etc). I have tried several different ways to manage them, including <a href="https://www.atlassian.com/git/tutorials/dotfiles">bare git repos</a> and utilities such as <a href="https://www.gnu.org/software/stow/">GNU Stow</a>. These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: <a href="https://github.com/nix-community/home-manager">home-manager</a>.</p>
-<h2 id="what-is-home-manager">What is home-manager?</h2>
+  <div class='container entry-content'><p>Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (<code>~/.zshrc</code>, <code>~/.config/git/config</code>, <code>~/.config/tmux/tmux.conf</code>, etc). I have tried several different ways to manage them, including <a href="https://www.atlassian.com/git/tutorials/dotfiles">bare git repos</a> and utilities such as <a href="https://www.gnu.org/software/stow/">GNU Stow</a>. These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: <a href="https://github.com/nix-community/home-manager">home-manager</a>.</p>
+<h2 id="what-is-home-manager">What is home-manager?<a href="#what-is-home-manager" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Before understanding home-manager, it is worth briefly discussing what nix is. <a href="https://nixos.org/">nix</a> is a package manager that originally spawned from a <a href="https://edolstra.github.io/pubs/phd-thesis.pdf">PhD thesis</a>. Unlike other package managers, it uses symbolic links to keep track of the currently installed packages, keeping around the old ones in case you may want to rollback.</p>
 <p>For example, I have used nix to install the package <a href="https://search.nixos.org/packages?channel=unstable&amp;show=bind&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=bind">bind</a> which includes <code>dig</code>. You can see that it is available on multiple platforms. The absolute path of <code>dig</code> can be found by running:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> ls -lh <span style="color:#069;font-weight:bold">$(</span>which dig<span style="color:#069;font-weight:bold">)</span>
@@ -334,7 +335,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></div><p>Notice that there is a hash included in the file path? This is a nix store path and is computed by the nix package manager. This <a href="https://nixos.org/guides/nix-pills/nix-store-paths.html">nix pill</a> does a good job explaining how this hash is computed. All of the nix pills are worth a read, if you are interested in learning more about nix itself. However, using home-manager does not require extensive knowledge of nix.</p>
 <p>Part of the nix ecosystem includes <a href="https://github.com/NixOS/nixpkgs">nixpkgs</a>. Many popular tools can be found already packaged in this repository. As you can see with these <a href="https://repology.org/repositories/statistics/total">stats</a>, there is a large number of existing packages that are being maintained by the community. Contributing a new package is easy, and anyone can do it!</p>
 <p>home-manager leverages the nix package manager (and nixpkgs), as well the nix language so that you can declaratively define your system configuration. I store my <a href="https://github.com/davegallant/nix-config">nix-config</a> in git so that I can keep track of my packages and configurations, and retain a clean and informative git commit history so that I can understand what changed and why.</p>
-<h2 id="setting-up-home-manager">Setting up home-manager</h2>
+<h2 id="setting-up-home-manager">Setting up home-manager<a href="#setting-up-home-manager" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <blockquote>
 <p>⚠️ If you run this on your main machine, make sure you backup your configuration files first. home-manager is pretty good about not overwriting existing configuration, but it is better to have a backup! Alternatively, you could test this out on a VM or cloud instance.</p>
 </blockquote>
@@ -456,11 +457,10 @@ if (!doNotTrack) {
 <p>This basic configuration above is also defining your <code>~/.config/git/config</code> and <code>.zshrc</code>. If you already have either of these files, home-manager will complain about them already existing.</p>
 <p>If you run <code>cat ~/.zshrc</code>, you will see the way these configuration files are generated.</p>
 <p>You can extend this configuration for programs such as (neo)vim, emacs, alacritty, ssh, etc. To see other programs, take a look at <a href="https://github.com/nix-community/home-manager/tree/master/modules/programs">home-manager/modules/programs</a>.</p>
-<h2 id="gateway-to-nix">Gateway To Nix</h2>
+<h2 id="gateway-to-nix">Gateway To Nix<a href="#gateway-to-nix" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>In ways, home-manager can be seen as a gateway to the nix ecosystem. If you have enjoyed the way you can declare user configuration with home-manager, you may be interested in expanding your configuration to include other system dependencies and configuration. For example, in Linux you can define your entire system&rsquo;s configuration (including the kernel, kernel modules, networking, filesystems, etc) in nix. For macOS, there is <a href="https://github.com/LnL7/nix-darwin">nix-darwin</a> that includes nix modules for configuring launchd, dock, and other preferences and services. You may also want to check out <a href="https://nixos.wiki/wiki/Flakes">Nix Flakes</a>: a more recent feature that allows you declare dependencies, and have them automatically pinned and hashed in <code>flake.lock</code>, similar to that of many modern package managers.</p>
-<h2 id="wrapping-up">Wrapping up</h2>
-<p>The title of this post is slightly misleading, since it&rsquo;s possible to retain some of your dotfiles and have them intermingle with home-manager by including them alongside nix. The idea of defining user configuration using nix can provide a clean way to maintain your configuration, and allow it to be portable across platforms. Is it worth the effort to migrate away from shell scripts and dotfiles? I&rsquo;d say so.</p>
-</div>
+<h2 id="wrapping-up">Wrapping up<a href="#wrapping-up" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>The title of this post is slightly misleading, since it&rsquo;s possible to retain some of your dotfiles and have them intermingle with home-manager by including them alongside nix. The idea of defining user configuration using nix can provide a clean way to maintain your configuration, and allow it to be portable across platforms. Is it worth the effort to migrate away from shell scripts and dotfiles? I&rsquo;d say so.</p></div>
 
   
 <footer class='entry-footer'>

@@ -9,7 +9,7 @@
 <meta property='og:description' content=''>
 <meta property='og:url' content='/blog/2022/12/10/watching-youtube-in-private/'>
 <meta property='og:site_name' content='davegallant'>
-<meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='invidious'><meta property='article:tag' content='degoogle'><meta property='article:tag' content='youtube'><meta property='article:tag' content='yewtu.be'><meta property='article:tag' content='tailscale'><meta property='article:published_time' content='2022-12-10T21:46:55-05:00'/><meta property='article:modified_time' content='2022-12-10T21:46:55-05:00'/><meta name='twitter:card' content='summary'>
+<meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='invidious'><meta property='article:tag' content='degoogle'><meta property='article:tag' content='youtube'><meta property='article:tag' content='yewtu.be'><meta property='article:tag' content='tailscale'><meta property='article:tag' content='privacy'><meta property='article:published_time' content='2022-12-10T21:46:55-05:00'/><meta property='article:modified_time' content='2022-12-10T21:46:55-05:00'/><meta name='twitter:card' content='summary'>
 
 <meta name="generator" content="Hugo 0.108.0">
 
@@ -115,6 +115,8 @@ if (!doNotTrack) {
         <a href='/tags/plex/' style='font-size:1em'>plex</a>
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
+      </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
       </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
@@ -324,13 +326,12 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <p>I recently stumbled upon <a href="https://yewtu.be">yewtu.be</a> and found it intriguing. It not only allows for you to watch YouTube without <em>being on YouTube</em>, but it also allows you to create an account and subscribe to channels without a Google account. I wondered what sort of wizardry was going on under the hood and discovered that it&rsquo;s a hosted instance of <a href="https://invidious.io/">invidious</a>.</p>
+  <div class='container entry-content'><p>I recently stumbled upon <a href="https://yewtu.be">yewtu.be</a> and found it intriguing. It not only allows for you to watch YouTube without <em>being on YouTube</em>, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&rsquo;s a hosted instance of <a href="https://invidious.io/">invidious</a>.</p>
 <p><img src="/images/watching-youtube-in-private/computerphile.png" alt="requestly"></p>
 <p>Wow, this is cool, and <strong>JavaScript is not required</strong>.</p>
-<p>I started to use yewtu.be as my primary client for watching videos. I subscribe to about a dozen channels and I really only want to a see list of the latest videos from my subscriptions, and not have so much of my data collected and used. A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious.</p>
-<p>There are several other hosted instances listed <a href="https://docs.invidious.io/instances/">here</a>, but being able to easily backup my own instance (along with watch history) is more compelling in my case.</p>
-<h3 id="hosting-invidious">Hosting invidious</h3>
+<p>I started to use <a href="https://yewtu.be">yewtu.be</a> as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It&rsquo;s also nice to be in control of my search and watch history.</p>
+<p>A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious. There are several other hosted instances listed <a href="https://docs.invidious.io/instances/">here</a>, but being able to easily backup my own instance (including subscriptions and watch history) is more compelling in my case.</p>
+<h3 id="hosting-invidious">Hosting invidious<a href="#hosting-invidious" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>The quickest way to get invidious up is with docker-compose as mentioned in the <a href="https://docs.invidious.io/installation/">docs</a>.</p>
 <p>I made a few modifications (such as pinning the container&rsquo;s tag), and ended up with:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#309;font-weight:bold">version</span>:<span style="color:#bbb"> </span><span style="color:#c30">&#34;3&#34;</span><span style="color:#bbb">
@@ -375,13 +376,12 @@ if (!doNotTrack) {
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#309;font-weight:bold">volumes</span>:<span style="color:#bbb">
 </span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#309;font-weight:bold">postgresdata</span>:<span style="color:#bbb">
 </span></span></span></code></pre></div><p>After invidious was up and running, I installed <a href="https://tailscale.com/">Tailscale</a> on it to leverage its MagicDNS, and I&rsquo;m now able to access this instance from anywhere at <a href="http://invidious:3000/feed/subscriptions">http://invidious:3000/feed/subscriptions</a>.</p>
-<h3 id="redirecting-youtube-links">Redirecting YouTube links</h3>
+<h3 id="redirecting-youtube-links">Redirecting YouTube links<a href="#redirecting-youtube-links" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>I figured it would be nice to redirect existing YouTube links that others send me, so that I could seamlessly watch the videos using invidious.</p>
-<p>Without subjecting my entire household to this, I went looking for a way to redirect paths at the browser level. I found the lightweight proxy <a href="https://requestly.io/">requestly</a>, which can be used to modify http requests in my browser. I created the following rules:</p>
+<p>I went looking for a way to redirect paths at the browser level. I found the lightweight proxy <a href="https://requestly.io/">requestly</a>, which can be used to modify http requests in my browser. I created the following rules:</p>
 <p><img src="/images/watching-youtube-in-private/requestly-rules.png" alt="requestly"></p>
 <p>Now the link <a href="https://www.youtube.com/watch?v=-lz30by8-sU">https://www.youtube.com/watch?v=-lz30by8-sU</a> will redirect to <a href="http://invidious:3000/watch?v=-lz30by8-sU">http://invidious:3000/watch?v=-lz30by8-sU</a></p>
-<p>I&rsquo;m still looking for ways to improve this invidious setup. There doesn&rsquo;t appear to be a way to stream in 4K yet.</p>
-</div>
+<p>I&rsquo;m still looking for ways to improve this invidious setup. There doesn&rsquo;t appear to be a way to stream in 4K yet.</p></div>
 
   
 <footer class='entry-footer'>
@@ -396,7 +396,7 @@ if (!doNotTrack) {
 ><path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z" />
 <line x1="7" y1="7" x2="7" y2="7" />
 </svg>
-<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/invidious/'>invidious</a>, <a class='tag' href='/tags/degoogle/'>degoogle</a>, <a class='tag' href='/tags/youtube/'>youtube</a>, <a class='tag' href='/tags/yewtu.be/'>yewtu.be</a>, <a class='tag' href='/tags/tailscale/'>tailscale</a></div>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/invidious/'>invidious</a>, <a class='tag' href='/tags/degoogle/'>degoogle</a>, <a class='tag' href='/tags/youtube/'>youtube</a>, <a class='tag' href='/tags/yewtu.be/'>yewtu.be</a>, <a class='tag' href='/tags/tailscale/'>tailscale</a>, <a class='tag' href='/tags/privacy/'>privacy</a></div>
 
   </div>
 </footer>

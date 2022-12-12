@@ -116,6 +116,8 @@ if (!doNotTrack) {
       </li><li>
         <a href='/tags/podman/' style='font-size:1em'>podman</a>
       </li><li>
+        <a href='/tags/privacy/' style='font-size:1em'>privacy</a>
+      </li><li>
         <a href='/tags/proxmox/' style='font-size:2em'>proxmox</a>
       </li><li>
         <a href='/tags/python/' style='font-size:2em'>python</a>
@@ -324,28 +326,27 @@ if (!doNotTrack) {
   
   
 
-  <div class='container entry-content'>
-  <p>There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:</p>
+  <div class='container entry-content'><p>There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">...ignoring Docker updates is a paid feature now?? <a href="https://t.co/ZxKW3b9LQM">pic.twitter.com/ZxKW3b9LQM</a></p>&mdash; Brendan Dolan-Gavitt (@moyix) <a href="https://twitter.com/moyix/status/1388586550682861568?ref_src=twsrc%5Etfw">May 1, 2021</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>Docker has been one of the larger influencers in the container world, helping to standardize the <a href="https://github.com/opencontainers/image-spec/blob/main/spec.md">OCI Image Format Specification</a>. For many developers, containers have become synonymous with terms like <code>docker</code> and <code>Dockerfile</code> (a file containing build instructions for a container image). Docker has certainly made it very convenient to build and run containers, but it is not the only solution for doing so.</p>
 <p>This post briefly describes my experience swapping out docker for podman on macOS.</p>
-<h3 id="what-is-a-container">What is a container?</h3>
+<h3 id="what-is-a-container">What is a container?<a href="#what-is-a-container" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>A container is a standard unit of software that packages up all application dependencies within it. Multiple containers can be run on a host machine all sharing the same kernel as the host. Linux namespaces help provide an isolated view of the system, including mnt, pid, net, ipc, uid, cgroup, and time. There is an <a href="https://www.youtube.com/watch?v=sK5i-N34im8">in-depth video</a> that discusses what containers are made from, and <a href="https://youtu.be/sK5i-N34im8?t=2468">near the end</a> there is a demonstration on how to build your own containers from the command line.</p>
 <p>By easily allowing the necessary dependencies to live alongside the application code, containers make the &ldquo;works on my machine&rdquo; problem less of a problem.</p>
-<h3 id="benefits-of-podman">Benefits of Podman</h3>
+<h3 id="benefits-of-podman">Benefits of Podman<a href="#benefits-of-podman" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>One of the most interesting features of Podman is that it is daemonless. There isn&rsquo;t a process running on your system managing your containers. In contrast, the docker client is reliant upon the docker daemon (often running as root) to be able to build and run containers.</p>
 <p>Podman is rootless by default. It is now possible to <a href="https://docs.docker.com/engine/security/rootless/">run the docker daemon rootless</a> as well, but it&rsquo;s still not the default behaviour.</p>
 <p>I&rsquo;ve also observed that so far my 2019 16&quot; Macbook Pro hasn&rsquo;t sounded like a jet engine, although I haven&rsquo;t performed any disk-intensive operations yet.</p>
-<h3 id="installing-podman">Installing Podman</h3>
+<h3 id="installing-podman">Installing Podman<a href="#installing-podman" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>Running Podman on macOS is more involved than on Linux, because the podman-machine must run Linux inside of a virtual machine. Fortunately, the installation is made simple with <a href="https://formulae.brew.sh/formula/podman">brew</a> (read <a href="https://podman.io/getting-started/installation#linux-distributions">this</a> if you&rsquo;re installing Podman on Linux):</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>brew install podman
 </span></span></code></pre></div><p>The podman-machine must be started:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># This is not necessary on Linux</span>
 </span></span><span style="display:flex;"><span>podman machine init
 </span></span><span style="display:flex;"><span>podman machine start
-</span></span></code></pre></div><h3 id="running-a-container">Running a container</h3>
+</span></span></code></pre></div><h3 id="running-a-container">Running a container<a href="#running-a-container" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>Let&rsquo;s try to pull an image:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#009;font-weight:bold">$</span> podman pull alpine
 </span></span><span style="display:flex;"><span><span style="color:#aaa">Trying to pull docker.io/library/alpine:latest...
@@ -366,10 +367,10 @@ if (!doNotTrack) {
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>podman run -p <span style="color:#f60">4242</span> --rm -ti alpine
 </span></span></code></pre></div><p>If you&rsquo;re reading this from the future, there is a good chance specifying a port won&rsquo;t be needed.</p>
 <p>Another example of running a container with Podman can be found in the <a href="https://jellyfin.org/docs/general/administration/installing.html#podman">Jellyfin Documentation</a>.</p>
-<h3 id="aliasing-docker-with-podman">Aliasing docker with podman</h3>
+<h3 id="aliasing-docker-with-podman">Aliasing docker with podman<a href="#aliasing-docker-with-podman" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>Force of habit (or other scripts) may have you calling <code>docker</code>. To work around this:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#366">alias</span> <span style="color:#033">docker</span><span style="color:#555">=</span>podman
-</span></span></code></pre></div><h3 id="podman-compose">podman-compose</h3>
+</span></span></code></pre></div><h3 id="podman-compose">podman-compose<a href="#podman-compose" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>You may be wondering: what about docker-compose? Well, there <em>claims</em> to be a drop-in replacement for it: <a href="https://github.com/containers/podman-compose">podman-compose</a>.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip3 install --user podman-compose
 </span></span></code></pre></div><p>Now let&rsquo;s create a <code>docker-compose.yml</code> file to test:</p>
@@ -399,14 +400,13 @@ if (!doNotTrack) {
 </span></span></span><span style="display:flex;"><span><span style="color:#aaa">podman start -a davegallant.github.io_hello_world_1
 </span></span></span><span style="display:flex;"><span><span style="color:#aaa">Hello world
 </span></span></span></code></pre></div><p>This should more or less provide the same results you would come to expect with docker. The README does clearly state that podman-compose is under development.</p>
-<h3 id="summary">Summary</h3>
+<h3 id="summary">Summary<a href="#summary" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>Installing Podman on macOS was not seamless, but it was manageable well within 30 minutes. I would recommend giving Podman a try to anyone who is unhappy with experiencing forced docker updates, or who is interested in using a more modern technology for running containers.</p>
 <p>One caveat to mention is that there isn&rsquo;t an official graphical user interface for Podman, but there is an <a href="https://github.com/containers/podman/issues/11494">open issue</a> considering one. If you rely heavily on Docker Desktop&rsquo;s UI, you may not be as interested in using podman yet.</p>
 <blockquote>
 <p>Update: After further usage, bind mounts do not seem to work out of the box when the client and host are on different machines. A rather involved solution using <a href="https://en.wikipedia.org/wiki/SSHFS">sshfs</a> was shared <a href="https://github.com/containers/podman/issues/8016#issuecomment-920015800">here</a>.</p>
 </blockquote>
-<p>I had been experimenting with Podman on Linux before writing this, but after listening to this <a href="https://kubernetespodcast.com/episode/164-podman/">podcast episode</a>, I was inspired to give Podman a try on macOS.</p>
-</div>
+<p>I had been experimenting with Podman on Linux before writing this, but after listening to this <a href="https://kubernetespodcast.com/episode/164-podman/">podcast episode</a>, I was inspired to give Podman a try on macOS.</p></div>
 
   
 <footer class='entry-footer'>

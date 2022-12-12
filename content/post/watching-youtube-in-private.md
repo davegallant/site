@@ -5,7 +5,7 @@ lastmod: 2022-12-10T21:46:55-05:00
 draft: false
 keywords: []
 description: ""
-tags: ['invidious','degoogle', 'youtube', 'yewtu.be', 'tailscale']
+tags: ['invidious','degoogle', 'youtube', 'yewtu.be', 'tailscale', 'privacy']
 categories: []
 author: ""
 
@@ -34,15 +34,15 @@ sequenceDiagrams:
 
 <!--more-->
 
-I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows for you to watch YouTube without *being on YouTube*, but it also allows you to create an account and subscribe to channels without a Google account. I wondered what sort of wizardry was going on under the hood and discovered that it's a hosted instance of [invidious](https://invidious.io/).
+I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows for you to watch YouTube without *being on YouTube*, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
 
 ![requestly](/images/watching-youtube-in-private/computerphile.png)
 
 Wow, this is cool, and **JavaScript is not required**.
 
-I started to use yewtu.be as my primary client for watching videos. I subscribe to about a dozen channels and I really only want to a see list of the latest videos from my subscriptions, and not have so much of my data collected and used. A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious.
+I started to use [yewtu.be](https://yewtu.be) as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It's also nice to be in control of my search and watch history.
 
-There are several other hosted instances listed [here](https://docs.invidious.io/instances/), but being able to easily backup my own instance (along with watch history) is more compelling in my case.
+A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious. There are several other hosted instances listed [here](https://docs.invidious.io/instances/), but being able to easily backup my own instance (including subscriptions and watch history) is more compelling in my case.
 
 ### Hosting invidious
 
@@ -100,7 +100,7 @@ After invidious was up and running, I installed [Tailscale](https://tailscale.co
 
 I figured it would be nice to redirect existing YouTube links that others send me, so that I could seamlessly watch the videos using invidious.
 
-Without subjecting my entire household to this, I went looking for a way to redirect paths at the browser level. I found the lightweight proxy [requestly](https://requestly.io/), which can be used to modify http requests in my browser. I created the following rules:
+I went looking for a way to redirect paths at the browser level. I found the lightweight proxy [requestly](https://requestly.io/), which can be used to modify http requests in my browser. I created the following rules:
 
 ![requestly](/images/watching-youtube-in-private/requestly-rules.png)
 
