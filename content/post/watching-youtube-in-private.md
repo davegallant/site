@@ -34,13 +34,13 @@ sequenceDiagrams:
 
 <!--more-->
 
-I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows for you to watch YouTube without *being on YouTube*, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
+I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows you to watch YouTube without *being on YouTube*, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
 
 ![requestly](/images/watching-youtube-in-private/computerphile.png)
 
 Wow, this is cool, and **JavaScript is not required**.
 
-I started to use [yewtu.be](https://yewtu.be) as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It's also nice to be in control of my search and watch history.
+I started using [yewtu.be](https://yewtu.be) as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It's also nice to be in control of my search and watch history.
 
 A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious. There are several other hosted instances listed [here](https://docs.invidious.io/instances/), but being able to easily backup my own instance (including subscriptions and watch history) is more compelling in my case.
 
