@@ -5,7 +5,7 @@ googleAnalytics: UA-98710982-2
 copyright: Dave Gallant
 preserveTaxonomyNames: true
 pygmentsstyle: "monokai"
-pygmentscodefences:  true
+pygmentscodefences: false
 pygmentscodefencesguesssyntax: true
 theme: archie
 title: davegallant

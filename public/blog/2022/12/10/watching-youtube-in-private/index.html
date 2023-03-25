@@ -101,54 +101,55 @@
 
 		<section class="body"><p>I recently stumbled upon <a href="https://yewtu.be">yewtu.be</a> and found it intriguing. It not only allows you to watch YouTube without <em>being on YouTube</em>, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&rsquo;s a hosted instance of <a href="https://invidious.io/">invidious</a>.</p>
 <p><img src="/images/watching-youtube-in-private/computerphile.png" alt="requestly"></p>
-<p>This layout is simple, and <strong>JavaScript is not required</strong>.</p>
+<p>The layout is simple, and <strong>JavaScript is not required</strong>.</p>
 <p>I started using <a href="https://yewtu.be">yewtu.be</a> as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It&rsquo;s also nice to be in control of my search and watch history.</p>
 <p>A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious. There are several other hosted instances listed <a href="https://docs.invidious.io/instances/">here</a>, but being able to easily backup my own instance (including subscriptions and watch history) is more compelling in my case.</p>
 <h3 id="hosting-invidious">Hosting invidious<a href="#hosting-invidious" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>The quickest way to get invidious up is with docker-compose as mentioned in the <a href="https://docs.invidious.io/installation/">docs</a>.</p>
 <p>I made a few modifications (such as pinning the container&rsquo;s tag), and ended up with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">invidious</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">quay.io/invidious/invidious:5160d8bae39dc5cc5d51abee90571a03c08d0f2b</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;0.0.0.0:3000:3000&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">INVIDIOUS_CONFIG</span>: |<span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        db:
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          dbname: invidious
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          user: kemal
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          password: kemal
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          host: invidious-db
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          port: 5432
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        check_tables: true</span>        
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: <span style="color:#ae81ff">wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">2</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">invidious-db</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">invidious-db</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker.io/library/postgres:14</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">postgresdata:/var/lib/postgresql/data</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config/sql:/config/sql</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./docker/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">invidious</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: <span style="color:#ae81ff">kemal</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">kemal</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>, <span style="color:#e6db74">&#34;pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB&#34;</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgresdata</span>:
-</span></span></code></pre></div><p>After invidious was up and running, I installed <a href="https://tailscale.com/">Tailscale</a> on it to leverage its MagicDNS, and I&rsquo;m now able to access this instance from anywhere at <a href="http://invidious:3000/feed/subscriptions">http://invidious:3000/feed/subscriptions</a>.</p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+
+  invidious:
+    image: quay.io/invidious/invidious:5160d8bae39dc5cc5d51abee90571a03c08d0f2b
+    restart: unless-stopped
+    ports:
+      - &quot;0.0.0.0:3000:3000&quot;
+    environment:
+      INVIDIOUS_CONFIG: |
+        db:
+          dbname: invidious
+          user: kemal
+          password: kemal
+          host: invidious-db
+          port: 5432
+        check_tables: true
+    healthcheck:
+      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    depends_on:
+      - invidious-db
+
+  invidious-db:
+    image: docker.io/library/postgres:14
+    restart: unless-stopped
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+      - ./config/sql:/config/sql
+      - ./docker/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh
+    environment:
+      POSTGRES_DB: invidious
+      POSTGRES_USER: kemal
+      POSTGRES_PASSWORD: kemal
+    healthcheck:
+      test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB&quot;]
+
+volumes:
+  postgresdata:
+</code></pre>
+<p>After invidious was up and running, I installed <a href="https://tailscale.com/">Tailscale</a> on it to leverage its MagicDNS, and I&rsquo;m now able to access this instance from anywhere at <a href="http://invidious:3000/feed/subscriptions">http://invidious:3000/feed/subscriptions</a>.</p>
 <h3 id="redirecting-youtube-links">Redirecting YouTube links<a href="#redirecting-youtube-links" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>I figured it would be nice to redirect existing YouTube links that others send me, so that I could seamlessly watch the videos using invidious.</p>
 <p>I went looking for a way to redirect paths at the browser level. I found the lightweight proxy <a href="https://requestly.io/">requestly</a>, which can be used to modify http requests in my browser. I created the following rules:</p>
