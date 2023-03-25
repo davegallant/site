@@ -6,6 +6,7 @@
     <description>Recent content in security on davegallant</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Dave Gallant</copyright>
     <lastBuildDate>Fri, 17 Sep 2021 12:48:33 -0400</lastBuildDate><atom:link href="/tags/security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automatically Rotating AWS Access Keys</title>
