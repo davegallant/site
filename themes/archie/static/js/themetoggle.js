@@ -3,13 +3,26 @@ function setTheme(mode) {
     if (mode === "dark") {
         document.getElementById("darkModeStyle").disabled=false;
         document.getElementById("dark-mode-toggle").innerHTML = "<i data-feather=\"sun\"></i>";
-        feather.replace()
+        feather.replace();
+        setUtterancesTheme("github-dark");
     } else if (mode === "light") {
         document.getElementById("darkModeStyle").disabled=true;
         document.getElementById("dark-mode-toggle").innerHTML = "<i data-feather=\"moon\"></i>";
-        feather.replace()
+        feather.replace();
+        setUtterancesTheme("github-light");
     }
 }
+
+function setUtterancesTheme (theme) {
+    if (document.querySelector('.utterances-frame')) {
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      const iframe = document.querySelector('.utterances-frame');
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
 
 function toggleTheme() {
     if (localStorage.getItem("theme-storage") === "light") {

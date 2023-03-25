@@ -259,12 +259,21 @@
 
 		<section id='comments' class='comments'>
   <div class='container sep-before'>
-    <div class='comments-area'><script src='https://utteranc.es/client.js'
-  repo='davegallant/davegallant.github.io'
-  issue-term='pathname'
-  
-  theme='github-light'
-  crossorigin='anonymous' async>
+    <div class='comments'><script>
+    
+    var getTheme = window.localStorage && window.localStorage.getItem("theme-storage");
+    getTheme = getTheme == null ? 'light' : getTheme;
+
+    let theme = getTheme === 'dark' ? 'github-dark' : 'github-light';
+    let s = document.createElement('script');
+    s.src = 'https://utteranc.es/client.js';
+    s.setAttribute('repo', 'davegallant\/davegallant.github.io');
+    s.setAttribute('issue-term', 'pathname');
+    s.setAttribute('theme', theme);
+    s.setAttribute('crossorigin', 'anonymous');
+    s.setAttribute('async', '');
+    document.querySelector('div.comments').innerHTML = '';
+    document.querySelector('div.comments').appendChild(s);
 </script>
 </div>
   </div>

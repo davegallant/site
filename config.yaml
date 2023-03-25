@@ -40,7 +40,6 @@ params:
       utterances:
         enable: true
         issueTerm: "pathname"
-        theme: github-light
         github:
           username: davegallant
           repository: davegallant.github.io
