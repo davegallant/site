@@ -3,7 +3,7 @@
 --maincolor: #a15bc2;
 --bordercl: #a15bc2;
 --callouctcolor:dodgerblue;
---hovercolor: #a15bc2;
+--hovercolor:navy;
 --darkMaincolor: #a15bc2;
 }
 html {
@@ -112,7 +112,7 @@ pre {
 }
 
 .highlight pre ::selection {
-  background: var(--maincolor);
+  background: rgba(255, 255, 255, 0.2);
   color: inherit;
 }
 
