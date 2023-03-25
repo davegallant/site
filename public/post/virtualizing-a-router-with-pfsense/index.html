@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Virtualizing My Router With pfSense - davegallant</title><link rel="icon" type="image/png" href=https://davegallant.ca/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Virtualizing My Router With pfSense" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/virtualizing-a-router-with-pfsense/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-02T18:50:09-04:00" />
+<meta property="article:modified_time" content="2022-04-02T18:50:09-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Virtualizing My Router With pfSense"/>
+<meta name="twitter:description" content=""/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.f7354ef8ed840429a37397307f3d9872782673d6b91d714b3f600b210d91fbaf.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+
+	
+	
+		<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script>
+	
+
+	
+	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+		
+		
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+			</script>
+	
+	
+	
+		
+		
+		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="/">davegallant</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/post">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
+		<script src="/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Virtualizing My Router With pfSense</h1>
+			<div class="meta">Posted on Apr 2, 2022</div>
+		</div>
+		
+
+		<section class="body"><h2 id="the-problem">The problem<a href="#the-problem" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>My aging router has been running <a href="https://en.wikipedia.org/wiki/OpenWrt">OpenWrt</a> for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a <a href="https://openwrt.org/packages/index/start">large index of packages</a>. Ever since I&rsquo;ve connected some standalone wireless access points, I&rsquo;ve had less of a need for an off-the-shelf all-in-one wireless router combo. I&rsquo;ve also recently been experiencing instability with my router (likely the result of a combination of configuration tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!</p>
+<h2 id="pfsense">pfSense<a href="#pfsense" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>I figured this would be a good opportunity to try <a href="https://en.wikipedia.org/wiki/PfSense">pfSense</a>. I&rsquo;ve heard nothing but positive things about pfSense and the fact it&rsquo;s been around since 2004, based on FreeBSD, and written in PHP gave me the impression that it would be relatively stable (and I&rsquo;d expect nothing less because it has an important job to do!). pfSense can be run on many different machines, and there are even some <a href="https://www.netgate.com/appliances">officially supported appliances</a>. Since I already have a machine running Proxmox, why not just run it in a VM? It&rsquo;d allow for automatic snapshotting of the machine. There is a good <a href="https://www.youtube.com/watch?v=hdoBQNI_Ab8">video</a> on this by Techno Tim. Tim has a lot of good videos, and this one is about virtualizing pfSense.</p>
+<h2 id="router-on-a-stick">Router on a stick<a href="#router-on-a-stick" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>I had initially made the assumption that in order to build a router, you would need more than a single NIC (or a dual-port NIC) in order to support both WAN and LAN. This is simply <a href="https://en.wikipedia.org/wiki/Router_on_a_stick">not the case</a>, because VLANs are awesome! In order to create a router, all you need is a single port NIC and a network switch that supports VLANs (also marketed as a managed switch). I picked up the Netgear GS308E because it has both a sufficient amount of ports for my needs, and it supports VLANs. It also has a nice sturdy metal frame which was a pleasant surprise.</p>
+<p>After setting up this Netgear switch, it shoud be possible to access the web interface at <a href="http://192.168.0.239">http://192.168.0.239</a>. It may be at a different address. To find the address, try checking your DHCP leases in your router interface (if you plugged it into an existing router). I realized I was unable to access this interface because I was on a different subnet, so I set my machine&rsquo;s address to <code>192.168.0.22</code> in order to temporarily setup this switch. I assigned a static ip address to the switch (in <code>System &gt; Switch Information</code>) so that it was in the same subnet as the rest of my network.</p>
+<p>The web interface is nothing spectactular, but it allows for managing VLANs.</p>
+<p>The following configuration will:</p>
+<ul>
+<li>assign port 1 to be the LAN (connected to the Proxmox machine)</li>
+<li>assign port 8 to be the WAN (connected to my ISP&rsquo;s modem)</li>
+</ul>
+<p>In the switch&rsquo;s web interface, I went to <code>VLAN</code> and then <code>802.1Q</code>, and then clicked on <code>VLAN Configuration</code>. I configured the ports to look like this:</p>
+<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-vlan-configuration.png" alt="vlan-config"></p>
+<p>Note that the <code>VLAN Identifier Setting</code> has been setup already with two VLANs (1 and 10). More VLANs can be created (i.e. to isolate IoT devices), but 2 VLANs is all we need for the initial setup of a router.</p>
+<p>To replicate the above configuration, add a new VLAN ID 10 (1 should exist by default).</p>
+<p>Next, go into <code>VLAN Membership</code> and configure VLAN 1&rsquo;s port membership to be the following:</p>
+<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-vlan-membership-1.png" alt="vlan-membership-1"></p>
+<p>and then configure VLAN 10&rsquo;s port membership to be the following:</p>
+<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-vlan-membership-10.png" alt="vlan-membership-10"></p>
+<p>Now, go into <code>Port PVID</code> and ensure that port 8 is set to PVID 10.</p>
+<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-port-pvid.png" alt="vlan-port-pvid"></p>
+<p>This above configuration will dedicate two of the eight ports to WAN and LAN. This will allow the internet to flow into the pfSense from the modem.</p>
+<h2 id="setting-up-pfsense">Setting up pfSense<a href="#setting-up-pfsense" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>pfSense is fairly easy to setup. Just <a href="https://www.pfsense.org/download/">download the latest ISO</a> and boot up the virtual machine.
+When setting up the machine, I mostly went with all of the defaults. Configuration can be changed later in the web interface, which is quite a bit simpler.</p>
+<p>Since VLANs are going to be leveraged, when you go to <code>Assign Interfaces</code>, VLANs should be setup now like the following:</p>
+<ul>
+<li><code>WAN</code> should be <code>vtnet0.10</code></li>
+<li><code>LAN</code> should be <code>vtnet0</code></li>
+</ul>
+<p>After going through the rest of the installation, if everything is connected correctly it should display both WAN and LAN addresses.</p>
+<p>If all goes well, the web interface should be running at <a href="https://192.168.1.1">https://192.168.1.1</a>.</p>
+<p><img src="/images/virtualizing-a-router-with-pfsense/pfsense-dashboard.png" alt="pfsense-dashboard"></p>
+<p>And this is where the fun begins. There are many tutorials and blogs about how to setup pfSense and various services and packages that can be installed. I&rsquo;ve already installed <a href="https://docs.netgate.com/pfsense/en/latest/packages/pfblocker.html">pfBlocker-NG</a>.</p>
+<h2 id="summary">Summary<a href="#summary" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>It is fairly simple to setup a router with pfSense from within a virtual machine. A physical dedicated routing machine is not necessary and often does not perform as well as software running on faster and more reliable hardware. So far, pfSense has been running for over a week without a single hiccup. pfSense is a mature piece of software that is incredibly powerful and flexible. To avoid some of the instability I had experienced with OpenWrt, I enabled <a href="https://docs.netgate.com/pfsense/en/latest/backup/autoconfigbackup.html">AutoConfigBackup</a>, which is capable of automatically backing up configuration upon every change. I plan to explore and experiment with more services and configuration in the future, so the ability to track all of these changes gives me the peace of mind that experimentation is safe.</p></section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/pfsense">pfsense</a></li>
+					
+					<li><a href="/tags/router">router</a></li>
+					
+					<li><a href="/tags/openwrt">openwrt</a></li>
+					
+					<li><a href="/tags/router-on-a-stick">router-on-a-stick</a></li>
+					
+					<li><a href="/tags/proxmox">proxmox</a></li>
+					
+					<li><a href="/tags/vlan">vlan</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+
+		<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><script src='https://utteranc.es/client.js'
+  repo='davegallant/davegallant.github.io'
+  issue-term='pathname'
+  
+  theme='github-light'
+  crossorigin='anonymous' async>
+</script>
+</div>
+  </div>
+</section><footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/davegallant" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="https://twitter.com/davega11ant/" rel="me" title="Twitter"><i data-feather="twitter"></i></a>
+    <a class="border"></a><a class="soc" href="https://fosstodon.org/@davegallant" rel="me" title="Mastodon"><i data-feather="speaker"></i></a>
+    <a class="border"></a><a class="soc" href="https://www.linkedin.com/in/dave-gallant/" rel="me" title="LinkedIn"><i data-feather="linkedin"></i></a>
+    <a class="border"></a></div>
+  <div class="footer-info">
+    2023  Dave Gallant |  Theme based on <a
+      href="https://github.com/athul/archie">Archie</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98710982-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

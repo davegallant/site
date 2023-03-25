@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Why I Threw Out My Dotfiles - davegallant</title><link rel="icon" type="image/png" href=https://davegallant.ca/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Why I Threw Out My Dotfiles" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/why-i-threw-out-my-dotfiles/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-09-08T00:42:33-04:00" />
+<meta property="article:modified_time" content="2021-09-08T00:42:33-04:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Why I Threw Out My Dotfiles"/>
+<meta name="twitter:description" content=""/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.f7354ef8ed840429a37397307f3d9872782673d6b91d714b3f600b210d91fbaf.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+
+	
+	
+		<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script>
+	
+
+	
+	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+		
+		
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+			</script>
+	
+	
+	
+		
+		
+		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="/">davegallant</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/post">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
+		<script src="/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Why I Threw Out My Dotfiles</h1>
+			<div class="meta">Posted on Sep 8, 2021</div>
+		</div>
+		
+
+		<section class="body"><p>Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (<code>~/.zshrc</code>, <code>~/.config/git/config</code>, <code>~/.config/tmux/tmux.conf</code>, etc). I have tried several different ways to manage them, including <a href="https://www.atlassian.com/git/tutorials/dotfiles">bare git repos</a> and utilities such as <a href="https://www.gnu.org/software/stow/">GNU Stow</a>. These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: <a href="https://github.com/nix-community/home-manager">home-manager</a>.</p>
+<h2 id="what-is-home-manager">What is home-manager?<a href="#what-is-home-manager" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>Before understanding home-manager, it is worth briefly discussing what nix is. <a href="https://nixos.org/">nix</a> is a package manager that originally spawned from a <a href="https://edolstra.github.io/pubs/phd-thesis.pdf">PhD thesis</a>. Unlike other package managers, it uses symbolic links to keep track of the currently installed packages, keeping around the old ones in case you may want to rollback.</p>
+<p>For example, I have used nix to install the package <a href="https://search.nixos.org/packages?channel=unstable&amp;show=bind&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=bind">bind</a> which includes <code>dig</code>. You can see that it is available on multiple platforms. The absolute path of <code>dig</code> can be found by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ ls -lh <span style="color:#66d9ef">$(</span>which dig<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>lrwxr-xr-x 73 root 31 Dec  1969 /run/current-system/sw/bin/dig -&gt; /nix/store/0r4qdyprljd3dki57jn6c6a8dh2rbg9g-bind-9.16.16-dnsutils/bin/dig
+</span></span></code></pre></div><p>Notice that there is a hash included in the file path? This is a nix store path and is computed by the nix package manager. This <a href="https://nixos.org/guides/nix-pills/nix-store-paths.html">nix pill</a> does a good job explaining how this hash is computed. All of the nix pills are worth a read, if you are interested in learning more about nix itself. However, using home-manager does not require extensive knowledge of nix.</p>
+<p>Part of the nix ecosystem includes <a href="https://github.com/NixOS/nixpkgs">nixpkgs</a>. Many popular tools can be found already packaged in this repository. As you can see with these <a href="https://repology.org/repositories/statistics/total">stats</a>, there is a large number of existing packages that are being maintained by the community. Contributing a new package is easy, and anyone can do it!</p>
+<p>home-manager leverages the nix package manager (and nixpkgs), as well the nix language so that you can declaratively define your system configuration. I store my <a href="https://github.com/davegallant/nix-config">nix-config</a> in git so that I can keep track of my packages and configurations, and retain a clean and informative git commit history so that I can understand what changed and why.</p>
+<h2 id="setting-up-home-manager">Setting up home-manager<a href="#setting-up-home-manager" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<blockquote>
+<p>⚠️ If you run this on your main machine, make sure you backup your configuration files first. home-manager is pretty good about not overwriting existing configuration, but it is better to have a backup! Alternatively, you could test this out on a VM or cloud instance.</p>
+</blockquote>
+<p>The first thing you should do is <a href="https://nixos.org/guides/install-nix.html">install nix</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl -L https://nixos.org/nix/install | sh
+</span></span></code></pre></div><p>It&rsquo;s generally not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a look before executing it!</p>
+<p>Open up a new shell in your terminal and running <code>nix</code> <em>should</em> work. If not, run <code>. ~/.nix-profile/etc/profile.d/nix.sh</code></p>
+<p>Now, <a href="https://github.com/nix-community/home-manager#installation">install home-manager</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+</span></span><span style="display:flex;"><span>nix-channel --update
+</span></span><span style="display:flex;"><span>nix-shell <span style="color:#e6db74">&#39;&lt;home-manager&gt;&#39;</span> -A install
+</span></span></code></pre></div><p>You should see a wave of <code>/nix/store/*</code> paths being displayed on your screen.</p>
+<p>Now, to start off with a basic configuration, open up <code>~/.config/nixpkgs/home.nix</code> in the editor of your choice and paste this in (you will want to change <code>userName</code> and <code>homeDirectory</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>{ config<span style="color:#f92672">,</span> pkgs<span style="color:#f92672">,</span> <span style="color:#f92672">...</span> }:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  programs<span style="color:#f92672">.</span>home-manager<span style="color:#f92672">.</span>enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  home <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dave&#34;</span>;
+</span></span><span style="display:flex;"><span>    homeDirectory <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/home/dave&#34;</span>;
+</span></span><span style="display:flex;"><span>    stateVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;21.11&#34;</span>;
+</span></span><span style="display:flex;"><span>    packages <span style="color:#f92672">=</span> <span style="color:#66d9ef">with</span> pkgs; [
+</span></span><span style="display:flex;"><span>      bind
+</span></span><span style="display:flex;"><span>      exa
+</span></span><span style="display:flex;"><span>      fd
+</span></span><span style="display:flex;"><span>      ripgrep
+</span></span><span style="display:flex;"><span>    ];
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  programs <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    git <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      aliases <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        aa <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;add -A .&#34;</span>;
+</span></span><span style="display:flex;"><span>        br <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;branch&#34;</span>;
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;commit -S&#34;</span>;
+</span></span><span style="display:flex;"><span>        ca <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;commit -S --amend&#34;</span>;
+</span></span><span style="display:flex;"><span>        cb <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;checkout -b&#34;</span>;
+</span></span><span style="display:flex;"><span>        co <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;checkout&#34;</span>;
+</span></span><span style="display:flex;"><span>        d <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;diff&#34;</span>;
+</span></span><span style="display:flex;"><span>        l <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;log --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&#34;</span>;
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      delta <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        options <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>          features <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;line-numbers decorations&#34;</span>;
+</span></span><span style="display:flex;"><span>          whitespace-error-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;22 reverse&#34;</span>;
+</span></span><span style="display:flex;"><span>          plus-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;green bold ul &#39;#198214&#39;&#34;</span>;
+</span></span><span style="display:flex;"><span>          decorations <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            commit-decoration-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold yellow box ul&#34;</span>;
+</span></span><span style="display:flex;"><span>            file-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold yellow ul&#34;</span>;
+</span></span><span style="display:flex;"><span>            file-decoration-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>;
+</span></span><span style="display:flex;"><span>          };
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      extraConfig <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        push <span style="color:#f92672">=</span> { default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;current&#34;</span>; };
+</span></span><span style="display:flex;"><span>        pull <span style="color:#f92672">=</span> { rebase <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>; };
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    starship <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      enableZshIntegration <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      settings <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        add_newline <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>        scan_timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    zsh <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      enableAutosuggestions <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      enableSyntaxHighlighting <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      history<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      localVariables <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        CASE_SENSITIVE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>;
+</span></span><span style="display:flex;"><span>        DISABLE_UNTRACKED_FILES_DIRTY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>;
+</span></span><span style="display:flex;"><span>        RPROMPT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e"># override because macOS defaults to filepath</span>
+</span></span><span style="display:flex;"><span>        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fg=#838383,underline&#34;</span>;
+</span></span><span style="display:flex;"><span>        ZSH_DISABLE_COMPFIX <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>;
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      initExtra <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        export PAGER=less
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      shellAliases <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cd ..&#34;</span>;
+</span></span><span style="display:flex;"><span>        grep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rg --smart-case&#34;</span>;
+</span></span><span style="display:flex;"><span>        ls <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;exa -la --git&#34;</span>;
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;oh-my-zsh&#34;</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        plugins <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;gitfast&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;last-working-dir&#34;</span>
+</span></span><span style="display:flex;"><span>        ];
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Save the file and run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>home-manager switch
+</span></span></code></pre></div><p>You should see another wave of <code>/nix/store/*</code> paths. The new configuration should now be active.</p>
+<p>If you run <code>zsh</code>, you should see that you have <a href="https://starship.rs/">starship</a> and access to several other utils such as <code>rg</code>, <code>fd</code>, and <code>exa</code>.</p>
+<p>This basic configuration above is also defining your <code>~/.config/git/config</code> and <code>.zshrc</code>. If you already have either of these files, home-manager will complain about them already existing.</p>
+<p>If you run <code>cat ~/.zshrc</code>, you will see the way these configuration files are generated.</p>
+<p>You can extend this configuration for programs such as (neo)vim, emacs, alacritty, ssh, etc. To see other programs, take a look at <a href="https://github.com/nix-community/home-manager/tree/master/modules/programs">home-manager/modules/programs</a>.</p>
+<h2 id="gateway-to-nix">Gateway To Nix<a href="#gateway-to-nix" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>In ways, home-manager can be seen as a gateway to the nix ecosystem. If you have enjoyed the way you can declare user configuration with home-manager, you may be interested in expanding your configuration to include other system dependencies and configuration. For example, in Linux you can define your entire system&rsquo;s configuration (including the kernel, kernel modules, networking, filesystems, etc) in nix. For macOS, there is <a href="https://github.com/LnL7/nix-darwin">nix-darwin</a> that includes nix modules for configuring launchd, dock, and other preferences and services. You may also want to check out <a href="https://nixos.wiki/wiki/Flakes">Nix Flakes</a>: a more recent feature that allows you declare dependencies, and have them automatically pinned and hashed in <code>flake.lock</code>, similar to that of many modern package managers.</p>
+<h2 id="wrapping-up">Wrapping up<a href="#wrapping-up" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>The title of this post is slightly misleading, since it&rsquo;s possible to retain some of your dotfiles and have them intermingle with home-manager by including them alongside nix. The idea of defining user configuration using nix can provide a clean way to maintain your configuration, and allow it to be portable across platforms. Is it worth the effort to migrate away from shell scripts and dotfiles? I&rsquo;d say so.</p></section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/nix">nix</a></li>
+					
+					<li><a href="/tags/dotfiles">dotfiles</a></li>
+					
+					<li><a href="/tags/home-manager">home-manager</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+
+		<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments-area'><script src='https://utteranc.es/client.js'
+  repo='davegallant/davegallant.github.io'
+  issue-term='pathname'
+  
+  theme='github-light'
+  crossorigin='anonymous' async>
+</script>
+</div>
+  </div>
+</section><footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/davegallant" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="https://twitter.com/davega11ant/" rel="me" title="Twitter"><i data-feather="twitter"></i></a>
+    <a class="border"></a><a class="soc" href="https://fosstodon.org/@davegallant" rel="me" title="Mastodon"><i data-feather="speaker"></i></a>
+    <a class="border"></a><a class="soc" href="https://www.linkedin.com/in/dave-gallant/" rel="me" title="LinkedIn"><i data-feather="linkedin"></i></a>
+    <a class="border"></a></div>
+  <div class="footer-info">
+    2023  Dave Gallant |  Theme based on <a
+      href="https://github.com/athul/archie">Archie</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-98710982-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

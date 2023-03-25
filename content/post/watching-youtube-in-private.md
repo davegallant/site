@@ -38,7 +38,7 @@ I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. I
 
 ![requestly](/images/watching-youtube-in-private/computerphile.png)
 
-Wow, this is cool, and **JavaScript is not required**.
+This layout is simple, and **JavaScript is not required**.
 
 I started using [yewtu.be](https://yewtu.be) as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It's also nice to be in control of my search and watch history.
 
