@@ -103,9 +103,10 @@
 <h2 id="what-is-home-manager">What is home-manager?<a href="#what-is-home-manager" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Before understanding home-manager, it is worth briefly discussing what nix is. <a href="https://nixos.org/">nix</a> is a package manager that originally spawned from a <a href="https://edolstra.github.io/pubs/phd-thesis.pdf">PhD thesis</a>. Unlike other package managers, it uses symbolic links to keep track of the currently installed packages, keeping around the old ones in case you may want to rollback.</p>
 <p>For example, I have used nix to install the package <a href="https://search.nixos.org/packages?channel=unstable&amp;show=bind&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=bind">bind</a> which includes <code>dig</code>. You can see that it is available on multiple platforms. The absolute path of <code>dig</code> can be found by running:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>$ ls -lh <span style="color:#66d9ef">$(</span>which dig<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>lrwxr-xr-x 73 root 31 Dec  1969 /run/current-system/sw/bin/dig -&gt; /nix/store/0r4qdyprljd3dki57jn6c6a8dh2rbg9g-bind-9.16.16-dnsutils/bin/dig
-</span></span></code></pre></div><p>Notice that there is a hash included in the file path? This is a nix store path and is computed by the nix package manager. This <a href="https://nixos.org/guides/nix-pills/nix-store-paths.html">nix pill</a> does a good job explaining how this hash is computed. All of the nix pills are worth a read, if you are interested in learning more about nix itself. However, using home-manager does not require extensive knowledge of nix.</p>
+<pre><code class="language-console">$ ls -lh $(which dig)
+lrwxr-xr-x 73 root 31 Dec  1969 /run/current-system/sw/bin/dig -&gt; /nix/store/0r4qdyprljd3dki57jn6c6a8dh2rbg9g-bind-9.16.16-dnsutils/bin/dig
+</code></pre>
+<p>Notice that there is a hash included in the file path? This is a nix store path and is computed by the nix package manager. This <a href="https://nixos.org/guides/nix-pills/nix-store-paths.html">nix pill</a> does a good job explaining how this hash is computed. All of the nix pills are worth a read, if you are interested in learning more about nix itself. However, using home-manager does not require extensive knowledge of nix.</p>
 <p>Part of the nix ecosystem includes <a href="https://github.com/NixOS/nixpkgs">nixpkgs</a>. Many popular tools can be found already packaged in this repository. As you can see with these <a href="https://repology.org/repositories/statistics/total">stats</a>, there is a large number of existing packages that are being maintained by the community. Contributing a new package is easy, and anyone can do it!</p>
 <p>home-manager leverages the nix package manager (and nixpkgs), as well the nix language so that you can declaratively define your system configuration. I store my <a href="https://github.com/davegallant/nix-config">nix-config</a> in git so that I can keep track of my packages and configurations, and retain a clean and informative git commit history so that I can understand what changed and why.</p>
 <h2 id="setting-up-home-manager">Setting up home-manager<a href="#setting-up-home-manager" class="hanchor" ariaLabel="Anchor">#</a></h2>
@@ -113,119 +114,123 @@
 <p>⚠️ If you run this on your main machine, make sure you backup your configuration files first. home-manager is pretty good about not overwriting existing configuration, but it is better to have a backup! Alternatively, you could test this out on a VM or cloud instance.</p>
 </blockquote>
 <p>The first thing you should do is <a href="https://nixos.org/guides/install-nix.html">install nix</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl -L https://nixos.org/nix/install | sh
-</span></span></code></pre></div><p>It&rsquo;s generally not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a look before executing it!</p>
+<pre><code class="language-shell">curl -L https://nixos.org/nix/install | sh
+</code></pre>
+<p>It&rsquo;s generally not a good idea to curl and execute files from the internet (without verifying integrity), so you might want to download the install script first and take a look before executing it!</p>
 <p>Open up a new shell in your terminal and running <code>nix</code> <em>should</em> work. If not, run <code>. ~/.nix-profile/etc/profile.d/nix.sh</code></p>
 <p>Now, <a href="https://github.com/nix-community/home-manager#installation">install home-manager</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-</span></span><span style="display:flex;"><span>nix-channel --update
-</span></span><span style="display:flex;"><span>nix-shell <span style="color:#e6db74">&#39;&lt;home-manager&gt;&#39;</span> -A install
-</span></span></code></pre></div><p>You should see a wave of <code>/nix/store/*</code> paths being displayed on your screen.</p>
+<pre><code class="language-shell">nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '&lt;home-manager&gt;' -A install
+</code></pre>
+<p>You should see a wave of <code>/nix/store/*</code> paths being displayed on your screen.</p>
 <p>Now, to start off with a basic configuration, open up <code>~/.config/nixpkgs/home.nix</code> in the editor of your choice and paste this in (you will want to change <code>userName</code> and <code>homeDirectory</code>):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span>{ config<span style="color:#f92672">,</span> pkgs<span style="color:#f92672">,</span> <span style="color:#f92672">...</span> }:
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  programs<span style="color:#f92672">.</span>home-manager<span style="color:#f92672">.</span>enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  home <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dave&#34;</span>;
-</span></span><span style="display:flex;"><span>    homeDirectory <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/home/dave&#34;</span>;
-</span></span><span style="display:flex;"><span>    stateVersion <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;21.11&#34;</span>;
-</span></span><span style="display:flex;"><span>    packages <span style="color:#f92672">=</span> <span style="color:#66d9ef">with</span> pkgs; [
-</span></span><span style="display:flex;"><span>      bind
-</span></span><span style="display:flex;"><span>      exa
-</span></span><span style="display:flex;"><span>      fd
-</span></span><span style="display:flex;"><span>      ripgrep
-</span></span><span style="display:flex;"><span>    ];
-</span></span><span style="display:flex;"><span>  };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  programs <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    git <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>      aliases <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        aa <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;add -A .&#34;</span>;
-</span></span><span style="display:flex;"><span>        br <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;branch&#34;</span>;
-</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;commit -S&#34;</span>;
-</span></span><span style="display:flex;"><span>        ca <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;commit -S --amend&#34;</span>;
-</span></span><span style="display:flex;"><span>        cb <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;checkout -b&#34;</span>;
-</span></span><span style="display:flex;"><span>        co <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;checkout&#34;</span>;
-</span></span><span style="display:flex;"><span>        d <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;diff&#34;</span>;
-</span></span><span style="display:flex;"><span>        l <span style="color:#f92672">=</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;log --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&#34;</span>;
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      delta <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        options <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>          features <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;line-numbers decorations&#34;</span>;
-</span></span><span style="display:flex;"><span>          whitespace-error-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;22 reverse&#34;</span>;
-</span></span><span style="display:flex;"><span>          plus-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;green bold ul &#39;#198214&#39;&#34;</span>;
-</span></span><span style="display:flex;"><span>          decorations <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>            commit-decoration-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold yellow box ul&#34;</span>;
-</span></span><span style="display:flex;"><span>            file-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bold yellow ul&#34;</span>;
-</span></span><span style="display:flex;"><span>            file-decoration-style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>;
-</span></span><span style="display:flex;"><span>          };
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      extraConfig <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        push <span style="color:#f92672">=</span> { default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;current&#34;</span>; };
-</span></span><span style="display:flex;"><span>        pull <span style="color:#f92672">=</span> { rebase <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>; };
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    starship <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>      enableZshIntegration <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      settings <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        add_newline <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
-</span></span><span style="display:flex;"><span>        scan_timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    zsh <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>      enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>      enableAutosuggestions <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>      enableSyntaxHighlighting <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>      history<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      localVariables <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        CASE_SENSITIVE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>;
-</span></span><span style="display:flex;"><span>        DISABLE_UNTRACKED_FILES_DIRTY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>;
-</span></span><span style="display:flex;"><span>        RPROMPT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>; <span style="color:#75715e"># override because macOS defaults to filepath</span>
-</span></span><span style="display:flex;"><span>        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fg=#838383,underline&#34;</span>;
-</span></span><span style="display:flex;"><span>        ZSH_DISABLE_COMPFIX <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>;
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      initExtra <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        export PAGER=less
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#39;&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      shellAliases <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;..&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cd ..&#34;</span>;
-</span></span><span style="display:flex;"><span>        grep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rg --smart-case&#34;</span>;
-</span></span><span style="display:flex;"><span>        ls <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;exa -la --git&#34;</span>;
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;oh-my-zsh&#34;</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        enable <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-</span></span><span style="display:flex;"><span>        plugins <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;gitfast&#34;</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;last-working-dir&#34;</span>
-</span></span><span style="display:flex;"><span>        ];
-</span></span><span style="display:flex;"><span>      };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  };
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Save the file and run:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>home-manager switch
-</span></span></code></pre></div><p>You should see another wave of <code>/nix/store/*</code> paths. The new configuration should now be active.</p>
+<pre><code class="language-nix">{ config, pkgs, ... }:
+
+{
+  programs.home-manager.enable = true;
+
+  home = {
+    username = &quot;dave&quot;;
+    homeDirectory = &quot;/home/dave&quot;;
+    stateVersion = &quot;21.11&quot;;
+    packages = with pkgs; [
+      bind
+      exa
+      fd
+      ripgrep
+    ];
+  };
+
+  programs = {
+
+    git = {
+      enable = true;
+      aliases = {
+        aa = &quot;add -A .&quot;;
+        br = &quot;branch&quot;;
+        c = &quot;commit -S&quot;;
+        ca = &quot;commit -S --amend&quot;;
+        cb = &quot;checkout -b&quot;;
+        co = &quot;checkout&quot;;
+        d = &quot;diff&quot;;
+        l =
+          &quot;log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit&quot;;
+      };
+
+      delta = {
+        enable = true;
+
+        options = {
+          features = &quot;line-numbers decorations&quot;;
+          whitespace-error-style = &quot;22 reverse&quot;;
+          plus-style = &quot;green bold ul '#198214'&quot;;
+          decorations = {
+            commit-decoration-style = &quot;bold yellow box ul&quot;;
+            file-style = &quot;bold yellow ul&quot;;
+            file-decoration-style = &quot;none&quot;;
+          };
+        };
+      };
+
+      extraConfig = {
+        push = { default = &quot;current&quot;; };
+        pull = { rebase = true; };
+      };
+
+    };
+
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+
+      settings = {
+        add_newline = false;
+        scan_timeout = 10;
+      };
+    };
+
+    zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+      history.size = 1000000;
+
+      localVariables = {
+        CASE_SENSITIVE = &quot;true&quot;;
+        DISABLE_UNTRACKED_FILES_DIRTY = &quot;true&quot;;
+        RPROMPT = &quot;&quot;; # override because macOS defaults to filepath
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = &quot;fg=#838383,underline&quot;;
+        ZSH_DISABLE_COMPFIX = &quot;true&quot;;
+      };
+
+      initExtra = ''
+        export PAGER=less
+      '';
+
+      shellAliases = {
+        &quot;..&quot; = &quot;cd ..&quot;;
+        grep = &quot;rg --smart-case&quot;;
+        ls = &quot;exa -la --git&quot;;
+      };
+
+      &quot;oh-my-zsh&quot; = {
+        enable = true;
+        plugins = [
+          &quot;gitfast&quot;
+          &quot;last-working-dir&quot;
+        ];
+      };
+
+    };
+
+  };
+}
+</code></pre>
+<p>Save the file and run:</p>
+<pre><code>home-manager switch
+</code></pre>
+<p>You should see another wave of <code>/nix/store/*</code> paths. The new configuration should now be active.</p>
 <p>If you run <code>zsh</code>, you should see that you have <a href="https://starship.rs/">starship</a> and access to several other utils such as <code>rg</code>, <code>fd</code>, and <code>exa</code>.</p>
 <p>This basic configuration above is also defining your <code>~/.config/git/config</code> and <code>.zshrc</code>. If you already have either of these files, home-manager will complain about them already existing.</p>
 <p>If you run <code>cat ~/.zshrc</code>, you will see the way these configuration files are generated.</p>
