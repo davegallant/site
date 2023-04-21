@@ -13,7 +13,7 @@ title: davegallant
 params:
     mode: toggle
     useCDN: true
-    subtitle: "A personal blog about technical discovery"
+    subtitle: "A personal blog"
     mathjax: true
     katex: true 
 
