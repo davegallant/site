@@ -1,7 +1,7 @@
 baseurl: /
 staticDir: static
 languageCode: en-us
-googleAnalytics: UA-98710982-2
+googleAnalytics: G-V8WJDERTX9
 copyright: Dave Gallant
 preserveTaxonomyNames: true
 pygmentsstyle: "monokai"
