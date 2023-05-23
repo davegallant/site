@@ -4,8 +4,50 @@
   <url>
     <loc>/about/</loc>
   </url><url>
+    <loc>/tags/aks/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/aws/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/azure/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/bastion/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/cloud-sql-proxy/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/database/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
     <loc>/</loc>
-    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/eks/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/k8s/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/kubectl-plugin-socks5-proxy/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/proxy/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/socks/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
+  </url><url>
+    <loc>/blog/2023/05/22/using-aks-and-socks-to-connect-to-a-private-azure-db/</loc>
+    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
     <loc>/tags/degoogle/</loc>
     <lastmod>2022-12-10T21:46:55-05:00</lastmod>
@@ -13,13 +55,7 @@
     <loc>/tags/invidious/</loc>
     <lastmod>2022-12-10T21:46:55-05:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
-    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
-  </url><url>
     <loc>/tags/privacy/</loc>
-    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2022-12-10T21:46:55-05:00</lastmod>
   </url><url>
     <loc>/tags/tailscale/</loc>
@@ -92,9 +128,6 @@
     <lastmod>2021-10-11T10:43:35-04:00</lastmod>
   </url><url>
     <loc>/blog/2021/09/17/automatically-rotating-aws-access-keys/</loc>
-    <lastmod>2021-09-17T12:48:33-04:00</lastmod>
-  </url><url>
-    <loc>/tags/aws/</loc>
     <lastmod>2021-09-17T12:48:33-04:00</lastmod>
   </url><url>
     <loc>/tags/aws-vault/</loc>
