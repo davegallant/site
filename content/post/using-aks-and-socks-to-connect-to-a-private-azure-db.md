@@ -44,7 +44,7 @@ Should the database be migrated to public subnets? Ideally not, since it is good
 
 ## How do others handle this?
 
-With GCP, connecting to a private db instance from any machine can be achieved with [cloud-sql-proxy](https://github.com/GoogleCloudPlatform/cloud-sql-proxy). This works by proxying requests from your machine to the SQL database instance in the cloud, while the authentication is handled using GCP's IAM.
+With GCP, connecting to a private db instance from any machine can be achieved with [cloud-sql-proxy](https://github.com/GoogleCloudPlatform/cloud-sql-proxy). This works by proxying requests from your machine to the SQL database instance in the cloud, while the authentication is handled by GCP's IAM.
 
 So what about Azure? Is there any solution that is as elegant as cloud-sql-proxy?
 

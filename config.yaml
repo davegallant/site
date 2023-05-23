@@ -52,12 +52,15 @@ menu:
     - name: All posts
       url: /post
       weight: 2
-    - name: About
-      url: /about
+    - name: RSS
+      url: /index.xml
       weight: 3
     - name: Tags
       url: /tags
       weight: 4
+    - name: About
+      url: /about
+      weight: 5
 
 permalinks:
   post: '/blog/:year/:month/:day/:slug/'
