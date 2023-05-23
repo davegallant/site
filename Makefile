@@ -10,6 +10,7 @@ endif
 .RECIPEPREFIX = >
 
 build:
+> rm -rf public/
 > hugo
 
 ## server: run server locally on port 1313 and open in a browser
