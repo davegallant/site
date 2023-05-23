@@ -82,9 +82,11 @@
 		
 		<a href="/post">All posts</a>
 		
-		<a href="/about">About</a>
+		<a href="/index.xml">RSS</a>
 		
 		<a href="/tags">Tags</a>
+		
+		<a href="/about">About</a>
 		
 		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
 		<script src="/js/themetoggle.js"></script>
@@ -105,7 +107,7 @@
 <h2 id="go-public">Go Public?<a href="#go-public" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Should the database be migrated to public subnets? Ideally not, since it is good practice to host critical infrastructure in restricted subnets.</p>
 <h2 id="how-do-others-handle-this">How do others handle this?<a href="#how-do-others-handle-this" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p>With GCP, connecting to a private db instance from any machine can be achieved with <a href="https://github.com/GoogleCloudPlatform/cloud-sql-proxy">cloud-sql-proxy</a>. This works by proxying requests from your machine to the SQL database instance in the cloud, while the authentication is handled using GCP&rsquo;s IAM.</p>
+<p>With GCP, connecting to a private db instance from any machine can be achieved with <a href="https://github.com/GoogleCloudPlatform/cloud-sql-proxy">cloud-sql-proxy</a>. This works by proxying requests from your machine to the SQL database instance in the cloud, while the authentication is handled by GCP&rsquo;s IAM.</p>
 <p>So what about Azure? Is there any solution that is as elegant as cloud-sql-proxy?</p>
 <h2 id="a-bastion">A Bastion<a href="#a-bastion" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Similar to what <a href="https://aws.amazon.com/blogs/database/securely-connect-to-an-amazon-rds-or-amazon-ec2-database-instance-remotely-with-your-preferred-gui/">AWS has recommended</a>, perhaps a bastion is the way forward?</p>
