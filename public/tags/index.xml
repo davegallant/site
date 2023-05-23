@@ -7,7 +7,106 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Dave Gallant</copyright>
-    <lastBuildDate>Sat, 10 Dec 2022 21:46:55 -0500</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 May 2023 16:31:29 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>aks</title>
+      <link>/tags/aks/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/aks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>/tags/aws/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>azure</title>
+      <link>/tags/azure/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bastion</title>
+      <link>/tags/bastion/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/bastion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud-sql-proxy</title>
+      <link>/tags/cloud-sql-proxy/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/cloud-sql-proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database</title>
+      <link>/tags/database/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eks</title>
+      <link>/tags/eks/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/eks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>/tags/k8s/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubectl-plugin-socks5-proxy</title>
+      <link>/tags/kubectl-plugin-socks5-proxy/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/kubectl-plugin-socks5-proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>/tags/proxy/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>socks</title>
+      <link>/tags/socks/</link>
+      <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
+      <guid>/tags/socks/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>degoogle</title>
       <link>/tags/degoogle/</link>
@@ -194,15 +293,6 @@
       <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
       
       <guid>/tags/podman/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>aws</title>
-      <link>/tags/aws/</link>
-      <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
-      
-      <guid>/tags/aws/</guid>
       <description></description>
     </item>
     

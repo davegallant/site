@@ -36,6 +36,7 @@ sequenceDiagrams:
 
 I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows you to watch YouTube without *being on YouTube*, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
 
+
 ![requestly](/images/watching-youtube-in-private/computerphile.png)
 
 The layout is simple, and **JavaScript is not required**.
