@@ -103,16 +103,17 @@
 		
 
 		<section class="body"><h2 id="the-problem">The Problem<a href="#the-problem" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p>I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I&rsquo;d rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection. After several web searches, it became evident that Azure does not readily provide much tooling to support this.</p>
+<p>I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I&rsquo;d rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection, and I&rsquo;d like to use a local client (preferably with a GUI). After several web searches, it became evident that Azure does not readily provide much tooling to support this.</p>
 <h2 id="go-public">Go Public?<a href="#go-public" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p>Should the database be migrated to public subnets? Ideally not, since it is good practice to host critical infrastructure in restricted subnets.</p>
+<p>Should the database be migrated to public subnets? Ideally not, since it is good practice to host internal infrastructure in restricted subnets.</p>
 <h2 id="how-do-others-handle-this">How do others handle this?<a href="#how-do-others-handle-this" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>With GCP, connecting to a private db instance from any machine can be achieved with <a href="https://github.com/GoogleCloudPlatform/cloud-sql-proxy">cloud-sql-proxy</a>. This works by proxying requests from your machine to the SQL database instance in the cloud, while the authentication is handled by GCP&rsquo;s IAM.</p>
 <p>So what about Azure? Is there any solution that is as elegant as cloud-sql-proxy?</p>
 <h2 id="a-bastion">A Bastion<a href="#a-bastion" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Similar to what <a href="https://aws.amazon.com/blogs/database/securely-connect-to-an-amazon-rds-or-amazon-ec2-database-instance-remotely-with-your-preferred-gui/">AWS has recommended</a>, perhaps a bastion is the way forward?</p>
-<p><a href="https://azure.microsoft.com/en-ca/products/azure-bastion">Azure Bastion</a> is a fully managed service that both <a href="https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/#pricing">costs money</a> and provides secure access to virtual machines that do not have public IPs.</p>
-<p>Because this adds cost and requires a virtual machine, it does not seem like a very desirable option in its current state.</p>
+<p>Azure has a fully-managed service called
+<a href="https://azure.microsoft.com/en-ca/products/azure-bastion">Azure Bastion</a> that provides secure access to virtual machines that do not have public IPs. This looks interesting, but unfortunately it <a href="https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/#pricing">costs money</a> and requires an additional virtual machine.</p>
+<p>Because this adds cost (and complexity), it does not seem like a desirable option in its current state. If it provided a more seamless connection to the database, it would be more appealing.</p>
 <h2 id="socks">SOCKS<a href="#socks" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/SOCKS">SOCKS</a> is a way to proxy connections by exchanging network packets between the client and the server. There are many implementations and many readily available container images that can run a SOCKS server.</p>
 <p>It is certainly possible to use this sort of proxy to connect to a private DB, but is it any simpler than using a virtual machine as a jumphost? It wasn&rsquo;t until I stumbled upon <a href="https://github.com/yokawasa/kubectl-plugin-socks5-proxy">kubectl-plugin-socks5-proxy</a> that I was convinced that using SOCKS could be made simple.</p>

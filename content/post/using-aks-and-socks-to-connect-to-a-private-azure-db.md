@@ -36,11 +36,11 @@ sequenceDiagrams:
 
 ## The Problem
 
-I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I'd rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection. After several web searches, it became evident that Azure does not readily provide much tooling to support this.
+I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I'd rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection, and I'd like to use a local client (preferably with a GUI). After several web searches, it became evident that Azure does not readily provide much tooling to support this.
 
 ## Go Public?
 
-Should the database be migrated to public subnets? Ideally not, since it is good practice to host critical infrastructure in restricted subnets.
+Should the database be migrated to public subnets? Ideally not, since it is good practice to host internal infrastructure in restricted subnets.
 
 ## How do others handle this?
 
@@ -52,9 +52,10 @@ So what about Azure? Is there any solution that is as elegant as cloud-sql-proxy
 
 Similar to what [AWS has recommended](https://aws.amazon.com/blogs/database/securely-connect-to-an-amazon-rds-or-amazon-ec2-database-instance-remotely-with-your-preferred-gui/), perhaps a bastion is the way forward?
 
-[Azure Bastion](https://azure.microsoft.com/en-ca/products/azure-bastion) is a fully managed service that both [costs money](https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/#pricing) and provides secure access to virtual machines that do not have public IPs.
+Azure has a fully-managed service called 
+[Azure Bastion](https://azure.microsoft.com/en-ca/products/azure-bastion) that provides secure access to virtual machines that do not have public IPs. This looks interesting, but unfortunately it [costs money](https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/#pricing) and requires an additional virtual machine.
 
-Because this adds cost and requires a virtual machine, it does not seem like a very desirable option in its current state.
+Because this adds cost (and complexity), it does not seem like a desirable option in its current state. If it provided a more seamless connection to the database, it would be more appealing.
 
 ## SOCKS
 
