@@ -10,7 +10,6 @@
 <meta property="og:url" content="/blog/2023/05/22/using-aks-and-socks-to-connect-to-a-private-azure-db/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-05-22T16:31:29-04:00" />
 <meta property="article:modified_time" content="2023-05-22T16:31:29-04:00" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Using AKS and SOCKS to connect to a Private Azure DB"/>
 <meta name="twitter:description" content=""/>
@@ -111,12 +110,11 @@
 <p>So what about Azure? Is there any solution that is as elegant as cloud-sql-proxy?</p>
 <h2 id="a-bastion">A Bastion<a href="#a-bastion" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Similar to what <a href="https://aws.amazon.com/blogs/database/securely-connect-to-an-amazon-rds-or-amazon-ec2-database-instance-remotely-with-your-preferred-gui/">AWS has recommended</a>, perhaps a bastion is the way forward?</p>
-<p>Azure has a fully-managed service called
-<a href="https://azure.microsoft.com/en-ca/products/azure-bastion">Azure Bastion</a> that provides secure access to virtual machines that do not have public IPs. This looks interesting, but unfortunately it <a href="https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/#pricing">costs money</a> and requires an additional virtual machine.</p>
+<p>Azure has a fully-managed service called <a href="https://azure.microsoft.com/en-ca/products/azure-bastion">Azure Bastion</a> that provides secure access to virtual machines that do not have public IPs. This looks interesting, but unfortunately it <a href="https://azure.microsoft.com/en-ca/pricing/details/azure-bastion/#pricing">costs money</a> and requires an additional virtual machine.</p>
 <p>Because this adds cost (and complexity), it does not seem like a desirable option in its current state. If it provided a more seamless connection to the database, it would be more appealing.</p>
 <h2 id="socks">SOCKS<a href="#socks" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p><a href="https://en.wikipedia.org/wiki/SOCKS">SOCKS</a> is a way to proxy connections by exchanging network packets between the client and the server. There are many implementations and many readily available container images that can run a SOCKS server.</p>
-<p>It is certainly possible to use this sort of proxy to connect to a private DB, but is it any simpler than using a virtual machine as a jumphost? It wasn&rsquo;t until I stumbled upon <a href="https://github.com/yokawasa/kubectl-plugin-socks5-proxy">kubectl-plugin-socks5-proxy</a> that I was convinced that using SOCKS could be made simple.</p>
+<p><a href="https://en.wikipedia.org/wiki/SOCKS">SOCKS</a> is a protocol that enables a way to proxy connections by exchanging network packets between the client and the server. There are many implementations and many readily available container images that can run a SOCKS server.</p>
+<p>It&rsquo;s possible to use this sort of proxy to connect to a private DB, but is it any simpler than using a virtual machine as a jumphost? It wasn&rsquo;t until I stumbled upon <a href="https://github.com/yokawasa/kubectl-plugin-socks5-proxy">kubectl-plugin-socks5-proxy</a> that I was convinced that using SOCKS could be made simple.</p>
 <p>So how does it work? By installing the kubectl plugin and then running <code>kubectl socks5-proxy</code>, a SOCKS proxy server is spun up in a pod and then opens up port-forwarding session using kubectl.</p>
 <p>As you can see below, this k8s plugin is wrapped up nicely:</p>
 <pre><code class="language-console">$ kubectl socks5-proxy
