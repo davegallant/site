@@ -31,7 +31,7 @@ params:
         url: 'https://twitter.com/davega11ant/'
       - name: Mastodon
         icon: speaker
-        url: https://fosstodon.org/@davegallant
+        url: https://mastodon.social/@davegallant
       - name: LinkedIn
         icon: linkedin
         url: https://www.linkedin.com/in/dave-gallant/
