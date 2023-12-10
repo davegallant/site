@@ -4,6 +4,30 @@
   <url>
     <loc>/about/</loc>
   </url><url>
+    <loc>/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/tags/gitea/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/tags/gitea-actions/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/tags/github-actions/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
+    <loc>/tags/tailscale/</loc>
+    <lastmod>2023-12-10T17:22:11-05:00</lastmod>
+  </url><url>
     <loc>/tags/aks/</loc>
     <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
@@ -22,9 +46,6 @@
     <loc>/tags/database/</loc>
     <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
-    <loc>/</loc>
-    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
-  </url><url>
     <loc>/tags/eks/</loc>
     <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
@@ -34,16 +55,10 @@
     <loc>/tags/kubectl-plugin-socks5-proxy/</loc>
     <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
-    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
-  </url><url>
     <loc>/tags/proxy/</loc>
     <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
     <loc>/tags/socks/</loc>
-    <lastmod>2023-05-22T16:31:29-04:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2023-05-22T16:31:29-04:00</lastmod>
   </url><url>
     <loc>/blog/2023/05/22/using-aks-and-socks-to-connect-to-a-private-azure-db/</loc>
@@ -56,9 +71,6 @@
     <lastmod>2022-12-10T21:46:55-05:00</lastmod>
   </url><url>
     <loc>/tags/privacy/</loc>
-    <lastmod>2022-12-10T21:46:55-05:00</lastmod>
-  </url><url>
-    <loc>/tags/tailscale/</loc>
     <lastmod>2022-12-10T21:46:55-05:00</lastmod>
   </url><url>
     <loc>/blog/2022/12/10/watching-youtube-in-private/</loc>

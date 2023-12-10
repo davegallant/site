@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Setting Up Gitea Actions With Tailscale - davegallant</title><link rel="icon" type="image/png" href=https://davegallant.ca/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Setting Up Gitea Actions With Tailscale" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-12-10T17:22:11-05:00" />
+<meta property="article:modified_time" content="2023-12-10T17:22:11-05:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting Up Gitea Actions With Tailscale"/>
+<meta name="twitter:description" content=""/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.0e5aa3b634b92d61bafebfd908290cc7a034e4d50e6a0c59ce50044560179c4e.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.b11f422ffce8151207bad84653d44cb512043f9efe93a0a049f836b9cc32b34a.css"  disabled />
+	
+
+	
+	
+		<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script>
+	
+
+	
+	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+		
+		
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+			</script>
+	
+	
+	
+		
+		
+		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="/">davegallant</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/post">All posts</a>
+		
+		<a href="/index.xml">RSS</a>
+		
+		<a href="/tags">Tags</a>
+		
+		<a href="/about">About</a>
+		
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
+		<script src="/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Setting Up Gitea Actions With Tailscale</h1>
+			<div class="meta">Posted on Dec 10, 2023</div>
+		</div>
+		
+
+		<section class="body"><p>In this post I&rsquo;ll go through the process of setting up Gitea Actions and <a href="https://tailscale.com/">Tailscale</a>, unlocking a simple and secure way to automate workflows.</p>
+<h2 id="what-is-gitea">What is Gitea?<a href="#what-is-gitea" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p><a href="https://about.gitea.com/">Gitea</a> is a lightweight and fast git server that has much of the same look and feel as github. I have been using it in my homelab to mirror repositories hosted on other platforms such as github and gitlab. These mirrors take advantage of the decentralized nature of git by serving as &ldquo;backups&rdquo;. One of the main reasons I hadn&rsquo;t been using it more often was due to the lack of integrated CI/CD. This is no longer the case.</p>
+<h2 id="gitea-actions">Gitea Actions<a href="#gitea-actions" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p><a href="https://docs.gitea.com/usage/actions/overview">Gitea Actions</a> have made it into the <a href="https://blog.gitea.com/release-of-1.19.0/">1.19.0 release</a>. This feature had been in an experimental state up until <a href="https://blog.gitea.com/release-of-1.21.0/">1.21.0</a> and is now enabled by default 🎉.</p>
+<p>So what are they? If you&rsquo;ve ever used GitHub Actions (and if you&rsquo;re reading this, I imagine you have), they essentially allow you to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a list of <a href="https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax">unsupported workflows syntax</a>.</p>
+<p>Actions work by using a <a href="https://gitea.com/gitea/act">custom fork</a> of <a href="https://github.com/nektos/act">nekos/act</a>. Workflows run in a new container for every job. If you specify an action such as &lsquo;actions/checkout@v3&rsquo;, it defaults to downloading the scripts from github.com. To avoid internet egress, you could always clone the required actions to your local gitea instance.</p>
+<p>Actions (gitea&rsquo;s implementation) has me excited because it makes spinning up a network-isolated environment for workflow automation incredibly simple.</p>
+<h2 id="integration-with-tailscale">Integration with Tailscale<a href="#integration-with-tailscale" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>So how does Tailscale help here? Well, more recently I&rsquo;ve been exposing my self-hosted services through a combination of traefik and the tailscale (through the tailscale-traefik proxy integration described <a href="https://traefik.io/blog/exploring-the-tailscale-traefik-proxy-integration/">here</a>). This allows for a nice looking dns name (i.e. gitea.my-tailnet-name.ts.net) and automatic tls certificate management. I can also share this tailscale node securely with other tailscale users without configuring any firewall rules on my router.</p>
+<h2 id="deploying-gitea-traefik-and-tailscale">Deploying Gitea, Traefik, and Tailscale<a href="#deploying-gitea-traefik-and-tailscale" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>In my case, the following is already set up:</p>
+<ul>
+<li><a href="https://docs.docker.com/compose/install/linux/">docker-compose is installed</a></li>
+<li><a href="https://tailscale.com/kb/1017/install/">tailscale is installed on the gitea host</a></li>
+<li><a href="https://tailscale.com/kb/1081/magicdns/">tailscale magic dns is enabled</a></li>
+</ul>
+<p>My preferred approach to deploying code in a homelab environment is with docker compose. I have deployed this in a <a href="https://pve.proxmox.com/wiki/Linux_Container">proxmox lxc container</a> based on debian with a hostname <code>gitea</code>. This could be deployed in any environment and with any hostname (as long you updated the tailscale machine name to your preferred subdomain for magic dns).</p>
+<p>The <code>docker-compose.yaml</code> file looks like:</p>
+<pre><code class="language-yaml">version: &quot;3.7&quot;
+services:
+  gitea:
+    image: gitea/gitea:1.21.1
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+
+      - GITEA__server__DOMAIN=gitea.my-tailnet-name.ts.net
+      - GITEA__server__ROOT_URL=https://gitea.my-tailnet-name.ts.net
+      - GITEA__server__HTTP_ADDR=0.0.0.0
+      - GITEA__server__LFS_JWT_SECRET=my-secret-jwt
+    restart: always
+    volumes:
+      - ./data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+  traefik:
+    image: traefik:v3.0.0-beta4
+    container_name: traefik
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./traefik/data/traefik.yaml:/traefik.yaml:ro
+      - ./traefik/data/dynamic.yaml:/dynamic.yaml:ro
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+</code></pre>
+<p><code>traefik/data/traefik.yaml</code>:</p>
+<pre><code class="language-yaml">entryPoints:
+  https:
+    address: &quot;:443&quot;
+providers:
+  file:
+    filename: dynamic.yaml
+certificatesResolvers:
+  myresolver:
+    tailscale: {}
+log:
+  level: INFO
+</code></pre>
+<p>and finally <code>traefik/data/dynamic/dynamic.yaml</code>:</p>
+<pre><code class="language-yaml">http:
+  routers:
+    gitea:
+      rule: Host(`gitea.my-tailnet-name.ts.net`)
+      entrypoints:
+        - &quot;https&quot;
+      service: gitea
+      tls:
+        certResolver: myresolver
+  services:
+    gitea:
+      loadBalancer:
+        servers:
+          - url: &quot;http://gitea:3000&quot;
+</code></pre>
+<p>Something to consider is whether or not you want to use ssh with git. One method of getting this to work with containers is to use <a href="https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough">ssh container passthrough</a>. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.</p>
+<p>After adding the above configuration, running <code>docker compose up -d</code> should be enough to get your instance up and running. It will be accessible at <a href="https://gitea.my-tailnet-name.ts.net">https://gitea.my-tailnet-name.ts.net</a> from within your tailnet.</p>
+<h2 id="connecting-a-runner">Connecting a Runner<a href="#connecting-a-runner" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>I installed the runner by <a href="https://docs.gitea.com/usage/actions/quickstart#set-up-runner">following the docs</a>. I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this act runner as well, so that it can have the same &ldquo;networking privileges&rdquo; as the main instance.</p>
+<p>After registering this runner and starting the daemon, it appeared in <code>/admin/actions/runners</code>:</p>
+<p><img src="/images/setting-up-gitea-actions-with-tailscale/gitea-runners.png" alt="image"></p>
+<h2 id="running-a-workflow">Running a workflow<a href="#running-a-workflow" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>Now it&rsquo;s time start running some automation. I used the <a href="https://docs.gitea.com/usage/actions/quickstart#use-actions">demo workflow</a> as a starting point to verify that the runner is executing workflows.</p>
+<p>After this, I wanted to make sure that some of my existing workflows could be migrated over.</p>
+<p>The following workflow uses a matrix to run a job for several of my hosts using ansible playbooks that will do various tasks such as patching os updates and updating container images.</p>
+<pre><code class="language-yaml">name: Run ansible playbooks
+on:
+  push:
+  schedule:
+    - cron: &quot;0 */12 * * *&quot;
+
+jobs:
+  run-ansible-playbook:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host:
+          - changedetection
+          - grafana
+          - homer
+          - invidious
+          - jackett
+          - ladder
+          - miniflux
+          - plex
+          - qbittorrent
+          - tailscale-exit-node
+          - uptime-kuma
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install ansible
+        run: |
+          apt update &amp;&amp; apt install ansible -y
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: playbooks/main.yml
+          requirements: requirements.yml
+          key: ${{ secrets.SSH_PRIVATE_KEY}}
+          options: |
+            --inventory inventory
+            --limit ${{ matrix.host }}
+</code></pre>
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It certainly doesn&rsquo;t hurt that the codebase is largely written in go.</p>
+<p>By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.</p></section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/gitea">gitea</a></li>
+					
+					<li><a href="/tags/gitea-actions">gitea actions</a></li>
+					
+					<li><a href="/tags/github-actions">github actions</a></li>
+					
+					<li><a href="/tags/tailscale">tailscale</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+
+		<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments'><script>
+    
+    var getTheme = window.localStorage && window.localStorage.getItem("theme-storage");
+    getTheme = getTheme == null ? 'light' : getTheme;
+
+    let theme = getTheme === 'dark' ? 'github-dark' : 'github-light';
+    let s = document.createElement('script');
+    s.src = 'https://utteranc.es/client.js';
+    s.setAttribute('repo', 'davegallant\/davegallant.github.io');
+    s.setAttribute('issue-term', 'pathname');
+    s.setAttribute('theme', theme);
+    s.setAttribute('crossorigin', 'anonymous');
+    s.setAttribute('async', '');
+    document.querySelector('div.comments').innerHTML = '';
+    document.querySelector('div.comments').appendChild(s);
+</script>
+</div>
+  </div>
+</section><footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/davegallant" rel="me" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="https://twitter.com/davega11ant/" rel="me" title="Twitter"><i data-feather="twitter"></i></a>
+    <a class="border"></a><a class="soc" href="https://mastodon.social/@davegallant" rel="me" title="Mastodon"><i data-feather="speaker"></i></a>
+    <a class="border"></a><a class="soc" href="https://www.linkedin.com/in/dave-gallant/" rel="me" title="LinkedIn"><i data-feather="linkedin"></i></a>
+    <a class="border"></a></div>
+  <div class="footer-info">
+    2023  Dave Gallant  
+  </div>
+</footer>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WJDERTX9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-V8WJDERTX9', { 'anonymize_ip': false });
+}
+</script>
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>
