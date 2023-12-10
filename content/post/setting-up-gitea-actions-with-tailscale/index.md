@@ -195,6 +195,10 @@ jobs:
             --limit ${{ matrix.host }}
 ```
 
+And voilà:
+
+{{< video src="gitea-runner" >}}
+
 ## Conclusion
 
 Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It certainly doesn't hurt that the codebase is largely written in go.

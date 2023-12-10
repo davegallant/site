@@ -7,7 +7,9 @@ preserveTaxonomyNames: true
 pygmentsstyle: "monokai"
 pygmentscodefences: false
 pygmentscodefencesguesssyntax: true
-theme: archie
+theme:
+  - archie
+  - hugo-video
 title: davegallant
 
 params:
