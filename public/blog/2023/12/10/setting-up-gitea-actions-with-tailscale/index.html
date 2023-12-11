@@ -107,7 +107,7 @@
 <p><a href="https://about.gitea.com/">Gitea</a> is a lightweight and fast git server that has much of the same look and feel as github. I have been using it in my homelab to mirror repositories hosted on other platforms such as github and gitlab. These mirrors take advantage of the decentralized nature of git by serving as &ldquo;backups&rdquo;. One of the main reasons I hadn&rsquo;t been using it more often was due to the lack of integrated CI/CD. This is no longer the case.</p>
 <h2 id="gitea-actions">Gitea Actions<a href="#gitea-actions" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p><a href="https://docs.gitea.com/usage/actions/overview">Gitea Actions</a> have made it into the <a href="https://blog.gitea.com/release-of-1.19.0/">1.19.0 release</a>. This feature had been in an experimental state up until <a href="https://blog.gitea.com/release-of-1.21.0/">1.21.0</a> and is now enabled by default 🎉.</p>
-<p>So what are they? If you&rsquo;ve ever used GitHub Actions (and if you&rsquo;re reading this, I imagine you have), they essentially allow you to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a list of <a href="https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax">unsupported workflows syntax</a>.</p>
+<p>So what are they? If you&rsquo;ve ever used GitHub Actions (and if you&rsquo;re reading this, I imagine you have), these will look familiar. Gitea Actions essentially enable the ability to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a documented list of <a href="https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax">unsupported workflows syntax</a>.</p>
 <p>Actions work by using a <a href="https://gitea.com/gitea/act">custom fork</a> of <a href="https://github.com/nektos/act">nekos/act</a>. Workflows run in a new container for every job. If you specify an action such as &lsquo;actions/checkout@v3&rsquo;, it defaults to downloading the scripts from github.com. To avoid internet egress, you could always clone the required actions to your local gitea instance.</p>
 <p>Actions (gitea&rsquo;s implementation) has me excited because it makes spinning up a network-isolated environment for workflow automation incredibly simple.</p>
 <h2 id="integration-with-tailscale">Integration with Tailscale<a href="#integration-with-tailscale" class="hanchor" ariaLabel="Anchor">#</a></h2>
@@ -183,11 +183,11 @@ log:
           - url: &quot;http://gitea:3000&quot;
 </code></pre>
 <p>Something to consider is whether or not you want to use ssh with git. One method of getting this to work with containers is to use <a href="https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough">ssh container passthrough</a>. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.</p>
-<p>After adding the above configuration, running <code>docker compose up -d</code> should be enough to get your instance up and running. It will be accessible at <a href="https://gitea.my-tailnet-name.ts.net">https://gitea.my-tailnet-name.ts.net</a> from within your tailnet.</p>
+<p>After adding the above configuration, running <code>docker compose up -d</code> should be enough to get an instance up and running. It will be accessible at <a href="https://gitea.my-tailnet-name.ts.net">https://gitea.my-tailnet-name.ts.net</a> from within your tailnet.</p>
 <h2 id="connecting-a-runner">Connecting a Runner<a href="#connecting-a-runner" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>I installed the runner by <a href="https://docs.gitea.com/usage/actions/quickstart#set-up-runner">following the docs</a>. I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this act runner as well, so that it can have the same &ldquo;networking privileges&rdquo; as the main instance.</p>
 <p>After registering this runner and starting the daemon, it appeared in <code>/admin/actions/runners</code>:</p>
-<p><img src="/images/setting-up-gitea-actions-with-tailscale/gitea-runners.png" alt="image"></p>
+<p><img src="gitea-runners.png" alt="image"></p>
 <h2 id="running-a-workflow">Running a workflow<a href="#running-a-workflow" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Now it&rsquo;s time start running some automation. I used the <a href="https://docs.gitea.com/usage/actions/quickstart#use-actions">demo workflow</a> as a starting point to verify that the runner is executing workflows.</p>
 <p>After this, I wanted to make sure that some of my existing workflows could be migrated over.</p>
@@ -232,12 +232,12 @@ jobs:
             --limit ${{ matrix.host }}
 </code></pre>
 <p>And voilà:</p>
-<video controls preload="auto" width="100%"  playsinline class="html-video">
+<video controls preload="auto" width="100%"  poster="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runners.png" playsinline class="html-video">
     <source src="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runner.webm" type="video/webm">
   <span>Your browser doesn't support embedded videos, but don't worry, you can <a href="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runner.webm">download it</a> and watch it with your favorite video player!</span>
 </video>
 <h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p>Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It certainly doesn&rsquo;t hurt that the codebase is largely written in go.</p>
+<p>Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It likely helps that the codebase is largely written in go.</p>
 <p>By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.</p></section>
 
 		<div class="post-tags">

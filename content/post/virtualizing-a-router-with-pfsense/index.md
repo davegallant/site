@@ -56,7 +56,7 @@ The following configuration will:
 
 In the switch's web interface, I went to `VLAN` and then `802.1Q`, and then clicked on `VLAN Configuration`. I configured the ports to look like this:
 
-![vlan-config](/images/virtualizing-a-router-with-pfsense/netgear-vlan-configuration.png)
+![vlan-config](netgear-vlan-configuration.png)
 
 Note that the `VLAN Identifier Setting` has been setup already with two VLANs (1 and 10). More VLANs can be created (i.e. to isolate IoT devices), but 2 VLANs is all we need for the initial setup of a router.
 
@@ -64,15 +64,15 @@ To replicate the above configuration, add a new VLAN ID 10 (1 should exist by de
 
 Next, go into `VLAN Membership` and configure VLAN 1's port membership to be the following:
 
-![vlan-membership-1](/images/virtualizing-a-router-with-pfsense/netgear-vlan-membership-1.png)
+![vlan-membership-1](netgear-vlan-membership-1.png)
 
 and then configure VLAN 10's port membership to be the following:
 
-![vlan-membership-10](/images/virtualizing-a-router-with-pfsense/netgear-vlan-membership-10.png)
+![vlan-membership-10](netgear-vlan-membership-10.png)
 
 Now, go into `Port PVID` and ensure that port 8 is set to PVID 10.
 
-![vlan-port-pvid](/images/virtualizing-a-router-with-pfsense/netgear-port-pvid.png)
+![vlan-port-pvid](netgear-port-pvid.png)
 
 This above configuration will dedicate two of the eight ports to WAN and LAN. This will allow the internet to flow into the pfSense from the modem.
 
@@ -90,7 +90,7 @@ After going through the rest of the installation, if everything is connected cor
 
 If all goes well, the web interface should be running at [https://192.168.1.1](https://192.168.1.1).
 
-![pfsense-dashboard](/images/virtualizing-a-router-with-pfsense/pfsense-dashboard.png)
+![pfsense-dashboard](pfsense-dashboard.png)
 
 And this is where the fun begins. There are many tutorials and blogs about how to setup pfSense and various services and packages that can be installed. I've already installed [pfBlocker-NG](https://docs.netgate.com/pfsense/en/latest/packages/pfblocker.html).
 

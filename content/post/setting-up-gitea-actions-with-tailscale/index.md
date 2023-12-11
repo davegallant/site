@@ -43,7 +43,7 @@ In this post I'll go through the process of setting up Gitea Actions and [Tailsc
 
 [Gitea Actions](https://docs.gitea.com/usage/actions/overview) have made it into the [1.19.0 release](https://blog.gitea.com/release-of-1.19.0/). This feature had been in an experimental state up until [1.21.0](https://blog.gitea.com/release-of-1.21.0/) and is now enabled by default 🎉.
 
-So what are they? If you've ever used GitHub Actions (and if you're reading this, I imagine you have), they essentially allow you to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a list of [unsupported workflows syntax](https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax).
+So what are they? If you've ever used GitHub Actions (and if you're reading this, I imagine you have), these will look familiar. Gitea Actions essentially enable the ability to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a documented list of [unsupported workflows syntax](https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax).
 
 Actions work by using a [custom fork](https://gitea.com/gitea/act) of [nekos/act](https://github.com/nektos/act). Workflows run in a new container for every job. If you specify an action such as 'actions/checkout@v3', it defaults to downloading the scripts from github.com. To avoid internet egress, you could always clone the required actions to your local gitea instance.
 
@@ -136,7 +136,7 @@ http:
 
 Something to consider is whether or not you want to use ssh with git. One method of getting this to work with containers is to use [ssh container passthrough](https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough). I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.
 
-After adding the above configuration, running `docker compose up -d` should be enough to get your instance up and running. It will be accessible at [https://gitea.my-tailnet-name.ts.net](https://gitea.my-tailnet-name.ts.net) from within your tailnet.
+After adding the above configuration, running `docker compose up -d` should be enough to get an instance up and running. It will be accessible at [https://gitea.my-tailnet-name.ts.net](https://gitea.my-tailnet-name.ts.net) from within your tailnet.
 
 ## Connecting a Runner
 
@@ -144,7 +144,7 @@ I installed the runner by [following the docs](https://docs.gitea.com/usage/acti
 
 After registering this runner and starting the daemon, it appeared in `/admin/actions/runners`:
 
-![image](/images/setting-up-gitea-actions-with-tailscale/gitea-runners.png)
+![image](gitea-runners.png)
 
 ## Running a workflow
 
@@ -201,6 +201,6 @@ And voilà:
 
 ## Conclusion
 
-Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It certainly doesn't hurt that the codebase is largely written in go.
+Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It likely helps that the codebase is largely written in go.
 
 By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.

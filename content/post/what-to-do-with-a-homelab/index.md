@@ -23,7 +23,7 @@ Having multiple machines/nodes provides the advantage of increased redundancy, b
 Virtualizing your hardware is an organized way of dividing up your machine's resources. This can be done with something such as a *Virtual Machine* or something lighter like a container using *LXC* or *runC*.
 Containers have much less overhead in terms of boot time and storage allocation. This [Stack Overflow answer](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-virtual-machine) sums it up nicely.
 
-![image](/images/proxmox.png)
+![image](proxmox.png)
 
 A hypervisor such as [Proxmox](https://www.proxmox.com/en/proxmox-ve/get-started) can be installed in minutes on a new machine. It provides a web interface and a straight-forward way to spin up new VMs and containers. Even if your plan is to run mostly docker containers, Proxmox can be a useful abstraction for managing VMs, disks and running scheduled backups. You can even run docker within an LXC container by enabling nested virtualization. You'll want to ensure that VT-d and VT-x are enabled in the BIOS if you decide to install a hypervisor to manage your virtualization.
 
@@ -46,7 +46,7 @@ You could certainly setup and manage your own VPN by using something like [OpenV
 
 ## Monitoring
 
-![dashboard](/images/netdata.png)
+![dashboard](netdata.png)
 
 Monitoring can become an important aspect of your homelab after it starts to become something that is relied upon. One of the simplest ways to setup some monitoring is using [netdata](https://www.netdata.cloud/). It can be installed on individual containers, VMs, and also a hypervisor (such as Proxmox). All of the monitoring works out of the box by detecting disks, memory, network interfaces, etc.
 
@@ -54,7 +54,7 @@ Additionally, agents installed on different machines can all be centrally viewed
 
 As mentioned above, [Uptime Kuma](https://github.com/louislam/uptime-kuma) is a convenient way to track uptime and monitor the availability of your services.
 
-![uptime-kuma](/images/uptime-kuma.png)
+![uptime-kuma](uptime-kuma.png)
 
 ## In Summary
 
