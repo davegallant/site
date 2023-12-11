@@ -7,364 +7,465 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Dave Gallant</copyright>
-    <lastBuildDate>Sun, 10 Dec 2023 17:22:11 -0500</lastBuildDate>
-    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Dec 2023 17:22:11 -0500</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>gitea</title>
       <link>/tags/gitea/</link>
       <pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate>
+      
       <guid>/tags/gitea/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>gitea actions</title>
       <link>/tags/gitea-actions/</link>
       <pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate>
+      
       <guid>/tags/gitea-actions/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>github actions</title>
       <link>/tags/github-actions/</link>
       <pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate>
+      
       <guid>/tags/github-actions/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>tailscale</title>
       <link>/tags/tailscale/</link>
       <pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate>
+      
       <guid>/tags/tailscale/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>aks</title>
       <link>/tags/aks/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/aks/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>aws</title>
       <link>/tags/aws/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/aws/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>azure</title>
       <link>/tags/azure/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/azure/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>bastion</title>
       <link>/tags/bastion/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/bastion/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>cloud-sql-proxy</title>
       <link>/tags/cloud-sql-proxy/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/cloud-sql-proxy/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>database</title>
       <link>/tags/database/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/database/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>eks</title>
       <link>/tags/eks/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/eks/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>k8s</title>
       <link>/tags/k8s/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/k8s/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>kubectl-plugin-socks5-proxy</title>
       <link>/tags/kubectl-plugin-socks5-proxy/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/kubectl-plugin-socks5-proxy/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>proxy</title>
       <link>/tags/proxy/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/proxy/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>socks</title>
       <link>/tags/socks/</link>
       <pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate>
+      
       <guid>/tags/socks/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>degoogle</title>
       <link>/tags/degoogle/</link>
       <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
       <guid>/tags/degoogle/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>invidious</title>
       <link>/tags/invidious/</link>
       <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
       <guid>/tags/invidious/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>privacy</title>
       <link>/tags/privacy/</link>
       <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
       <guid>/tags/privacy/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>yewtu.be</title>
       <link>/tags/yewtu.be/</link>
       <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
       <guid>/tags/yewtu.be/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>youtube</title>
       <link>/tags/youtube/</link>
       <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
+      
       <guid>/tags/youtube/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>openwrt</title>
       <link>/tags/openwrt/</link>
       <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
       <guid>/tags/openwrt/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>pfsense</title>
       <link>/tags/pfsense/</link>
       <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
       <guid>/tags/pfsense/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>proxmox</title>
       <link>/tags/proxmox/</link>
       <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
       <guid>/tags/proxmox/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>router</title>
       <link>/tags/router/</link>
       <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
       <guid>/tags/router/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>router-on-a-stick</title>
       <link>/tags/router-on-a-stick/</link>
       <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
       <guid>/tags/router-on-a-stick/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>vlan</title>
       <link>/tags/vlan/</link>
       <pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate>
+      
       <guid>/tags/vlan/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>backup</title>
       <link>/tags/backup/</link>
       <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
+      
       <guid>/tags/backup/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>gmail</title>
       <link>/tags/gmail/</link>
       <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
+      
       <guid>/tags/gmail/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>ransomware</title>
       <link>/tags/ransomware/</link>
       <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
+      
       <guid>/tags/ransomware/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>synology</title>
       <link>/tags/synology/</link>
       <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
+      
       <guid>/tags/synology/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>k3s</title>
       <link>/tags/k3s/</link>
       <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
+      
       <guid>/tags/k3s/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>lxc</title>
       <link>/tags/lxc/</link>
       <pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate>
+      
       <guid>/tags/lxc/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>containers</title>
       <link>/tags/containers/</link>
       <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
+      
       <guid>/tags/containers/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>docker</title>
       <link>/tags/docker/</link>
       <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
+      
       <guid>/tags/docker/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>podman</title>
       <link>/tags/podman/</link>
       <pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate>
+      
       <guid>/tags/podman/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>aws-vault</title>
       <link>/tags/aws-vault/</link>
       <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
       <guid>/tags/aws-vault/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>python</title>
       <link>/tags/python/</link>
       <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
       <guid>/tags/python/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>security</title>
       <link>/tags/security/</link>
       <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
+      
       <guid>/tags/security/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>dotfiles</title>
       <link>/tags/dotfiles/</link>
       <pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate>
+      
       <guid>/tags/dotfiles/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>home-manager</title>
       <link>/tags/home-manager/</link>
       <pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate>
+      
       <guid>/tags/home-manager/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>nix</title>
       <link>/tags/nix/</link>
       <pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate>
+      
       <guid>/tags/nix/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>adguard</title>
       <link>/tags/adguard/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/adguard/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>grafana</title>
       <link>/tags/grafana/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/grafana/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>homelab</title>
       <link>/tags/homelab/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/homelab/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>jellyfin</title>
       <link>/tags/jellyfin/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/jellyfin/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>netdata</title>
       <link>/tags/netdata/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/netdata/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>pihole</title>
       <link>/tags/pihole/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/pihole/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>plex</title>
       <link>/tags/plex/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/plex/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>virtualization</title>
       <link>/tags/virtualization/</link>
       <pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate>
+      
       <guid>/tags/virtualization/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>linux</title>
       <link>/tags/linux/</link>
       <pubDate>Mon, 16 Mar 2020 22:00:15 -0400</pubDate>
+      
       <guid>/tags/linux/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>vpn</title>
       <link>/tags/vpn/</link>
       <pubDate>Mon, 16 Mar 2020 22:00:15 -0400</pubDate>
+      
       <guid>/tags/vpn/</guid>
       <description></description>
     </item>
+    
   </channel>
 </rss>
