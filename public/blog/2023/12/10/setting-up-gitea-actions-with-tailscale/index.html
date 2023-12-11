@@ -10,7 +10,6 @@
 <meta property="og:url" content="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-12-10T17:22:11-05:00" />
 <meta property="article:modified_time" content="2023-12-10T17:22:11-05:00" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Setting Up Gitea Actions With Tailscale"/>
 <meta name="twitter:description" content=""/>
@@ -182,8 +181,8 @@ log:
         servers:
           - url: &quot;http://gitea:3000&quot;
 </code></pre>
-<p>Something to consider is whether or not you want to use ssh with git. One method of getting this to work with containers is to use <a href="https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough">ssh container passthrough</a>. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.</p>
-<p>After adding the above configuration, running <code>docker compose up -d</code> should be enough to get an instance up and running. It will be accessible at <a href="https://gitea.my-tailnet-name.ts.net">https://gitea.my-tailnet-name.ts.net</a> from within your tailnet.</p>
+<p>Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use <a href="https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough">ssh container passthrough</a>. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.</p>
+<p>After adding the above configuration, running <code>docker compose up -d</code> should be enough to get an instance up and running. It will be accessible at <a href="https://gitea.my-tailnet-name.ts.net">https://gitea.my-tailnet-name.ts.net</a> from within the tailnet.</p>
 <h2 id="connecting-a-runner">Connecting a Runner<a href="#connecting-a-runner" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>I installed the runner by <a href="https://docs.gitea.com/usage/actions/quickstart#set-up-runner">following the docs</a>. I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this act runner as well, so that it can have the same &ldquo;networking privileges&rdquo; as the main instance.</p>
 <p>After registering this runner and starting the daemon, it appeared in <code>/admin/actions/runners</code>:</p>
@@ -236,6 +235,8 @@ jobs:
     <source src="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runner.webm" type="video/webm">
   <span>Your browser doesn't support embedded videos, but don't worry, you can <a href="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runner.webm">download it</a> and watch it with your favorite video player!</span>
 </video>
+<h2 id="areas-for-improvement">Areas for improvement<a href="#areas-for-improvement" class="hanchor" ariaLabel="Anchor">#</a></h2>
+<p>One enhancement that I would like to see is the ability to send notifications on workflow failures. Currently, this <a href="https://github.com/go-gitea/gitea/issues/23725">doesn&rsquo;t seem possible</a>.</p>
 <h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It likely helps that the codebase is largely written in go.</p>
 <p>By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.</p></section>
@@ -283,8 +284,9 @@ jobs:
 </div>
   </div>
 </section><footer>
-  <div style="display:flex"><a class="soc" href="https://github.com/davegallant" rel="me" title="GitHub"><i data-feather="github"></i></a>
-    <a class="border"></a><a class="soc" href="https://twitter.com/davega11ant/" rel="me" title="Twitter"><i data-feather="twitter"></i></a>
+  <div style="display:flex"><a class="soc" href="mailto:me@davegallant.ca" rel="me" title="Email"><i data-feather="at-sign"></i></a>
+    <a class="border"></a><a class="soc" href="https://linktr.ee/davegallant" rel="me" title="LinkTree"><i data-feather="compass"></i></a>
+    <a class="border"></a><a class="soc" href="https://github.com/davegallant" rel="me" title="GitHub"><i data-feather="github"></i></a>
     <a class="border"></a><a class="soc" href="https://mastodon.social/@davegallant" rel="me" title="Mastodon"><i data-feather="speaker"></i></a>
     <a class="border"></a><a class="soc" href="https://www.linkedin.com/in/dave-gallant/" rel="me" title="LinkedIn"><i data-feather="linkedin"></i></a>
     <a class="border"></a></div>

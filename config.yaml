@@ -25,12 +25,15 @@ params:
       - css/custom.css
 
     social:
+      - name: Email
+        icon: at-sign
+        url: 'mailto:me@davegallant.ca'
+      - name: LinkTree
+        icon: compass
+        url: 'https://linktr.ee/davegallant'
       - name: GitHub
         icon: github
         url: 'https://github.com/davegallant'
-      - name: Twitter
-        icon: twitter
-        url: 'https://twitter.com/davega11ant/'
       - name: Mastodon
         icon: speaker
         url: https://mastodon.social/@davegallant
