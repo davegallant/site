@@ -48,7 +48,7 @@ Synology's MailPlus seems to be a good candidate for backing up this data. By en
 
 Installing MailPlus can be done from the Package Center:
 
-![image](/images/backing-up-gmail-with-synology/install-mailplus-server.png)
+![image](install-mailplus-server.png)
 
 Next, I went into **Synology MailPlus Server** and on the left, clicked on **Account** and ensured my user was marked as active.
 
@@ -60,7 +60,7 @@ I made sure to set the `Fetch Range` to `All` in order to get all emails from th
 
 After this, mail started coming in.
 
-![image](/images/backing-up-gmail-with-synology/mail-plus-incoming-mail.png)
+![image](mail-plus-incoming-mail.png)
 
  After fetching 19 years worth of emails, I tried searching for some emails. It only took a few seconds to search through ~50K emails, which is a relief if I ever did have to search for something important.
 

@@ -111,7 +111,7 @@ Having multiple machines/nodes provides the advantage of increased redundancy, b
 <h2 id="virtualization">Virtualization<a href="#virtualization" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Virtualizing your hardware is an organized way of dividing up your machine&rsquo;s resources. This can be done with something such as a <em>Virtual Machine</em> or something lighter like a container using <em>LXC</em> or <em>runC</em>.
 Containers have much less overhead in terms of boot time and storage allocation. This <a href="https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-virtual-machine">Stack Overflow answer</a> sums it up nicely.</p>
-<p><img src="/images/proxmox.png" alt="image"></p>
+<p><img src="proxmox.png" alt="image"></p>
 <p>A hypervisor such as <a href="https://www.proxmox.com/en/proxmox-ve/get-started">Proxmox</a> can be installed in minutes on a new machine. It provides a web interface and a straight-forward way to spin up new VMs and containers. Even if your plan is to run mostly docker containers, Proxmox can be a useful abstraction for managing VMs, disks and running scheduled backups. You can even run docker within an LXC container by enabling nested virtualization. You&rsquo;ll want to ensure that VT-d and VT-x are enabled in the BIOS if you decide to install a hypervisor to manage your virtualization.</p>
 <h2 id="services">Services<a href="#services" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>So what are some useful services to deploy?</p>
@@ -127,11 +127,11 @@ Containers have much less overhead in terms of boot time and storage allocation.
 <h2 id="vpn">VPN<a href="#vpn" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>You could certainly setup and manage your own VPN by using something like <a href="https://openvpn.net/community-downloads/">OpenVPN</a>, but there is also something else you can try: <a href="https://tailscale.com/">tailscale</a>. It is a very quick way to create fully-encrypted connections between clients. With its <a href="https://tailscale.com/kb/1081/magicdns/">MagicDNS</a>, your can reference the names of machines like <code>homer</code> rather than using an IP address. By using this mesh-like VPN, you can easily create a secure tunnel to your homelab from anywhere.</p>
 <h2 id="monitoring">Monitoring<a href="#monitoring" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p><img src="/images/netdata.png" alt="dashboard"></p>
+<p><img src="netdata.png" alt="dashboard"></p>
 <p>Monitoring can become an important aspect of your homelab after it starts to become something that is relied upon. One of the simplest ways to setup some monitoring is using <a href="https://www.netdata.cloud/">netdata</a>. It can be installed on individual containers, VMs, and also a hypervisor (such as Proxmox). All of the monitoring works out of the box by detecting disks, memory, network interfaces, etc.</p>
 <p>Additionally, agents installed on different machines can all be centrally viewed in netdata, and it can alert you when some of your infrastructure is down or in a degraded state. Adding additional nodes to netdata is as simple as a 1-line shell command.</p>
 <p>As mentioned above, <a href="https://github.com/louislam/uptime-kuma">Uptime Kuma</a> is a convenient way to track uptime and monitor the availability of your services.</p>
-<p><img src="/images/uptime-kuma.png" alt="uptime-kuma"></p>
+<p><img src="uptime-kuma.png" alt="uptime-kuma"></p>
 <h2 id="in-summary">In Summary<a href="#in-summary" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Building out a homelab can be a rewarding experience and it doesn&rsquo;t require buying a rack full of expensive servers to get a significant amount of utility. There are many services that you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to remotely.</p></section>
 

@@ -5,7 +5,7 @@ lastmod: 2022-12-10T21:46:55-05:00
 draft: false
 keywords: []
 description: ""
-tags: ['invidious','degoogle', 'youtube', 'yewtu.be', 'tailscale', 'privacy']
+tags: ["invidious", "degoogle", "youtube", "yewtu.be", "tailscale", "privacy"]
 categories: []
 author: ""
 
@@ -26,18 +26,16 @@ flowchartDiagrams:
   enable: false
   options: ""
 
-sequenceDiagrams: 
+sequenceDiagrams:
   enable: false
   options: ""
-
 ---
 
 <!--more-->
 
-I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows you to watch YouTube without *being on YouTube*, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
+I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows you to watch YouTube without _being on YouTube_, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
 
-
-![requestly](/images/watching-youtube-in-private/computerphile.png)
+![image](computerphile.png)
 
 The layout is simple, and **JavaScript is not required**.
 
@@ -54,7 +52,6 @@ I made a few modifications (such as pinning the container's tag), and ended up w
 ```yaml
 version: "3"
 services:
-
   invidious:
     image: quay.io/invidious/invidious:5160d8bae39dc5cc5d51abee90571a03c08d0f2b
     restart: unless-stopped
@@ -103,7 +100,7 @@ I figured it would be nice to redirect existing YouTube links that others send m
 
 I went looking for a way to redirect paths at the browser level. I found the lightweight proxy [requestly](https://requestly.io/), which can be used to modify http requests in my browser. I created the following rules:
 
-![requestly](/images/watching-youtube-in-private/requestly-rules.png)
+![requestly](requestly-rules.png)
 
 Now the link https://www.youtube.com/watch?v=-lz30by8-sU will redirect to [http://invidious:3000/watch?v=-lz30by8-sU](http://invidious:3000/watch?v=-lz30by8-sU)
 

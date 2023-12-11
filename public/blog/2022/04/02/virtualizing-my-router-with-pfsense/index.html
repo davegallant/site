@@ -116,15 +116,15 @@
 <li>assign port 8 to be the WAN (connected to my ISP&rsquo;s modem)</li>
 </ul>
 <p>In the switch&rsquo;s web interface, I went to <code>VLAN</code> and then <code>802.1Q</code>, and then clicked on <code>VLAN Configuration</code>. I configured the ports to look like this:</p>
-<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-vlan-configuration.png" alt="vlan-config"></p>
+<p><img src="netgear-vlan-configuration.png" alt="vlan-config"></p>
 <p>Note that the <code>VLAN Identifier Setting</code> has been setup already with two VLANs (1 and 10). More VLANs can be created (i.e. to isolate IoT devices), but 2 VLANs is all we need for the initial setup of a router.</p>
 <p>To replicate the above configuration, add a new VLAN ID 10 (1 should exist by default).</p>
 <p>Next, go into <code>VLAN Membership</code> and configure VLAN 1&rsquo;s port membership to be the following:</p>
-<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-vlan-membership-1.png" alt="vlan-membership-1"></p>
+<p><img src="netgear-vlan-membership-1.png" alt="vlan-membership-1"></p>
 <p>and then configure VLAN 10&rsquo;s port membership to be the following:</p>
-<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-vlan-membership-10.png" alt="vlan-membership-10"></p>
+<p><img src="netgear-vlan-membership-10.png" alt="vlan-membership-10"></p>
 <p>Now, go into <code>Port PVID</code> and ensure that port 8 is set to PVID 10.</p>
-<p><img src="/images/virtualizing-a-router-with-pfsense/netgear-port-pvid.png" alt="vlan-port-pvid"></p>
+<p><img src="netgear-port-pvid.png" alt="vlan-port-pvid"></p>
 <p>This above configuration will dedicate two of the eight ports to WAN and LAN. This will allow the internet to flow into the pfSense from the modem.</p>
 <h2 id="setting-up-pfsense">Setting up pfSense<a href="#setting-up-pfsense" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>pfSense is fairly easy to setup. Just <a href="https://www.pfsense.org/download/">download the latest ISO</a> and boot up the virtual machine.
@@ -136,7 +136,7 @@ When setting up the machine, I mostly went with all of the defaults. Configurati
 </ul>
 <p>After going through the rest of the installation, if everything is connected correctly it should display both WAN and LAN addresses.</p>
 <p>If all goes well, the web interface should be running at <a href="https://192.168.1.1">https://192.168.1.1</a>.</p>
-<p><img src="/images/virtualizing-a-router-with-pfsense/pfsense-dashboard.png" alt="pfsense-dashboard"></p>
+<p><img src="pfsense-dashboard.png" alt="pfsense-dashboard"></p>
 <p>And this is where the fun begins. There are many tutorials and blogs about how to setup pfSense and various services and packages that can be installed. I&rsquo;ve already installed <a href="https://docs.netgate.com/pfsense/en/latest/packages/pfblocker.html">pfBlocker-NG</a>.</p>
 <h2 id="summary">Summary<a href="#summary" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>It is fairly simple to setup a router with pfSense from within a virtual machine. A physical dedicated routing machine is not necessary and often does not perform as well as software running on faster and more reliable hardware. So far, pfSense has been running for over a week without a single hiccup. pfSense is a mature piece of software that is incredibly powerful and flexible. To avoid some of the instability I had experienced with OpenWrt, I enabled <a href="https://docs.netgate.com/pfsense/en/latest/backup/autoconfigbackup.html">AutoConfigBackup</a>, which is capable of automatically backing up configuration upon every change. I plan to explore and experiment with more services and configuration in the future, so the ability to track all of these changes gives me the peace of mind that experimentation is safe.</p></section>
