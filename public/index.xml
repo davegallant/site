@@ -93,12 +93,5 @@
       <guid>/blog/2020/03/16/appgate-sdp-on-arch-linux/</guid>
       <description>&lt;p&gt;AppGate SDP provides a Zero Trust network. This post describes how to get AppGate SDP &lt;code&gt;4.3.2&lt;/code&gt; working on Arch Linux.&lt;/p&gt;</description>
     </item>
-    <item>
-      <title></title>
-      <link>/page/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/page/search/</guid>
-      <description>test</description>
-    </item>
   </channel>
 </rss>
