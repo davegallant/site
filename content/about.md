@@ -4,4 +4,4 @@ weight: -210
 disable_comments: true
 ---
 
-I'm a software engineer with a passion for open-source, infrastructure, tooling and security.
+I'm a software tinkerer with a passion for infrastructure, tooling, security, and coffee.

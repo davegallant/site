@@ -21,6 +21,8 @@ params:
 
     favicon: https://davegallant.ca/favicon.ico
 
+    kofi: 
+
     customcss:
       - css/custom.css
 
