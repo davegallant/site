@@ -53,21 +53,15 @@ params:
 
 menu:
   main:
-    - name: Home
+    - name: Posts
       url: /
       weight: 1
-    - name: All posts
-      url: /post
+    - name: About
+      url: /about
       weight: 2
     - name: RSS
       url: /index.xml
       weight: 3
-    - name: Tags
-      url: /tags
-      weight: 4
-    - name: About
-      url: /about
-      weight: 5
 
 permalinks:
   post: '/blog/:year/:month/:day/:slug/'
