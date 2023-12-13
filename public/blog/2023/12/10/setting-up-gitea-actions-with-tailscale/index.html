@@ -240,12 +240,12 @@ jobs:
             --limit ${{ matrix.host }}
 </code></pre>
 <p>And voilà:</p>
-<video controls preload="auto" width="100%"  poster="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runners.png" playsinline class="html-video">
-    <source src="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runner.webm" type="video/webm">
-  <span>Your browser doesn't support embedded videos, but don't worry, you can <a href="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-runner.webm">download it</a> and watch it with your favorite video player!</span>
+<video controls preload="auto" width="100%"  playsinline class="html-video">
+    <source src="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-workflow.webm" type="video/webm">
+  <span>Your browser doesn't support embedded videos, but don't worry, you can <a href="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-workflow.webm">download it</a> and watch it with your favorite video player!</span>
 </video>
 <h2 id="areas-for-improvement">Areas for improvement<a href="#areas-for-improvement" class="hanchor" ariaLabel="Anchor">#</a></h2>
-<p>One enhancement that I would like to see is the ability to send notifications on workflow failures. Currently, this <a href="https://github.com/go-gitea/gitea/issues/23725">doesn&rsquo;t seem possible</a>.</p>
+<p>One enhancement that I would like to see is the ability to send notifications on workflow failures. Currently, this <a href="https://github.com/go-gitea/gitea/issues/23725">doesn&rsquo;t seem possible</a> without adding logic to each workflow.</p>
 <h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It likely helps that the codebase is largely written in go.</p>
 <p>By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.</p></section>

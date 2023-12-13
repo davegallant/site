@@ -197,11 +197,11 @@ jobs:
 
 And voilà:
 
-{{< video src="gitea-runner" >}}
+{{< video src="gitea-workflow" >}}
 
 ## Areas for improvement
 
-One enhancement that I would like to see is the ability to send notifications on workflow failures. Currently, this [doesn't seem possible](https://github.com/go-gitea/gitea/issues/23725).
+One enhancement that I would like to see is the ability to send notifications on workflow failures. Currently, this [doesn't seem possible](https://github.com/go-gitea/gitea/issues/23725) without adding logic to each workflow.
 
 ## Conclusion
 
