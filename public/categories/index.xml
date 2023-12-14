@@ -6,7 +6,6 @@
     <description>Recent content in Categories on davegallant</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Dave Gallant</copyright>
-    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Dave Gallant</copyright><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

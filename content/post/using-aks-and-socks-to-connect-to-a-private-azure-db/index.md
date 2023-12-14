@@ -7,17 +7,18 @@ keywords: []
 description: ""
 tags:
   [
-    "azure",
-    "database",
-    "proxy",
-    "socks",
     "aks",
-    "k8s",
     "aws",
+    "azure",
     "bastion",
-    "eks",
     "cloud-sql-proxy",
+    "database",
+    "eks",
+    "k8s",
     "kubectl-plugin-socks5-proxy",
+    "proxy",
+    "socat",
+    "socks",
   ]
 categories: []
 author: ""
@@ -69,6 +70,10 @@ Azure has a fully-managed service called [Azure Bastion](https://azure.microsoft
 Because this adds cost (and complexity), it does not seem like a desirable option in its current state. If it provided a more seamless connection to the database, it would be more appealing.
 
 ## SOCKS
+
+> **2023-12-13:**
+> An alternative to using a socks proxy is [socat](http://www.dest-unreach.org/socat/). This would allow you to relay tcp connections to a pod running in k8s, and then port-forward them to your localhost.
+> If this sounds more appealing, install [krew-net-forward](https://github.com/antitree/krew-net-forward/tree/master) and then run "kubectl net-forward -i mydb.postgres.database.azure.com -p 5432 -l 5432" to access the database through "localhost:5432"
 
 [SOCKS](https://en.wikipedia.org/wiki/SOCKS) is a protocol that enables a way to proxy connections by exchanging network packets between the client and the server. There are many implementations and many readily available container images that can run a SOCKS server.
 
