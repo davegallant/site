@@ -1,4 +1,5 @@
 <footer>
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
   <div style="display: flex">
     {{- range $index, $key := .Site.Params.Social -}}
     <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}"
@@ -13,7 +14,6 @@
 </footer>
 {{ if not .Site.IsServer }} {{ template "_internal/google_analytics.html" . }}
 {{ end }} {{- if (isset .Site.Params "social") -}}
-
 <script>
   feather.replace();
 </script>
