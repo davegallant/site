@@ -5,17 +5,13 @@
   <nav>
     {{ range .Site.Menus.main }}
     <a href="{{ .URL }}">{{ .Name }}</a>
-    {{ end }} {{ if eq .Site.Params.mode "toggle" -}} |
-    <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
-    <script src="{{ .Site.BaseURL }}js/themetoggle.js"></script>
-    {{ end }}
+    {{ end }} {{ if eq .Site.Params.mode "toggle" -}}
   </nav>
   <script
     type="text/javascript"
     src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
   ></script>
-  <script type="text/javascript">
-    kofiwidget2.init("Buy me a coffee", "#a15bc2", "F1F2S4LWI");
-    kofiwidget2.draw();
-  </script>
+  <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
+  <script src="{{ .Site.BaseURL }}js/themetoggle.js"></script>
+  {{ end }}
 </header>

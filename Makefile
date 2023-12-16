@@ -9,13 +9,19 @@ ifeq ($(origin .RECIPEPREFIX), undefined)
 endif
 .RECIPEPREFIX = >
 
-build:
-> rm -rf public/
+build: clean
 > hugo
+> make index-pagefind
+
+clean:
+> rm -rf public/
 
 ## server: run server locally on port 1313 and open in a browser
 server:
 > hugo server --buildDrafts
+
+index-pagefind:
+> npx pagefind --source "public"
 
 ## help: Print this help message
 help:
