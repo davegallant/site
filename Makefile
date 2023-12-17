@@ -11,7 +11,6 @@ endif
 
 build: clean
 > hugo
-> make index-pagefind
 
 clean:
 > rm -rf public/
@@ -20,6 +19,7 @@ clean:
 server:
 > hugo server --buildDrafts
 
+## index-pagefind: Not yet implemented
 index-pagefind:
 > npx pagefind --source "public"
 
