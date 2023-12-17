@@ -5,12 +5,26 @@ lastmod: 2021-09-06T01:12:54-04:00
 draft: false
 keywords: []
 description: ""
-tags: ['tailscale', 'homelab', 'netdata', 'jellyfin', 'plex', 'pihole', 'virtualization', 'adguard', 'grafana']
+tags:
+  [
+    "tailscale",
+    "homelab",
+    "netdata",
+    "jellyfin",
+    "plex",
+    "pihole",
+    "virtualization",
+    "adguard",
+    "grafana",
+    "self-hosted",
+  ]
 author: "Dave Gallant"
 ---
 
-A homelab can be an inexpensive way to host a multitude of internal/external services and learn *a lot* in the process.
+A homelab can be an inexpensive way to host a multitude of internal/external services and learn _a lot_ in the process.
+
 <!--more-->
+
 Do you want host your own Media server? Ad blocker? Web server?
 Are you interested in learning more about Linux? Virtualization? Networking? Security?
 Building a homelab can be an entertaining playground to enhance your computer skills.
@@ -20,7 +34,7 @@ Having multiple machines/nodes provides the advantage of increased redundancy, b
 
 ## Virtualization
 
-Virtualizing your hardware is an organized way of dividing up your machine's resources. This can be done with something such as a *Virtual Machine* or something lighter like a container using *LXC* or *runC*.
+Virtualizing your hardware is an organized way of dividing up your machine's resources. This can be done with something such as a _Virtual Machine_ or something lighter like a container using _LXC_ or _runC_.
 Containers have much less overhead in terms of boot time and storage allocation. This [Stack Overflow answer](https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-virtual-machine) sums it up nicely.
 
 ![image](proxmox.png)

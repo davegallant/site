@@ -5,7 +5,16 @@ lastmod: 2022-12-10T21:46:55-05:00
 draft: false
 keywords: []
 description: ""
-tags: ["invidious", "degoogle", "youtube", "yewtu.be", "tailscale", "privacy"]
+tags:
+  [
+    "invidious",
+    "degoogle",
+    "youtube",
+    "yewtu.be",
+    "tailscale",
+    "privacy",
+    "self-hosted",
+  ]
 categories: []
 author: ""
 

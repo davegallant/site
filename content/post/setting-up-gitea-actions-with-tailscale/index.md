@@ -5,7 +5,7 @@ lastmod: 2023-12-10T17:22:11-05:00
 draft: false
 keywords: []
 description: ""
-tags: ["gitea", "gitea actions", "github actions", "tailscale"]
+tags: ["gitea", "gitea actions", "github actions", "tailscale", "self-hosted"]
 categories: []
 author: ""
 

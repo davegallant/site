@@ -5,7 +5,7 @@ lastmod: 2021-11-14T10:07:03-05:00
 draft: false
 keywords: []
 description: ""
-tags: ["k3s", "proxmox", "lxc"]
+tags: ["k3s", "proxmox", "lxc", "self-hosted"]
 categories: []
 author: ""
 
