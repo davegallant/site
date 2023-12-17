@@ -193,7 +193,7 @@ log:
 <p>Now it&rsquo;s time start running some automation. I used the <a href="https://docs.gitea.com/usage/actions/quickstart#use-actions">demo workflow</a> as a starting point to verify that the runner is executing workflows.</p>
 <p>After this, I wanted to make sure that some of my existing workflows could be migrated over.</p>
 <p>The following workflow uses a matrix to run a job for several of my hosts using ansible playbooks that will do various tasks such as patching os updates and updating container images.</p>
-<pre><code class="language-yaml">name: Run ansible playbooks
+<pre><code class="language-yaml">name: Run ansible
 on:
   push:
   schedule:
@@ -206,8 +206,7 @@ jobs:
       matrix:
         host:
           - changedetection
-          - grafana
-          - homer
+          - homelab
           - invidious
           - jackett
           - ladder
@@ -218,7 +217,7 @@ jobs:
           - uptime-kuma
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install ansible
         run: |
           apt update &amp;&amp; apt install ansible -y
@@ -230,7 +229,26 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY}}
           options: |
             --inventory inventory
+            --ssh-extra-args &quot;-o StrictHostKeyChecking=no&quot;
             --limit ${{ matrix.host }}
+  send-failure-notification:
+    needs: run-ansible-playbook
+    runs-on: ubuntu-latest
+    if: always() &amp;&amp; failure()
+    steps:
+      - name: Send failure notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: myuser
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: gitea job ${{github.repository}} failed!
+          to: me@davegallant.ca
+          from: Gitea
+          body: |
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}
 </code></pre>
 <p>And voilà:</p>
 <video controls preload="auto" width="100%"  playsinline class="html-video">
