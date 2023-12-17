@@ -20,8 +20,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.b242ee667697ab3e792722deba86ca7575ca26cc470cedac147b7fd89e24b22f.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.0b62b6a8c9bc96baf3dd0b8690823918769e50f96220bad87969bb570d1febfe.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.3547bd7f78e8240e2e642eaae27e96ba31dec26821aff923eb7ffc098ac3aaee.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.c0351bf49d41b33a222e1a32cc0387e850b010f77ab2d79a9d39c72c03afcfdb.css"  disabled />
 	
 
 	
@@ -68,7 +68,7 @@
 	
 		
 		
-		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom.d96bfb9e3314a7699144ab6ae7331d424cbd7fb34a2e890b17e7bb7db4e30f3a.css">
 		
 </head>
 <body>
@@ -91,6 +91,12 @@
   <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
   <script src="/js/themetoggle.js"></script>
   
+  
+
+    
+    <link href="/css/copy-code-button.min.css" rel="stylesheet">
+
+
 </header>
 
 <main>
@@ -110,49 +116,48 @@
 <p>A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious. There are several other hosted instances listed <a href="https://docs.invidious.io/instances/">here</a>, but being able to easily backup my own instance (including subscriptions and watch history) is more compelling in my case.</p>
 <h3 id="hosting-invidious">Hosting invidious<a href="#hosting-invidious" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>The quickest way to get invidious up is with docker-compose as mentioned in the <a href="https://docs.invidious.io/installation/">docs</a>.</p>
-<p>I made a few modifications (such as pinning the container&rsquo;s tag), and ended up with:</p>
-<pre><code class="language-yaml">version: &quot;3&quot;
-services:
-  invidious:
-    image: quay.io/invidious/invidious:5160d8bae39dc5cc5d51abee90571a03c08d0f2b
-    restart: unless-stopped
-    ports:
-      - &quot;0.0.0.0:3000:3000&quot;
-    environment:
-      INVIDIOUS_CONFIG: |
-        db:
-          dbname: invidious
-          user: kemal
-          password: kemal
-          host: invidious-db
-          port: 5432
-        check_tables: true
-    healthcheck:
-      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
-      interval: 30s
-      timeout: 5s
-      retries: 2
-    depends_on:
-      - invidious-db
-
-  invidious-db:
-    image: docker.io/library/postgres:14
-    restart: unless-stopped
-    volumes:
-      - postgresdata:/var/lib/postgresql/data
-      - ./config/sql:/config/sql
-      - ./docker/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh
-    environment:
-      POSTGRES_DB: invidious
-      POSTGRES_USER: kemal
-      POSTGRES_PASSWORD: kemal
-    healthcheck:
-      test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB&quot;]
-
-volumes:
-  postgresdata:
-</code></pre>
-<p>After invidious was up and running, I installed <a href="https://tailscale.com/">Tailscale</a> on it to leverage its MagicDNS, and I&rsquo;m now able to access this instance from anywhere at <a href="http://invidious:3000/feed/subscriptions">http://invidious:3000/feed/subscriptions</a>.</p>
+<p>I made a few modifications, and ended up with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#81a1c1">version</span><span style="color:#eceff4">:</span> <span style="color:#a3be8c">&#34;3&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">services</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">invidious</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">image</span><span style="color:#eceff4">:</span> quay.io/invidious/invidious
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">restart</span><span style="color:#eceff4">:</span> unless-stopped
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">ports</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#a3be8c">&#34;0.0.0.0:3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">environment</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">INVIDIOUS_CONFIG</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">|</span><span style="color:#616e87">
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">        db:
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">          dbname: invidious
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">          user: kemal
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">          password: kemal
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">          host: invidious-db
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">          port: 5432
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">        check_tables: true</span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">healthcheck</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">test</span><span style="color:#eceff4">:</span> wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">interval</span><span style="color:#eceff4">:</span> 30s
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">timeout</span><span style="color:#eceff4">:</span> 5s
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">retries</span><span style="color:#eceff4">:</span> <span style="color:#b48ead">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">depends_on</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - invidious-db
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">invidious-db</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">image</span><span style="color:#eceff4">:</span> docker.io/library/postgres:14
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">restart</span><span style="color:#eceff4">:</span> unless-stopped
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">volumes</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - postgresdata:/var/lib/postgresql/data
+</span></span><span style="display:flex;"><span>      - ./config/sql:/config/sql
+</span></span><span style="display:flex;"><span>      - ./docker/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">environment</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">POSTGRES_DB</span><span style="color:#eceff4">:</span> invidious
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">POSTGRES_USER</span><span style="color:#eceff4">:</span> kemal
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">POSTGRES_PASSWORD</span><span style="color:#eceff4">:</span> kemal
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">healthcheck</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">test</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">[</span><span style="color:#a3be8c">&#34;CMD-SHELL&#34;</span><span style="color:#eceff4">,</span> <span style="color:#a3be8c">&#34;pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB&#34;</span><span style="color:#eceff4">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">volumes</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">postgresdata</span><span style="color:#eceff4">:</span>
+</span></span></code></pre></div><p>After invidious was up and running, I installed <a href="https://tailscale.com/">Tailscale</a> on it to leverage its MagicDNS, and I&rsquo;m now able to access this instance from anywhere at <a href="http://invidious:3000/feed/subscriptions">http://invidious:3000/feed/subscriptions</a>.</p>
 <h3 id="redirecting-youtube-links">Redirecting YouTube links<a href="#redirecting-youtube-links" class="hanchor" ariaLabel="Anchor">#</a></h3>
 <p>I figured it would be nice to redirect existing YouTube links that others send me, so that I could seamlessly watch the videos using invidious.</p>
 <p>I went looking for a way to redirect paths at the browser level. I found the lightweight proxy <a href="https://requestly.io/">requestly</a>, which can be used to modify http requests in my browser. I created the following rules:</p>
@@ -239,6 +244,9 @@ volumes:
   <div class="footer-info">
     2023  Dave Gallant 
   </div>
+  
+  <script src="/js/copy-code-button.js"></script>
+  
 </footer>
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WJDERTX9"></script>

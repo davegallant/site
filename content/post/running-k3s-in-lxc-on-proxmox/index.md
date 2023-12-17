@@ -29,7 +29,6 @@ flowchartDiagrams:
 sequenceDiagrams:
   enable: false
   options: ""
-
 ---
 
 <!--more-->
@@ -48,9 +47,9 @@ This [gist](https://gist.github.com/triangletodd/02f595cd4c0dc9aac5f7763ca226418
 
 There is an issue on Kubernetes regarding swap [here](https://github.com/kubernetes/kubernetes/issues/53533). There claims to be support for swap in 1.22, but for now let's disable it:
 
-```
-sysctl vm.swappiness=0
-swapoff -a
+```shell
+sudo sysctl vm.swappiness=0
+sudo swapoff -a
 ```
 
 It might be worth experimenting with swap enabled in the future to see how that might affect performance.
@@ -59,7 +58,7 @@ It might be worth experimenting with swap enabled in the future to see how that 
 
 To avoid IP Forwarding issues with Traefik, run the following on the host:
 
-```sh
+```shell
 sudo sysctl net.ipv4.ip_forward=1
 sudo sysctl net.ipv6.conf.all.forwarding=1
 sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
@@ -81,7 +80,7 @@ Now back on the host run `pct list` to determine what VMID it was given.
 
 Open `/etc/pve/lxc/$VMID.conf` and append:
 
-```sh
+```
 lxc.apparmor.profile: unconfined
 lxc.cap.drop:
 lxc.mount.auto: "proc:rw sys:rw"
@@ -92,6 +91,7 @@ All of the above configurations are described in the [manpages](https://linuxcon
 Notice that `cgroup2` is used since Proxmox VE 7.0 has switched to a [pure cgroupv2 environment](https://pve.proxmox.com/pve-docs/chapter-pct.html#pct_cgroup).
 
 Thankfully cgroup v2 support has been supported in k3s with these contributions:
+
 - https://github.com/k3s-io/k3s/pull/2584
 - https://github.com/k3s-io/k3s/pull/2844
 
@@ -99,7 +99,7 @@ Thankfully cgroup v2 support has been supported in k3s with these contributions:
 
 From within the container, run:
 
-```sh
+```shell
 echo '#!/bin/sh -e
 ln -s /dev/console /dev/kmsg
 mount --make-rshared /' > /etc/rc.local
@@ -113,7 +113,7 @@ One of the simplest ways to install K3s on a remote host is to use [k3sup](https
 Ensure that you supply a valid `CONTAINER_IP` and choose the `k3s-version` you prefer.
 As of 2021/11, it is still defaulting to the 1.19 channel, so I overrode it to 1.22 for cgroup v2 support. See the published releases [here](https://github.com/k3s-io/k3s/releases).
 
-```sh
+```shell
 ssh-copy-id root@$CONTAINER_IP
 k3sup install --ip $CONTAINER_IP --user root --k3s-version v1.22.3+k3s1
 ```
@@ -123,7 +123,6 @@ If all goes well, you should see a path to the `kubeconfig` generated. I moved t
 ## Wrapping up
 
 Installing K3s in LXC on Proxmox works with a few tweaks to the default configuration. I later followed the Tekton's [Getting Started](https://tekton.dev/docs/getting-started/) guide and was able to deploy it in a few commands.
-
 
 ```console
 $ kubectl get all --namespace tekton-pipelines
