@@ -1,5 +1,5 @@
 ---
-title: "Using AKS and SOCKS to connect to a Private Azure DB"
+title: "Using AKS and SOCKS to connect to a private Azure DB"
 date: 2023-05-22T16:31:29-04:00
 lastmod: 2023-05-22T16:31:29-04:00
 draft: false

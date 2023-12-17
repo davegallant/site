@@ -1,5 +1,5 @@
 ---
-title: "Backing Up Gmail With Synology"
+title: "Backing up gmail with Synology"
 date: 2022-03-13T18:49:10-04:00
 lastmod: 2022-03-13T18:49:10-04:00
 draft: false

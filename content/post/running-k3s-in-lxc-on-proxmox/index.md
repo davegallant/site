@@ -1,5 +1,5 @@
 ---
-title: "Running K3s in LXC on Proxmox"
+title: "Running k3s in LXC on Proxmox"
 date: 2021-11-14T10:07:03-05:00
 lastmod: 2021-11-14T10:07:03-05:00
 draft: false

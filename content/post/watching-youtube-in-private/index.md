@@ -1,5 +1,5 @@
 ---
-title: "Watching YouTube in Private"
+title: "Watching YouTube in private"
 date: 2022-12-10T21:46:55-05:00
 lastmod: 2022-12-10T21:46:55-05:00
 draft: false
