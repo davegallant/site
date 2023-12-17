@@ -1,5 +1,5 @@
 ---
-title: "Automatically Rotating AWS Access Keys"
+title: "Automatically rotating AWS access keys"
 date: 2021-09-17T12:48:33-04:00
 lastmod: 2021-09-17T12:48:33-04:00
 draft: false

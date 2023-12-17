@@ -10,7 +10,7 @@
     <lastBuildDate>Fri, 17 Sep 2021 12:48:33 -0400</lastBuildDate>
     <atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Automatically Rotating AWS Access Keys</title>
+      <title>Automatically rotating AWS access keys</title>
       <link>/blog/2021/09/17/automatically-rotating-aws-access-keys/</link>
       <pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate>
       <guid>/blog/2021/09/17/automatically-rotating-aws-access-keys/</guid>
