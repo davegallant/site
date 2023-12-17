@@ -155,7 +155,7 @@ After this, I wanted to make sure that some of my existing workflows could be mi
 The following workflow uses a matrix to run a job for several of my hosts using ansible playbooks that will do various tasks such as patching os updates and updating container images.
 
 ```yaml
-name: Run ansible playbooks
+name: Run ansible
 on:
   push:
   schedule:
@@ -168,8 +168,7 @@ jobs:
       matrix:
         host:
           - changedetection
-          - grafana
-          - homer
+          - homelab
           - invidious
           - jackett
           - ladder
@@ -180,7 +179,7 @@ jobs:
           - uptime-kuma
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install ansible
         run: |
           apt update && apt install ansible -y
@@ -192,7 +191,26 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY}}
           options: |
             --inventory inventory
+            --ssh-extra-args "-o StrictHostKeyChecking=no"
             --limit ${{ matrix.host }}
+  send-failure-notification:
+    needs: run-ansible-playbook
+    runs-on: ubuntu-latest
+    if: always() && failure()
+    steps:
+      - name: Send failure notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: myuser
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: gitea job ${{github.repository}} failed!
+          to: me@davegallant.ca
+          from: Gitea
+          body: |
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}
 ```
 
 And voilà:
