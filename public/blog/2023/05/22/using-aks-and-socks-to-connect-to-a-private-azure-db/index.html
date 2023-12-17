@@ -20,8 +20,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.b242ee667697ab3e792722deba86ca7575ca26cc470cedac147b7fd89e24b22f.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.0b62b6a8c9bc96baf3dd0b8690823918769e50f96220bad87969bb570d1febfe.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.3547bd7f78e8240e2e642eaae27e96ba31dec26821aff923eb7ffc098ac3aaee.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.c0351bf49d41b33a222e1a32cc0387e850b010f77ab2d79a9d39c72c03afcfdb.css"  disabled />
 	
 
 	
@@ -68,7 +68,7 @@
 	
 		
 		
-		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom.d96bfb9e3314a7699144ab6ae7331d424cbd7fb34a2e890b17e7bb7db4e30f3a.css">
 		
 </head>
 <body>
@@ -91,6 +91,12 @@
   <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
   <script src="/js/themetoggle.js"></script>
   
+  
+
+    
+    <link href="/css/copy-code-button.min.css" rel="stylesheet">
+
+
 </header>
 
 <main>
@@ -124,15 +130,14 @@ If this sounds more appealing, install <a href="https://github.com/antitree/krew
 <p>It&rsquo;s possible to use this sort of proxy to connect to a private DB, but is it any simpler than using a virtual machine as a jumphost? It wasn&rsquo;t until I stumbled upon <a href="https://github.com/yokawasa/kubectl-plugin-socks5-proxy">kubectl-plugin-socks5-proxy</a> that I was convinced that using SOCKS could be made simple.</p>
 <p>So how does it work? By installing the kubectl plugin and then running <code>kubectl socks5-proxy</code>, a SOCKS proxy server is spun up in a pod and then opens up port-forwarding session using kubectl.</p>
 <p>As you can see below, this k8s plugin is wrapped up nicely:</p>
-<pre><code class="language-console">$ kubectl socks5-proxy
-using: namespace=default
-using: port=1080
-using: name=davegallant-proxy
-using: image=serjs/go-socks5-proxy
-Creating SOCKS5 Proxy (Pod)...
-pod/davegallant-proxy created
-</code></pre>
-<p>With the above proxy connection open, it is possible to access both the DNS and private IPs accessible within the k8s cluster. In this case, I am able to access the private database, since there is network connectivity between the k8s cluster and the database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span><span style="color:#4c566a;font-weight:bold">$</span> kubectl socks5-proxy
+</span></span><span style="display:flex;"><span>using: namespace=default
+</span></span><span style="display:flex;"><span>using: port=1080
+</span></span><span style="display:flex;"><span>using: name=davegallant-proxy
+</span></span><span style="display:flex;"><span>using: image=serjs/go-socks5-proxy
+</span></span><span style="display:flex;"><span>Creating SOCKS5 Proxy (Pod)...
+</span></span><span style="display:flex;"><span>pod/davegallant-proxy created
+</span></span></code></pre></div><p>With the above proxy connection open, it is possible to access both the DNS and private IPs accessible within the k8s cluster. In this case, I am able to access the private database, since there is network connectivity between the k8s cluster and the database.</p>
 <h2 id="caveats-and-conclusion">Caveats and Conclusion<a href="#caveats-and-conclusion" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>The above outlined solution makes some assumptions:</p>
 <ul>
@@ -232,6 +237,9 @@ pod/davegallant-proxy created
   <div class="footer-info">
     2023  Dave Gallant 
   </div>
+  
+  <script src="/js/copy-code-button.js"></script>
+  
 </footer>
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WJDERTX9"></script>

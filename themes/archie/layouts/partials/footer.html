@@ -11,6 +11,9 @@
   <div class="footer-info">
     {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} {{ end }}
   </div>
+  {{ if (findRE "<pre" .Content 1) }}
+  <script src="/js/copy-code-button.js"></script>
+  {{ end }}
 </footer>
 {{ if not .Site.IsServer }} {{ template "_internal/google_analytics.html" . }}
 {{ end }} {{- if (isset .Site.Params "social") -}}

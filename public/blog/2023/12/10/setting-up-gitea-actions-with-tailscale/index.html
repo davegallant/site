@@ -20,8 +20,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.b242ee667697ab3e792722deba86ca7575ca26cc470cedac147b7fd89e24b22f.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.0b62b6a8c9bc96baf3dd0b8690823918769e50f96220bad87969bb570d1febfe.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.3547bd7f78e8240e2e642eaae27e96ba31dec26821aff923eb7ffc098ac3aaee.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.c0351bf49d41b33a222e1a32cc0387e850b010f77ab2d79a9d39c72c03afcfdb.css"  disabled />
 	
 
 	
@@ -68,7 +68,7 @@
 	
 		
 		
-		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom.d96bfb9e3314a7699144ab6ae7331d424cbd7fb34a2e890b17e7bb7db4e30f3a.css">
 		
 </head>
 <body>
@@ -91,6 +91,12 @@
   <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
   <script src="/js/themetoggle.js"></script>
   
+  
+
+    
+    <link href="/css/copy-code-button.min.css" rel="stylesheet">
+
+
 </header>
 
 <main>
@@ -122,68 +128,65 @@
 </ul>
 <p>My preferred approach to deploying code in a homelab environment is with docker compose. I have deployed this in a <a href="https://pve.proxmox.com/wiki/Linux_Container">proxmox lxc container</a> based on debian with a hostname <code>gitea</code>. This could be deployed in any environment and with any hostname (as long you updated the tailscale machine name to your preferred subdomain for magic dns).</p>
 <p>The <code>docker-compose.yaml</code> file looks like:</p>
-<pre><code class="language-yaml">version: &quot;3.7&quot;
-services:
-  gitea:
-    image: gitea/gitea:1.21.1
-    container_name: gitea
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
-
-      - GITEA__server__DOMAIN=gitea.my-tailnet-name.ts.net
-      - GITEA__server__ROOT_URL=https://gitea.my-tailnet-name.ts.net
-      - GITEA__server__HTTP_ADDR=0.0.0.0
-      - GITEA__server__LFS_JWT_SECRET=my-secret-jwt
-    restart: always
-    volumes:
-      - ./data:/data
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-  traefik:
-    image: traefik:v3.0.0-beta4
-    container_name: traefik
-    security_opt:
-      - no-new-privileges:true
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./traefik/data/traefik.yaml:/traefik.yaml:ro
-      - ./traefik/data/dynamic.yaml:/dynamic.yaml:ro
-      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
-</code></pre>
-<p><code>traefik/data/traefik.yaml</code>:</p>
-<pre><code class="language-yaml">entryPoints:
-  https:
-    address: &quot;:443&quot;
-providers:
-  file:
-    filename: dynamic.yaml
-certificatesResolvers:
-  myresolver:
-    tailscale: {}
-log:
-  level: INFO
-</code></pre>
-<p>and finally <code>traefik/data/dynamic/dynamic.yaml</code>:</p>
-<pre><code class="language-yaml">http:
-  routers:
-    gitea:
-      rule: Host(`gitea.my-tailnet-name.ts.net`)
-      entrypoints:
-        - &quot;https&quot;
-      service: gitea
-      tls:
-        certResolver: myresolver
-  services:
-    gitea:
-      loadBalancer:
-        servers:
-          - url: &quot;http://gitea:3000&quot;
-</code></pre>
-<p>Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use <a href="https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough">ssh container passthrough</a>. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#81a1c1">version</span><span style="color:#eceff4">:</span> <span style="color:#a3be8c">&#34;3.7&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">services</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">gitea</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">image</span><span style="color:#eceff4">:</span> gitea/gitea:1.21.1
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">container_name</span><span style="color:#eceff4">:</span> gitea
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">environment</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - USER_UID=1000
+</span></span><span style="display:flex;"><span>      - USER_GID=1000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - GITEA__server__DOMAIN=gitea.my-tailnet-name.ts.net
+</span></span><span style="display:flex;"><span>      - GITEA__server__ROOT_URL=https://gitea.my-tailnet-name.ts.net
+</span></span><span style="display:flex;"><span>      - GITEA__server__HTTP_ADDR=0.0.0.0
+</span></span><span style="display:flex;"><span>      - GITEA__server__LFS_JWT_SECRET=my-secret-jwt
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">restart</span><span style="color:#eceff4">:</span> always
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">volumes</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - ./data:/data
+</span></span><span style="display:flex;"><span>      - /etc/timezone:/etc/timezone:ro
+</span></span><span style="display:flex;"><span>      - /etc/localtime:/etc/localtime:ro
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">traefik</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">image</span><span style="color:#eceff4">:</span> traefik:v3.0.0-beta4
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">container_name</span><span style="color:#eceff4">:</span> traefik
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">security_opt</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#81a1c1;font-weight:bold">no</span>-new-privileges:true
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">restart</span><span style="color:#eceff4">:</span> unless-stopped
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">ports</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#b48ead">80</span><span style="color:#eceff4">:</span><span style="color:#b48ead">80</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#b48ead">443</span><span style="color:#eceff4">:</span><span style="color:#b48ead">443</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">volumes</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - ./traefik/data/traefik.yaml:/traefik.yaml:ro
+</span></span><span style="display:flex;"><span>      - ./traefik/data/dynamic.yaml:/dynamic.yaml:ro
+</span></span><span style="display:flex;"><span>      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+</span></span></code></pre></div><p><code>traefik/data/traefik.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#81a1c1">entryPoints</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">https</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">address</span><span style="color:#eceff4">:</span> <span style="color:#a3be8c">&#34;:443&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">providers</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">file</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">filename</span><span style="color:#eceff4">:</span> dynamic.yaml
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">certificatesResolvers</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">myresolver</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">tailscale</span><span style="color:#eceff4">:</span> {}
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">log</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">level</span><span style="color:#eceff4">:</span> INFO
+</span></span></code></pre></div><p>and finally <code>traefik/data/dynamic/dynamic.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#81a1c1">http</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">routers</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">gitea</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">rule</span><span style="color:#eceff4">:</span> Host(`gitea.my-tailnet-name.ts.net`)
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">entrypoints</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#a3be8c">&#34;https&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">service</span><span style="color:#eceff4">:</span> gitea
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">tls</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">certResolver</span><span style="color:#eceff4">:</span> myresolver
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">services</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">gitea</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">loadBalancer</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">servers</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#81a1c1">url</span><span style="color:#eceff4">:</span> <span style="color:#a3be8c">&#34;http://gitea:3000&#34;</span>
+</span></span></code></pre></div><p>Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use <a href="https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough">ssh container passthrough</a>. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.</p>
 <p>After adding the above configuration, running <code>docker compose up -d</code> should be enough to get an instance up and running. It will be accessible at <a href="https://gitea.my-tailnet-name.ts.net">https://gitea.my-tailnet-name.ts.net</a> from within the tailnet.</p>
 <h2 id="connecting-a-runner">Connecting a Runner<a href="#connecting-a-runner" class="hanchor" ariaLabel="Anchor">#</a></h2>
 <p>I installed the runner by <a href="https://docs.gitea.com/usage/actions/quickstart#set-up-runner">following the docs</a>. I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this act runner as well, so that it can have the same &ldquo;networking privileges&rdquo; as the main instance.</p>
@@ -193,64 +196,63 @@ log:
 <p>Now it&rsquo;s time start running some automation. I used the <a href="https://docs.gitea.com/usage/actions/quickstart#use-actions">demo workflow</a> as a starting point to verify that the runner is executing workflows.</p>
 <p>After this, I wanted to make sure that some of my existing workflows could be migrated over.</p>
 <p>The following workflow uses a matrix to run a job for several of my hosts using ansible playbooks that will do various tasks such as patching os updates and updating container images.</p>
-<pre><code class="language-yaml">name: Run ansible
-on:
-  push:
-  schedule:
-    - cron: &quot;0 */12 * * *&quot;
-
-jobs:
-  run-ansible-playbook:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        host:
-          - changedetection
-          - homelab
-          - invidious
-          - jackett
-          - ladder
-          - miniflux
-          - plex
-          - qbittorrent
-          - tailscale-exit-node
-          - uptime-kuma
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Install ansible
-        run: |
-          apt update &amp;&amp; apt install ansible -y
-      - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          playbook: playbooks/main.yml
-          requirements: requirements.yml
-          key: ${{ secrets.SSH_PRIVATE_KEY}}
-          options: |
-            --inventory inventory
-            --ssh-extra-args &quot;-o StrictHostKeyChecking=no&quot;
-            --limit ${{ matrix.host }}
-  send-failure-notification:
-    needs: run-ansible-playbook
-    runs-on: ubuntu-latest
-    if: always() &amp;&amp; failure()
-    steps:
-      - name: Send failure notification
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: myuser
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: gitea job ${{github.repository}} failed!
-          to: me@davegallant.ca
-          from: Gitea
-          body: |
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}
-</code></pre>
-<p>And voilà:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#81a1c1">name</span><span style="color:#eceff4">:</span> Run ansible
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">on</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">push</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">schedule</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#81a1c1">cron</span><span style="color:#eceff4">:</span> <span style="color:#a3be8c">&#34;0 */12 * * *&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">jobs</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">run-ansible-playbook</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">runs-on</span><span style="color:#eceff4">:</span> ubuntu-latest
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">strategy</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#81a1c1">matrix</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">host</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>          - changedetection
+</span></span><span style="display:flex;"><span>          - homelab
+</span></span><span style="display:flex;"><span>          - invidious
+</span></span><span style="display:flex;"><span>          - jackett
+</span></span><span style="display:flex;"><span>          - ladder
+</span></span><span style="display:flex;"><span>          - miniflux
+</span></span><span style="display:flex;"><span>          - plex
+</span></span><span style="display:flex;"><span>          - qbittorrent
+</span></span><span style="display:flex;"><span>          - tailscale-exit-node
+</span></span><span style="display:flex;"><span>          - uptime-kuma
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">steps</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#81a1c1">name</span><span style="color:#eceff4">:</span> Check out repository code
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">uses</span><span style="color:#eceff4">:</span> actions/checkout@v4
+</span></span><span style="display:flex;"><span>      - <span style="color:#81a1c1">name</span><span style="color:#eceff4">:</span> Install ansible
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">run</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">|</span><span style="color:#616e87">
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">          apt update &amp;&amp; apt install ansible -y</span>          
+</span></span><span style="display:flex;"><span>      - <span style="color:#81a1c1">name</span><span style="color:#eceff4">:</span> Run playbook
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">uses</span><span style="color:#eceff4">:</span> dawidd6/action-ansible-playbook@v2
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">with</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">playbook</span><span style="color:#eceff4">:</span> playbooks/main.yml
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">requirements</span><span style="color:#eceff4">:</span> requirements.yml
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">key</span><span style="color:#eceff4">:</span> ${{ secrets.SSH_PRIVATE_KEY}}
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">options</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">|</span><span style="color:#616e87">
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">            --inventory inventory
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">            --ssh-extra-args &#34;-o StrictHostKeyChecking=no&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">            --limit ${{ matrix.host }}</span>            
+</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">send-failure-notification</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">needs</span><span style="color:#eceff4">:</span> run-ansible-playbook
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">runs-on</span><span style="color:#eceff4">:</span> ubuntu-latest
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">if</span><span style="color:#eceff4">:</span> always() &amp;&amp; failure()
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">steps</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#81a1c1">name</span><span style="color:#eceff4">:</span> Send failure notification
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">uses</span><span style="color:#eceff4">:</span> dawidd6/action-send-mail@v3
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">with</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">server_address</span><span style="color:#eceff4">:</span> smtp.gmail.com
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">server_port</span><span style="color:#eceff4">:</span> <span style="color:#b48ead">465</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">secure</span><span style="color:#eceff4">:</span> <span style="color:#81a1c1;font-weight:bold">true</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">username</span><span style="color:#eceff4">:</span> myuser
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">password</span><span style="color:#eceff4">:</span> ${{ secrets.MAIL_PASSWORD }}
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">subject</span><span style="color:#eceff4">:</span> gitea job ${{github.repository}} failed!
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">to</span><span style="color:#eceff4">:</span> me@davegallant.ca
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">from</span><span style="color:#eceff4">:</span> Gitea
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">body</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">|</span><span style="color:#616e87">
+</span></span></span><span style="display:flex;"><span><span style="color:#616e87">            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}</span>            
+</span></span></code></pre></div><p>And voilà:</p>
 <video controls preload="auto" width="100%"  playsinline class="html-video">
     <source src="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-workflow.webm" type="video/webm">
   <span>Your browser doesn't support embedded videos, but don't worry, you can <a href="/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/gitea-workflow.webm">download it</a> and watch it with your favorite video player!</span>
@@ -336,6 +338,9 @@ jobs:
   <div class="footer-info">
     2023  Dave Gallant 
   </div>
+  
+  <script src="/js/copy-code-button.js"></script>
+  
 </footer>
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WJDERTX9"></script>

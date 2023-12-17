@@ -56,13 +56,13 @@ A few days ago, yewtu.be went down briefly, and that motivated me enough to self
 
 The quickest way to get invidious up is with docker-compose as mentioned in the [docs](https://docs.invidious.io/installation/).
 
-I made a few modifications (such as pinning the container's tag), and ended up with:
+I made a few modifications, and ended up with:
 
 ```yaml
 version: "3"
 services:
   invidious:
-    image: quay.io/invidious/invidious:5160d8bae39dc5cc5d51abee90571a03c08d0f2b
+    image: quay.io/invidious/invidious
     restart: unless-stopped
     ports:
       - "0.0.0.0:3000:3000"

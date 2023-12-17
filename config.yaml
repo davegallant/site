@@ -4,8 +4,8 @@ languageCode: en-us
 googleAnalytics: G-V8WJDERTX9
 copyright: Dave Gallant
 preserveTaxonomyNames: true
-pygmentsstyle: "monokai"
-pygmentscodefences: false
+pygmentsstyle: nord
+pygmentscodefences: true
 pygmentscodefencesguesssyntax: true
 theme:
   - archie

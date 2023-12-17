@@ -20,8 +20,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.b242ee667697ab3e792722deba86ca7575ca26cc470cedac147b7fd89e24b22f.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.0b62b6a8c9bc96baf3dd0b8690823918769e50f96220bad87969bb570d1febfe.css"  disabled />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.3547bd7f78e8240e2e642eaae27e96ba31dec26821aff923eb7ffc098ac3aaee.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="/css/dark.c0351bf49d41b33a222e1a32cc0387e850b010f77ab2d79a9d39c72c03afcfdb.css"  disabled />
 	
 
 	
@@ -68,7 +68,7 @@
 	
 		
 		
-		<link rel="stylesheet" type="text/css" href="/css/custom.2e59ff60a2d9c7e42e3c1af2aff0ba627da46f910a234867e98d178eb05c87dc.css">
+		<link rel="stylesheet" type="text/css" href="/css/custom.d96bfb9e3314a7699144ab6ae7331d424cbd7fb34a2e890b17e7bb7db4e30f3a.css">
 		
 </head>
 <body>
@@ -91,6 +91,12 @@
   <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
   <script src="/js/themetoggle.js"></script>
   
+  
+
+    
+    <link href="/css/copy-code-button.min.css" rel="stylesheet">
+
+
 </header>
 
 <main>
@@ -109,93 +115,81 @@ As of right now, the latest AUR is <code>4.2.2-1</code>.</p>
 <p>These steps highlight how to get it working with <code>Python3.8</code> by making a 1 line modification to AppGate source code.</p>
 <h1 id="packaging">Packaging</h1>
 <p>We already know the community package is currently out of date, so let&rsquo;s clone it:</p>
-<pre><code class="language-shell">git clone https://aur.archlinux.org/appgate-sdp.git
-cd appgate-sdp
-</code></pre>
-<p>You&rsquo;ll likely notice that the version is not what we want, so let&rsquo;s modify the <code>PKGBUILD</code> to the following:</p>
-<pre><code class="language-shell"># Maintainer: Pawel Mosakowski &lt;pawel at mosakowski dot net&gt;
-pkgname=appgate-sdp
-conflicts=('appgate-sdp-headless')
-pkgver=4.3.2
-_download_pkgver=4.3
-pkgrel=1
-epoch=
-pkgdesc=&quot;Software Defined Perimeter - GUI client&quot;
-arch=('x86_64')
-url=&quot;https://www.cyxtera.com/essential-defense/appgate-sdp/support&quot;
-license=('custom')
-# dependecies calculated by namcap
-depends=('gconf' 'libsecret' 'gtk3' 'python' 'nss' 'libxss' 'nodejs' 'dnsmasq')
-source=(&quot;https://sdpdownloads.cyxtera.com/AppGate-SDP-${_download_pkgver}/clients/${pkgname}_${pkgver}_amd64.deb&quot;
-        &quot;appgatedriver.service&quot;)
-options=(staticlibs)
-prepare() {
-    tar -xf data.tar.xz
-}
-package() {
-    cp -dpr &quot;${srcdir}&quot;/{etc,lib,opt,usr} &quot;${pkgdir}&quot;
-    mv -v &quot;$pkgdir/lib/systemd/system&quot; &quot;$pkgdir/usr/lib/systemd/&quot;
-    rm -vrf &quot;$pkgdir/lib&quot;
-    cp -v &quot;$srcdir/appgatedriver.service&quot; &quot;$pkgdir/usr/lib/systemd/system/appgatedriver.service&quot;
-    mkdir -vp &quot;$pkgdir/usr/share/licenses/appgate-sdp&quot;
-    cp -v &quot;$pkgdir/usr/share/doc/appgate/copyright&quot; &quot;$pkgdir/usr/share/licenses/appgate-sdp&quot;
-    cp -v &quot;$pkgdir/usr/share/doc/appgate/LICENSE.github&quot; &quot;$pkgdir/usr/share/licenses/appgate-sdp&quot;
-    cp -v &quot;$pkgdir/usr/share/doc/appgate/LICENSES.chromium.html.bz2&quot; &quot;$pkgdir/usr/share/licenses/appgate-sdp&quot;
-}
-md5sums=('17101aac7623c06d5fbb95f50cf3dbdc'
-         '002644116e20b2d79fdb36b7677ab4cf')
-
-</code></pre>
-<p>Let&rsquo;s first make sure we have some dependencies. If you do not have <a href="https://github.com/Jguer/yay">yay</a>, check it out.</p>
-<pre><code class="language-shell">yay -S dnsmasq gconf
-</code></pre>
-<p>Now, let&rsquo;s install it:</p>
-<pre><code class="language-shell">makepkg -si
-</code></pre>
-<h1 id="running-the-client">Running the client</h1>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://aur.archlinux.org/appgate-sdp.git
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">cd</span> appgate-sdp
+</span></span></code></pre></div><p>You&rsquo;ll likely notice that the version is not what we want, so let&rsquo;s modify the <code>PKGBUILD</code> to the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Maintainer: Pawel Mosakowski &lt;pawel at mosakowski dot net&gt;</span>
+</span></span><span style="display:flex;"><span>pkgname<span style="color:#81a1c1">=</span>appgate-sdp
+</span></span><span style="display:flex;"><span>conflicts<span style="color:#81a1c1">=(</span><span style="color:#a3be8c">&#39;appgate-sdp-headless&#39;</span><span style="color:#81a1c1">)</span>
+</span></span><span style="display:flex;"><span>pkgver<span style="color:#81a1c1">=</span>4.3.2
+</span></span><span style="display:flex;"><span>_download_pkgver<span style="color:#81a1c1">=</span>4.3
+</span></span><span style="display:flex;"><span>pkgrel<span style="color:#81a1c1">=</span><span style="color:#b48ead">1</span>
+</span></span><span style="display:flex;"><span>epoch<span style="color:#81a1c1">=</span>
+</span></span><span style="display:flex;"><span>pkgdesc<span style="color:#81a1c1">=</span><span style="color:#a3be8c">&#34;Software Defined Perimeter - GUI client&#34;</span>
+</span></span><span style="display:flex;"><span>arch<span style="color:#81a1c1">=(</span><span style="color:#a3be8c">&#39;x86_64&#39;</span><span style="color:#81a1c1">)</span>
+</span></span><span style="display:flex;"><span>url<span style="color:#81a1c1">=</span><span style="color:#a3be8c">&#34;https://www.cyxtera.com/essential-defense/appgate-sdp/support&#34;</span>
+</span></span><span style="display:flex;"><span>license<span style="color:#81a1c1">=(</span><span style="color:#a3be8c">&#39;custom&#39;</span><span style="color:#81a1c1">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># dependecies calculated by namcap</span>
+</span></span><span style="display:flex;"><span>depends<span style="color:#81a1c1">=(</span><span style="color:#a3be8c">&#39;gconf&#39;</span> <span style="color:#a3be8c">&#39;libsecret&#39;</span> <span style="color:#a3be8c">&#39;gtk3&#39;</span> <span style="color:#a3be8c">&#39;python&#39;</span> <span style="color:#a3be8c">&#39;nss&#39;</span> <span style="color:#a3be8c">&#39;libxss&#39;</span> <span style="color:#a3be8c">&#39;nodejs&#39;</span> <span style="color:#a3be8c">&#39;dnsmasq&#39;</span><span style="color:#81a1c1">)</span>
+</span></span><span style="display:flex;"><span>source<span style="color:#81a1c1">=(</span><span style="color:#a3be8c">&#34;https://sdpdownloads.cyxtera.com/AppGate-SDP-</span><span style="color:#a3be8c">${</span>_download_pkgver<span style="color:#a3be8c">}</span><span style="color:#a3be8c">/clients/</span><span style="color:#a3be8c">${</span>pkgname<span style="color:#a3be8c">}</span><span style="color:#a3be8c">_</span><span style="color:#a3be8c">${</span>pkgver<span style="color:#a3be8c">}</span><span style="color:#a3be8c">_amd64.deb&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a3be8c">&#34;appgatedriver.service&#34;</span><span style="color:#81a1c1">)</span>
+</span></span><span style="display:flex;"><span>options<span style="color:#81a1c1">=(</span>staticlibs<span style="color:#81a1c1">)</span>
+</span></span><span style="display:flex;"><span>prepare<span style="color:#81a1c1">()</span> <span style="color:#81a1c1">{</span>
+</span></span><span style="display:flex;"><span>    tar -xf data.tar.xz
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">}</span>
+</span></span><span style="display:flex;"><span>package<span style="color:#81a1c1">()</span> <span style="color:#81a1c1">{</span>
+</span></span><span style="display:flex;"><span>    cp -dpr <span style="color:#a3be8c">&#34;</span><span style="color:#a3be8c">${</span>srcdir<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span>/<span style="color:#81a1c1">{</span>etc,lib,opt,usr<span style="color:#81a1c1">}</span> <span style="color:#a3be8c">&#34;</span><span style="color:#a3be8c">${</span>pkgdir<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    mv -v <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/lib/systemd/system&#34;</span> <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/lib/systemd/&#34;</span>
+</span></span><span style="display:flex;"><span>    rm -vrf <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/lib&#34;</span>
+</span></span><span style="display:flex;"><span>    cp -v <span style="color:#a3be8c">&#34;</span>$srcdir<span style="color:#a3be8c">/appgatedriver.service&#34;</span> <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/lib/systemd/system/appgatedriver.service&#34;</span>
+</span></span><span style="display:flex;"><span>    mkdir -vp <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/licenses/appgate-sdp&#34;</span>
+</span></span><span style="display:flex;"><span>    cp -v <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/doc/appgate/copyright&#34;</span> <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/licenses/appgate-sdp&#34;</span>
+</span></span><span style="display:flex;"><span>    cp -v <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/doc/appgate/LICENSE.github&#34;</span> <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/licenses/appgate-sdp&#34;</span>
+</span></span><span style="display:flex;"><span>    cp -v <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/doc/appgate/LICENSES.chromium.html.bz2&#34;</span> <span style="color:#a3be8c">&#34;</span>$pkgdir<span style="color:#a3be8c">/usr/share/licenses/appgate-sdp&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">}</span>
+</span></span><span style="display:flex;"><span>md5sums<span style="color:#81a1c1">=(</span><span style="color:#a3be8c">&#39;17101aac7623c06d5fbb95f50cf3dbdc&#39;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#a3be8c">&#39;002644116e20b2d79fdb36b7677ab4cf&#39;</span><span style="color:#81a1c1">)</span>
+</span></span></code></pre></div><p>Let&rsquo;s first make sure we have some dependencies. If you do not have <a href="https://github.com/Jguer/yay">yay</a>, check it out.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>yay -S dnsmasq gconf
+</span></span></code></pre></div><p>Now, let&rsquo;s install it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>makepkg -si
+</span></span></code></pre></div><h1 id="running-the-client">Running the client</h1>
 <p>Ok, let&rsquo;s run the client by executing <code>appgate</code>.</p>
 <p>It complains about not being able to connect.</p>
 <p>Easy fix:</p>
-<pre><code class="language-shell">sudo systemctl start appgatedriver.service
-</code></pre>
-<p>Now we should be connected&hellip; but DNS is not working?</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo systemctl start appgatedriver.service
+</span></span></code></pre></div><p>Now we should be connected&hellip; but DNS is not working?</p>
 <h1 id="fixing-the-dns">Fixing the DNS</h1>
 <p>Running <code>resolvectl</code> should display that something is not right.</p>
 <p>Why is the DNS not being set by appgate?</p>
-<pre><code class="language-shell">$ head -3 /opt/appgate/linux/set_dns
-#!/usr/bin/env python3
-'''
-This is used to set and unset the DNS.
-</code></pre>
-<p>It seems like python3 is required for the DNS setting to happen.
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ head -3 /opt/appgate/linux/set_dns
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a3be8c">&#39;&#39;</span><span style="color:#bf616a">&#39;</span>
+</span></span><span style="display:flex;"><span>This is used to <span style="color:#81a1c1">set</span> and <span style="color:#81a1c1">unset</span> the DNS.
+</span></span></code></pre></div><p>It seems like python3 is required for the DNS setting to happen.
 Let&rsquo;s try to run it.</p>
-<pre><code class="language-shell">$ sudo /opt/appgate/linux/set_dns
-/opt/appgate/linux/set_dns:88: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
-  servers = [( socket.AF_INET if x.version is 4 else socket.AF_INET6, map(int, x.packed)) for x in servers]
-Traceback (most recent call last):
-  File &quot;/opt/appgate/linux/set_dns&quot;, line 30, in &lt;module&gt;
-    import dbus
-ModuleNotFoundError: No module named 'dbus'
-</code></pre>
-<p>Ok, let&rsquo;s install it:</p>
-<pre><code class="language-shell">$ sudo python3.8 -m pip install dbus-python
-</code></pre>
-<p>Will it work now? Not yet. There&rsquo;s another issue:</p>
-<pre><code class="language-shell">$ sudo /opt/appgate/linux/set_dns
-/opt/appgate/linux/set_dns:88: SyntaxWarning: &quot;is&quot; with a literal. Did you mean &quot;==&quot;?
-  servers = [( socket.AF_INET if x.version is 4 else socket.AF_INET6, map(int, x.packed)) for x in servers]
-module 'platform' has no attribute 'linux_distribution'
-</code></pre>
-<p>This is a breaking change in Python3.8.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ sudo /opt/appgate/linux/set_dns
+</span></span><span style="display:flex;"><span>/opt/appgate/linux/set_dns:88: SyntaxWarning: <span style="color:#a3be8c">&#34;is&#34;</span> with a literal. Did you mean <span style="color:#a3be8c">&#34;==&#34;</span>?
+</span></span><span style="display:flex;"><span>  servers <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">[(</span> socket.AF_INET <span style="color:#81a1c1;font-weight:bold">if</span> x.version is <span style="color:#b48ead">4</span> <span style="color:#81a1c1;font-weight:bold">else</span> socket.AF_INET6, map<span style="color:#81a1c1">(</span>int, x.packed<span style="color:#81a1c1">))</span> <span style="color:#81a1c1;font-weight:bold">for</span> x in servers<span style="color:#81a1c1">]</span>
+</span></span><span style="display:flex;"><span>Traceback <span style="color:#81a1c1">(</span>most recent call last<span style="color:#81a1c1">)</span>:
+</span></span><span style="display:flex;"><span>  File <span style="color:#a3be8c">&#34;/opt/appgate/linux/set_dns&#34;</span>, line 30, in &lt;module&gt;
+</span></span><span style="display:flex;"><span>    import dbus
+</span></span><span style="display:flex;"><span>ModuleNotFoundError: No module named <span style="color:#a3be8c">&#39;dbus&#39;</span>
+</span></span></code></pre></div><p>Ok, let&rsquo;s install it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ sudo python3.8 -m pip install dbus-python
+</span></span></code></pre></div><p>Will it work now? Not yet. There&rsquo;s another issue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ sudo /opt/appgate/linux/set_dns
+</span></span><span style="display:flex;"><span>/opt/appgate/linux/set_dns:88: SyntaxWarning: <span style="color:#a3be8c">&#34;is&#34;</span> with a literal. Did you mean <span style="color:#a3be8c">&#34;==&#34;</span>?
+</span></span><span style="display:flex;"><span>  servers <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">[(</span> socket.AF_INET <span style="color:#81a1c1;font-weight:bold">if</span> x.version is <span style="color:#b48ead">4</span> <span style="color:#81a1c1;font-weight:bold">else</span> socket.AF_INET6, map<span style="color:#81a1c1">(</span>int, x.packed<span style="color:#81a1c1">))</span> <span style="color:#81a1c1;font-weight:bold">for</span> x in servers<span style="color:#81a1c1">]</span>
+</span></span><span style="display:flex;"><span>module <span style="color:#a3be8c">&#39;platform&#39;</span> has no attribute <span style="color:#a3be8c">&#39;linux_distribution&#39;</span>
+</span></span></code></pre></div><p>This is a breaking change in Python3.8.</p>
 <p>So what is calling <code>platform.linux_distribution</code>?</p>
 <p>Let&rsquo;s search for it:</p>
-<pre><code class="language-shell">$ sudo grep -r 'linux_distribution' /opt/appgate/linux/
-/opt/appgate/linux/nm.py:    if platform.linux_distribution()[0] != 'Fedora':
-</code></pre>
-<p>Aha! So this is in the local AppGate source code. This should be an easy fix. Let&rsquo;s just replace this line with:</p>
-<pre><code class="language-python">if True: # Since we are not using Fedora :)
-</code></pre>
-<h1 id="wrapping-up">Wrapping up</h1>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ sudo grep -r <span style="color:#a3be8c">&#39;linux_distribution&#39;</span> /opt/appgate/linux/
+</span></span><span style="display:flex;"><span>/opt/appgate/linux/nm.py:    <span style="color:#81a1c1;font-weight:bold">if</span> platform.linux_distribution<span style="color:#81a1c1">()[</span>0<span style="color:#81a1c1">]</span> !<span style="color:#81a1c1">=</span> <span style="color:#a3be8c">&#39;Fedora&#39;</span>:
+</span></span></code></pre></div><p>Aha! So this is in the local AppGate source code. This should be an easy fix. Let&rsquo;s just replace this line with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">if</span> <span style="color:#81a1c1;font-weight:bold">True</span><span style="color:#eceff4">:</span> <span style="color:#616e87;font-style:italic"># Since we are not using Fedora :)</span>
+</span></span></code></pre></div><h1 id="wrapping-up">Wrapping up</h1>
 <p>It turns out there are <a href="https://docs.python.org/3.7/library/platform.html#platform.linux_distribution">breaking changes</a> in Python3.8.</p>
 <p>The docs say <code>Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.</code></p>
 <p>I suppose this highlights one of the caveats of relying upon the system&rsquo;s python, rather than having an isolated, dedicated environment for all dependencies.</p></section>
@@ -271,6 +265,9 @@ module 'platform' has no attribute 'linux_distribution'
   <div class="footer-info">
     2023  Dave Gallant 
   </div>
+  
+  <script src="/js/copy-code-button.js"></script>
+  
 </footer>
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8WJDERTX9"></script>
