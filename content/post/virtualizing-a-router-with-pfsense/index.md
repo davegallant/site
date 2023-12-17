@@ -5,7 +5,16 @@ lastmod: 2022-04-02T18:50:09-04:00
 draft: false
 keywords: []
 description: ""
-tags: ['pfsense', 'router', 'openwrt', 'router-on-a-stick', 'proxmox', 'vlan']
+tags:
+  [
+    "pfsense",
+    "router",
+    "openwrt",
+    "router-on-a-stick",
+    "proxmox",
+    "vlan",
+    "self-hosted",
+  ]
 categories: []
 author: ""
 
@@ -26,11 +35,11 @@ flowchartDiagrams:
   enable: false
   options: ""
 
-sequenceDiagrams: 
+sequenceDiagrams:
   enable: false
   options: ""
-
 ---
+
 <!--more-->
 
 ## The problem
@@ -43,7 +52,7 @@ I figured this would be a good opportunity to try [pfSense](https://en.wikipedia
 
 ## Router on a stick
 
-  I had initially made the assumption that in order to build a router, you would need more than a single NIC (or a dual-port NIC) in order to support both WAN and LAN. This is simply [not the case](https://en.wikipedia.org/wiki/Router_on_a_stick), because VLANs are awesome! In order to create a router, all you need is a single port NIC and a network switch that supports VLANs (also marketed as a managed switch). I picked up the Netgear GS308E because it has both a sufficient amount of ports for my needs, and it supports VLANs. It also has a nice sturdy metal frame which was a pleasant surprise.
+I had initially made the assumption that in order to build a router, you would need more than a single NIC (or a dual-port NIC) in order to support both WAN and LAN. This is simply [not the case](https://en.wikipedia.org/wiki/Router_on_a_stick), because VLANs are awesome! In order to create a router, all you need is a single port NIC and a network switch that supports VLANs (also marketed as a managed switch). I picked up the Netgear GS308E because it has both a sufficient amount of ports for my needs, and it supports VLANs. It also has a nice sturdy metal frame which was a pleasant surprise.
 
 After setting up this Netgear switch, it shoud be possible to access the web interface at [http://192.168.0.239](http://192.168.0.239). It may be at a different address. To find the address, try checking your DHCP leases in your router interface (if you plugged it into an existing router). I realized I was unable to access this interface because I was on a different subnet, so I set my machine's address to `192.168.0.22` in order to temporarily setup this switch. I assigned a static ip address to the switch (in `System > Switch Information`) so that it was in the same subnet as the rest of my network.
 
