@@ -19,9 +19,10 @@ document
   .forEach((highlightDiv) => createCopyButton(highlightDiv));
 
 async function copyCodeToClipboard(button, highlightDiv) {
-  const codeToCopy = highlightDiv.querySelector(
-    "pre > code"
-  ).innerText;
+  const codeToCopy = highlightDiv
+    .querySelector("pre > code ")
+    .innerText.replace(/\n\n/g, "\n") // Fix the double spacing
+    .replace(/\n$/, ""); // Clean up last empty line
   try {
     var result = await navigator.permissions.query({ name: "clipboard-write" });
     if (result.state == "granted" || result.state == "prompt") {
