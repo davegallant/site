@@ -140,7 +140,7 @@ After adding the above configuration, running `docker compose up -d` should be e
 
 ## Connecting a Runner
 
-I installed the runner by [following the docs](https://docs.gitea.com/usage/actions/quickstart#set-up-runner). I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this act runner as well, so that it can have the same "networking privileges" as the main instance.
+I installed the runner by [following the docs](https://docs.gitea.com/usage/actions/quickstart#set-up-runner). I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this gitea runner as well, so that it can have the same "networking privileges" as the main instance.
 
 After registering this runner and starting the daemon, it appeared in `/admin/actions/runners`:
 
@@ -188,10 +188,8 @@ jobs:
         with:
           playbook: playbooks/main.yml
           requirements: requirements.yml
-          key: ${{ secrets.SSH_PRIVATE_KEY}}
           options: |
             --inventory inventory
-            --ssh-extra-args "-o StrictHostKeyChecking=no"
             --limit ${{ matrix.host }}
   send-failure-notification:
     needs: run-ansible-playbook
@@ -217,12 +215,14 @@ And voilà:
 
 {{< video src="gitea-workflow" >}}
 
+You may be wondering how the gitea runner is allowed to connect to the other hosts using ansible? Well, the nodes are in the same tailnet and have [tailscale ssh](https://tailscale.com/tailscale-ssh) enabled.
+
 ## Areas for improvement
 
 One enhancement that I would like to see is the ability to send notifications on workflow failures. Currently, this [doesn't seem possible](https://github.com/go-gitea/gitea/issues/23725) without adding logic to each workflow.
 
 ## Conclusion
 
-Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantionally more resources (ahem, gitlab). It likely helps that the codebase is largely written in go.
+Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantially more resources (ahem, gitlab). It likely helps that the codebase is largely written in go.
 
 By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.
