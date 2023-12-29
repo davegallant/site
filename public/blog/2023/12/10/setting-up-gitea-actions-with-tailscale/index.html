@@ -232,22 +232,18 @@
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">options</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">|</span><span style="color:#616e87">
 </span></span></span><span style="display:flex;"><span><span style="color:#616e87">            --inventory inventory
 </span></span></span><span style="display:flex;"><span><span style="color:#616e87">            --limit ${{ matrix.host }}</span>            
-</span></span><span style="display:flex;"><span>  <span style="color:#81a1c1">send-failure-notification</span><span style="color:#eceff4">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">needs</span><span style="color:#eceff4">:</span> run-ansible-playbook
-</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">runs-on</span><span style="color:#eceff4">:</span> ubuntu-latest
-</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">if</span><span style="color:#eceff4">:</span> always() &amp;&amp; failure()
-</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1">steps</span><span style="color:#eceff4">:</span>
 </span></span><span style="display:flex;"><span>      - <span style="color:#81a1c1">name</span><span style="color:#eceff4">:</span> Send failure notification
 </span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">uses</span><span style="color:#eceff4">:</span> dawidd6/action-send-mail@v3
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">if</span><span style="color:#eceff4">:</span> always() &amp;&amp; failure()
 </span></span><span style="display:flex;"><span>        <span style="color:#81a1c1">with</span><span style="color:#eceff4">:</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">server_address</span><span style="color:#eceff4">:</span> smtp.gmail.com
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">server_port</span><span style="color:#eceff4">:</span> <span style="color:#b48ead">465</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">secure</span><span style="color:#eceff4">:</span> <span style="color:#81a1c1;font-weight:bold">true</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">username</span><span style="color:#eceff4">:</span> myuser
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">password</span><span style="color:#eceff4">:</span> ${{ secrets.MAIL_PASSWORD }}
-</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">subject</span><span style="color:#eceff4">:</span> gitea job ${{github.repository}} failed!
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">subject</span><span style="color:#eceff4">:</span> ansible runbook &#39;${{ matrix.host }}&#39; failed
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">to</span><span style="color:#eceff4">:</span> me@davegallant.ca
-</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">from</span><span style="color:#eceff4">:</span> Gitea
+</span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">from</span><span style="color:#eceff4">:</span> RFD Notify
 </span></span><span style="display:flex;"><span>          <span style="color:#81a1c1">body</span><span style="color:#eceff4">:</span> <span style="color:#eceff4">|</span><span style="color:#616e87">
 </span></span></span><span style="display:flex;"><span><span style="color:#616e87">            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}</span>            
 </span></span></code></pre></div><p>And voilà:</p>
