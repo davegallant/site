@@ -191,22 +191,18 @@ jobs:
           options: |
             --inventory inventory
             --limit ${{ matrix.host }}
-  send-failure-notification:
-    needs: run-ansible-playbook
-    runs-on: ubuntu-latest
-    if: always() && failure()
-    steps:
       - name: Send failure notification
         uses: dawidd6/action-send-mail@v3
+        if: always() && failure()
         with:
           server_address: smtp.gmail.com
           server_port: 465
           secure: true
           username: myuser
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: gitea job ${{github.repository}} failed!
+          subject: ansible runbook '${{ matrix.host }}' failed
           to: me@davegallant.ca
-          from: Gitea
+          from: RFD Notify
           body: |
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}
 ```
