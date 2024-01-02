@@ -1,39 +1,16 @@
 ---
 title: "Setting up Gitea Actions with Tailscale"
 date: 2023-12-10T17:22:11-05:00
+comments: true
 lastmod: 2023-12-10T17:22:11-05:00
 draft: false
-keywords: []
 description: ""
 tags: ["gitea", "gitea actions", "github actions", "tailscale", "self-hosted"]
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams:
-  enable: false
-  options: ""
 ---
 
-<!--more-->
-
 In this post I'll go through the process of setting up Gitea Actions and [Tailscale](https://tailscale.com/), unlocking a simple and secure way to automate workflows.
+
+<!--more-->
 
 ## What is Gitea?
 
@@ -209,7 +186,7 @@ jobs:
 
 And voilà:
 
-{{< video src="gitea-workflow" >}}
+{{< video poster="gitea-workflow" >}}
 
 You may be wondering how the gitea runner is allowed to connect to the other hosts using ansible? Well, the nodes are in the same tailnet and have [tailscale ssh](https://tailscale.com/tailscale-ssh) enabled.
 

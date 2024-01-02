@@ -3,37 +3,12 @@ title: "Why I threw out my dotfiles"
 date: 2021-09-08T00:42:33-04:00
 lastmod: 2021-09-08T00:42:33-04:00
 draft: false
-keywords: []
-description: ""
+comments: true
 tags: ['nix', 'dotfiles', 'home-manager']
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams: 
-  enable: false
-  options: ""
-
 ---
+Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (`~/.zshrc`, `~/.config/git/config`, `~/.config/tmux/tmux.conf`, etc). I have tried several different ways to manage them, including [bare git repos](https://www.atlassian.com/git/tutorials/dotfiles) and utilities such as [GNU Stow](https://www.gnu.org/software/stow/). These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: [home-manager](https://github.com/nix-community/home-manager).
 
 <!--more-->
-Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (`~/.zshrc`, `~/.config/git/config`, `~/.config/tmux/tmux.conf`, etc). I have tried several different ways to manage them, including [bare git repos](https://www.atlassian.com/git/tutorials/dotfiles) and utilities such as [GNU Stow](https://www.gnu.org/software/stow/). These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: [home-manager](https://github.com/nix-community/home-manager).
 
 ## What is home-manager?
 

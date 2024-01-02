@@ -1,20 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>gitea on davegallant</title>
-    <link>/tags/gitea/</link>
-    <description>Recent content in gitea on davegallant</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>Dave Gallant</copyright>
-    <lastBuildDate>Sun, 10 Dec 2023 17:22:11 -0500</lastBuildDate>
-    <atom:link href="/tags/gitea/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Setting up Gitea Actions with Tailscale</title>
-      <link>/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</link>
-      <pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate>
-      <guid>/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</guid>
-      <description></description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gitea on</title><link>https://davegallant.ca/tags/gitea/</link><description>Recent content in gitea on</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dave Gallant</copyright><lastBuildDate>Sun, 10 Dec 2023 17:22:11 -0500</lastBuildDate><atom:link href="https://davegallant.ca/tags/gitea/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Gitea Actions with Tailscale</title><link>https://davegallant.ca/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</link><pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate><guid>https://davegallant.ca/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</guid><description>&lt;p>In this post I&amp;rsquo;ll go through the process of setting up Gitea Actions and &lt;a
+href="https://tailscale.com/"
+class="link--external" target="_blank" rel="noreferrer"
+>Tailscale&lt;/a>, unlocking a simple and secure way to automate workflows.&lt;/p></description></item></channel></rss>

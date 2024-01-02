@@ -3,8 +3,7 @@ title: "Using AKS and SOCKS to connect to a private Azure DB"
 date: 2023-05-22T16:31:29-04:00
 lastmod: 2023-05-22T16:31:29-04:00
 draft: false
-keywords: []
-description: ""
+comments: true
 tags:
   [
     "aks",
@@ -20,36 +19,12 @@ tags:
     "socat",
     "socks",
   ]
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams:
-  enable: false
-  options: ""
 ---
+
+I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I'd rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection, and I'd like to use a local client (preferably with a GUI). After several web searches, it became evident that Azure does not readily provide much tooling to support this.
 
 <!--more-->
 
-## The Problem
-
-I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I'd rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection, and I'd like to use a local client (preferably with a GUI). After several web searches, it became evident that Azure does not readily provide much tooling to support this.
 
 ## Go Public?
 

@@ -3,21 +3,7 @@ title: "What to do with a homelab"
 date: 2021-09-06T01:12:54-04:00
 lastmod: 2021-09-06T01:12:54-04:00
 draft: false
-keywords: []
-description: ""
-tags:
-  [
-    "tailscale",
-    "homelab",
-    "netdata",
-    "jellyfin",
-    "plex",
-    "pihole",
-    "virtualization",
-    "adguard",
-    "grafana",
-    "self-hosted",
-  ]
+comments: true
 author: "Dave Gallant"
 ---
 

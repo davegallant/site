@@ -3,8 +3,7 @@ title: "Watching YouTube in private"
 date: 2022-12-10T21:46:55-05:00
 lastmod: 2022-12-10T21:46:55-05:00
 draft: false
-keywords: []
-description: ""
+comments: true
 tags:
   [
     "invidious",
@@ -15,34 +14,11 @@ tags:
     "privacy",
     "self-hosted",
   ]
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams:
-  enable: false
-  options: ""
 ---
 
-<!--more-->
-
 I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. It not only allows you to watch YouTube without _being on YouTube_, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it's a hosted instance of [invidious](https://invidious.io/).
+
+<!--more-->
 
 ![image](computerphile.png)
 

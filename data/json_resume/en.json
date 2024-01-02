@@ -1,0 +1,27 @@
+{
+  "basics": {
+    "name": "Dave Gallant",
+    "label": "Software Engineer",
+    "image": "",
+    "email": "me@davegallant.ca",
+    "summary": "I'm a software tinkerer passionate about infra, security and self-hosting 👋.",
+    "profiles": [
+      {
+        "network": "LinkTree",
+        "url": "https://linktr.ee/davegallant"
+      },
+      {
+        "network": "GitHub",
+        "url": "https://github.com/davegallant"
+      },
+      {
+        "network": "Mastodon",
+        "url": "https://mastodon.social/@davegallant"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/dave-gallant"
+      }
+    ]
+  }
+}

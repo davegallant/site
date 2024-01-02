@@ -1,27 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>degoogle on davegallant</title>
-    <link>/tags/degoogle/</link>
-    <description>Recent content in degoogle on davegallant</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>Dave Gallant</copyright>
-    <lastBuildDate>Sat, 10 Dec 2022 21:46:55 -0500</lastBuildDate>
-    <atom:link href="/tags/degoogle/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Watching YouTube in private</title>
-      <link>/blog/2022/12/10/watching-youtube-in-private/</link>
-      <pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate>
-      <guid>/blog/2022/12/10/watching-youtube-in-private/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Backing up gmail with Synology</title>
-      <link>/blog/2022/03/13/backing-up-gmail-with-synology/</link>
-      <pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate>
-      <guid>/blog/2022/03/13/backing-up-gmail-with-synology/</guid>
-      <description></description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>degoogle on</title><link>https://davegallant.ca/tags/degoogle/</link><description>Recent content in degoogle on</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Dave Gallant</copyright><lastBuildDate>Sat, 10 Dec 2022 21:46:55 -0500</lastBuildDate><atom:link href="https://davegallant.ca/tags/degoogle/index.xml" rel="self" type="application/rss+xml"/><item><title>Watching YouTube in private</title><link>https://davegallant.ca/blog/2022/12/10/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>https://davegallant.ca/blog/2022/12/10/watching-youtube-in-private/</guid><description>&lt;p>I recently stumbled upon &lt;a
+href="https://yewtu.be"
+class="link--external" target="_blank" rel="noreferrer"
+>yewtu.be&lt;/a> and found it intriguing. It not only allows you to watch YouTube without &lt;em>being on YouTube&lt;/em>, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&amp;rsquo;s a hosted instance of &lt;a
+href="https://invidious.io/"
+class="link--external" target="_blank" rel="noreferrer"
+>invidious&lt;/a>.&lt;/p></description></item><item><title>Backing up gmail with Synology</title><link>https://davegallant.ca/blog/2022/03/13/backing-up-gmail-with-synology/</link><pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate><guid>https://davegallant.ca/blog/2022/03/13/backing-up-gmail-with-synology/</guid><description>&lt;p>I&amp;rsquo;ve used gmail since the beta launched touting a whopping 1GB of storage. I thought this was a massive leap in email technology at the time. I was lucky enough to get an invite fairly quickly. Not suprisingly, I have many years of emails, attachments, and photos. I certainly do not want to lose the content of many of these emails. Despite the redundancy of the data that Google secures, I still feel better retaining a copy of this data on my own physical machines.&lt;/p></description></item></channel></rss>

@@ -3,8 +3,7 @@ title: "Virtualizing my router with pfSense"
 date: 2022-04-02T18:50:09-04:00
 lastmod: 2022-04-02T18:50:09-04:00
 draft: false
-keywords: []
-description: ""
+comments: true
 tags:
   [
     "pfsense",
@@ -15,36 +14,11 @@ tags:
     "vlan",
     "self-hosted",
   ]
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams:
-  enable: false
-  options: ""
 ---
 
-<!--more-->
-
-## The problem
-
 My aging router has been running [OpenWrt](https://en.wikipedia.org/wiki/OpenWrt) for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a [large index of packages](https://openwrt.org/packages/index/start). Ever since I've connected some standalone wireless access points, I've had less of a need for an off-the-shelf all-in-one wireless router combo. I've also recently been experiencing instability with my router (likely the result of a combination of configuration tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!
+
+<!--more-->
 
 ## pfSense
 
