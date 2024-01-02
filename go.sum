@@ -1,12 +1,4 @@
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20231022204344-8475ce73a204 h1:dfY8ArYEahXoWnvKbqcEr4sVj03ZV3q33kPz8Lait3Y=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20231022204344-8475ce73a204/go.mod h1:ZEP0AB4v1k845Jmx9XmOY39CuR7Zud/owFh8wRGgeZg=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102030224-3e3d39381e83 h1:1K2zeS/GlzUztodRODqVdT0L53So3oKQl2W6xv3hk3k=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102030224-3e3d39381e83/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102154627-e80c3018f9fb h1:T40lsmpjUFil3z8BoQVsQF2Gu685DSIjdTpCz6iV0Ns=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102154627-e80c3018f9fb/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
 github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102155230-cac2894e8557 h1:rXYdDcfrr/E2k2o3nnuLE6BmDw8K+JSs8hHFCLKzJGo=
 github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102155230-cac2894e8557/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/schnerring/hugo-mod-json-resume v0.0.0-20231022202951-552402b37357 h1:FR5kIQJNpHrB+P6yb8PrDVO8FpbUxF5fdTXLQp7UUpI=
-github.com/schnerring/hugo-mod-json-resume v0.0.0-20231022202951-552402b37357/go.mod h1:an+FdylzRESQ2N+NuFK+iLerxnDRWbOqkxCDUXflGF4=
 github.com/schnerring/hugo-mod-json-resume v0.0.0-20231224014047-e651a547c19a h1:EZRiOf0iW5k9lycVv3LngzSsGUxDRszYS4U7ea2r8RY=
 github.com/schnerring/hugo-mod-json-resume v0.0.0-20231224014047-e651a547c19a/go.mod h1:5dixHC0WHu0w2Aqb8hsOCrIU1OBYr1w5Q6HZAmTub7Q=
