@@ -10,7 +10,8 @@ endif
 .RECIPEPREFIX = >
 
 build: clean
-> hugo
+> npm ci
+> hugo --minify
 
 clean:
 > rm -rf public/
@@ -19,9 +20,6 @@ clean:
 server:
 > hugo server --buildDrafts
 
-## index-pagefind: Not yet implemented
-index-pagefind:
-> npx pagefind --source "public"
 
 ## help: Print this help message
 help:

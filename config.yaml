@@ -1,67 +1,54 @@
-baseurl: /
-staticDir: static
+baseurl: "https://davegallant.ca"
 languageCode: en-us
 googleAnalytics: G-V8WJDERTX9
 copyright: Dave Gallant
-preserveTaxonomyNames: true
-pygmentsstyle: nord
-pygmentscodefences: true
-pygmentscodefencesguesssyntax: true
-theme:
-  - archie
-  - hugo-video
-title: davegallant
 
 params:
-    mode: toggle
-    useCDN: true
-    subtitle: "A personal blog"
-    mathjax: true
-    katex: true 
+  author: Dave Gallant
+  subtitle: Software Engineer
+  favicon: https://davegallant.ca/favicon.ico
 
-    favicon: https://davegallant.ca/favicon.ico
+  logo:
+    text: davegallant.ca
+    url: /
 
-    kofi: 
-
-    customcss:
-      - css/custom.css
-
-    social:
-      - name: Email
-        icon: at-sign
-        url: 'mailto:me@davegallant.ca'
-      - name: LinkTree
-        icon: compass
-        url: 'https://linktr.ee/davegallant'
-      - name: GitHub
-        icon: github
-        url: 'https://github.com/davegallant'
-      - name: Mastodon
-        icon: speaker
-        url: https://mastodon.social/@davegallant
-      - name: LinkedIn
-        icon: linkedin
-        url: https://www.linkedin.com/in/dave-gallant/
-
-    comments:
-      utterances:
-        enable: true
-        issueTerm: "pathname"
-        github:
-          username: davegallant
-          repository: davegallant.github.io
+  comments:
+    utterances:
+      enable: true
+      issueTerm: "pathname"
+      github:
+        username: davegallant
+        repository: davegallant.github.io
 
 menu:
   main:
-    - name: Posts
-      url: /
-      weight: 1
-    - name: About
-      url: /about
-      weight: 2
     - name: RSS
       url: /index.xml
-      weight: 3
+      weight: 1
 
 permalinks:
-  post: '/blog/:year/:month/:day/:slug/'
+  post: "/blog/:year/:month/:day/:slug/"
+
+module:
+  imports:
+    - path: github.com/davegallant/hugo-theme-gruvbox
+    - path: github.com/schnerring/hugo-mod-json-resume
+  mounts:
+    - source: node_modules/simple-icons/icons
+      target: assets/simple-icons
+    - source: assets
+      target: assets
+    - source: layouts
+      target: layouts
+    - source: static
+      target: static
+    - source: node_modules/prismjs
+      target: assets/prismjs
+    - source: node_modules/prism-themes/themes
+      target: assets/prism-themes
+    - source: node_modules/typeface-fira-code/files
+      target: static/fonts
+    - source: node_modules/typeface-roboto-slab/files
+      target: static/fonts
+    - source: node_modules/@tabler/icons/icons
+      target: assets/tabler-icons

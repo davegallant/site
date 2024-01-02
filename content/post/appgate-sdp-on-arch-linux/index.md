@@ -2,8 +2,7 @@
 title: "AppGate SDP on Arch Linux"
 date: 2020-03-16T22:00:15-04:00
 draft: false
-keywords: ['linux', 'vpn']
-description: ""
+comments: true
 tags: ['linux', 'vpn', 'python']
 author: "Dave Gallant"
 ---

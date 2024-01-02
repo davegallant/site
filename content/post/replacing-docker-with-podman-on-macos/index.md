@@ -3,38 +3,13 @@ title: "Replacing docker with podman on macOS (and Linux)"
 date: 2021-10-11T10:43:35-04:00
 lastmod: 2021-10-11T10:43:35-04:00
 draft: false
-keywords: []
-description: ""
-tags: ['docker', 'podman', 'containers']
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams:
-  enable: false
-  options: ""
-
+comments: true
+tags: ["docker", "podman", "containers"]
 ---
 
-<!--more-->
-
-
 There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:
+
+<!--more-->
 
 {{< tweet 1388586550682861568 >}}
 
@@ -85,7 +60,7 @@ Copying config sha256:14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8
 Writing manifest to image destination
 Storing signatures
 14119a10abf4669e8cdbdff324a9f9605d99697215a0d21c360fe8dfa8471bab
-````
+```
 
 > If you're having an issue pulling images, you may need to remove `~/.docker/config.json` or remove the set of auths in the configuration as mentioned [here](https://stackoverflow.com/a/69121873/1191286).
 
@@ -118,7 +93,7 @@ alias docker=podman
 
 ### podman-compose
 
-You may be wondering: what about docker-compose? Well, there *claims* to be a drop-in replacement for it: [podman-compose](https://github.com/containers/podman-compose).
+You may be wondering: what about docker-compose? Well, there _claims_ to be a drop-in replacement for it: [podman-compose](https://github.com/containers/podman-compose).
 
 ```sh
 pip3 install --user podman-compose
@@ -167,6 +142,5 @@ Installing Podman on macOS was not seamless, but it was manageable well within 3
 One caveat to mention is that there isn't an official graphical user interface for Podman, but there is an [open issue](https://github.com/containers/podman/issues/11494) considering one. If you rely heavily on Docker Desktop's UI, you may not be as interested in using podman yet.
 
 > Update: After further usage, bind mounts do not seem to work out of the box when the client and host are on different machines. A rather involved solution using [sshfs](https://en.wikipedia.org/wiki/SSHFS) was shared [here](https://github.com/containers/podman/issues/8016#issuecomment-920015800).
-
 
 I had been experimenting with Podman on Linux before writing this, but after listening to this [podcast episode](https://kubernetespodcast.com/episode/164-podman/), I was inspired to give Podman a try on macOS.

@@ -1,0 +1,24 @@
+<script
+  type="text/javascript"
+  src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+></script>
+<script type="text/javascript">
+  kofiwidget2.init("Buy me a coffee", "#458588", "F1F2S4LWI");
+  kofiwidget2.draw();
+</script>
+
+{{- $config := .Site.Params.comments -}}
+
+{{- $utterancesEnabled := $config.utterances.enable -}}
+
+{{- if and ( $utterancesEnabled ) -}}
+<section id='comments' class='comments'>
+  <div class='container sep-before'>
+    <div class='comments'>
+    {{- if $utterancesEnabled -}}
+      {{ partial "comments/utterances" . }}
+    {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}

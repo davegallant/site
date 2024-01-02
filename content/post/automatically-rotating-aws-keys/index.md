@@ -3,36 +3,9 @@ title: "Automatically rotating AWS access keys"
 date: 2021-09-17T12:48:33-04:00
 lastmod: 2021-09-17T12:48:33-04:00
 draft: false
-keywords: []
-description: ""
+comments: true
 tags: ['aws', 'python', 'security', 'aws-vault']
-categories: []
-author: ""
-
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: false
-toc: false
-autoCollapseToc: false
-postMetaInFooter: false
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: false
-reward: false
-mathjax: false
-mathjaxEnableSingleDollar: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams: 
-  enable: false
-  options: ""
-
 ---
-
-<!--more-->
 
 Rotating credentials is a security best practice. This morning, I read a question about automatically rotating AWS Access Keys without having to go through the hassle of navigating the AWS console. There are some existing solutions already, but I decided to write a [script](https://gist.github.com/davegallant/2c042686a78684a657fe99e20fa7a924#file-aws_access_key_rotator-py) since it was incredibly simple. The script could be packed up as a systemd/launchd service to continually rotate access keys in the background.
 
