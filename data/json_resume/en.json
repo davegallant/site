@@ -1,10 +1,9 @@
 {
   "basics": {
     "name": "Dave Gallant",
-    "label": "Software Engineer",
     "image": "",
     "email": "me@davegallant.ca",
-    "summary": "I'm a software tinkerer passionate about infra, security and self-hosting 👋.",
+    "summary": "👋 I'm a software tinkerer passionate about infra, security and self-hosting.",
     "profiles": [
       {
         "network": "LinkTree",
