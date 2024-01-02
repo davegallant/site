@@ -7,8 +7,8 @@
 
 <script>
     // load utteranc comment
-    var getTheme = window.localStorage && window.localStorage.getItem("theme-storage");
-    getTheme = getTheme == null ? 'light' : getTheme;
+    var getTheme = window.localStorage && window.localStorage.getItem("theme");
+    getTheme = getTheme == null ? 'dark' : getTheme;
 
     let theme = getTheme === 'dark' ? 'github-dark' : 'github-light';
     let s = document.createElement('script');
