@@ -11,7 +11,7 @@
 
 {{- $utterancesEnabled := $config.utterances.enable -}}
 
-{{- if and ( $utterancesEnabled ) -}}
+{{- if $utterancesEnabled -}}
 <section id='comments' class='comments'>
   <div class='container sep-before'>
     <div class='comments'>
