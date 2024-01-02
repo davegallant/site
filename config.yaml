@@ -1,7 +1,9 @@
-baseurl: "https://davegallant.ca"
-languageCode: en-us
+baseURL: /
 googleAnalytics: G-V8WJDERTX9
 copyright: Dave Gallant
+enableGitInfo: true
+enableRobotsTXT: true
+noJSConfigInAssets: true
 
 params:
   author: Dave Gallant
@@ -20,6 +22,27 @@ params:
         username: davegallant
         repository: davegallant.github.io
 
+  prism:
+    languages:
+      - markup
+      - css
+      - clike
+      - javascript
+      - bash
+      - csharp
+      - hcl
+      - ignore
+      - json
+      - markdown
+      - powershell
+      - toml
+      - yaml
+    plugins:
+      - normalize-whitespace
+      - toolbar
+      - copy-to-clipboard
+      - command-line
+
 menu:
   main:
     - name: RSS
@@ -28,6 +51,11 @@ menu:
 
 permalinks:
   post: "/blog/:year/:month/:day/:slug/"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
 module:
   imports:
