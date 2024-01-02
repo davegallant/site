@@ -7,7 +7,6 @@ comments: true
 tags:
   [
     "invidious",
-    "degoogle",
     "youtube",
     "yewtu.be",
     "tailscale",
