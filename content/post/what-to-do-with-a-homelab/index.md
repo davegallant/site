@@ -5,6 +5,7 @@ lastmod: 2021-09-06T01:12:54-04:00
 draft: false
 comments: true
 author: "Dave Gallant"
+tags: ["self-hosted", "proxmox", "tailscale"]
 ---
 
 A homelab can be an inexpensive way to host a multitude of internal/external services and learn _a lot_ in the process.
