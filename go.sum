@@ -1,4 +1,8 @@
 github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102155230-cac2894e8557 h1:rXYdDcfrr/E2k2o3nnuLE6BmDw8K+JSs8hHFCLKzJGo=
 github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102155230-cac2894e8557/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
+github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171330-adc30b08067a h1:muPaq+6iMPFeTPhq7aD1RgAyzpJKEZdAZa+HEX/fDAY=
+github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171330-adc30b08067a/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
+github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171826-d67d7957b276 h1:YS3mESQh4CBWBF5ubgDxcGlGod+ZgaNorFYu8ZiB/zY=
+github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171826-d67d7957b276/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
 github.com/schnerring/hugo-mod-json-resume v0.0.0-20231224014047-e651a547c19a h1:EZRiOf0iW5k9lycVv3LngzSsGUxDRszYS4U7ea2r8RY=
 github.com/schnerring/hugo-mod-json-resume v0.0.0-20231224014047-e651a547c19a/go.mod h1:5dixHC0WHu0w2Aqb8hsOCrIU1OBYr1w5Q6HZAmTub7Q=
