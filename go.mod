@@ -1,6 +1,6 @@
 module davegallant.github.io
 
-go 1.21.5
+go 1.23
 
 require (
 	github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102030224-3e3d39381e83 // indirect
