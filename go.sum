@@ -1,17 +1,3 @@
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102155230-cac2894e8557 h1:rXYdDcfrr/E2k2o3nnuLE6BmDw8K+JSs8hHFCLKzJGo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102155230-cac2894e8557/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171330-adc30b08067a h1:muPaq+6iMPFeTPhq7aD1RgAyzpJKEZdAZa+HEX/fDAY=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171330-adc30b08067a/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171826-d67d7957b276 h1:YS3mESQh4CBWBF5ubgDxcGlGod+ZgaNorFYu8ZiB/zY=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102171826-d67d7957b276/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102200159-9a3d1dc7bc54 h1:7FzV8p/mlirxME4/V+KRsQp7QxucKV3f3Uj3kqxI37A=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102200159-9a3d1dc7bc54/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102200650-e760163af723 h1:DiYyh60x4rLMDiYTSPGtYnBKLJRd72OcMuVvc9PkQ6Y=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102200650-e760163af723/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102201014-35cc70be186f h1:qiJX+D0Yn75E1rNnEfprPOVSFam5uwr46xg7vNwe7qY=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102201014-35cc70be186f/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102202609-f31cb2b5c2f4 h1:al0gmkt0SgL67AtSFifzlB4WZEP3Vu+ngLp381XJlkI=
-github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102202609-f31cb2b5c2f4/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
 github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102231105-90b486f98b82 h1:X9jUG5D4OyxLjT3OTsL5TN3jFdpTXyLJJcRpLbgCsSc=
 github.com/davegallant/hugo-theme-gruvbox v0.0.0-20240102231105-90b486f98b82/go.mod h1:BQehNdf/SB/+bCc031OVsLECIgB9ZaN1dfUFKTeOIuo=
 github.com/schnerring/hugo-mod-json-resume v0.0.0-20231224014047-e651a547c19a h1:EZRiOf0iW5k9lycVv3LngzSsGUxDRszYS4U7ea2r8RY=

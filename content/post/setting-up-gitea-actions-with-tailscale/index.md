@@ -22,7 +22,7 @@ In this post I'll go through the process of setting up Gitea Actions and [Tailsc
 
 So what are they? If you've ever used GitHub Actions (and if you're reading this, I imagine you have), these will look familiar. Gitea Actions essentially enable the ability to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a documented list of [unsupported workflows syntax](https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax).
 
-Actions work by using a [custom fork](https://gitea.com/gitea/act) of [nekos/act](https://github.com/nektos/act). Workflows run in a new container for every job. If you specify an action such as 'actions/checkout@v3', it defaults to downloading the scripts from github.com. To avoid internet egress, you could always clone the required actions to your local gitea instance.
+Actions work by using a [custom fork](https://gitea.com/gitea/act) of [nekos/act](https://github.com/nektos/act). Workflows run in a new container for every job. If you specify an action such as `actions/checkout@v4`, it defaults to downloading the scripts from github.com. To avoid internet egress, you could always clone the required actions to your local gitea instance.
 
 Actions (gitea's implementation) has me excited because it makes spinning up a network-isolated environment for workflow automation incredibly simple.
 
