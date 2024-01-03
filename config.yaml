@@ -1,13 +1,14 @@
 baseURL: /
 googleAnalytics: G-V8WJDERTX9
 copyright: Dave Gallant
+title: davegallant.ca
 enableGitInfo: true
 enableRobotsTXT: true
 noJSConfigInAssets: true
 
 params:
   author: Dave Gallant
-  subtitle: Software Engineer
+  subtitle: blog
   favicon: https://davegallant.ca/favicon.ico
 
   logo:
