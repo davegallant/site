@@ -4,6 +4,9 @@
     "image": "",
     "email": "me@davegallant.ca",
     "summary": "👋 I'm a software tinkerer with a passion for infra, security and self-hosting.",
+    "location": {
+      "region": "From 🇨🇦"
+    },
     "profiles": [
       {
         "network": "LinkTree",
