@@ -10,6 +10,7 @@ Connect with me using any the following methods:
 - Mastodon: <https://mastodon.social/@davegallant>
 - GitHub: <https://github.com/davegallant>
 - RSS Feed: <https://davegallant.ca/index.xml>
+- Git: <https://git.davegallant.ca/explore/repos>
 
 ## Credits
 
