@@ -5,6 +5,7 @@ lastmod: 2021-11-14T10:07:03-05:00
 draft: false
 comments: true
 tags: ["k3s", "proxmox", "lxc", "self-hosted"]
+author: "Dave Gallant"
 ---
 
 It has been a while since I've actively used Kubernetes and wanted to explore the evolution of tools such as [Helm](https://helm.sh) and [Tekton](https://tekton.dev). I decided to deploy [K3s](https://k3s.io), since I've had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it'd be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine's resources.

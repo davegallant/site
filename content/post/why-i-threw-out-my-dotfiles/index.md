@@ -5,6 +5,7 @@ lastmod: 2021-09-08T00:42:33-04:00
 draft: false
 comments: true
 tags: ['nix', 'dotfiles', 'home-manager']
+author: "Dave Gallant"
 ---
 Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (`~/.zshrc`, `~/.config/git/config`, `~/.config/tmux/tmux.conf`, etc). I have tried several different ways to manage them, including [bare git repos](https://www.atlassian.com/git/tutorials/dotfiles) and utilities such as [GNU Stow](https://www.gnu.org/software/stow/). These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: [home-manager](https://github.com/nix-community/home-manager).
 

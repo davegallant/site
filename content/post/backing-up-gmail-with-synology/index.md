@@ -5,6 +5,7 @@ lastmod: 2022-03-13T18:49:10-04:00
 comments: true
 draft: false
 tags: ["synology", "gmail", "backup", "ransomware"]
+author: "Dave Gallant"
 ---
 
 I've used gmail since the beta launched touting a whopping 1GB of storage. I thought this was a massive leap in email technology at the time. I was lucky enough to get an invite fairly quickly. Not suprisingly, I have many years of emails, attachments, and photos. I certainly do not want to lose the content of many of these emails. Despite the redundancy of the data that Google secures, I still feel better retaining a copy of this data on my own physical machines.

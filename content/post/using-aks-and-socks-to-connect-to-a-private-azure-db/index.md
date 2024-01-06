@@ -19,6 +19,7 @@ tags:
     "socat",
     "socks",
   ]
+author: "Dave Gallant"
 ---
 
 I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I'd rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection, and I'd like to use a local client (preferably with a GUI). After several web searches, it became evident that Azure does not readily provide much tooling to support this.
