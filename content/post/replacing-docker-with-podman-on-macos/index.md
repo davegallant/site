@@ -5,6 +5,7 @@ lastmod: 2021-10-11T10:43:35-04:00
 draft: false
 comments: true
 tags: ["docker", "podman", "containers"]
+author: "Dave Gallant"
 ---
 
 There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:

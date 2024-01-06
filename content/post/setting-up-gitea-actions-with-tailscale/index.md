@@ -6,6 +6,7 @@ lastmod: 2023-12-10T17:22:11-05:00
 draft: false
 description: ""
 tags: ["gitea", "gitea actions", "github actions", "tailscale", "self-hosted"]
+author: "Dave Gallant"
 ---
 
 In this post I'll go through the process of setting up Gitea Actions and [Tailscale](https://tailscale.com/), unlocking a simple and secure way to automate workflows.
