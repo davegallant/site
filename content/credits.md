@@ -5,6 +5,6 @@ draft: false
 
 This website is powered by open-source software.
 
-- The static site generator used is [hugo](https://gohugo.io/)
+- The site is generated with [hugo](https://gohugo.io/)
 - The theme is a modified version of [hugo-theme-gruvbox](https://github.com/schnerring/hugo-theme-gruvbox)
-- The comments system is powered by [utterances](https://github.com/utterance/utterances)
+- The comments system uses [utterances](https://github.com/utterance/utterances)
