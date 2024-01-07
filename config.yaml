@@ -22,7 +22,7 @@ params:
       issueTerm: "pathname"
       github:
         username: davegallant
-        repository: davegallant.github.io
+        repository: site
 
   prism:
     languages:
@@ -47,21 +47,15 @@ params:
 
 menu:
   main:
-    - name: Contact
-      url: /contact
-      weight: 1
     - name: Posts
       url: /
-      weight: 2
+      weight: 1
     - name: About
       url: /about
-      weight: 3
+      weight: 2
     - name: RSS
       url: /index.xml
-      weight: 5
-    - name: Credits
-      url: /credits
-      weight: 6
+      weight: 3
 
 permalinks:
   post: "/blog/:year/:month/:day/:slug/"
