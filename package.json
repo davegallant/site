@@ -1,37 +1,4 @@
 {
-  "comments": {
-    "dependencies": {
-      "@tabler/icons": "github.com/davegallant/hugo-theme-gruvbox",
-      "flexsearch": "github.com/davegallant/hugo-theme-gruvbox",
-      "normalize.css": "github.com/davegallant/hugo-theme-gruvbox",
-      "prism-themes": "github.com/davegallant/hugo-theme-gruvbox",
-      "prismjs": "github.com/davegallant/hugo-theme-gruvbox",
-      "simple-icons": "github.com/schnerring/hugo-mod-json-resume",
-      "typeface-fira-code": "github.com/davegallant/hugo-theme-gruvbox",
-      "typeface-roboto-slab": "github.com/davegallant/hugo-theme-gruvbox"
-    },
-    "devDependencies": {
-      "@fullhuman/postcss-purgecss": "github.com/davegallant/hugo-theme-gruvbox",
-      "cssnano": "github.com/davegallant/hugo-theme-gruvbox",
-      "eslint": "github.com/davegallant/hugo-theme-gruvbox",
-      "eslint-config-prettier": "github.com/davegallant/hugo-theme-gruvbox",
-      "eslint-plugin-prettier": "github.com/davegallant/hugo-theme-gruvbox",
-      "husky": "github.com/davegallant/hugo-theme-gruvbox",
-      "lint-staged": "github.com/davegallant/hugo-theme-gruvbox",
-      "markdownlint-cli": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss-cli": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss-custom-media": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss-import": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss-nesting": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss-preset-env": "github.com/davegallant/hugo-theme-gruvbox",
-      "postcss-url": "github.com/davegallant/hugo-theme-gruvbox",
-      "prettier": "github.com/davegallant/hugo-theme-gruvbox",
-      "prettier-plugin-go-template": "github.com/davegallant/hugo-theme-gruvbox",
-      "stylelint": "github.com/davegallant/hugo-theme-gruvbox",
-      "stylelint-prettier": "github.com/davegallant/hugo-theme-gruvbox"
-    }
-  },
   "dependencies": {
     "@tabler/icons": "^2.44.0",
     "flexsearch": "^0.7.31",
