@@ -6,7 +6,8 @@
   {{ $backgroundColor = "bg0_h" }}
 {{ end }}
 
-:root[data-theme="light"] {
+@media (prefers-color-scheme: light) {
+  :root {
   --bg: var(--{{ $backgroundColor }});
   --bg0: #fbf1c7;
   --bg0_h: #f9f5d7;
@@ -41,9 +42,11 @@
   & .light--hidden {
     display: none;
   }
+  }
 }
 
-:root[data-theme="dark"] {
+@media (prefers-color-scheme: dark) {
+  :root {
   --bg: var(--{{ $backgroundColor }});
   --bg0: #282828;
   --bg0_h: #1d2021;
@@ -78,6 +81,8 @@
   & .dark--hidden {
     display: none;
   }
+  }
+
 }
 
 :root {
@@ -85,3 +90,4 @@
   --primary: var(--{{ $themeColor }}1);
   --primary-alt: var(--{{ $themeColor }}2);
 }
+

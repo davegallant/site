@@ -1,12 +1,4 @@
 function getTheme() {
-  if (localStorage && localStorage.getItem("theme")) {
-    // User preference
-    return localStorage.getItem("theme");
-  }
-  // Undefined
-}
-
-function getOSTheme() {
   if (window.matchMedia) {
     // OS preference
     return window.matchMedia("(prefers-color-scheme: light)").matches
@@ -16,44 +8,34 @@ function getOSTheme() {
   // Undefined
 }
 
-function setTheme(theme) {
-  // Main theme
-  document.documentElement.setAttribute("data-theme", theme);
-
-  // Prism theme
+function setPrismTheme(theme) {
   const prismDark = document.getElementById("prism-dark");
   const prismLight = document.getElementById("prism-light");
   prismDark.toggleAttribute("disabled", theme === "light");
   prismLight.toggleAttribute("disabled", theme === "dark");
 }
 
-function saveTheme(theme) {
-  localStorage.setItem("theme", theme);
+function setCommentsTheme(theme) {
+  if (document.querySelector(".utterances-frame")) {
+    const iframe = document.querySelector(".utterances-frame");
+    var message = {
+      type: "set-theme",
+      theme: theme == "dark" ? "gruvbox-dark" : "github-light",
+    };
+    iframe.contentWindow.postMessage(message, "https://utteranc.es");
+  }
 }
 
 // Initial load
 const theme = getTheme();
-const osTheme = getOSTheme();
 if (theme) {
-  setTheme(theme);
-  // Store user preference
-} else if (osTheme) {
-  setTheme(osTheme);
+  setPrismTheme(theme);
 }
 
-function toggleTheme(e) {
-  const theme = e.currentTarget.classList.contains("light--hidden")
-    ? "light"
-    : "dark";
-  setTheme(theme);
-  saveTheme(theme);
-}
-
-// This script is inlined in the <head> of the document, so we have to wait
-// for the DOM content before can add event listeners to the toggle buttons
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleButtons = document.querySelectorAll(".theme__toggle");
-  toggleButtons.forEach((btn) => {
-    btn.addEventListener("click", toggleTheme);
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (event) => {
+    const theme = event.matches ? "dark" : "light";
+    setPrismTheme(theme);
+    setCommentsTheme(theme);
   });
-});
