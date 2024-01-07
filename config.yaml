@@ -25,20 +25,6 @@ params:
         repository: site
 
   prism:
-    languages:
-      - markup
-      - css
-      - clike
-      - javascript
-      - bash
-      - csharp
-      - hcl
-      - ignore
-      - json
-      - markdown
-      - powershell
-      - toml
-      - yaml
     plugins:
       - normalize-whitespace
       - toolbar
