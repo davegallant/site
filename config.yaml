@@ -9,7 +9,6 @@ noJSConfigInAssets: true
 params:
   author: Dave Gallant
   subtitle: blog
-  favicon: https://davegallant.ca/favicon.ico
 
   logo:
     text: davegallant.ca
@@ -74,7 +73,7 @@ markup:
 
 module:
   imports:
-    - path: github.com/davegallant/hugo-theme-gruvbox
+    - path: hugo-theme-gruvbox
   mounts:
     - source: node_modules/simple-icons/icons
       target: assets/simple-icons
