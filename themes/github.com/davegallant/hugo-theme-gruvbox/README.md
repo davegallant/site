@@ -87,10 +87,6 @@ Add the following to the `config.toml` file:
       source = "assets/css/json-resume.css"
       target = "assets/css/critical/44-json-resume.css"
   [[module.mounts]]
-    # required by hugo-mod-json-resume
-    source = "node_modules/simple-icons/icons"
-    target = "assets/simple-icons"
-  [[module.mounts]]
     source = "assets"
     target = "assets"
   [[module.mounts]]
