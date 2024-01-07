@@ -1,23 +1,29 @@
-{{- $scriptSrc := "https://utteranc.es/client.js" -}}
-
-{{- $issueTerm := .Page.Site.Params.comments.utterances.issueTerm -}}
-{{- $label := .Page.Site.Params.comments.utterances.label -}}
-{{- $username := .Page.Site.Params.comments.utterances.github.username -}}
-{{- $repository := .Page.Site.Params.comments.utterances.github.repository -}}
+{{- $scriptSrc := "https://utteranc.es/client.js" -}} {{- $issueTerm :=
+.Page.Site.Params.comments.utterances.issueTerm -}} {{- $label :=
+.Page.Site.Params.comments.utterances.label -}} {{- $username :=
+.Page.Site.Params.comments.utterances.github.username -}} {{- $repository :=
+.Page.Site.Params.comments.utterances.github.repository -}}
 
 <script>
-    // load utteranc comment
-    var getTheme = window.localStorage && window.localStorage.getItem("theme");
-    getTheme = getTheme == null ? 'dark' : getTheme;
+  // load utteranc comment
+  var getTheme = window.localStorage && window.localStorage.getItem("theme");
+  getTheme =
+    getTheme == null
+      ? window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark"
+      : getTheme;
+  getTheme = getTheme == null ? "dark" : getTheme;
 
-    let theme = getTheme === 'dark' ? 'gruvbox-dark' : 'github-light';
-    let s = document.createElement('script');
-    s.src = 'https://utteranc.es/client.js';
-    s.setAttribute('repo', '{{ print $username "/" $repository }}');
-    s.setAttribute('issue-term', '{{ $issueTerm }}');
-    s.setAttribute('theme', theme);
-    s.setAttribute('crossorigin', 'anonymous');
-    s.setAttribute('async', '');
-    document.querySelector('div.comments').innerHTML = '';
-    document.querySelector('div.comments').appendChild(s);
+  let theme = getTheme === "dark" ? "gruvbox-dark" : "github-light";
+  let s = document.createElement("script");
+  s.src = "https://utteranc.es/client.js";
+  s.setAttribute("repo", '{{ print $username "/" $repository }}');
+  s.setAttribute("issue-term", "{{ $issueTerm }}");
+  s.setAttribute("theme", theme);
+  s.setAttribute("crossorigin", "anonymous");
+  s.setAttribute("async", "");
+  document.querySelector("div.comments").innerHTML = "";
+  document.querySelector("div.comments").appendChild(s);
 </script>
