@@ -162,6 +162,7 @@ jobs:
           - homer
           - invidious
           - jackett
+          - jellyfin
           - ladder
           - miniflux
           - plex
