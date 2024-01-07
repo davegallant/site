@@ -3,6 +3,10 @@ function getTheme() {
     // User preference
     return localStorage.getItem("theme");
   }
+  // Undefined
+}
+
+function getOSTheme() {
   if (window.matchMedia) {
     // OS preference
     return window.matchMedia("(prefers-color-scheme: light)").matches
@@ -21,20 +25,28 @@ function setTheme(theme) {
   const prismLight = document.getElementById("prism-light");
   prismDark.toggleAttribute("disabled", theme === "light");
   prismLight.toggleAttribute("disabled", theme === "dark");
+}
 
-  // Store user preference
+function saveTheme(theme) {
   localStorage.setItem("theme", theme);
 }
 
 // Initial load
 const theme = getTheme();
-if (theme) setTheme(theme);
+const osTheme = getOSTheme();
+if (theme) {
+  setTheme(theme);
+  // Store user preference
+} else if (osTheme) {
+  setTheme(osTheme);
+}
 
 function toggleTheme(e) {
   const theme = e.currentTarget.classList.contains("light--hidden")
     ? "light"
     : "dark";
   setTheme(theme);
+  saveTheme(theme);
 }
 
 // This script is inlined in the <head> of the document, so we have to wait
