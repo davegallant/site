@@ -116,11 +116,24 @@ Something to consider is whether or not you want to use ssh with git. One method
 
 After adding the above configuration, running `docker compose up -d` should be enough to get an instance up and running. It will be accessible at [https://gitea.my-tailnet-name.ts.net](https://gitea.my-tailnet-name.ts.net) from within the tailnet.
 
-## Connecting a Runner
+## Theming
+
+I discovered some nice themes for gitea [here](https://git.sainnhe.dev/sainnhe/gitea-themes) and decided to try out gruvbox.
+
+I added the theme by cloning [theme-gruvbox-auto.css](https://git.sainnhe.dev/sainnhe/gitea-themes/raw/branch/master/dist/theme-gruvbox-auto.css) into `./data/gitea/public/assets/css`. I then added the following to `environment` in `docker-compose.yml`:
+
+```yaml
+- GITEA__ui__DEFAULT_THEME=gruvbox-auto
+- GITEA__ui__THEMES=gruvbox-auto
+```
+
+After restarting the gitea instance, the default theme was applied.
+
+## Connecting runners
 
 I installed the runner by [following the docs](https://docs.gitea.com/usage/actions/quickstart#set-up-runner). I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this gitea runner as well, so that it can have the same "networking privileges" as the main instance.
 
-After registering this runner and starting the daemon, it appeared in `/admin/actions/runners`:
+After registering this runner and starting the daemon, the runner appeared in `/admin/actions/runners`. I added two other runners to help with parallelization.
 
 ![image](gitea-runners.png)
 
@@ -146,7 +159,7 @@ jobs:
       matrix:
         host:
           - changedetection
-          - homelab
+          - homer
           - invidious
           - jackett
           - ladder
@@ -154,6 +167,7 @@ jobs:
           - plex
           - qbittorrent
           - tailscale-exit-node
+          - tailscale-subnet-router
           - uptime-kuma
     steps:
       - name: Check out repository code
@@ -187,7 +201,7 @@ jobs:
 
 And voilà:
 
-{{< video poster="gitea-workflow" >}}
+![image](gitea-workflow.png)
 
 You may be wondering how the gitea runner is allowed to connect to the other hosts using ansible? Well, the nodes are in the same tailnet and have [tailscale ssh](https://tailscale.com/tailscale-ssh) enabled.
 
