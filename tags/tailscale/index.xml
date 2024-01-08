@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tailscale on davegallant.ca</title><link>/tags/tailscale/</link><description>Recent content in tailscale on davegallant.ca</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Sun, 10 Dec 2023 17:22:11 -0500</lastBuildDate><atom:link href="/tags/tailscale/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Gitea Actions with Tailscale</title><link>/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</link><pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate><guid>/blog/2023/12/10/setting-up-gitea-actions-with-tailscale/</guid><description>&lt;p>In this post I&amp;rsquo;ll go through the process of setting up Gitea Actions and &lt;a
+ href="https://tailscale.com/"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+>Tailscale&lt;/a>, unlocking a simple and secure way to automate workflows.&lt;/p></description></item><item><title>Watching YouTube in private</title><link>/blog/2022/12/10/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>/blog/2022/12/10/watching-youtube-in-private/</guid><description>&lt;p>I recently stumbled upon &lt;a
+ href="https://yewtu.be"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+>yewtu.be&lt;/a> and found it intriguing. It not only allows you to watch YouTube without &lt;em>being on YouTube&lt;/em>, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&amp;rsquo;s a hosted instance of &lt;a
+ href="https://invidious.io/"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+>invidious&lt;/a>.&lt;/p></description></item><item><title>What to do with a homelab</title><link>/blog/2021/09/06/what-to-do-with-a-homelab/</link><pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate><guid>/blog/2021/09/06/what-to-do-with-a-homelab/</guid><description>&lt;p>A homelab can be an inexpensive way to host a multitude of internal/external services and learn &lt;em>a lot&lt;/em> in the process.&lt;/p></description></item></channel></rss>
