@@ -9,6 +9,7 @@ noJSConfigInAssets: true
 params:
   author: Dave Gallant
   subtitle: blog
+  description: "Dave Gallant is a software developer and a computer enthusiast."
 
   logo:
     text: davegallant.ca
