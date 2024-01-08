@@ -4,7 +4,7 @@
 
 This is a space where I document my learnings and share them with others. I hope you find something useful here. Continuous improvement is what motivates me to keep learning.
 
-I choose to host this site, alongside other tools, rather than relying exclusively on larger platforms because I believe in the open web. Interoperability is often not a primary concern for popular platforms today and I find that concerning.
+I choose to host this site, alongside other tools, rather than relying exclusively on larger platforms because I believe in the open web. Interoperability is often not a consideration for popular platforms today and I find that concerning.
 
 ## Connect
 
