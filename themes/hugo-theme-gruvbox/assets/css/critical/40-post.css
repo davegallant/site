@@ -31,6 +31,7 @@
   margin-top: 1.3rem;
 }
 
+.content-section,
 .post-header,
 .post-content {
   & a {

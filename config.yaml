@@ -47,15 +47,12 @@ params:
 
 menu:
   main:
-    - name: Posts
+    - name: Home
       url: /
       weight: 1
-    - name: About
-      url: /about
+    - name: Blog
+      url: /blog
       weight: 2
-    - name: RSS
-      url: /index.xml
-      weight: 3
 
 permalinks:
   post: "/blog/:year/:month/:day/:slug/"
