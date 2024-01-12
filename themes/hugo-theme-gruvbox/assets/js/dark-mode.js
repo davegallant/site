@@ -1,11 +1,12 @@
 function getTheme() {
-  if (window.matchMedia) {
-    // OS preference
-    return window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark";
+  if (localStorage && localStorage.getItem("theme")) {
+    return localStorage.getItem("theme");
   }
-  // Undefined
+  return "auto";
+}
+
+function saveTheme(theme) {
+  localStorage.setItem("theme", theme);
 }
 
 function setPrismTheme(theme) {
@@ -26,16 +27,39 @@ function setCommentsTheme(theme) {
   }
 }
 
-// Initial load
-const theme = getTheme();
-if (theme) {
+function setTheme(theme) {
+  if (theme == "auto") {
+    theme = window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light"
+      : "dark";
+  }
+  document.documentElement.setAttribute("data-theme", theme);
   setPrismTheme(theme);
+  setCommentsTheme(theme);
 }
+
+function toggleTheme(e) {
+  const theme = e.currentTarget.classList.contains("light--hidden")
+    ? "light"
+    : "dark";
+  setTheme(theme);
+  saveTheme(theme);
+}
+
+// Initial load
+setTheme(getTheme());
 
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", (event) => {
-    const theme = event.matches ? "dark" : "light";
-    setPrismTheme(theme);
-    setCommentsTheme(theme);
+    setTheme(getTheme());
   });
+
+// This script is inlined in the <head> of the document, so we have to wait
+// for the DOM content before can add event listeners to the toggle buttons
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleButtons = document.querySelectorAll(".theme__toggle");
+  toggleButtons.forEach((btn) => {
+    btn.addEventListener("click", toggleTheme);
+  });
+});
