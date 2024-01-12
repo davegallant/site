@@ -7,8 +7,9 @@
 <script>
   // load comments
   var getTheme =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: light)").matches
+    (localStorage && localStorage.getItem("theme")) ||
+    (window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: light)").matches)
       ? "light"
       : "dark";
   getTheme = getTheme == null ? "dark" : getTheme;
