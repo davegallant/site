@@ -155,21 +155,6 @@ on:
 jobs:
   run-ansible-playbook:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        host:
-          - changedetection
-          - homer
-          - invidious
-          - jackett
-          - jellyfin
-          - ladder
-          - miniflux
-          - plex
-          - qbittorrent
-          - tailscale-exit-node
-          - tailscale-subnet-router
-          - uptime-kuma
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -183,7 +168,6 @@ jobs:
           requirements: requirements.yml
           options: |
             --inventory inventory
-            --limit ${{ matrix.host }}
       - name: Send failure notification
         uses: dawidd6/action-send-mail@v3
         if: always() && failure()
@@ -193,7 +177,7 @@ jobs:
           secure: true
           username: myuser
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: ansible runbook '${{ matrix.host }}' failed
+          subject: ansible runbook failed
           to: me@davegallant.ca
           from: RFD Notify
           body: |

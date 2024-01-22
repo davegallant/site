@@ -12,9 +12,9 @@ A homelab can be an inexpensive way to host a multitude of internal/external ser
 
 <!--more-->
 
-Do you want host your own Media server? Ad blocker? Web server?
+Do you want host your own media server? ad blocker? reverse proxy?
 Are you interested in learning more about Linux? Virtualization? Networking? Security?
-Building a homelab can be an entertaining playground to enhance your computer skills.
+A homelab can be a playground to enhance your computer skills, without worrying about breaking anything important.
 
 One of the best parts about building a homelab is that it doesn't have to be a large investment in terms of hardware. One of the simplest ways to build a homelab is out of a [refurbished computer](https://ca.refurb.io/products/hp-800-g1-usff-intel-core-i5-4570s-16gb-ram-512gb-ssd-wifi-windows-10-pro?variant=33049503825943).
 Having multiple machines/nodes provides the advantage of increased redundancy, but starting out with a single node is enough to reap many of the benefits of having a homelab.
@@ -30,20 +30,22 @@ A hypervisor such as [Proxmox](https://www.proxmox.com/en/proxmox-ve/get-started
 
 ## Services
 
-So what are some useful services to deploy?
+Here is a list of some useful services to consider:
 
-- [Jellyfin](https://jellyfin.org/) or [Plex](https://www.plex.tv/) - basically a self-hosted Netflix that can be used to stream from multiple devices, and the best part is that you manage the content! Unlike Plex, Jellyfin is open source and can be found [here](https://github.com/jellyfin/jellyfin).
-- [changedetection](https://github.com/dgtlmoon/changedetection.io) - is a self-hosted equivalent to something like [visualping.io](https://visualping.io/) that will notify you when a webpage changes and keep track of the diffs
-- [Adguard](https://github.com/AdguardTeam/AdGuardHome) or [Pihole](https://pi-hole.net/) - can block a list of known trackers for all clients on your local network. I've used pihole for a long time, but have recently switched to Adguard since the UI is more modern and it has the ability to toggle on/off a pre-defined list of services, including Netflix (this is useful if you have stealthy young kids). Either of these will speed up your internet experience, simply because you won't need to download all of the extra tracking bloat.
-- [Gitea](https://gitea.io/) - A lightweight git server. I use this to mirror git repos from GitHub, GitLab, etc.
-- [Homer](https://github.com/bastienwirtz/homer) - A customizable landing page for services you need to access (including the ability to quickly search).
-- [Uptime Kuma](https://github.com/louislam/uptime-kuma) - A fancy tool for monitoring the uptime of services.
+- [Jellyfin](https://jellyfin.org/) or [Plex](https://www.plex.tv/) - a common gateway to self-hosting that enables a "self-hosted Netflix" experience that puts you in control of the content (guaranteed to make your partner and kids happy)
+- [changedetection](https://github.com/dgtlmoon/changedetection.io) - is a self-hosted equivalent to something like [visualping.io](https://visualping.io/) that can notify you when a webpage changes and keep track of the diffs
+- [Adguard](https://github.com/AdguardTeam/AdGuardHome) or [Pihole](https://pi-hole.net/) - can block a list of known trackers for all clients on your local network with the added benefit of speeding up web page load times
+- [gitea](https://gitea.io/) - A lightweight git server that can be used to mirror git repos and host private content
+- [gethomepage](https://github.com/gethomepage/homepage) - A customizable landing page for quick access to services with many supported widgets that can query APIs and display information
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma) - A tool for monitoring the uptime of services, with notification support
+- [Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker) - a way to monitor the performance of your internet connection and/or vpn connection
+- [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) - a self-hosted PDF manipulation tool that will keep your data private
 
-There is a large number of services you can self-host, including your own applications that you might be developing. [awesome-self-hosted](https://github.com/awesome-selfhosted/awesome-selfhosted) provides a curated list of services that might be of interest to you.
+There is a large number of services you can self-host, including your own applications that you might be developing. Homelabbing allows you to have control over your data and services, and gives you the opportunity to be a software, network, and infrastructure engineer all at once.
 
 ## VPN
 
-You could certainly setup and manage your own VPN by using something like [OpenVPN](https://openvpn.net/community-downloads/), but there is also something else you can try: [tailscale](https://tailscale.com/). It is a very quick way to create fully-encrypted connections between clients. With its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), your can reference the names of machines like `homer` rather than using an IP address. By using this mesh-like VPN, you can easily create a secure tunnel to your homelab from anywhere.
+[Tailscale](https://tailscale.com/) is a quick way to create a flat network for all of your services. With its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), your can reference the names of machines like `changedetection` rather than using an IP address, or managing DNS yourself. By using this mesh-like VPN, you can easily create a secure tunnel to your homelab from anywhere.
 
 ## Monitoring
 
@@ -60,3 +62,5 @@ As mentioned above, [Uptime Kuma](https://github.com/louislam/uptime-kuma) is a 
 ## In Summary
 
 Building out a homelab can be a rewarding experience and it doesn't require buying a rack full of expensive servers to get a significant amount of utility. There are many services that you can run that require very minimal setup, making it possible to get a server up and running in a short period of time, with monitoring, and that can be securely connected to remotely.
+
+If you're looking for a steady stream of ideas for your homelab, check out [selfhosted.show](https://selfhosted.show/).
