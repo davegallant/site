@@ -6,12 +6,15 @@
 
 <script>
   // load comments
-  var getTheme =
-    (localStorage && localStorage.getItem("theme")) ||
-    (window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: light)").matches)
-      ? "light"
-      : "dark";
+  var getTheme = localStorage && localStorage.getItem("theme");
+
+  getTheme =
+    getTheme == null
+      ? window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark"
+      : getTheme;
   getTheme = getTheme == null ? "dark" : getTheme;
 
   let theme = getTheme === "dark" ? "gruvbox-dark" : "github-light";
