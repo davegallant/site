@@ -36,6 +36,7 @@ Here is a list of some useful services to consider:
 - [changedetection](https://github.com/dgtlmoon/changedetection.io) - is a self-hosted equivalent to something like [visualping.io](https://visualping.io/) that can notify you when a webpage changes and keep track of the diffs
 - [Adguard](https://github.com/AdguardTeam/AdGuardHome) or [Pihole](https://pi-hole.net/) - can block a list of known trackers for all clients on your local network with the added benefit of speeding up web page load times
 - [gitea](https://gitea.io/) - A lightweight git server that can be used to mirror git repos and host private content
+- [miniflux](https://github.com/miniflux/v2) - a minimalist RSS reader
 - [gethomepage](https://github.com/gethomepage/homepage) - A customizable landing page for quick access to services with many supported widgets that can query APIs and display information
 - [Uptime Kuma](https://github.com/louislam/uptime-kuma) - A tool for monitoring the uptime of services, with notification support
 - [Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker) - a way to monitor the performance of your internet connection and/or vpn connection
