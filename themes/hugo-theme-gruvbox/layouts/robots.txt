@@ -39,6 +39,11 @@ Disallow: /
 User-agent: omgili
 Disallow: /
 
+# This blocks Bytespider
+https://darkvisitors.com/agents/bytespider
+User-agent: Bytespider
+Disallow: /
+
 User-agent: *
 {{ if eq (hugo.Environment) "production" -}}
 Allow: /
