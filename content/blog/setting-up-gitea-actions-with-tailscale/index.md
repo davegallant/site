@@ -29,17 +29,18 @@ Actions (gitea's implementation) has me excited because it makes spinning up a n
 
 ## Integration with Tailscale
 
-So how does Tailscale help here? Well, more recently I've been exposing my self-hosted services through a combination of traefik and the tailscale (through the tailscale-traefik proxy integration described [here](https://traefik.io/blog/exploring-the-tailscale-traefik-proxy-integration/)). This allows for a nice looking dns name (i.e. gitea.my-tailnet-name.ts.net) and automatic tls certificate management. I can also share this tailscale node securely with other tailscale users without configuring any firewall rules on my router.
+> **2024-02-10**: I had originally written this post to include [Tailscale-Traefik Proxy Integration](https://traefik.io/blog/exploring-the-tailscale-traefik-proxy-integration/), but have since removed it in favour of Tailscale Serve after learning from this [example](https://github.com/tailscale-dev/docker-guide-code-examples). This simplifies the setup and reduces the number of moving parts.
+
+So how does Tailscale help here? Well, more recently I've been exposing my self-hosted services using Tailscale [Serve](https://tailscale.com/kb/1312/serve). This allows for a nice looking dns name (i.e. gitea.my-tailnet-name.ts.net), automatic tls certificate management, and optionally allowing the address to be publically accessible (by using [Funnel](https://tailscale.com/kb/1223/funnel)).
 
 ## Deploying Gitea, Traefik, and Tailscale
 
 In my case, the following is already set up:
 
 - [docker-compose is installed](https://docs.docker.com/compose/install/linux/)
-- [tailscale is installed on the gitea host](https://tailscale.com/kb/1017/install/)
 - [tailscale magic dns is enabled](https://tailscale.com/kb/1081/magicdns/)
 
-My preferred approach to deploying code in a homelab environment is with docker compose. I have deployed this in a [proxmox lxc container](https://pve.proxmox.com/wiki/Linux_Container) based on debian with a hostname `gitea`. This could be deployed in any environment and with any hostname (as long you updated the tailscale machine name to your preferred subdomain for magic dns).
+My preferred approach to deploying code in a homelab environment is with docker compose. I have deployed this in a LXC on Proxmox. You could run this on a virtual machine or a physical host as well.
 
 The `docker-compose.yaml` file looks like:
 
@@ -49,6 +50,7 @@ services:
   gitea:
     image: gitea/gitea:1.21.1
     container_name: gitea
+    network_mode: service:ts-gitea
     environment:
       - USER_UID=1000
       - USER_GID=1000
@@ -62,59 +64,43 @@ services:
       - ./data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-  traefik:
-    image: traefik:v3.0.0-beta4
-    container_name: traefik
-    security_opt:
-      - no-new-privileges:true
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
+  ts-gitea:
+    image: tailscale/tailscale:v1.58
+    container_name: ts-gitea
+    hostname: gitea
+    environment:
+      - TS_AUTHKEY=<FILL THIS IN>
+      - TS_SERVE_CONFIG=/config/gitea.json
+      - TS_STATE_DIR=/var/lib/tailscale
     volumes:
-      - ./traefik/data/traefik.yaml:/traefik.yaml:ro
-      - ./traefik/data/dynamic.yaml:/dynamic.yaml:ro
-      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+      - ${PWD}/state:/var/lib/tailscale
+      - ${PWD}/config:/config
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    restart: unless-stopped
 ```
 
-`traefik/data/traefik.yaml`:
+Note that you must specify a `TS_AUTHKEY` in the `ts-gitea` service. You can generate an auth key [here](https://login.tailscale.com/admin/settings/keys).
+
+`config/gitea.json`:
 
 ```yaml
-entryPoints:
-  https:
-    address: ":443"
-providers:
-  file:
-    filename: dynamic.yaml
-certificatesResolvers:
-  myresolver:
-    tailscale: {}
-log:
-  level: INFO
+{
+  "TCP": { "443": { "HTTPS": true } },
+  "Web":
+    {
+      "${TS_CERT_DOMAIN}:443":
+        { "Handlers": { "/": { "Proxy": "http://127.0.0.1:3000" } } },
+    },
+  "AllowFunnel": { "${TS_CERT_DOMAIN}:443": false },
+}
 ```
-
-and finally `traefik/data/dynamic/dynamic.yaml`:
-
-```yaml
-http:
-  routers:
-    gitea:
-      rule: Host(`gitea.my-tailnet-name.ts.net`)
-      entrypoints:
-        - "https"
-      service: gitea
-      tls:
-        certResolver: myresolver
-  services:
-    gitea:
-      loadBalancer:
-        servers:
-          - url: "http://gitea:3000"
-```
-
-Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use [ssh container passthrough](https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough). I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.
 
 After adding the above configuration, running `docker compose up -d` should be enough to get an instance up and running. It will be accessible at [https://gitea.my-tailnet-name.ts.net](https://gitea.my-tailnet-name.ts.net) from within the tailnet.
+
+Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use [ssh container passthrough](https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough). I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.
 
 ## Theming
 
@@ -131,7 +117,7 @@ After restarting the gitea instance, the default theme was applied.
 
 ## Connecting runners
 
-I installed the runner by [following the docs](https://docs.gitea.com/usage/actions/quickstart#set-up-runner). I opted for installing it on a separate host (another lxc container) as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on this gitea runner as well, so that it can have the same "networking privileges" as the main instance.
+I installed the runner by [following the docs](https://docs.gitea.com/usage/actions/quickstart#set-up-runner). I opted for installing it on a separate host as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on the gitea runner as well, so that it can be part of the same tailnet as the main instance.
 
 After registering this runner and starting the daemon, the runner appeared in `/admin/actions/runners`. I added two other runners to help with parallelization.
 
