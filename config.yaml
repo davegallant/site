@@ -4,7 +4,10 @@ copyright: Dave Gallant
 title: davegallant.ca
 enableGitInfo: true
 enableRobotsTXT: true
-noJSConfigInAssets: true
+
+build:
+  noJSConfigInAssets: true
+  writeStats: true
 
 params:
   author: Dave Gallant
