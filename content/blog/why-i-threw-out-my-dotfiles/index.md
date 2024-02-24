@@ -182,3 +182,5 @@ In ways, home-manager can be seen as a gateway to the nix ecosystem. If you have
 ## Wrapping up
 
 The title of this post is slightly misleading, since it's possible to retain some of your dotfiles and have them intermingle with home-manager by including them alongside nix. The idea of defining user configuration using nix can provide a clean way to maintain your configuration, and allow it to be portable across platforms. Is it worth the effort to migrate away from shell scripts and dotfiles? I'd say so.
+
+You can find my nix config [here](https://github.com/davegallant/nix-config).
