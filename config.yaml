@@ -1,9 +1,12 @@
 baseURL: /
-googleAnalytics: G-V8WJDERTX9
 copyright: Dave Gallant
 title: davegallant.ca
 enableGitInfo: true
 enableRobotsTXT: true
+
+services:
+  googleAnalytics:
+    ID: G-V8WJDERTX9
 
 build:
   noJSConfigInAssets: true
@@ -11,7 +14,7 @@ build:
 
 params:
   author: Dave Gallant
-  subtitle: 
+  subtitle:
   description: "Dave Gallant is a software developer and a computer enthusiast."
 
   logo:
