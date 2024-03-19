@@ -185,3 +185,5 @@ One enhancement that I would like to see is the ability to send notifications on
 Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantially more resources. It likely helps that the codebase is largely written in go.
 
 By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.
+
+Check out my gitea instance exposed via Funnel [here](https://gitea.snake-cloud.ts.net).

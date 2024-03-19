@@ -15,7 +15,7 @@ If you would like to connect with me:
 - [Mastodon](https://mastodon.social/@davegallant)
 - [GitHub](https://github.com/davegallant)
 - [RSS Feed](https://davegallant.ca/index.xml)
-- [git.davegallant.ca](https://git.davegallant.ca/explore/repos)
+- [gitea.snake-cloud.ts.net](https://gitea.snake-cloud.ts.net/explore/repos)
 
 ## Credits
 
