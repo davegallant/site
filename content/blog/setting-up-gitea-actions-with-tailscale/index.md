@@ -94,7 +94,7 @@ Note that you must specify a `TS_AUTHKEY` in the `ts-gitea` service. You can gen
       "${TS_CERT_DOMAIN}:443":
         { "Handlers": { "/": { "Proxy": "http://127.0.0.1:3000" } } },
     },
-  "AllowFunnel": { "${TS_CERT_DOMAIN}:443": false },
+  "AllowFunnel": { "${TS_CERT_DOMAIN}:443": false }
 }
 ```
 
