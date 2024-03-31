@@ -1,50 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>davegallant.ca</title><link>/</link><description>Recent content on davegallant.ca</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dave Gallant</copyright><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Gitea Actions with Tailscale</title><link>/blog/setting-up-gitea-actions-with-tailscale/</link><pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate><guid>/blog/setting-up-gitea-actions-with-tailscale/</guid><description>&lt;p>In this post I&amp;rsquo;ll go through the process of setting up Gitea Actions and &lt;a
- href="https://tailscale.com/"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://tailscale.com/"
+class="link--external" target="_blank" rel="noreferrer"
 >Tailscale&lt;/a>, unlocking a simple and secure way to automate workflows.&lt;/p></description></item><item><title>Using AKS and SOCKS to connect to a private Azure DB</title><link>/blog/using-aks-and-socks-to-connect-to-a-private-azure-db/</link><pubDate>Mon, 22 May 2023 16:31:29 -0400</pubDate><guid>/blog/using-aks-and-socks-to-connect-to-a-private-azure-db/</guid><description>&lt;p>I ran into a roadblock recently where I wanted to be able to conveniently connect to a managed postgres database within Azure that was not running on public subnets. And by conveniently, I mean that I&amp;rsquo;d rather not have to spin up an ephemeral virtual machine running in the same network and proxy the connection, and I&amp;rsquo;d like to use a local client (preferably with a GUI). After several web searches, it became evident that Azure does not readily provide much tooling to support this.&lt;/p></description></item><item><title>Watching YouTube in private</title><link>/blog/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>/blog/watching-youtube-in-private/</guid><description>&lt;p>I recently stumbled upon &lt;a
- href="https://yewtu.be"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://yewtu.be"
+class="link--external" target="_blank" rel="noreferrer"
 >yewtu.be&lt;/a> and found it intriguing. It not only allows you to watch YouTube without &lt;em>being on YouTube&lt;/em>, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&amp;rsquo;s a hosted instance of &lt;a
- href="https://invidious.io/"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://invidious.io/"
+class="link--external" target="_blank" rel="noreferrer"
 >invidious&lt;/a>.&lt;/p></description></item><item><title>Virtualizing my router with pfSense</title><link>/blog/virtualizing-a-router-with-pfsense/</link><pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate><guid>/blog/virtualizing-a-router-with-pfsense/</guid><description>&lt;p>My aging router has been running &lt;a
- href="https://en.wikipedia.org/wiki/OpenWrt"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://en.wikipedia.org/wiki/OpenWrt"
+class="link--external" target="_blank" rel="noreferrer"
 >OpenWrt&lt;/a> for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a &lt;a
- href="https://openwrt.org/packages/index/start"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://openwrt.org/packages/index/start"
+class="link--external" target="_blank" rel="noreferrer"
 >large index of packages&lt;/a>. Ever since I&amp;rsquo;ve connected some standalone wireless access points, I&amp;rsquo;ve had less of a need for an off-the-shelf all-in-one wireless router combo. I&amp;rsquo;ve also recently been experiencing instability with my router (likely the result of a combination of configuration tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!&lt;/p></description></item><item><title>Backing up gmail with Synology</title><link>/blog/backing-up-gmail-with-synology/</link><pubDate>Sun, 13 Mar 2022 18:49:10 -0400</pubDate><guid>/blog/backing-up-gmail-with-synology/</guid><description>&lt;p>I&amp;rsquo;ve used gmail since the beta launched touting a whopping 1GB of storage. I thought this was a massive leap in email technology at the time. I was lucky enough to get an invite fairly quickly. Not suprisingly, I have many years of emails, attachments, and photos. I certainly do not want to lose the content of many of these emails. Despite the redundancy of the data that Google secures, I still feel better retaining a copy of this data on my own physical machines.&lt;/p></description></item><item><title>Running K3s in LXC on Proxmox</title><link>/blog/running-k3s-in-lxc-on-proxmox/</link><pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate><guid>/blog/running-k3s-in-lxc-on-proxmox/</guid><description>It has been a while since I&amp;rsquo;ve actively used Kubernetes and wanted to explore the evolution of tools such as Helm and Tekton. I decided to deploy K3s, since I&amp;rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&amp;rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment.</description></item><item><title>Replacing docker with podman on macOS (and Linux)</title><link>/blog/replacing-docker-with-podman-on-macos/</link><pubDate>Mon, 11 Oct 2021 10:43:35 -0400</pubDate><guid>/blog/replacing-docker-with-podman-on-macos/</guid><description>&lt;p>There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:&lt;/p></description></item><item><title>Automatically rotating AWS access keys</title><link>/blog/automatically-rotating-aws-keys/</link><pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate><guid>/blog/automatically-rotating-aws-keys/</guid><description>Rotating credentials is a security best practice. This morning, I read a question about automatically rotating AWS Access Keys without having to go through the hassle of navigating the AWS console. There are some existing solutions already, but I decided to write a script since it was incredibly simple. The script could be packed up as a systemd/launchd service to continually rotate access keys in the background.
 In the longer term, migrating my local workflows to aws-vault seems like a more secure solution.</description></item><item><title>Why I threw out my dotfiles</title><link>/blog/why-i-threw-out-my-dotfiles/</link><pubDate>Wed, 08 Sep 2021 00:42:33 -0400</pubDate><guid>/blog/why-i-threw-out-my-dotfiles/</guid><description>&lt;p>Over the years I have collected a number of dotfiles that I have shared across both Linux and macOS machines (&lt;code>~/.zshrc&lt;/code>, &lt;code>~/.config/git/config&lt;/code>, &lt;code>~/.config/tmux/tmux.conf&lt;/code>, etc). I have tried several different ways to manage them, including &lt;a
- href="https://www.atlassian.com/git/tutorials/dotfiles"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://www.atlassian.com/git/tutorials/dotfiles"
+class="link--external" target="_blank" rel="noreferrer"
 >bare git repos&lt;/a> and utilities such as &lt;a
- href="https://www.gnu.org/software/stow/"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://www.gnu.org/software/stow/"
+class="link--external" target="_blank" rel="noreferrer"
 >GNU Stow&lt;/a>. These solutions work well enough, but I have since found what I would consider a much better solution for organizing user configuration: &lt;a
- href="https://github.com/nix-community/home-manager"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://github.com/nix-community/home-manager"
+class="link--external" target="_blank" rel="noreferrer"
 >home-manager&lt;/a>.&lt;/p></description></item><item><title>What to do with a homelab</title><link>/blog/what-to-do-with-a-homelab/</link><pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate><guid>/blog/what-to-do-with-a-homelab/</guid><description>&lt;p>A homelab can be an inexpensive way to host a multitude of internal/external services and learn &lt;em>a lot&lt;/em> in the process.&lt;/p></description></item><item><title>AppGate SDP on Arch Linux</title><link>/blog/appgate-sdp-on-arch-linux/</link><pubDate>Mon, 16 Mar 2020 22:00:15 -0400</pubDate><guid>/blog/appgate-sdp-on-arch-linux/</guid><description>&lt;p>AppGate SDP provides a Zero Trust network. This post describes how to get AppGate SDP &lt;code>4.3.2&lt;/code> working on Arch Linux.&lt;/p></description></item></channel></rss>

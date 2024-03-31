@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vlan on davegallant.ca</title><link>/tags/vlan/</link><description>Recent content in vlan on davegallant.ca</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Sat, 02 Apr 2022 18:50:09 -0400</lastBuildDate><atom:link href="/tags/vlan/index.xml" rel="self" type="application/rss+xml"/><item><title>Virtualizing my router with pfSense</title><link>/blog/virtualizing-a-router-with-pfsense/</link><pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate><guid>/blog/virtualizing-a-router-with-pfsense/</guid><description>&lt;p>My aging router has been running &lt;a
- href="https://en.wikipedia.org/wiki/OpenWrt"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://en.wikipedia.org/wiki/OpenWrt"
+class="link--external" target="_blank" rel="noreferrer"
 >OpenWrt&lt;/a> for years and for the most part has been quite reliable. OpenWrt is an open-source project used on embedded devices to route network traffic. It supports many different configurations and there exists a &lt;a
- href="https://openwrt.org/packages/index/start"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
+href="https://openwrt.org/packages/index/start"
+class="link--external" target="_blank" rel="noreferrer"
 >large index of packages&lt;/a>. Ever since I&amp;rsquo;ve connected some standalone wireless access points, I&amp;rsquo;ve had less of a need for an off-the-shelf all-in-one wireless router combo. I&amp;rsquo;ve also recently been experiencing instability with my router (likely the result of a combination of configuration tweaking and firmware updating). OpenWrt has served me well, but it is time to move on!&lt;/p></description></item></channel></rss>
