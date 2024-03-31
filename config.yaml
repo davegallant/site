@@ -3,6 +3,7 @@ copyright: Dave Gallant
 title: davegallant.ca
 enableGitInfo: true
 enableRobotsTXT: true
+paginate: 20
 
 services:
   googleAnalytics:
