@@ -1,5 +1,5 @@
 ---
-title: "davegallant.ca — Blog"
+title: Blog
 ---
 
-[RSS Feed](https://davegallant.ca/index.xml)
+Subscribe via [RSS](https://davegallant.ca/index.xml).
