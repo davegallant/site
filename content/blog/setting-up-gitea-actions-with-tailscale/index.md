@@ -104,9 +104,9 @@ Something to consider is whether or not you want to use ssh with git. One method
 
 ## Theming
 
-I discovered some themes for gitea [here](https://git.sainnhe.dev/sainnhe/gitea-themes) and decided to try out gruvbox.
+I discovered some themes for gitea [here](https://git.sainnhe.dev/sainnhe/gitea-themes).
 
-I added the theme by cloning [theme-gruvbox-auto.css](https://git.sainnhe.dev/sainnhe/gitea-themes/raw/branch/master/dist/theme-gruvbox-auto.css) into `./data/gitea/public/assets/css`. I then added the following to `environment` in `docker-compose.yml`:
+I added the theme by copying [theme-palenight.css](https://git.sainnhe.dev/sainnhe/gitea-themes/raw/branch/master/dist/theme-palenight.css) into `./data/gitea/public/assets/css`. I then added the following to `environment` in `docker-compose.yml`:
 
 ```yaml
 - GITEA__ui__DEFAULT_THEME=palenight
