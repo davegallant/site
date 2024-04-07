@@ -21,8 +21,8 @@ version: &#34;3.7&#34; services: gitea: image: gitea/gitea:1.21.1 container_name
 config/gitea.json:
 { &#34;TCP&#34;: { &#34;443&#34;: { &#34;HTTPS&#34;: true } }, &#34;Web&#34;: { &#34;\${TS_CERT_DOMAIN}:443&#34;: { &#34;Handlers&#34;: { &#34;/&#34;: { &#34;Proxy&#34;: &#34;http://127.0.0.1:3000&#34; } } }, }, &#34;AllowFunnel&#34;: { &#34;\${TS_CERT_DOMAIN}:443&#34;: false } } After adding the above configuration, running docker compose up -d should be enough to get an instance up and running. It will be accessible at https://gitea.my-tailnet-name.ts.net from within the tailnet.
 Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use ssh container passthrough. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.
-Theming# I discovered some themes for gitea here and decided to try out gruvbox.
-I added the theme by cloning theme-gruvbox-auto.css into ./data/gitea/public/assets/css. I then added the following to environment in docker-compose.yml:
+Theming# I discovered some themes for gitea here.
+I added the theme by copying theme-palenight.css into ./data/gitea/public/assets/css. I then added the following to environment in docker-compose.yml:
 - GITEA__ui__DEFAULT_THEME=palenight - GITEA__ui__THEMES=palenight After restarting the gitea instance, the default theme was applied.
 Connecting runners# I installed the runner by following the docs. I opted for installing it on a separate host as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on the gitea runner as well, so that it can be part of the same tailnet as the main instance.
 After registering this runner and starting the daemon, the runner appeared in /admin/actions/runners. I added two other runners to help with parallelization.
