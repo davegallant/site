@@ -1,12 +1,9 @@
 {{ range $pageIndex, $page := .Pages }}
   <article class="post">
     <div class="post-header">
-        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-
+      <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
       {{ partial "post-meta.html" (dict "page" . "pageIndex" $pageIndex) }}
-
     </div>
-
   </article>
 {{ end }}
 
