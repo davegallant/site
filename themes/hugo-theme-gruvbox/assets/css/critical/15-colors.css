@@ -16,7 +16,7 @@
   --bg3: #665c54;
   --bg4: #32344a;
   --fg: var(--fg1);
-  --fg0: #ad8ee6;
+  --fg0: #C792EA;
   --fg1: #dddfeb;
   --fg2: #7da6ff;
   --fg3: #9ece6a;
@@ -29,8 +29,8 @@
   --green2: #b9f27c;
   --yellow1: #e0af68;
   --yellow2: #ff9e64;
-  --blue1: #7da6ff;
-  --blue2: #7aa2f7;
+  --blue1: #89DDFF;
+  --blue2: #89DDFF;
   --purple1: #ad8ee6;
   --purple2: #bb9af7;
   --aqua1: #449dab;
@@ -44,7 +44,6 @@
   }
 
 :root {
-  {{ $themeColor := .Param "themeColor" | default "blue" }}
-  --primary: var(--{{ $themeColor }}1);
-  --primary-alt: var(--{{ $themeColor }}2);
+  --primary: var(--blue1);
+  --primary-alt: var(--blue2);
 }
