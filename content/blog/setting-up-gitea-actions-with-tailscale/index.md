@@ -109,8 +109,8 @@ I discovered some themes for gitea [here](https://git.sainnhe.dev/sainnhe/gitea-
 I added the theme by cloning [theme-gruvbox-auto.css](https://git.sainnhe.dev/sainnhe/gitea-themes/raw/branch/master/dist/theme-gruvbox-auto.css) into `./data/gitea/public/assets/css`. I then added the following to `environment` in `docker-compose.yml`:
 
 ```yaml
-- GITEA__ui__DEFAULT_THEME=gruvbox-auto
-- GITEA__ui__THEMES=gruvbox-auto
+- GITEA__ui__DEFAULT_THEME=palenight
+- GITEA__ui__THEMES=palenight
 ```
 
 After restarting the gitea instance, the default theme was applied.
@@ -120,8 +120,6 @@ After restarting the gitea instance, the default theme was applied.
 I installed the runner by [following the docs](https://docs.gitea.com/usage/actions/quickstart#set-up-runner). I opted for installing it on a separate host as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on the gitea runner as well, so that it can be part of the same tailnet as the main instance.
 
 After registering this runner and starting the daemon, the runner appeared in `/admin/actions/runners`. I added two other runners to help with parallelization.
-
-![image](gitea-runners.png)
 
 ## Running a workflow
 
