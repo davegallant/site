@@ -6,4 +6,5 @@ clean:
   rm -rf public/
 
 server: clean
+  npm ci
   hugo server --buildDrafts
