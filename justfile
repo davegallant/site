@@ -5,5 +5,5 @@ build: clean
 clean:
   rm -rf public/
 
-server:
+server: clean
   hugo server --buildDrafts
