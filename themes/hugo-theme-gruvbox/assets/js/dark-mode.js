@@ -28,32 +28,13 @@ function setCommentsTheme(theme) {
 }
 
 function setTheme(theme) {
-  if (theme == "auto") {
-    theme = window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark";
-  }
   document.documentElement.setAttribute("data-theme", theme);
   setPrismTheme(theme);
   setCommentsTheme(theme);
 }
 
-function toggleTheme(e) {
-  const theme = e.currentTarget.classList.contains("light--hidden")
-    ? "light"
-    : "dark";
-  setTheme(theme);
-  saveTheme(theme);
-}
 
-// Initial load
-setTheme(getTheme());
-
-window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", (event) => {
-    setTheme(getTheme());
-  });
+setTheme("dark");
 
 // This script is inlined in the <head> of the document, so we have to wait
 // for the DOM content before can add event listeners to the toggle buttons
