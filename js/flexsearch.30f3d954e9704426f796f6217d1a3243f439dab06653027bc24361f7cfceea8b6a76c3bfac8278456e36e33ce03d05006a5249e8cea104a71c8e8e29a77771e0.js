@@ -16,7 +16,7 @@ config/gitea.json:
 Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use ssh container passthrough. I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.
 Theming# I discovered some themes for gitea here and decided to try out gruvbox.
 I added the theme by cloning theme-gruvbox-auto.css into ./data/gitea/public/assets/css. I then added the following to environment in docker-compose.yml:
-- GITEA__ui__DEFAULT_THEME=gruvbox-auto - GITEA__ui__THEMES=gruvbox-auto After restarting the gitea instance, the default theme was applied.
+- GITEA__ui__DEFAULT_THEME=palenight - GITEA__ui__THEMES=palenight After restarting the gitea instance, the default theme was applied.
 Connecting runners# I installed the runner by following the docs. I opted for installing it on a separate host as recommended in the docs. I used the systemd unit file to ensure that the runner comes back online after system reboots. I installed tailscale on the gitea runner as well, so that it can be part of the same tailnet as the main instance.
 After registering this runner and starting the daemon, the runner appeared in /admin/actions/runners. I added two other runners to help with parallelization.
 Running a workflow# Now it&rsquo;s time start running some automation. I used the demo workflow as a starting point to verify that the runner is executing workflows.
