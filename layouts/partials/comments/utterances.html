@@ -6,18 +6,7 @@
 
 <script>
   // load comments
-  var getTheme = localStorage && localStorage.getItem("theme");
-
-  getTheme =
-    getTheme == null
-      ? window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: light)").matches
-        ? "light"
-        : "dark"
-      : getTheme;
-  getTheme = getTheme == null ? "dark" : getTheme;
-
-  let theme = getTheme === "dark" ? "gruvbox-dark" : "github-light";
+  let theme = "dark-blue";
   let script = document.createElement("script");
   script.src = "https://utteranc.es/client.js";
   script.setAttribute("repo", '{{ print $username "/" $repository }}');
