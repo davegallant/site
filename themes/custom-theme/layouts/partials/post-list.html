@@ -1,8 +1,11 @@
 {{ range $pageIndex, $page := .Pages }}
   <article class="post">
     <div class="post-header">
-      <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-      {{ partial "post-meta.html" (dict "page" . "pageIndex" $pageIndex) }}
+      <div class="post-meta">
+        {{- with $page.Date -}}
+          <span>{{ .Format "2006-01-02" }}</span> 
+        {{- end -}}: <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+      </div>
     </div>
   </article>
 {{ end }}
