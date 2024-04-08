@@ -1,7 +1,7 @@
 .post,
 .content-section {
   border-bottom: 2px dotted var(--bg1);
-  padding: 2rem 0;
+  padding: 0rem 0;
 }
 
 .post {
