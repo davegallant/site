@@ -72,7 +72,7 @@ markup:
 
 module:
   imports:
-    - path: hugo-theme-gruvbox
+    - path: custom-theme
   mounts:
     - source: node_modules/simple-icons/icons
       target: assets/simple-icons
