@@ -65,7 +65,7 @@ header {
   }
 
   &::placeholder {
-    color: var(--fg3);
+    color: var(--fg1);
   }
 
   &[type="search"]::-webkit-search-cancel-button {
