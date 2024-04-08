@@ -49,7 +49,7 @@ resource "aws_iam_openid_connect_provider" "eks" {
 
 # IAM
 resource "aws_iam_role" "ebs_csi_driver" {
-  name               = "${var.environment_name}-ebs-csi-driver"
+  name               = "ebs-csi-driver"
   assume_role_policy = data.aws_iam_policy_document.ebs_csi_driver_assume_role.json
 }
 
@@ -87,6 +87,6 @@ resource "aws_iam_role_policy_attachment" "AmazonEBSCSIDriverPolicy" {
 }
 ```
 
-The above configuration follows the docs, binding an IAM role to the service account _kube-system/ebs-csi-controller-sa_ using an OpenID connect provider.
+The above configuration follows the docs, binding an IAM role to the service account `kube-system/ebs-csi-controller-sa` using an OpenID connect provider.
 
 After applying the changes above, I deployed [the sample application](https://docs.aws.amazon.com/eks/latest/userguide/ebs-sample-app.html) and noticed that the persistent volume claims were bound to EBS volumes.
