@@ -12,6 +12,7 @@ If you would like to connect with me:
 
 - [Email](mailto:me@davegallant.ca)
 - [LinkedIn](https://www.linkedin.com/in/dave-gallant)
+- [Cal.com](https://cal.com/davegallant)
 - [Mastodon](https://mastodon.social/@davegallant)
 - [GitHub](https://github.com/davegallant)
 - [RSS Feed](https://davegallant.ca/index.xml)
