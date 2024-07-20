@@ -83,10 +83,32 @@ After invidious was up and running, I installed [Tailscale](https://tailscale.co
 
 I figured it would be nice to redirect existing YouTube links that others send me, so that I could seamlessly watch the videos using invidious.
 
-I went looking for a way to redirect paths at the browser level. I found the lightweight proxy [requestly](https://requestly.io/), which can be used to modify http requests in my browser. I created the following rules:
+I went looking for a way to redirect paths at the browser level. I found [Redirector](https://github.com/einaregilsson/Redirector), which can be used to modify http requests in the browser. I created the following redirect (exported as json):
 
-![requestly](requestly-rules.png)
+```json
+{
+    "redirects": [
+        {
+            "description": "youtube to invidious",
+            "exampleUrl": "https://www.youtube.com/watch?v=-lz30by8-sU",
+            "exampleResult": "http://invidious:3000/watch?v=-lz30by8-sU",
+            "error": null,
+            "includePattern": "https://*youtube.com/*",
+            "excludePattern": "",
+            "patternDesc": "Any youtube video should redirect to invidious",
+            "redirectUrl": "http://invidious:3000/$2",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        }
+    ]
+}
+```
 
-Now the link https://www.youtube.com/watch?v=-lz30by8-sU will redirect to [http://invidious:3000/watch?v=-lz30by8-sU](http://invidious:3000/watch?v=-lz30by8-sU)
+Now the link <https://www.youtube.com/watch?v=-lz30by8-sU> will redirect to [http://invidious:3000/watch?v=-lz30by8-sU](http://invidious:3000/watch?v=-lz30by8-sU)
 
 I'm still looking for ways to improve this invidious setup. There doesn't appear to be a way to stream in 4K yet.
