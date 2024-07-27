@@ -5,14 +5,17 @@ draft: false
 comments: true
 toc: false
 author: "Dave Gallant"
-tags: ['aws', 'eks', 'ebs', 'aws-ebs-csi-driver', 'oidc']
+tags: ['aws', 'eks', 'ebs', 'aws-ebs-csi-driver', 'oidc', 'efs', 'aws-efs-csi-driver']
 ---
 
 I recently configured the Amazon EBS CSI driver and found the setup with terraform to be more effort than expected. I wanted to avoid third-party modules and keep it as simple as possible, while remaining least privilege.
 
+> UPDATE: This approach can also be used for the aws-efs-csi-driver
+
 <!--more-->
 
 The [Amazon EBS CSI driver docs](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) mention that the following are needed:
+
 - an existing EKS cluster
 - IAM role (that allows communication to the EC2 API)
 - EKS add-on (aws-ebs-csi-driver)
