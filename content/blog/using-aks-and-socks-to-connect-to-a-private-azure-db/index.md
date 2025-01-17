@@ -26,7 +26,6 @@ I ran into a roadblock recently where I wanted to conveniently connect to a mana
 
 <!--more-->
 
-
 ## Go Public?
 
 Should the database be migrated to public subnets? Ideally not, since it is good practice to host internal infrastructure in restricted subnets.
@@ -82,4 +81,6 @@ If these stars align, than this solution might work as a stopgap for accessing a
 
 It would be nice if Azure provided tooling similar to cloud-sql-proxy, so that using private databases would be more of a convenient experience.
 
-One other thing to note is that some clients (such as [dbeaver](https://dbeaver.io/)) [do not provide DNS resolution over SOCKS](https://github.com/dbeaver/dbeaver/issues/872). So in this case, you won't be able to use DNS as if you were inside the cluster, but instead have to rely on knowing private ip addresses.
+~~One other thing to note is that some clients (such as [dbeaver](https://dbeaver.io/)) [do not provide DNS resolution over SOCKS](https://github.com/dbeaver/dbeaver/issues/872). So in this case, you won't be able to use DNS as if you were inside the cluster, but instead have to rely on knowing private ip addresses.~~
+
+> **2025-01-16:**: DNS over SOCKS now works with the latest dbeaver client.
