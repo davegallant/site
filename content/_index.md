@@ -10,7 +10,7 @@ I choose to host this site, alongside other tools, rather than relying exclusive
 
 If you would like to connect with me:
 
-- [Email](mailto:me@davegallant.ca)
+- [Email](mailto:davegallant@proton.me)
 - [LinkedIn](https://www.linkedin.com/in/dave-gallant)
 - [Cal.com](https://cal.com/davegallant)
 - [Mastodon](https://mastodon.social/@davegallant)
