@@ -55,7 +55,7 @@ I received the WAN IP and everything appeared to be working. I ran a few speed t
 
 ![speedtest-tracker](./speedtest-tracker.png)
 
-These speeds tests were going through a Mullvad (which occasionally dips), but the results were too consistently low to be a coincidence.
+These speeds tests were going through Mullvad, which occasionally is inconsistent, but the results remained consistently lower than the previous configuration.
 
 I reverted the WAN back to the original NIC, and the download speeds returned to more average results immediately so it became obvious that something was not right with this setup.
 
@@ -80,4 +80,4 @@ I re-configured the WAN interface in OPNsense to use the newly added network dev
 
 ## Conclusion
 
-Although I am not sure why passing through a Realtek NIC to an OPNsense VM causes so much degradation in throughput, I am glad that there is a workaround. If I get my hands on another NIC, I will try to see if the issue can be reproduced.
+Although I am not sure why passing through a Realtek NIC to an OPNsense VM causes so much degradation in throughput, I am glad that there is a workaround. If I get ahold of another NIC, I would be interested in trying to reproduce the issue.
