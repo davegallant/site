@@ -6,6 +6,8 @@ This is a space where I document my learnings and share them with others. I hope
 
 I choose to host this site, alongside other tools, rather than relying exclusively on larger platforms because I believe in the open web. Interoperability is often not a consideration for popular platforms today and I find that concerning.
 
+My blog can be found [here](./blog).
+
 ## Connect
 
 If you would like to connect with me:
