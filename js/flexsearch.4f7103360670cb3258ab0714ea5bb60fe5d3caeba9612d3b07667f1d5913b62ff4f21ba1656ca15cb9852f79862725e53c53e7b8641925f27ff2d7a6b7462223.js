@@ -8,7 +8,7 @@ LAN: the internal network for computers, phones, cameras, printers, etc (NIC 1) 
 Device Passthrough# For maximum performance and reduced hypervisor overhead, passing through a physical NIC for WAN directly to the VM seemed to make the most sense, so I passed it through to the OPNsense VM.
 I added the PCI device and restarted the OPNsense VM and re-configured the WAN in OPNsense to use this device.
 I received the WAN IP and everything appeared to be working. I ran a few speed tests and noticed that the download speeds were a lot lower than normal on multiple devices. I checked my instance of speedtest-tracker noticed that the download speeds were significantly slower than historical records:
-These speeds tests were going through a Mullvad (which occasionally dips), but the results were too consistently low to be a coincidence.
+These speeds tests were going through Mullvad, which occasionally is inconsistent, but the results remained consistently lower than the previous configuration.
 I reverted the WAN back to the original NIC, and the download speeds returned to more average results immediately so it became obvious that something was not right with this setup.
 Realtek drivers# I did some web searching / LLM prompting and discovered that some people have had improved results after installing the OPNsense plugin os-realtek-re.
 After installing the plugin and ensuring the kernel module was loaded at boot by following the post-install instructions, the throughput was still signicantly slower than before adding a second NIC.
