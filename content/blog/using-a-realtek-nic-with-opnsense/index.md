@@ -19,7 +19,7 @@ tags:
 
 For the past few years, I've been running pfSense (and more recently OPNsense) in a virtual machine within Proxmox. This has been running fine with a single onboard Intel NIC. A few months ago, I upgraded to a machine that has a CPU that supports hardware-accelerated transcoding, has more SATA ports, and has more PCI slots for future expansion. With the goal of having a dedicated NIC for WAN, I bought an inexpensive 1Gbps PCIe NIC (TG-3468) despite reading about some of the concerns around Realtek NICs (sluggish performance, driver instability, and in some cases system crashes).
 
-I've been running a Realtek NICs reliably on Linux and Windows desktops, so I figured I could make it work without too much effort, but it turns out Realtek NICs really can be problematic when it comes to FreeBSD-based routers, and some commonly documented workarounds did not solve my problems.
+I've been running a Realtek NICs reliably on Linux and Windows desktops, so I figured I could make it work without too much effort, but it turns out Realtek NICs really can be problematic when it comes to FreeBSD-based routers, and commonly documented workarounds did not solve my problems.
 
 <!--more-->
 
@@ -28,7 +28,7 @@ I've been running a Realtek NICs reliably on Linux and Windows desktops, so I fi
 My environment consists of:
 
 - Proxmox 8.4
-- OPNsense 25.1 (Virtual Machine)
+- OPNsense 25.1 (QEMU VM)
 - Ethernet controller: Intel Corporation Ethernet Connection (5) I219-LM
 - Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)
 
@@ -51,7 +51,7 @@ For maximum performance and reduced hypervisor overhead, passing through a physi
 
 I added the PCI device and restarted the OPNsense VM and re-configured the WAN in OPNsense to use this device.
 
-I received the WAN IP and everything appeared to be working. I ran a few speed tests and noticed that the download speeds were a lot lower than normal on multiple devices. I checked my instance of [speedtest-tracker](https://docs.speedtest-tracker.dev) noticed that the download speeds were significantly slower than historical records:
+I received the WAN IP and everything appeared to be working. I ran a few speed tests and noticed that the download speeds were much lower than normal from all of my devices. I checked my instance of [speedtest-tracker](https://docs.speedtest-tracker.dev) noticed that the download speeds were significantly slower than historical records:
 
 ![speedtest-tracker](./speedtest-tracker.png)
 
