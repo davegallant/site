@@ -21,8 +21,10 @@ The only app I've needed to install has been Tailscale which has enabled me to a
 
 More recently, to reduce cloud costs, I've setup some a small node at another physical location and installed both Tailscale and [sftpgo](https://github.com/drakkan/sftpgo) on it to facilitate offsite backups. After setting up the infrastructure and adding a Cloud Sync Task in TrueNAS SCALE to replicate these backups offsite to sftpgo, I noticed that Tailscale's Magic DNS was not working, nor was the Tailscale IPv4 address.
 
-After reading the [Tailscale docs](https://tailscale.com/kb/1483/truenas#route-non-tailnet-traffic-through-truenas) , it became clear that the **Userspace** box had to be unchecked in the Tailscale app settings. This is because the Tailscale app is running within a docker container on the TrueNAS SCALE VM. After unchecking the **Userspace** box, I was able to verify that the Backup Credentials created for sftpgo worked when specifying the host as a Tailscale IPv4 address. This was probably good enough since the IP won't change unless the node is re-registered, but I figured setting up MagicDNS would make the setup more portable.
+After reading the [Tailscale docs](https://tailscale.com/kb/1483/truenas#route-non-tailnet-traffic-through-truenas) , it became clear that the **Userspace** box had to be unchecked in the Tailscale app settings. This is because the Tailscale app is running within a docker container on the TrueNAS SCALE VM. After unchecking the **Userspace** box, I was able to verify that the Backup Credentials created for sftpgo worked when specifying the host as a Tailscale IPv4 address. This was probably good enough since the IP won't change unless the node is re-registered.
 
-To get MagicDNS working, I went to Network > Global Configuration and set "Nameserver 1" to **100.100.100.100**. After this, I was able to specify the FQDN in the Backup Credentials and the Cloud Sync Tasks started.
+~~To get MagicDNS working, I went to Network > Global Configuration and set "Nameserver 1" to **100.100.100.100**. After this, I was able to specify the FQDN in the Backup Credentials and the Cloud Sync Tasks started.~~ 
+
+This method of adding MagicDNS can lead to issues with DNS when updating the tailscale application in TrueNAS, so I ended using the Tailscale IP directly.
 
 
