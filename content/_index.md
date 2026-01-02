@@ -18,7 +18,6 @@ If you would like to connect with me:
 - [Mastodon](https://mastodon.social/@davegallant)
 - [GitHub](https://github.com/davegallant)
 - [RSS Feed](https://davegallant.ca/index.xml)
-- [gitea.snake-cloud.ts.net](https://gitea.snake-cloud.ts.net/explore/repos)
 
 ## Credits
 
