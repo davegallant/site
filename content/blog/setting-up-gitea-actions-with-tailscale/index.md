@@ -50,11 +50,9 @@ services:
   gitea:
     image: gitea/gitea:1.21.1
     container_name: gitea
-    network_mode: service:ts-gitea
     environment:
       - USER_UID=1000
       - USER_GID=1000
-
       - GITEA__server__DOMAIN=gitea.my-tailnet-name.ts.net
       - GITEA__server__ROOT_URL=https://gitea.my-tailnet-name.ts.net
       - GITEA__server__HTTP_ADDR=0.0.0.0
@@ -64,56 +62,17 @@ services:
       - ./data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-  ts-gitea:
-    image: tailscale/tailscale:v1.58
-    container_name: ts-gitea
-    hostname: gitea
-    environment:
-      - TS_AUTHKEY=<FILL THIS IN>
-      - TS_SERVE_CONFIG=/config/gitea.json
-      - TS_STATE_DIR=/var/lib/tailscale
-    volumes:
-      - ${PWD}/state:/var/lib/tailscale
-      - ${PWD}/config:/config
-      - /dev/net/tun:/dev/net/tun
-    cap_add:
-      - net_admin
-      - sys_module
-    restart: unless-stopped
 ```
 
-Note that you must specify a `TS_AUTHKEY` in the `ts-gitea` service. You can generate an auth key [here](https://login.tailscale.com/admin/settings/keys).
+After adding the above configuration, running `docker compose up -d` should be enough to get an instance up and running.
 
-`config/gitea.json`:
+To make it accessible at [https://gitea.my-tailnet-name.ts.net](https://gitea.my-tailnet-name.ts.net) from within the tailnet, install tailscale cli and run:
 
-```yaml
-{
-  "TCP": { "443": { "HTTPS": true } },
-  "Web":
-    {
-      "${TS_CERT_DOMAIN}:443":
-        { "Handlers": { "/": { "Proxy": "http://127.0.0.1:3000" } } },
-    },
-  "AllowFunnel": { "${TS_CERT_DOMAIN}:443": false }
-}
+```sh
+tailscale serve -bg 3000
 ```
-
-After adding the above configuration, running `docker compose up -d` should be enough to get an instance up and running. It will be accessible at [https://gitea.my-tailnet-name.ts.net](https://gitea.my-tailnet-name.ts.net) from within the tailnet.
 
 Something to consider is whether or not you want to use ssh with git. One method to get this to work with containers is to use [ssh container passthrough](https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough). I decided to keep it simple and not use ssh, since communicating over https is perfectly fine for my use case.
-
-## Theming
-
-I discovered some themes for gitea [here](https://git.sainnhe.dev/sainnhe/gitea-themes).
-
-I added the theme by copying [theme-palenight.css](https://git.sainnhe.dev/sainnhe/gitea-themes/raw/branch/master/dist/theme-palenight.css) into `./data/gitea/public/assets/css`. I then added the following to `environment` in `docker-compose.yml`:
-
-```yaml
-- GITEA__ui__DEFAULT_THEME=palenight
-- GITEA__ui__THEMES=palenight
-```
-
-After restarting the gitea instance, the default theme was applied.
 
 ## Connecting runners
 
@@ -168,7 +127,7 @@ jobs:
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}
 ```
 
-And voilà:
+And the end result:
 
 ![image](gitea-workflow.png)
 
@@ -182,6 +141,4 @@ One enhancement that I would like to see is the ability to send notifications on
 
 Gitea Actions are fast and the resource footprint is minimal. My gitea instance is currently using around 250mb of memory and a small fraction of a single cpu core (and the runner is using a similar amount of resources). This is impressive since many alternatives tend to require substantially more resources. It likely helps that the codebase is largely written in go.
 
-By combining gitea with the networking marvel that is tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.
-
-Check out my gitea instance exposed via Funnel [here](https://gitea.snake-cloud.ts.net).
+By combining gitea with tailscale, running workflows becomes simple and fun. Whether you are working on a team or working alone, this setup ensures that your workflows are securely accessible from anywhere with an internet connection.
