@@ -22,6 +22,7 @@
           buildInputs = with pkgs; [
             hugo
             just
+            nodejs_25
           ];
 
         };
