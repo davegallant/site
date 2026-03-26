@@ -14,7 +14,6 @@ tags:
     "passwords",
     "privacy",
   ]
-author: "Dave Gallant"
 ---
 
 Data breaches are a concern for anyone trying to live a life of relative privacy. Last month, PowerSchool informed its customers that [hackers stole data of 62 million students](https://www.bleepingcomputer.com/news/security/powerschool-hacker-claims-they-stole-data-of-62-million-students/). This may not have impacted you, but unless you have been practicing [Extreme Privacy](https://inteltechniques.com/book7.html) techniques for decades, you likely have been impacted by a data breach in the past.
