@@ -24,7 +24,7 @@ Installing home assistant is straightforward. In my case, I installed it on Prox
 
 After installing home assistant and passing through my bluetooth dongle to the VM, I was able to add the Airthings BLE integration and start to see metrics in the home assistant web ui:
 
-[![Home Assistant Airthings Integration](./home-assistant-airthings-ble.png)](./home-assistant-airthings-ble.png)
+![Home Assistant Airthings Integration](home-assistant-airthings-ble.png)
 
 ## InfluxDB
 
@@ -47,7 +47,7 @@ influxdb:
 
 I restarted HA but was unable to see any metrics in InfluxDB. After some troubleshooting, I realized that I had to create a database and then configure HA to use that database. I created a database called `homeassistant` and created a new user with appropriate permissions to this database. I can now see the metrics in InfluxDB, and I can query them using the InfluxDB web interface:
 
-[![InfluxDB Web Interface](./home-assistant-influxdb.png)](./home-assistant-influxdb.png)
+![InfluxDB Web Interface](home-assistant-influxdb.png)
 
 ## Grafana Dashboard
 
@@ -55,7 +55,7 @@ It's nice to be able to visualize the data in InfluxDB, but I want to be able to
 
 After exposing both grafana and homeassistant to my [tailnet](https://tailscale.com/docs/concepts/tailnet), I added InfluxDB as a datasource in Grafana and created a dashboard to visualize the radon levels over time:
 
-[![Grafana Dashboard](./home-assistant-grafana-dashboard.png)](./home-assistant-grafana-dashboard.png)
+![Grafana Dashboard](home-assistant-grafana-dashboard.png)
 
 The json export of the graph can be found [here](https://gist.github.com/davegallant/f3cc394bb7e17ca06e105a33eccebd7a).
 
@@ -67,11 +67,11 @@ Make sure before you setup an alert, you create a [contact point](https://grafan
 
 Overcautiously, I setup an alert such that if the radon levels exceed 100 Bq/m³ ), I get a notification:
 
-[![Grafana Alerting](./home-assistant-grafana-alert.png)](./home-assistant-grafana-alert.png)
+![Grafana Alerting](home-assistant-grafana-alert.png)
 
 I modified this to a lower threshold temporarily to simulate an alert, and it worked!
 
-[![Grafana Alert Notification](./home-assistant-gotify.png)](./home-assistant-gotify.png)
+![Grafana Alert Notification](home-assistant-gotify.png)
 
 ## Conclusion
 
