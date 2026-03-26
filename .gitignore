@@ -121,3 +121,5 @@ dist
 public/
 
 .obsidian/
+
+.direnv/
