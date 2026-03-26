@@ -65,7 +65,7 @@ Now that the dashboard is setup, I would prefer to setup an alerting rule to not
 
 Make sure before you setup an alert, you create a [contact point](https://grafana.com/docs/grafana/latest/alerting/fundamentals/notifications/contact-points/). I chose a web hook that sends to a [gotify](https://gotify.net/) instance that I have running in my homelab, since I prefer this over email.
 
-The [Government of Canada suggest taking corrective action if radon levels higher exceed 200 Bq/m3](https://www.canada.ca/en/health-canada/services/publications/health-risks-safety/guide-radon-measurements-residential-dwellings.html). Overcautiously, I setup an alert such that if the radon levels exceed 100 Bq/m³ ), I get a notification:
+Overcautiously, I setup an alert such that if the radon levels exceed 100 Bq/m³ ), I get a notification:
 
 [![Grafana Alerting](./home-assistant-grafana-alert.png)](./home-assistant-grafana-alert.png)
 
