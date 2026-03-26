@@ -27,14 +27,6 @@ Of course, the first step is to get actual hardware that is designed to detect r
 
 Installing home assistant is straightforward. In my case, I installed it on Proxmox, using [this community script](https://community-scripts.org/scripts/haos-vm).
 
-```
-__  __                        ___              _      __              __     ____  _____
-/ / / /___  ____ ___  ___     /   |  __________(_)____/ /_____ _____  / /_   / __ \/ ___/
-/ /_/ / __ \/ __ `__ \/ _ \   / /| | / ___/ ___/ / ___/ __/ __ `/ __ \/ __/  / / / /\__ \
-/ __  / /_/ / / / / / /  __/  / ___ |(__  |__  ) (__  ) /_/ /_/ / / / / /_   / /_/ /___/ /
-/_/ /_/\____/_/ /_/ /_/\___/  /_/  |_/____/____/_/____/\__/\__,_/_/ /_/\__/   \____//____/
-```
-
 After installing home assistant and passing through my bluetooth dongle to the VM, I was able to add the Airthings BLE integration and start to see metrics in the home assistant web ui:
 
 [![Home Assistant Airthings Integration](./home-assistant-airthings-ble.png)](./home-assistant-airthings-ble.png)
@@ -452,3 +444,7 @@ I setup an alert such that if the radon levels exceed 100 Bq/m³, I get a notifi
 I modifed this to a lower threshold temporarily to simulate an alert, and it worked!
 
 [![Grafana Alert Notification](./home-assistant-gotify.png)](./home-assistant-gotify.png)
+
+## Conclusion
+
+It is reassuring to be able to monitor radon levels in my home and receive alerts if they exceed safe thresholds. The integration with Home Assistant, InfluxDB, and Grafana allows me to have a comprehensive view of the radon levels over time, and I can easily share this dashboard with family members. Additionally, the alerting feature provides peace of mind knowing that I will be notified if there is a sudden spike in radon levels.
