@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>lxc on davegallant.ca</title><link>/tags/lxc/</link><description>Recent content in lxc on davegallant.ca</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Sun, 14 Nov 2021 10:07:03 -0500</lastBuildDate><atom:link href="/tags/lxc/index.xml" rel="self" type="application/rss+xml"/><item><title>Running K3s in LXC on Proxmox</title><link>/blog/running-k3s-in-lxc-on-proxmox/</link><pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate><guid>/blog/running-k3s-in-lxc-on-proxmox/</guid><description>It has been a while since I&amp;rsquo;ve actively used Kubernetes and wanted to explore the evolution of tools such as Helm and Tekton. I decided to deploy K3s, since I&amp;rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&amp;rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lxc on davegallant.ca</title><link>/tags/lxc/</link><description>Recent content in Lxc on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Sun, 07 Jan 2024 22:42:41 -0500</lastBuildDate><atom:link href="/tags/lxc/index.xml" rel="self" type="application/rss+xml"/><item><title>Running K3s in LXC on Proxmox</title><link>/blog/running-k3s-in-lxc-on-proxmox/</link><pubDate>Sun, 14 Nov 2021 10:07:03 -0500</pubDate><guid>/blog/running-k3s-in-lxc-on-proxmox/</guid><description>&lt;p&gt;It has been a while since I&amp;rsquo;ve actively used Kubernetes and wanted to explore the evolution of tools such as &lt;a
+ href="https://helm.sh"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+&gt;Helm&lt;/a&gt; and &lt;a
+ href="https://tekton.dev"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+&gt;Tekton&lt;/a&gt;. I decided to deploy &lt;a
+ href="https://k3s.io"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+&gt;K3s&lt;/a&gt;, since I&amp;rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&amp;rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine&amp;rsquo;s resources.&lt;/p&gt;</description></item></channel></rss>
