@@ -1,7 +1,7 @@
 ---
 title: "Using Home Assistant and Grafana to Monitor Radon"
 date: "2026-03-25T20:22:39-04:00"
-draft: true
+draft: false
 comments: true
 toc: false
 tags: ["radon", "grafana", "home-assistant", "homelab", "tailscale"]
@@ -13,7 +13,7 @@ Radon is a radioactive gas that can be found in homes, and at high levels and pe
 I recently became more concerned about radon since I live and work in a basement daily. I decided to explore some ways to, not only monitor radon levels, but also hook up the metrics to my existing homelab.
 
 <!--more-->
-
+/
 ## Home Assistant
 
 My first thought was to try to plug into an ecosystem that is already robust. [Home Assistant](https://www.home-assistant.io/) is an open-source home automation platform that allows you to monitor and control various aspects of your home. It supports a wide range of sensors and devices, including radon detectors. By integrating sensors with Home Assistant, it is easy to monitor radon levels in your home and receive alerts if they exceed safe thresholds.
@@ -65,7 +65,7 @@ Now that the dashboard is setup, I would prefer to setup an alerting rule to not
 
 Make sure before you setup an alert, you create a [contact point](https://grafana.com/docs/grafana/latest/alerting/fundamentals/notifications/contact-points/). I chose a web hook that sends to a [gotify](https://gotify.net/) instance that I have running in my homelab, since I prefer this over email.
 
-Overcautiously, I setup an alert such that if the radon levels exceed 100 Bq/m³ ), I get a notification:
+Overcautiously, I setup an alert such that if the radon levels exceed 100 Bq/m³, I get a notification:
 
 ![Grafana Alerting](home-assistant-grafana-alert.png)
 
