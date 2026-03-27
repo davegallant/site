@@ -5,6 +5,21 @@ import { Document } from "flexsearch";
 const search = document.getElementById("search__text");
 const suggestions = document.getElementById("search__suggestions");
 
+const backdrop = document.createElement("div");
+backdrop.classList.add("search__backdrop");
+document.body.appendChild(backdrop);
+backdrop.addEventListener("click", () => hideSuggestions());
+
+function hideSuggestions() {
+  suggestions.classList.add("search__suggestions--hidden");
+  backdrop.classList.remove("search__backdrop--visible");
+}
+
+function showSuggestions() {
+  suggestions.classList.remove("search__suggestions--hidden");
+  backdrop.classList.add("search__backdrop--visible");
+}
+
 if (search !== null) {
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key === "/") {
@@ -14,7 +29,7 @@ if (search !== null) {
     } else if (e.key === "Escape") {
       // Unfocus search bar with ESC
       search.blur();
-      suggestions.classList.add("search__suggestions--hidden");
+      hideSuggestions();
     }
   });
 }
@@ -23,7 +38,7 @@ document.addEventListener("click", (e) => {
   const clickInsideSuggestions = suggestions.contains(e.target);
   if (!clickInsideSuggestions) {
     // Hide search suggestions if clicking elsewhere
-    suggestions.classList.add("search__suggestions--hidden");
+    hideSuggestions();
   }
 });
 
@@ -95,6 +110,13 @@ document.addEventListener("keydown", (e) => {
   search.addEventListener("input", function () {
     const maxResultsCount = {{ $.Site.Params.flexsearch.maxResultsCount | default 5 }};
     const searchText = this.value;
+
+    if (!searchText) {
+      suggestions.innerHTML = "";
+      hideSuggestions();
+      return;
+    }
+
     const searchResults = index.search(searchText, maxResultsCount, { enrich: true });
     const searchResultsMap = new Map();
 
@@ -105,7 +127,7 @@ document.addEventListener("keydown", (e) => {
     }
 
     suggestions.innerHTML = "";
-    suggestions.classList.remove("search__suggestions--hidden");
+    showSuggestions();
 
     if (searchResultsMap.size === 0 && searchText) {
       const noResultsMessage = document.createElement("div")

@@ -44,6 +44,8 @@ header {
   display: flex;
   grid-area: search;
   margin: 0 1rem;
+  position: relative;
+  z-index: 1000;
 }
 
 #search__text {
@@ -86,10 +88,6 @@ header {
 }
 
 @media (--md) {
-  .search {
-    position: relative;
-  }
-
   #search__suggestions {
     width: 60vw;
   }
@@ -97,6 +95,19 @@ header {
 
 .search__suggestions--hidden {
   display: none;
+}
+
+.search__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.search__backdrop--visible {
+  display: block;
 }
 
 .search__suggestion-item {
