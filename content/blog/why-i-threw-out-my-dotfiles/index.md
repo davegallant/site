@@ -1,5 +1,5 @@
 ---
-title: "Why I threw out my dotfiles"
+title: "Why I Threw Out My Dotfiles"
 date: 2021-09-08T00:42:33-04:00
 lastmod: 2021-09-08T00:42:33-04:00
 draft: false

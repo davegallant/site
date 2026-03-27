@@ -1,5 +1,5 @@
 ---
-title: "What to do with a homelab"
+title: "What to Do with a Homelab"
 date: 2021-09-06T01:12:54-04:00
 lastmod: 2021-09-06T01:12:54-04:00
 draft: false
