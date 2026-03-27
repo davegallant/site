@@ -8,11 +8,13 @@ tags: ["radon", "grafana", "home-assistant", "homelab", "tailscale"]
 author: "Dave Gallant"
 ---
 
-Radon is a radioactive gas that can be found in homes, and at high levels and persistent exposure, can be [extremely dangerous to breathe in](https://www.youtube.com/watch?v=PLYMBdJ5SvI). Radon gas comes from the natural decay of uranium in soil and rock, and it can seep into homes through cracks in the foundation, and can even permeate through concrete. [Health Canada recommends](https://www.canada.ca/en/health-canada/services/environmental-workplace-health/radiation/radon/testing-your-home.html) taking action if radon levels exceed 200 Bq/m³, while the [WHO guideline](https://www.who.int/news-room/fact-sheets/detail/radon-and-health) is 100 Bq/m³.
-
 I recently became more concerned about radon since I live and work in a basement daily. I decided to explore some ways to, not only monitor radon levels, but also hook up the metrics to my existing homelab.
 
 <!--more-->
+## Radon
+
+Radon is a radioactive gas that can be found in homes, and at high levels and persistent exposure, can be [extremely dangerous to breathe in](https://www.youtube.com/watch?v=PLYMBdJ5SvI). Radon gas comes from the natural decay of uranium in soil and rock, and it can seep into homes through cracks in the foundation, and can even permeate through concrete. [Health Canada recommends](https://www.canada.ca/en/health-canada/services/environmental-workplace-health/radiation/radon/testing-your-home.html) taking action if radon levels exceed 200 Bq/m³, while the [WHO guideline](https://www.who.int/news-room/fact-sheets/detail/radon-and-health) is 100 Bq/m³.
+
 ## Home Assistant
 
 My first thought was to try to plug into an ecosystem that is already robust. [Home Assistant](https://www.home-assistant.io/) is an open-source home automation platform that allows you to monitor and control various aspects of your home. It supports a wide range of sensors and devices, including radon detectors. By integrating sensors with Home Assistant, it is easy to monitor radon levels in your home and receive alerts if they exceed safe thresholds.
