@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Self-Hosted on davegallant.ca</title><link>/tags/self-hosted/</link><description>Recent content in Self-Hosted on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Thu, 01 Jan 2026 19:19:19 -0500</lastBuildDate><atom:link href="/tags/self-hosted/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up Gitea Actions with Tailscale</title><link>/blog/setting-up-gitea-actions-with-tailscale/</link><pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate><guid>/blog/setting-up-gitea-actions-with-tailscale/</guid><description>&lt;p&gt;In this post I&amp;rsquo;ll go through the process of setting up Gitea Actions and &lt;a
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Self-Hosted on davegallant.ca</title><link>/tags/self-hosted/</link><description>Recent content in Self-Hosted on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Fri, 27 Mar 2026 08:22:01 -0400</lastBuildDate><atom:link href="/tags/self-hosted/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting Up Gitea Actions with Tailscale</title><link>/blog/setting-up-gitea-actions-with-tailscale/</link><pubDate>Sun, 10 Dec 2023 17:22:11 -0500</pubDate><guid>/blog/setting-up-gitea-actions-with-tailscale/</guid><description>&lt;p&gt;In this post I&amp;rsquo;ll go through the process of setting up Gitea Actions and &lt;a
  href="https://tailscale.com/"
  
  
  class="link--external" target="_blank" rel="noreferrer"
  
-&gt;Tailscale&lt;/a&gt;, unlocking a simple and secure way to automate workflows.&lt;/p&gt;</description></item><item><title>Watching YouTube in private</title><link>/blog/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>/blog/watching-youtube-in-private/</guid><description>&lt;p&gt;I recently stumbled upon &lt;a
+&gt;Tailscale&lt;/a&gt;, unlocking a simple and secure way to automate workflows.&lt;/p&gt;</description></item><item><title>Watching YouTube in Private</title><link>/blog/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>/blog/watching-youtube-in-private/</guid><description>&lt;p&gt;I recently stumbled upon &lt;a
  href="https://yewtu.be"
  
  
@@ -16,7 +16,7 @@
  
  class="link--external" target="_blank" rel="noreferrer"
  
-&gt;invidious&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Virtualizing my router with pfSense</title><link>/blog/virtualizing-a-router-with-pfsense/</link><pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate><guid>/blog/virtualizing-a-router-with-pfsense/</guid><description>&lt;p&gt;My aging router has been running &lt;a
+&gt;invidious&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Virtualizing My Router with pfSense</title><link>/blog/virtualizing-a-router-with-pfsense/</link><pubDate>Sat, 02 Apr 2022 18:50:09 -0400</pubDate><guid>/blog/virtualizing-a-router-with-pfsense/</guid><description>&lt;p&gt;My aging router has been running &lt;a
  href="https://en.wikipedia.org/wiki/OpenWrt"
  
  
@@ -46,4 +46,4 @@
  
  class="link--external" target="_blank" rel="noreferrer"
  
-&gt;K3s&lt;/a&gt;, since I&amp;rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&amp;rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine&amp;rsquo;s resources.&lt;/p&gt;</description></item><item><title>What to do with a homelab</title><link>/blog/what-to-do-with-a-homelab/</link><pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate><guid>/blog/what-to-do-with-a-homelab/</guid><description>&lt;p&gt;A homelab can be an inexpensive way to host a multitude of internal/external services and learn &lt;em&gt;a lot&lt;/em&gt; in the process.&lt;/p&gt;</description></item></channel></rss>
+&gt;K3s&lt;/a&gt;, since I&amp;rsquo;ve had success with deploying it on resource-contrained Raspberry Pis in the past. I thought that this time it&amp;rsquo;d be convenient to have K3s running in a LXC container on Proxmox. This would allow for easy snapshotting of the entire Kubernetes deployment. LXC containers also provide an efficient way to use a machine&amp;rsquo;s resources.&lt;/p&gt;</description></item><item><title>What to Do with a Homelab</title><link>/blog/what-to-do-with-a-homelab/</link><pubDate>Mon, 06 Sep 2021 01:12:54 -0400</pubDate><guid>/blog/what-to-do-with-a-homelab/</guid><description>&lt;p&gt;A homelab can be an inexpensive way to host a multitude of internal/external services and learn &lt;em&gt;a lot&lt;/em&gt; in the process.&lt;/p&gt;</description></item></channel></rss>
