@@ -1,5 +1,5 @@
 ---
-title: "Opting out of haveibeenpwned"
+title: "Opting Out of HaveIBeenPwned"
 date: "2025-02-16T21:15:07-05:00"
 draft: false
 comments: true
@@ -39,4 +39,3 @@ There are other websites that offer similar style lookups, but many of them are 
 ## Email aliases
 
 A more proactive method of reducing the likelihood of future exposures is to use an email aliasing service such as [Firefox Relay](https://relay.firefox.com), [DuckDuckGo Email Protection](https://duckduckgo.com/email/), or if you use Proton Mail, [hide-my-email aliases](https://proton.me/support/addresses-and-aliases#hide). This will allow you sign up for services using an alias instead of revealing your email address. The service then forwards all emails to your real address that you configure when setting up the alias.
-

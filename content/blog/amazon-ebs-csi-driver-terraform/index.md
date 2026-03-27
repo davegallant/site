@@ -1,5 +1,5 @@
 ---
-title: "Amazon EBS CSI driver with terraform"
+title: "Amazon EBS CSI Driver with Terraform"
 date: "2024-04-07T15:20:23-04:00"
 draft: false
 comments: true

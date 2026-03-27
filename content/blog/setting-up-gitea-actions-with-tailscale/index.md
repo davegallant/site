@@ -1,5 +1,5 @@
 ---
-title: "Setting up Gitea Actions with Tailscale"
+title: "Setting Up Gitea Actions with Tailscale"
 date: 2023-12-10T17:22:11-05:00
 comments: true
 lastmod: 2023-12-10T17:22:11-05:00

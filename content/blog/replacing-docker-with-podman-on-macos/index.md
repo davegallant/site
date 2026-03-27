@@ -1,5 +1,5 @@
 ---
-title: "Replacing docker with podman on macOS (and Linux)"
+title: "Replacing Docker with Podman on macOS (and Linux)"
 date: 2021-10-11T10:43:35-04:00
 lastmod: 2021-10-11T10:43:35-04:00
 draft: false

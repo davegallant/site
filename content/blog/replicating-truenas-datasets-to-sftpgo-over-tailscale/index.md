@@ -1,5 +1,5 @@
 ---
-title: "Replicating TrueNAS datasets to sftpgo over Tailscale"
+title: "Replicating TrueNAS Datasets to SFTPGo over Tailscale"
 date: "2025-04-17T22:03:33-04:00"
 draft: false
 comments: true
@@ -26,5 +26,3 @@ After reading the [Tailscale docs](https://tailscale.com/kb/1483/truenas#route-n
 ~~To get MagicDNS working, I went to Network > Global Configuration and set "Nameserver 1" to **100.100.100.100**. After this, I was able to specify the FQDN in the Backup Credentials and the Cloud Sync Tasks started.~~ 
 
 This method of adding MagicDNS can lead to issues with DNS when updating the tailscale application in TrueNAS, so I ended using the Tailscale IP directly.
-
-
