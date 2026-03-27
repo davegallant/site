@@ -13,7 +13,7 @@
 
 {{ $prism := resources.Get "js/prism.js" | resources.ExecuteAsTemplate "js/prism.js" . }}
 {{ $bundle := slice $prism | resources.Concat "js/main.js" | js.Build $jsBuildOptions }}
-{{ $flexsearch := resources.Get "js/flexsearch.js" | resources.ExecuteAsTemplate "js/flexsearch.js" . | js.Build $jsBuildOptions }}
+{{ $flexsearch := resources.Get "js/flexsearch.js" | resources.ExecuteAsTemplate (printf "js/flexsearch.%s.js" .Lang) . | js.Build $jsBuildOptions }}
 
 {{ if hugo.IsProduction }}
   {{ $bundle = $bundle | fingerprint "sha512" }}
