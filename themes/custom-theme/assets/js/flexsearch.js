@@ -79,7 +79,7 @@ document.addEventListener("keydown", (e) => {
         {{ with .Description }}
           description: {{ . | jsonify }},
         {{ else }}
-          description: {{ .Summary | plainify | jsonify }},
+          description: {{ .Summary | plainify | htmlUnescape | jsonify }},
         {{ end }}
         content: {{ .Plain | jsonify }}
       })
