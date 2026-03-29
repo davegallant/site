@@ -2,14 +2,16 @@
 
 {{ $critical := sort (resources.Match "css/critical/*.css") "Name" | resources.Concat "css/critical.css" | resources.ExecuteAsTemplate "css/critical.css" . | css.PostCSS }}
 {{ $nonCritical := sort (resources.Match "css/non-critical/*.css") "Name" | resources.Concat "css/non-critical.css" | resources.ExecuteAsTemplate "css/non-critical.css" . | css.PostCSS }}
-{{ $prismDark := resources.Get "prism-themes/prism-coldark-dark.css" }}
-{{ $prismLight := resources.Get "prism-themes/prism-coldark-cold.css" }}
+{{ $prismDark := resources.Get "prism-themes/prism-vsc-dark-plus.css" }}
+{{ $prismLight := resources.Get "prism-themes/prism-one-light.css" }}
+{{ $prismToolbar := resources.Get "prismjs/plugins/toolbar/prism-toolbar.css" }}
 
 {{ if hugo.IsProduction }}
   {{ $critical = $critical | resources.PostProcess }}
   {{ $nonCritical = $nonCritical | fingerprint "sha512" | resources.PostProcess }}
   {{ $prismDark = $prismDark | minify | fingerprint "sha512" }}
   {{ $prismLight = $prismLight | minify | fingerprint "sha512" }}
+  {{ $prismToolbar = $prismToolbar | minify | fingerprint "sha512" }}
 {{ end }}
 
 <style>
@@ -33,6 +35,8 @@
   href="{{ $prismLight.RelPermalink }}"
   disabled
 />
+
+<link rel="stylesheet" href="{{ $prismToolbar.RelPermalink }}" />
 
 <noscript>
   <link rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
