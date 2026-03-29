@@ -1,26 +1,14 @@
-<script
-  type="text/javascript"
-  src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
-></script>
-<script type="text/javascript">
+{{- $config := .Site.Params.comments -}} {{- $utterancesEnabled :=
+$config.utterances.enable -}} {{- if $utterancesEnabled -}}
+<script src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+<script>
   kofiwidget2.init("Buy me a coffee", "#32344a", "F1F2S4LWI");
   kofiwidget2.draw();
 </script>
 
-{{- $config := .Site.Params.comments -}}
-
-{{- $utterancesEnabled := $config.utterances.enable -}}
-
-{{- if $utterancesEnabled -}}
-<br>
-<br>
-<section id='comments' class='comments'>
-  <div class='container sep-before'>
-    <div class='comments'>
-    {{- if $utterancesEnabled -}}
-      {{ partial "comments/utterances" . }}
-    {{- end -}}
-    </div>
+<section id="comments" class="comments" style="margin-top: 2rem">
+  <div class="container sep-before">
+    <div class="comments">{{ partial "comments/utterances" . }}</div>
   </div>
 </section>
 {{- end -}}

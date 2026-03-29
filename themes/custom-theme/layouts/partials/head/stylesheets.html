@@ -1,10 +1,10 @@
 <!-- Styles -->
 {{ $defaultTheme := .Param "defaultTheme" | default "light" }}
 
-{{ $critical := sort (resources.Match "css/critical/*.css") "Name" | resources.Concat nil | resources.ExecuteAsTemplate nil . | css.PostCSS }}
+{{ $critical := sort (resources.Match "css/critical/*.css") "Name" | resources.Concat "css/critical.css" | resources.ExecuteAsTemplate "css/critical.css" . | css.PostCSS }}
 {{ $nonCritical := sort (resources.Match "css/non-critical/*.css") "Name" | resources.Concat "css/non-critical.css" | resources.ExecuteAsTemplate "css/non-critical.css" . | css.PostCSS }}
 {{ $prismDark := resources.Get "prism-themes/prism-coldark-dark.css" }}
-{{ $prismLight := resources.Get "prism-themes/prism-coldark-dark.css" }}
+{{ $prismLight := resources.Get "prism-themes/prism-coldark-cold.css" }}
 
 {{ if hugo.IsProduction }}
   {{ $critical = $critical | resources.PostProcess }}
@@ -26,7 +26,6 @@
   onload="this.onload=null;this.rel='stylesheet'"
 />
 
-<!-- TODO Use prefetch when more widely supported -->
 <link
   id="prism-dark"
   rel="preload"
@@ -36,7 +35,6 @@
   {{ if eq $defaultTheme "light" }}disabled{{ end }}
 />
 
-<!-- TODO Use prefetch when more widely supported -->
 <link
   id="prism-light"
   rel="preload"

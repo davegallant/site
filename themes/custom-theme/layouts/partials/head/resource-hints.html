@@ -1,4 +1,4 @@
-<!-- Preload commonly used font variations -->
+<!-- Preload critical font weights -->
 
 <!-- Roboto Slab -->
 <link
@@ -8,23 +8,8 @@
   href="/fonts/roboto-slab-latin-400.woff2"
   crossorigin="anonymous"
 />
-<!-- TODO Use prefetch when more widely supported -->
-<link
-  rel="preload"
-  as="font"
-  type="font/woff2"
-  href="/fonts/roboto-slab-latin-700.woff2"
-  crossorigin="anonymous"
-/>
 
 <!-- Fira Code -->
-<link
-  rel="preload"
-  as="font"
-  type="font/woff2"
-  href="/fonts/fira-code-latin-300.woff2"
-  crossorigin="anonymous"
-/>
 <link
   rel="preload"
   as="font"
@@ -32,11 +17,26 @@
   href="/fonts/fira-code-latin-400.woff2"
   crossorigin="anonymous"
 />
-<!-- TODO Use prefetch when more widely supported -->
+
+<!-- Prefetch less-critical font weights -->
 <link
-  rel="preload"
+  rel="prefetch"
+  href="/fonts/roboto-slab-latin-700.woff2"
   as="font"
   type="font/woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="prefetch"
+  href="/fonts/fira-code-latin-300.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="prefetch"
   href="/fonts/fira-code-latin-700.woff2"
+  as="font"
+  type="font/woff2"
   crossorigin="anonymous"
 />

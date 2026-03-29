@@ -1,6 +1,10 @@
+pre {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg4) var(--bg2);
+}
+
 pre::-webkit-scrollbar {
   height: 0.5rem;
-  scrollbar-width: auto;
 }
 
 pre::-webkit-scrollbar-track {

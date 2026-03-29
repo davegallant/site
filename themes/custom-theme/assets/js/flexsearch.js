@@ -5,6 +5,10 @@ import { Document } from "flexsearch";
 const search = document.getElementById("search__text");
 const suggestions = document.getElementById("search__suggestions");
 
+if (!search || !suggestions) {
+  throw new Error("Search UI elements not found");
+}
+
 const backdrop = document.createElement("div");
 backdrop.classList.add("search__backdrop");
 document.body.appendChild(backdrop);
@@ -20,19 +24,17 @@ function showSuggestions() {
   backdrop.classList.add("search__backdrop--visible");
 }
 
-if (search !== null) {
-  document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key === "/") {
-      // Focus search bar with CTRL + /
-      e.preventDefault();
-      search.focus();
-    } else if (e.key === "Escape") {
-      // Unfocus search bar with ESC
-      search.blur();
-      hideSuggestions();
-    }
-  });
-}
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.key === "/") {
+    // Focus search bar with CTRL + /
+    e.preventDefault();
+    search.focus();
+  } else if (e.key === "Escape") {
+    // Unfocus search bar with ESC
+    search.blur();
+    hideSuggestions();
+  }
+});
 
 document.addEventListener("click", (e) => {
   const clickInsideSuggestions = suggestions.contains(e.target);
@@ -65,7 +67,7 @@ document.addEventListener("keydown", (e) => {
   } else if (e.key === "ArrowUp") {
     // Focus previous suggestion
     e.preventDefault();
-    nextIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+    const nextIndex = currentIndex > 0 ? currentIndex - 1 : 0;
     focusableSuggestions[nextIndex].focus();
   }
 });
@@ -130,8 +132,12 @@ document.addEventListener("keydown", (e) => {
     showSuggestions();
 
     if (searchResultsMap.size === 0 && searchText) {
-      const noResultsMessage = document.createElement("div")
-      noResultsMessage.innerHTML = `No results for "<strong>${searchText}</strong>"`
+      const noResultsMessage = document.createElement("div");
+      const prefix = document.createTextNode('No results for "');
+      const strong = document.createElement("strong");
+      strong.textContent = searchText;
+      const suffix = document.createTextNode('"');
+      noResultsMessage.append(prefix, strong, suffix);
       noResultsMessage.classList.add("search__no-results");
       suggestions.appendChild(noResultsMessage);
       return;

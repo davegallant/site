@@ -1,8 +1,6 @@
-{{- $scriptSrc := "https://utteranc.es/client.js" -}} {{- $issueTerm :=
-.Page.Site.Params.comments.utterances.issueTerm -}} {{- $label :=
-.Page.Site.Params.comments.utterances.label -}} {{- $username :=
-.Page.Site.Params.comments.utterances.github.username -}} {{- $repository :=
-.Page.Site.Params.comments.utterances.github.repository -}}
+{{- $issueTerm := .Page.Site.Params.comments.utterances.issueTerm -}} {{-
+$username := .Page.Site.Params.comments.utterances.github.username -}} {{-
+$repository := .Page.Site.Params.comments.utterances.github.repository -}}
 
 <script>
   // load comments
