@@ -9,10 +9,6 @@
       {{ .Content }}
     </div>
 
-    {{ if .Params.SocialShare }}
-      {{ partial "social-share.html" . }}
-    {{ end }}
-
     {{ if .Params.Comments }}
       {{ partial "comments.html" . }}
     {{ end }}

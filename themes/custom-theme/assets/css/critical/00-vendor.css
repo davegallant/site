@@ -14,15 +14,5 @@
 
 /*! purgecss end ignore */
 
-/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 /* Default license header for non-vendor CSS source code that follows */
 /*! MIT License | github.com/schnerring/hugo-theme-gruvbox */
