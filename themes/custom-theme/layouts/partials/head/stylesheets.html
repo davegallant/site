@@ -1,5 +1,4 @@
 <!-- Styles -->
-{{ $defaultTheme := .Param "defaultTheme" | default "light" }}
 
 {{ $critical := sort (resources.Match "css/critical/*.css") "Name" | resources.Concat "css/critical.css" | resources.ExecuteAsTemplate "css/critical.css" . | css.PostCSS }}
 {{ $nonCritical := sort (resources.Match "css/non-critical/*.css") "Name" | resources.Concat "css/non-critical.css" | resources.ExecuteAsTemplate "css/non-critical.css" . | css.PostCSS }}
@@ -26,31 +25,16 @@
   onload="this.onload=null;this.rel='stylesheet'"
 />
 
-<link
-  id="prism-dark"
-  rel="preload"
-  href="{{ $prismDark.RelPermalink }}"
-  as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
-  {{ if eq $defaultTheme "light" }}disabled{{ end }}
-/>
+<link id="prism-dark" rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
 
 <link
   id="prism-light"
-  rel="preload"
+  rel="stylesheet"
   href="{{ $prismLight.RelPermalink }}"
-  as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
-  {{ if eq $defaultTheme "dark" }}disabled{{ end }}
+  disabled
 />
 
 <noscript>
-  {{ if eq $defaultTheme "light" }}
-    <link rel="stylesheet" href="{{ $prismLight.RelPermalink }}" />
-  {{ else }}
-    <link rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
-  {{ end }}
-
-
+  <link rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
   <link rel="stylesheet" href="{{ $nonCritical.RelPermalink }}" />
 </noscript>

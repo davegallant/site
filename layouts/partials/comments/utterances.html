@@ -3,15 +3,23 @@ $username := .Page.Site.Params.comments.utterances.github.username -}} {{-
 $repository := .Page.Site.Params.comments.utterances.github.repository -}}
 
 <script>
-  // load comments
-  let theme = "dark-blue";
-  let script = document.createElement("script");
-  script.src = "https://utteranc.es/client.js";
-  script.setAttribute("repo", '{{ print $username "/" $repository }}');
-  script.setAttribute("issue-term", "{{ $issueTerm }}");
-  script.setAttribute("theme", theme);
-  script.setAttribute("crossorigin", "anonymous");
-  script.setAttribute("async", "");
-  document.querySelector("div.comments").innerHTML = "";
-  document.querySelector("div.comments").appendChild(script);
+  (function () {
+    const savedTheme = localStorage.getItem("theme") || "auto";
+    let effectiveTheme = savedTheme;
+    if (effectiveTheme === "auto") {
+      effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    const theme = effectiveTheme === "dark" ? "github-dark" : "github-light";
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", "{{ $username }}/{{ $repository }}");
+    script.setAttribute("issue-term", "{{ $issueTerm }}");
+    script.setAttribute("theme", theme);
+    script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("async", "");
+    document.querySelector("div.comments").innerHTML = "";
+    document.querySelector("div.comments").appendChild(script);
+  })();
 </script>
