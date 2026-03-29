@@ -65,6 +65,8 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    codeFences: false
 
 module:
   imports:
