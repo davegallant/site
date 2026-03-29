@@ -51,4 +51,22 @@
       </ul>
     </div>
   </nav>
+
+  <button
+    class="theme__toggle"
+    title="Toggle theme (auto / light / dark)"
+    aria-label="Toggle theme"
+  >
+    <span class="theme__toggle-icon">
+      <span class="icon-auto"
+        >{{ partial "icons/svg.html" "tabler-icons/brightness-half.svg" }}</span
+      >
+      <span class="icon-light" style="display: none;"
+        >{{ partial "icons/svg.html" "tabler-icons/sun-high.svg" }}</span
+      >
+      <span class="icon-dark" style="display: none;"
+        >{{ partial "icons/svg.html" "tabler-icons/moon.svg" }}</span
+      >
+    </span>
+  </button>
 </header>

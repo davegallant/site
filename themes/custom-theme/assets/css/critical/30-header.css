@@ -5,6 +5,7 @@ header {
   grid-template-columns: auto auto 1fr auto;
   grid-template-areas: "heading search nav theme-toggle";
   padding: 0.75rem;
+  transition: background-color 0.3s ease;
 }
 
 .logo {
@@ -161,21 +162,39 @@ header {
 .theme__toggle {
   align-items: center;
   background: none;
-  border: none;
-  color: var(--yellow1);
+  border: 1px solid var(--bg2);
+  border-radius: 0.25rem;
+  color: var(--fg0);
   cursor: pointer;
   display: flex;
   grid-area: theme-toggle;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
+  padding: 0.25rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 
   &:hover {
-    color: var(--yellow2);
+    background: var(--bg2);
+    border-color: var(--bg3);
+    color: var(--fg1);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 
   & svg {
-    height: 28px;
-    width: 28px;
+    height: 22px;
+    width: 22px;
   }
+}
+
+.theme__toggle-icon {
+  display: flex;
+  align-items: center;
+  line-height: 0;
 }
 
 /* TODO: simplify deep nesting */

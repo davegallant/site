@@ -20,8 +20,6 @@ params:
     text: davegallant.ca
     url: /
 
-  defaultTheme: "dark"
-
   comments:
     utterances:
       enable: true
