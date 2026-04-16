@@ -1,15 +1,5 @@
 {{- $config := .Site.Params.comments -}} {{- $utterancesEnabled :=
 $config.utterances.enable -}} {{- if $utterancesEnabled -}}
-<script
-  src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
-  integrity="sha384-eBN0tpP3/Lr0O/EtkD1Iuw6Zg+YWlXWi7pN6ItFzLvz+rUXomo6NbG25JAviqc2K"
-  crossorigin="anonymous"
-></script>
-<script>
-  kofiwidget2.init("Buy me a coffee", "#2a2a2a", "F1F2S4LWI");
-  kofiwidget2.draw();
-</script>
-
 <section id="comments" class="comments" style="margin-top: 2rem">
   <div class="container sep-before">
     <div class="comments">{{ partial "comments/utterances" . }}</div>
