@@ -7,4 +7,4 @@ clean:
 
 server: clean
   npm ci
-  hugo server --buildDrafts
+  hugo server --buildDrafts --bind 0.0.0.0
