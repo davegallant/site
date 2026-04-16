@@ -13,22 +13,12 @@
   }
 }
 
-.post-header,
-.post-content__read-more {
+.post-header {
   font-family: var(--font-monospace);
-}
-
-.post-meta__author {
-  font-weight: 700;
 }
 
 .post-content {
   margin: 1.3rem 0;
-}
-
-.post-content__read-more {
-  color: var(--primary-alt);
-  margin-top: 1.3rem;
 }
 
 .content-section,
@@ -40,23 +30,6 @@
 
   & a:hover {
     color: var(--primary);
-  }
-}
-
-.post-tags {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin: 1rem 0;
-}
-
-.post-tag {
-  font-size: 0.9rem;
-  line-height: 1;
-
-  &::before {
-    content: "#";
   }
 }
 

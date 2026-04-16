@@ -1,31 +1,18 @@
 <!-- Styles -->
 
-{{ $critical := sort (resources.Match "css/critical/*.css") "Name" | resources.Concat "css/critical.css" | resources.ExecuteAsTemplate "css/critical.css" . | css.PostCSS }}
-{{ $nonCritical := sort (resources.Match "css/non-critical/*.css") "Name" | resources.Concat "css/non-critical.css" | resources.ExecuteAsTemplate "css/non-critical.css" . | css.PostCSS }}
+{{ $styles := sort (resources.Match "css/src/*.css") "Name" | resources.Concat "css/bundle.css" | resources.ExecuteAsTemplate "css/bundle.css" . | css.PostCSS }}
 {{ $prismDark := resources.Get "prism-themes/prism-vsc-dark-plus.css" }}
 {{ $prismLight := resources.Get "prism-themes/prism-one-light.css" }}
 {{ $prismToolbar := resources.Get "prismjs/plugins/toolbar/prism-toolbar.css" }}
 
 {{ if hugo.IsProduction }}
-  {{ $critical = $critical | resources.PostProcess }}
-  {{ $nonCritical = $nonCritical | fingerprint "sha512" | resources.PostProcess }}
+  {{ $styles = $styles | minify | fingerprint "sha512" | resources.PostProcess }}
   {{ $prismDark = $prismDark | minify | fingerprint "sha512" }}
   {{ $prismLight = $prismLight | minify | fingerprint "sha512" }}
   {{ $prismToolbar = $prismToolbar | minify | fingerprint "sha512" }}
 {{ end }}
 
-<style>
-  /* stylelint-disable */
-  {{ $critical.Content | safeCSS }}
-  /* stylelint-enable */
-</style>
-
-<link
-  rel="preload"
-  href="{{ $nonCritical.RelPermalink }}"
-  as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
-/>
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
 
 <link id="prism-dark" rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
 
@@ -40,5 +27,4 @@
 
 <noscript>
   <link rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
-  <link rel="stylesheet" href="{{ $nonCritical.RelPermalink }}" />
 </noscript>

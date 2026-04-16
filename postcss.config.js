@@ -4,9 +4,7 @@ module.exports = () => ({
   plugins: [
     require("postcss-import")({
       path: [
-        // Check for imports in <theme-dir>/css/assets
-        // TODO use Hugo's built-in inlineImports?
-        path.posix.join(__dirname, "assets", "css"),
+        path.posix.join(__dirname, "themes", "custom-theme", "assets", "css"),
       ],
     }),
     require("postcss-url")([

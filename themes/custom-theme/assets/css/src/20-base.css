@@ -204,8 +204,7 @@ pre {
   }
 }
 
-blockquote,
-blockquote.twitter-tweet {
+blockquote {
   border-left: var(--primary-alt) 5px solid;
   margin: 0.5rem 0;
 

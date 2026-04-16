@@ -1,5 +1,3 @@
-# Module debugging
-#replacements = "github.com/schnerring/hugo-mod-json-resume -> ../../hugo-mod-json-resume"
 [hugoVersion]
   extended = true
   min = "0.84.0"
@@ -9,21 +7,3 @@
 [[mounts]]
   source = "layouts"
   target = "layouts"
-[[mounts]]
-  source = "static"
-  target = "static"
-[[mounts]]
-  source = "node_modules/prismjs"
-  target = "assets/prismjs"
-[[mounts]]
-  source = "node_modules/prism-themes/themes"
-  target = "assets/prism-themes"
-[[mounts]]
-  source = "node_modules/typeface-fira-code/files"
-  target = "static/fonts"
-[[mounts]]
-  source = "node_modules/typeface-roboto-slab/files"
-  target = "static/fonts"
-[[mounts]]
-  source = "node_modules/@tabler/icons/icons"
-  target = "assets/tabler-icons"

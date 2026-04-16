@@ -1,11 +1,18 @@
 /*! purgecss start ignore */
 
+/* Typefaces */
+@import "typeface-roboto-slab";
+@import "typeface-fira-code";
+
+/* Normalize */
+@import "normalize.css/normalize.css";
+
+/* Prism plugins */
 {{ range $.Site.Params.prism.plugins }}
   {{ $path := printf "prismjs/plugins/%s/prism-%s.css" . . }}
   {{ $pluginCSS := resources.Get $path }}
   {{ if $pluginCSS }}
     {{ $importPath := trim $pluginCSS.RelPermalink "/" }}
-    {{ printf "/* Import stylesheet for Prism plugin '%s' from '%s' */" . $importPath }}
     @import "{{ $importPath }}";
   {{ end }}
 {{ end }}
@@ -19,6 +26,3 @@ pre[class*="language-"] {
 }
 
 /*! purgecss end ignore */
-
-/* Default license header for non-vendor CSS source code that follows */
-/*! MIT License | github.com/schnerring/hugo-theme-gruvbox */
