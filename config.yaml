@@ -72,8 +72,6 @@ module:
   imports:
     - path: custom-theme
   mounts:
-    - source: node_modules/simple-icons/icons
-      target: assets/simple-icons
     - source: assets
       target: assets
     - source: layouts

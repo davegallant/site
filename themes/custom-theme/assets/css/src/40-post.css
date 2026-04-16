@@ -1,0 +1,49 @@
+.post,
+.content-section {
+  border-bottom: 2px dotted var(--bg1);
+  padding: 0;
+}
+
+.post {
+  & figure,
+  & img:not(figure img),
+  & video:not(figure video) {
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+  }
+}
+
+.post-header {
+  font-family: var(--font-monospace);
+}
+
+.post-content {
+  margin: 1.3rem 0;
+}
+
+.content-section,
+.post-header,
+.post-content {
+  & a {
+    color: var(--primary-alt);
+  }
+
+  & a:hover {
+    color: var(--primary);
+  }
+}
+
+.post-heading__anchor {
+  display: none;
+}
+
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  & .post-heading__anchor {
+    display: inline-block;
+  }
+}
