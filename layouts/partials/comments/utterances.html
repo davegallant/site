@@ -14,6 +14,8 @@ $repository := .Page.Site.Params.comments.utterances.github.repository -}}
     const theme = effectiveTheme === "dark" ? "github-dark" : "github-light";
     const script = document.createElement("script");
     script.src = "https://utteranc.es/client.js";
+    script.integrity =
+      "sha384-fu37qCdzTFjEWsnuik0ASdJij1SVwzCpeltZfuSulYExo7P5sTcD0aG6ECQHQR62";
     script.setAttribute("repo", "{{ $username }}/{{ $repository }}");
     script.setAttribute("issue-term", "{{ $issueTerm }}");
     script.setAttribute("theme", theme);
