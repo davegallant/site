@@ -86,5 +86,5 @@ module:
       target: static/fonts
     - source: node_modules/typeface-roboto-slab/files
       target: static/fonts
-    - source: node_modules/@tabler/icons/icons
+    - source: node_modules/@tabler/icons/icons/outline
       target: assets/tabler-icons
