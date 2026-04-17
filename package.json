@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@tabler/icons": "^2.44.0",
-    "flexsearch": "^0.7.31",
+    "flexsearch": "^0.8.0",
     "normalize.css": "^8.0.1",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
