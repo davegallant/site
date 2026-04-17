@@ -4,8 +4,8 @@ Source for blog, powered by [hugo](https://github.com/gohugoio/hugo).
 
 ## Run locally
 
-Requires hugo.
+Requires hugo and just.
 
 ```shell
-make server
+just server
 ```
