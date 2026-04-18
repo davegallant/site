@@ -1,9 +1,0 @@
-[hugoVersion]
-  extended = true
-  min = "0.84.0"
-[[mounts]]
-  source = "assets"
-  target = "assets"
-[[mounts]]
-  source = "layouts"
-  target = "layouts"
