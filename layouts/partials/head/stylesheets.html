@@ -3,13 +3,10 @@
 {{ $styles := sort (resources.Match "css/src/*.css") "Name" | resources.Concat "css/bundle.css" | resources.ExecuteAsTemplate "css/bundle.css" . | css.PostCSS }}
 {{ $prismDark := resources.Get "prism-themes/prism-vsc-dark-plus.css" }}
 {{ $prismLight := resources.Get "prism-themes/prism-one-light.css" }}
-{{ $prismToolbar := resources.Get "prismjs/plugins/toolbar/prism-toolbar.css" }}
-
 {{ if hugo.IsProduction }}
   {{ $styles = $styles | minify | fingerprint "sha512" | resources.PostProcess }}
   {{ $prismDark = $prismDark | minify | fingerprint "sha512" }}
   {{ $prismLight = $prismLight | minify | fingerprint "sha512" }}
-  {{ $prismToolbar = $prismToolbar | minify | fingerprint "sha512" }}
 {{ end }}
 
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
@@ -22,8 +19,6 @@
   href="{{ $prismLight.RelPermalink }}"
   disabled
 />
-
-<link rel="stylesheet" href="{{ $prismToolbar.RelPermalink }}" />
 
 <noscript>
   <link rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />

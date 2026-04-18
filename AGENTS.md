@@ -4,8 +4,7 @@ This document provides guidance for AI coding agents operating in this repositor
 
 ## Project Overview
 
-This is a **Hugo static site** (personal blog at davegallant.ca) using a vendored/customized
-version of the hugo-theme-gruvbox theme located in `themes/custom-theme/`. The site requires
+This is a **Hugo static site** (personal blog at davegallant.ca). The site requires
 **Hugo Extended** edition for PostCSS processing. The dev environment is managed via
 **Nix flakes** (hugo, just, nodejs).
 
@@ -14,17 +13,14 @@ version of the hugo-theme-gruvbox theme located in `themes/custom-theme/`. The s
 ```
 config.yaml                  # Main Hugo config (YAML)
 content/blog/                # Blog posts as page bundles (dir with index.md + images)
-layouts/partials/            # Site-level template overrides
-themes/custom-theme/         # Vendored theme (templates, CSS, JS, configs)
-  assets/css/critical/       # CSS inlined in <head>, numbered prefixes (00-, 15-, 20-, etc.)
-  assets/css/non-critical/   # CSS loaded async
-  assets/js/                 # JS files (some are Hugo templates using {{ }})
-  layouts/                   # Theme templates
-  postcss.config.js          # PostCSS pipeline
+layouts/                     # All Hugo templates (base, partials, shortcodes, markup)
+assets/css/src/              # CSS files, numbered prefixes for ordering (00-, 10-, 15-, etc.)
+assets/js/                   # JS files (some are Hugo templates using {{ }})
 static/                      # Static assets (favicons, CNAME)
 justfile                     # Task runner
 flake.nix                    # Nix dev environment
 package.json                 # Root npm dependencies
+postcss.config.js            # PostCSS pipeline config
 ```
 
 ## Build / Dev / Deploy Commands
@@ -50,21 +46,6 @@ hugo --minify              # production build
 hugo server --buildDrafts  # dev server
 ```
 
-## Linting
-
-Linting tools are configured in the theme directory but dependencies are in the root
-`package.json`. Run from the **theme directory** (`themes/custom-theme/`):
-
-```sh
-# All linters
-npm run lint
-
-# Individual linters
-npm run lint:css    # stylelint --fix **/*.css
-npm run lint:js     # eslint --fix --ext js .
-npm run lint:md     # markdownlint --fix **/*.md
-```
-
 ## Tests
 
 There are no tests in this project. Validation is done via linting and successful Hugo builds.
@@ -73,7 +54,7 @@ There are no tests in this project. Validation is done via linting and successfu
 
 GitHub Actions (`.github/workflows/publish.yml`) runs on push to `main`:
 
-- Node 18, Hugo Extended
+- Node 24, Hugo Extended 0.155.3
 - `npm ci` then `hugo --minify`
 - Deploys to `generated` branch via GitHub Pages
 
@@ -94,10 +75,9 @@ GitHub Actions (`.github/workflows/publish.yml`) runs on push to `main`:
 - Place Hugo template actions on their own lines when they contain blocks
 - External links must include `target="_blank" rel="noreferrer"` and class `link--external`
 - Use ISO 8601 date format: `2006-01-02`
-- Prefer partials for reusable components; organize in subdirectories (`head/`, `comments/`, etc.)
+- Prefer partials for reusable components; organize in subdirectories (`head/`, `comments/`, `icons/`)
 - Use `css.PostCSS` (not the deprecated `resources.PostCSS`) for PostCSS pipe operations
 - Use `resources.Concat`, `resources.ExecuteAsTemplate`, `resources.PostProcess` for asset pipeline
-- Hugo config is YAML (`config.yaml`); theme config is TOML (`themes/custom-theme/config/`)
 
 ### CSS
 
@@ -106,17 +86,14 @@ GitHub Actions (`.github/workflows/publish.yml`) runs on push to `main`:
 - Use **CSS custom properties** (variables) for theming: `--bg`, `--fg`, `--primary`, etc.
 - Use **CSS nesting** (via postcss-nesting), not Sass
 - Files are numbered with prefix for ordering: `00-vendor.css`, `15-colors.css`, `20-base.css`, etc.
-- Split CSS into `critical/` (inlined in `<head>`) and `non-critical/` (loaded async)
-- Use Bootstrap 5 breakpoints as custom media: `--sm`, `--md`, `--lg`, `--xl`, `--xxl`
+- All CSS is in `assets/css/src/`, concatenated and bundled by Hugo
+- Use Bootstrap 5 breakpoints as custom media: `--md`, `--lg`
 - Mark sections for PurgeCSS with `/*! purgecss start ignore */` / `/*! purgecss end ignore */`
-- Stylelint extends `stylelint-prettier/recommended`
 
 ### JavaScript
 
 - ES6 modules with `import`/`export` syntax; target is `es6` via Hugo's `js.Build`
 - Use `const` and `let` (never `var`)
-- ESLint extends `eslint:recommended` + `plugin:prettier/recommended`
-- Environment: `browser`, `es6`, `node`
 - Some JS files contain Hugo template expressions (`{{ }}`); these are processed by Hugo first
 - DOM manipulation uses standard APIs: `document.createElement`, `classList`, `addEventListener`
 
@@ -146,31 +123,17 @@ author: "Dave Gallant"
 
 ## Key Technical Details
 
-- **Theme**: Vendored in `themes/custom-theme/`, not fetched as a Hugo module from remote
 - **Syntax highlighting**: Prism.js (not Hugo's built-in Chroma)
 - **Search**: FlexSearch for client-side full-text search
 - **Comments**: Utterances (GitHub-based)
-- **Analytics**: Umami, Cloudflare Analytics, Google Analytics
-- **Fonts**: Fira Code (monospace), Roboto Slab (serif), Verdana (sans-serif)
+- **Analytics**: Umami, Cloudflare Analytics
+- **Fonts**: Fira Code (monospace), Roboto Slab (serif)
 - **Default theme**: Dark mode
 - **Node modules** are mounted into Hugo's asset pipeline via `config.yaml` module mounts
-
-## Pre-commit Hooks
-
-Husky runs `lint-staged` on commit (configured in theme's `package.json`):
-
-```json
-{
-  "*.css": "stylelint --fix --allow-empty-input",
-  "*.js": "eslint --cache --fix",
-  "*.md": "markdownlint --fix"
-}
-```
 
 ## Dependency Management
 
 - **Renovate** is configured (`renovate.json`) to run on weekends
 - Root `package.json` has runtime + dev dependencies
-- Theme `package.json` has its own copy (kept in sync)
 - Nix flake provides: `hugo`, `just`, `nodejs_25`
 - Activate dev environment with `direnv allow` (`.envrc` runs `use flake`)

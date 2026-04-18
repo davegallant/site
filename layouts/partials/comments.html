@@ -1,8 +1,5 @@
-{{- $config := .Site.Params.comments -}} {{- $utterancesEnabled :=
-$config.utterances.enable -}} {{- if $utterancesEnabled -}}
-<section id="comments" class="comments" style="margin-top: 2rem">
-  <div class="container sep-before">
-    <div class="comments">{{ partial "comments/utterances" . }}</div>
-  </div>
+{{- if .Site.Params.comments.utterances.enable -}}
+<section id="comments" style="margin-top: 2rem">
+  <div class="comments">{{ partial "comments/utterances" . }}</div>
 </section>
 {{- end -}}

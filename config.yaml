@@ -69,8 +69,6 @@ markup:
     codeFences: false
 
 module:
-  imports:
-    - path: custom-theme
   mounts:
     - source: assets
       target: assets
