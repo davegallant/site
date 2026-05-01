@@ -90,16 +90,24 @@ header {
   background: var(--bg);
   border-radius: 0.2rem;
   box-shadow: 0 0.5rem 1rem var(--bg1);
+  box-sizing: border-box;
   font-family: var(--font-serif);
   left: 0;
-  margin-top: 2rem;
-  position: absolute;
-  width: 95vw;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 3rem;
   z-index: 1000;
 }
 
 @media (--md) {
   #search__suggestions {
+    left: 0;
+    margin-top: 2rem;
+    position: absolute;
+    right: auto;
+    top: auto;
+    transform: none;
     width: 60vw;
   }
 }
@@ -141,8 +149,11 @@ header {
 
 .search__suggestion-title,
 .search__suggestion-description {
+  overflow: hidden;
   padding: 0 1rem;
   margin: 1rem 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .search__suggestion-title {
