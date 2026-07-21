@@ -47,3 +47,91 @@ h6:hover {
     display: inline-block;
   }
 }
+
+/* Code blocks */
+
+/* Prism injects .token/.code-toolbar classes client-side, so they never
+   appear in hugo_stats.json; purgecss would otherwise strip them. */
+/*! purgecss start ignore */
+
+pre[class*="language-"] {
+  border: 1px solid var(--bg2);
+  border-radius: 0.25rem;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--fg);
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata,
+.token.punctuation {
+  color: var(--code-comment);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--code-number);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted,
+.token.url {
+  color: var(--code-string);
+}
+
+.token.operator,
+.token.entity {
+  color: var(--fg1);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: var(--code-keyword);
+}
+
+.token.function,
+.token.class-name {
+  color: var(--code-function);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: var(--code-regex);
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+/* Copy-to-clipboard button */
+
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  background: var(--bg2);
+  color: var(--fg3);
+  border-radius: 0.2rem;
+  box-shadow: none;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button:hover,
+div.code-toolbar > .toolbar > .toolbar-item > button:focus {
+  color: var(--primary);
+}
+
+/*! purgecss end ignore */
