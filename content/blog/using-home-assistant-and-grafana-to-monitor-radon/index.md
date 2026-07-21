@@ -6,6 +6,7 @@ comments: true
 toc: false
 tags: ["radon", "grafana", "home-assistant", "homelab", "tailscale"]
 author: "Dave Gallant"
+images: ["home-assistant-grafana-dashboard.png"]
 ---
 
 I recently became more concerned about radon since I live and work in a basement daily. I decided to explore some ways to, not only monitor radon levels, but also hook up the metrics to my existing homelab.
