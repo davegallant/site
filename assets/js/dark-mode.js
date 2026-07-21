@@ -18,15 +18,6 @@ function getEffectiveTheme(theme) {
   return theme;
 }
 
-function setPrismTheme(effectiveTheme) {
-  const prismDark = document.getElementById("prism-dark");
-  const prismLight = document.getElementById("prism-light");
-  if (prismDark && prismLight) {
-    prismDark.disabled = effectiveTheme === "light";
-    prismLight.disabled = effectiveTheme === "dark";
-  }
-}
-
 function setCommentsTheme(effectiveTheme) {
   const iframe = document.querySelector(".utterances-frame");
   if (iframe) {
@@ -47,7 +38,6 @@ function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
   }
 
-  setPrismTheme(effectiveTheme);
   setCommentsTheme(effectiveTheme);
   updateToggleIcons(theme);
 }
@@ -76,16 +66,12 @@ function toggleTheme() {
 
 // Apply theme immediately to prevent FOUC
 const savedTheme = getTheme();
-const effectiveTheme = getEffectiveTheme(savedTheme);
 
 if (savedTheme !== "auto") {
   document.documentElement.setAttribute("data-theme", savedTheme);
 } else {
   document.documentElement.removeAttribute("data-theme");
 }
-
-// Set Prism theme immediately (links are already in DOM above this script)
-setPrismTheme(effectiveTheme);
 
 // Listen for OS theme changes when in auto mode
 window
@@ -97,7 +83,7 @@ window
     }
   });
 
-// Wait for DOM to set up toggle buttons and apply Prism/icon state
+// Wait for DOM to set up toggle buttons and apply icon state
 document.addEventListener("DOMContentLoaded", () => {
   const toggleButtons = document.querySelectorAll(".theme__toggle");
   toggleButtons.forEach((btn) => {

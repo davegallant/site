@@ -18,6 +18,16 @@
   --blue2: #3178a8;
   --primary: var(--blue1);
   --primary-alt: var(--blue2);
+
+  /* Code token colors: same hues as above, recalibrated for AA contrast
+     against --bg1 (the code block background), which is darker/more
+     saturated than the page background the accent colors were tuned for. */
+  --code-comment: #565753;
+  --code-string: #346029;
+  --code-number: #755118;
+  --code-keyword: #265986;
+  --code-function: #255c81;
+  --code-regex: #705107;
 }
 
 /* Dark theme (auto via prefers-color-scheme + explicit toggle) */
@@ -40,6 +50,13 @@
     --blue2: #85adc8;
     --primary: var(--blue1);
     --primary-alt: var(--blue2);
+
+    --code-comment: #848484;
+    --code-string: #9ece6a;
+    --code-number: #ff9e64;
+    --code-keyword: #85adc8;
+    --code-function: #85adc8;
+    --code-regex: #e0af68;
   }
 }
 
@@ -61,4 +78,11 @@
   --blue2: #85adc8;
   --primary: var(--blue1);
   --primary-alt: var(--blue2);
+
+  --code-comment: #848484;
+  --code-string: #9ece6a;
+  --code-number: #ff9e64;
+  --code-keyword: #85adc8;
+  --code-function: #85adc8;
+  --code-regex: #e0af68;
 }

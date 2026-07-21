@@ -1,25 +1,8 @@
 <!-- Styles -->
 
 {{ $styles := sort (resources.Match "css/src/*.css") "Name" | resources.Concat "css/bundle.css" | resources.ExecuteAsTemplate "css/bundle.css" . | css.PostCSS }}
-{{ $prismDark := resources.Get "prism-themes/prism-vsc-dark-plus.css" }}
-{{ $prismLight := resources.Get "prism-themes/prism-one-light.css" }}
 {{ if hugo.IsProduction }}
   {{ $styles = $styles | minify | fingerprint "sha512" | resources.PostProcess }}
-  {{ $prismDark = $prismDark | minify | fingerprint "sha512" }}
-  {{ $prismLight = $prismLight | minify | fingerprint "sha512" }}
 {{ end }}
 
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
-
-<link id="prism-dark" rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
-
-<link
-  id="prism-light"
-  rel="stylesheet"
-  href="{{ $prismLight.RelPermalink }}"
-  disabled
-/>
-
-<noscript>
-  <link rel="stylesheet" href="{{ $prismDark.RelPermalink }}" />
-</noscript>
