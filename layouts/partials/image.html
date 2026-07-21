@@ -34,6 +34,18 @@
   {{ if eq $image.MediaType.SubType "svg" }}
     <!-- No processing for SVGs -->
     <img src="{{ $image.RelPermalink }}" alt="{{ .alt }}" />
+  {{ else if eq $image.MediaType.SubType "gif" }}
+    <!-- No processing for GIFs: Hugo's resize/webp pipeline re-encodes animated
+         GIFs far less efficiently than the source encoder, often producing
+         files larger than the original -->
+    <img
+      src="{{ $image.RelPermalink }}"
+      alt="{{ .alt }}"
+      {{ with .caption }}title="{{ . | markdownify | plainify }}"{{ end }}
+      {{ if .lazy }}loading="lazy"{{ end }}
+      width="{{ $image.Width }}"
+      height="{{ $image.Height }}"
+    />
   {{ else }}
     <!-- Calculate resize widths in increments of 100px -->
     {{ $minWidth := .page.Site.Params.imageResize.min | default 300 }}
