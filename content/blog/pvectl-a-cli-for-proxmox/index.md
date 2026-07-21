@@ -12,7 +12,7 @@ images: ["pvectl-demo.png"]
 My home Proxmox cluster has grown into two nodes, a few dozen LXC containers, and a handful of VMs. Recently I've been exploring ways to make this experience more streamlined, especially when creating new containers, shelling into containers, running migrations, restoring from backups, etc. Usually when I need to do this, I either SSH into one of the proxmox nodes or open up the GUI. When on a node, I usually run `pct` or `qm`, and then immediately run into the issue: which ID was the thing I actually wanted? Which node was it running on?
 <!--more-->
 
-## Bash and fzf, for a while
+## Bash and fzf
 
 My initial attempt to remedy this problem was a bash script that shelled out to `pct` and piped the result through `fzf` so I could fuzzy-search containers by name instead of scanning a list of IDs. It worked well enough.
 
