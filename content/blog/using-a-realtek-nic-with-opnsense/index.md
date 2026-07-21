@@ -15,6 +15,7 @@ tags:
     realtek,
     nic,
 ]
+images: ["opnsense-device-passthrough.png"]
 ---
 
 For the past few years, I've been running pfSense (and more recently OPNsense) in a virtual machine within Proxmox. This has been running fine with a single onboard Intel NIC. A few months ago, I upgraded to a machine that has a CPU that supports hardware-accelerated transcoding, has more SATA ports, and has more PCI slots for future expansion. With the goal of having a dedicated NIC for WAN, I bought an inexpensive 1Gbps PCIe NIC (TG-3468) despite reading about some of the concerns around Realtek NICs (sluggish performance, driver instability, and in some cases system crashes).
