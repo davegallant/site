@@ -8,7 +8,7 @@ author: "Dave Gallant"
 tags: ['aws', 'eks', 'ebs', 'aws-ebs-csi-driver', 'oidc', 'efs', 'aws-efs-csi-driver']
 ---
 
-I recently configured the Amazon EBS CSI driver and found the setup with terraform to be more effort than expected. I wanted to avoid third-party modules and keep it as simple as possible, while remaining least privilege.
+I recently configured the Amazon EBS CSI driver and found the setup with Terraform to be more effort than expected. I wanted to avoid third-party modules and keep it as simple as possible, while remaining least privilege.
 
 > UPDATE: This approach can also be used for the aws-efs-csi-driver
 
@@ -21,9 +21,9 @@ The [Amazon EBS CSI driver docs](https://docs.aws.amazon.com/eks/latest/userguid
 - EKS add-on (aws-ebs-csi-driver)
 - OIDC provider
 
-This sounded simple enough but I was unable to find a "grab-and-go" terraform example that followed the recommendations in the docs. I saw some suggestions about attaching an `AmazonEBSCSIDriverPolicy` policy to the node groups but did not think this was the best idea since this would allow many pods to potentially have access to the EC2 API.
+This sounded simple enough but I was unable to find a "grab-and-go" Terraform example that followed the recommendations in the docs. I saw some suggestions about attaching an `AmazonEBSCSIDriverPolicy` policy to the node groups but did not think this was the best idea since this would allow many pods to potentially have access to the EC2 API.
 
-After a few minutes of LLM prompting, I was unimpressed with the results. I began to piece together the config myself, and after some trial and error, this is the terraform that I came up with:
+After a few minutes of LLM prompting, I was unimpressed with the results. I began to piece together the config myself, and after some trial and error, this is the Terraform that I came up with:
 
 ```hcl
 

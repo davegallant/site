@@ -13,7 +13,7 @@ AppGate SDP provides a Zero Trust network. This post describes how to get AppGat
 Depending on the AppGate SDP Server that is running, you may require a client that is more recent than the latest package on [AUR](https://aur.archlinux.org/packages/appgate-sdp/).
 As of right now, the latest AUR is `4.2.2-1`.
 
-These steps highlight how to get it working with `Python3.8` by making a 1 line modification to AppGate source code.
+These steps highlight how to get it working with `Python3.8` by making a one-line modification to AppGate source code.
 
 # Packaging
 
@@ -38,7 +38,7 @@ pkgdesc="Software Defined Perimeter - GUI client"
 arch=('x86_64')
 url="https://www.cyxtera.com/essential-defense/appgate-sdp/support"
 license=('custom')
-# dependecies calculated by namcap
+# dependencies calculated by namcap
 depends=('gconf' 'libsecret' 'gtk3' 'python' 'nss' 'libxss' 'nodejs' 'dnsmasq')
 source=("https://sdpdownloads.cyxtera.com/AppGate-SDP-${_download_pkgver}/clients/${pkgname}_${pkgver}_amd64.deb"
         "appgatedriver.service")
@@ -151,5 +151,4 @@ It turns out there are [breaking changes](https://docs.python.org/3.7/library/pl
 
 The docs say `Deprecated since version 3.5, will be removed in version 3.8: See alternative like the distro package.`
 
-I suppose this highlights one of the caveats of relying upon the system's python, rather than having an isolated, dedicated environment for all dependencies.
-
+I suppose this highlights one of the caveats of relying upon the system's Python, rather than having an isolated, dedicated environment for all dependencies.

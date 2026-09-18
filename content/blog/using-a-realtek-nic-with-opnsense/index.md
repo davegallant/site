@@ -64,7 +64,7 @@ I reverted the WAN back to the original NIC, and the download speeds returned to
 
 I did some web searching / LLM prompting and discovered that some people have had improved results after installing the OPNsense plugin **os-realtek-re**.
 
-After installing the plugin and ensuring the kernel module was loaded at boot by following the post-install instructions, the throughput was still signicantly slower than before adding a second NIC.
+After installing the plugin and ensuring the kernel module was loaded at boot by following the post-install instructions, the throughput was still significantly slower than before adding a second NIC.
 
 I was starting to think that there might be a problem with the hardware and began the process to return it to the vendor.
 

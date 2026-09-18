@@ -8,7 +8,7 @@ tags: ["docker", "podman", "containers"]
 author: "Dave Gallant"
 ---
 
-There are a number of reasons why you might want to replace docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing docker:
+There are a number of reasons why you might want to replace Docker, especially on macOS. The following feature bundled in Docker Desktop might have motivated you enough to consider replacing Docker:
 
 <!--more-->
 
@@ -16,7 +16,7 @@ There are a number of reasons why you might want to replace docker, especially o
 
 Docker has been one of the larger influencers in the container world, helping to standardize the [OCI Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/spec.md). For many developers, containers have become synonymous with terms like `docker` and `Dockerfile` (a file containing build instructions for a container image). Docker has certainly made it very convenient to build and run containers, but it is not the only solution for doing so.
 
-This post briefly describes my experience swapping out docker for podman on macOS.
+This post briefly describes my experience swapping out Docker for Podman on macOS.
 
 ### What is a container?
 
@@ -26,11 +26,11 @@ By easily allowing the necessary dependencies to live alongside the application 
 
 ### Benefits of Podman
 
-One of the most interesting features of Podman is that it is daemonless. There isn't a process running on your system managing your containers. In contrast, the docker client is reliant upon the docker daemon (often running as root) to be able to build and run containers.
+One of the most interesting features of Podman is that it is daemonless. There isn't a process running on your system managing your containers. In contrast, the Docker client is reliant upon the Docker daemon (often running as root) to be able to build and run containers.
 
-Podman is rootless by default. It is now possible to [run the docker daemon rootless](https://docs.docker.com/engine/security/rootless/) as well, but it's still not the default behaviour.
+Podman is rootless by default. It is now possible to [run the Docker daemon rootless](https://docs.docker.com/engine/security/rootless/) as well, but it's still not the default behaviour.
 
-I've also observed that so far my 2019 16" Macbook Pro hasn't sounded like a jet engine, although I haven't performed any disk-intensive operations yet.
+I've also observed that so far my 2019 16" MacBook Pro hasn't sounded like a jet engine, although I haven't performed any disk-intensive operations yet.
 
 ### Installing Podman
 
@@ -72,7 +72,7 @@ $ podman run --rm -ti alpine
 Error: error preparing container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b for attach: error configuring network namespace for container 99ace1ef8a78118e178372d91fd182e8166c399fbebe0f676af59fbf32ce205b: error adding pod unruffled_bohr_unruffled_bohr to CNI network "podman": unexpected end of JSON input
 ```
 
-What does this error mean? A bit of searching lead to [this github issue](https://github.com/containers/podman/issues/11837).
+What does this error mean? A bit of searching led to [this GitHub issue](https://github.com/containers/podman/issues/11837).
 
 Until the fix is released, a workaround is to just specify a port (even when it's not needed):
 
@@ -94,7 +94,7 @@ alias docker=podman
 
 ### podman-compose
 
-You may be wondering: what about docker-compose? Well, there _claims_ to be a drop-in replacement for it: [podman-compose](https://github.com/containers/podman-compose).
+You may be wondering: what about docker-compose? Well, it _claims_ to be a drop-in replacement for it: [podman-compose](https://github.com/containers/podman-compose).
 
 ```sh
 pip3 install --user podman-compose
@@ -134,11 +134,11 @@ podman start -a davegallant.github.io_hello_world_1
 Hello world
 ```
 
-This should more or less provide the same results you would come to expect with docker. The README does clearly state that podman-compose is under development.
+This should more or less provide the same results you would come to expect with Docker. The README does clearly state that podman-compose is under development.
 
 ### Summary
 
-Installing Podman on macOS was not seamless, but it was manageable well within 30 minutes. I would recommend giving Podman a try to anyone who is unhappy with experiencing forced docker updates, or who is interested in using a more modern technology for running containers.
+Installing Podman on macOS was not seamless, but it was manageable within 30 minutes. I would recommend giving Podman a try to anyone who is unhappy with experiencing forced Docker updates, or who is interested in using a more modern technology for running containers.
 
 One caveat to mention is that there isn't an official graphical user interface for Podman, but there is an [open issue](https://github.com/containers/podman/issues/11494) considering one. If you rely heavily on Docker Desktop's UI, you may not be as interested in using podman yet.
 
