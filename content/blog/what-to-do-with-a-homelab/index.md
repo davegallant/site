@@ -13,7 +13,7 @@ A homelab can be an inexpensive way to host a multitude of internal/external ser
 
 <!--more-->
 
-Do you want host your own media server? ad blocker? reverse proxy?
+Do you want to host your own media server? Ad blocker? Reverse proxy?
 Are you interested in learning more about Linux? Virtualization? Networking? Security?
 A homelab can be a playground to enhance your computer skills, without worrying about breaking anything important.
 
@@ -47,7 +47,7 @@ There is a large number of services you can self-host, including your own applic
 
 ## VPN
 
-[Tailscale](https://tailscale.com/) is a quick way to create a flat network for all of your services. With its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), your can reference the names of machines like `changedetection` rather than using an IP address, or managing DNS yourself. By using this mesh-like VPN, you can easily create a secure tunnel to your homelab from anywhere.
+[Tailscale](https://tailscale.com/) is a quick way to create a flat network for all of your services. With its [MagicDNS](https://tailscale.com/kb/1081/magicdns/), you can reference the names of machines like `changedetection` rather than using an IP address or managing DNS yourself. By using this mesh-like VPN, you can easily create a secure tunnel to your homelab from anywhere.
 
 ## Monitoring
 

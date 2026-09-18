@@ -77,7 +77,7 @@ The above outlined solution makes some assumptions:
 - there is a k8s cluster
 - the k8s cluster has network connectivity to the desired private database
 
-If these stars align, than this solution might work as a stopgap for accessing a private Azure DB (and I'm assuming this could work similarly on AWS).
+If these stars align, then this solution might work as a stopgap for accessing a private Azure DB (and I'm assuming this could work similarly on AWS).
 
 It would be nice if Azure provided tooling similar to cloud-sql-proxy, so that using private databases would be more of a convenient experience.
 

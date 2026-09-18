@@ -22,7 +22,7 @@ In this post I'll go through the process of setting up Gitea Actions and [Tailsc
 
 [Gitea Actions](https://docs.gitea.com/usage/actions/overview) have made it into the [1.19.0 release](https://blog.gitea.com/release-of-1.19.0/). This feature had been in an experimental state up until [1.21.0](https://blog.gitea.com/release-of-1.21.0/) and is now enabled by default 🎉.
 
-So what are they? If you've ever used GitHub Actions (and if you're reading this, I imagine you have), these will look familiar. Gitea Actions essentially enable the ability to run github workflows on gitea. Workflows between gitea and github are not completely interopable, but a lot of the same workflow syntax is already compatible on gitea. You can find a documented list of [unsupported workflows syntax](https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax).
+So what are they? If you've ever used GitHub Actions (and if you're reading this, I imagine you have), these will look familiar. Gitea Actions essentially enable the ability to run GitHub workflows on Gitea. Workflows between Gitea and GitHub are not completely interoperable, but a lot of the same workflow syntax is already compatible on Gitea. You can find a documented list of [unsupported workflow syntax](https://docs.gitea.com/usage/actions/comparison#unsupported-workflows-syntax).
 
 Actions work by using a [custom fork](https://gitea.com/gitea/act) of [nekos/act](https://github.com/nektos/act). Workflows run in a new container for every job. If you specify an action such as `actions/checkout@v4`, it defaults to downloading the scripts from github.com. To avoid internet egress, you could always clone the required actions to your local gitea instance.
 
@@ -83,7 +83,7 @@ After registering this runner and starting the daemon, the runner appeared in `/
 
 ## Running a workflow
 
-Now it's time start running some automation. I used the [demo workflow](https://docs.gitea.com/usage/actions/quickstart#use-actions) as a starting point to verify that the runner is executing workflows.
+Now it's time to start running some automation. I used the [demo workflow](https://docs.gitea.com/usage/actions/quickstart#use-actions) as a starting point to verify that the runner is executing workflows.
 
 After this, I wanted to make sure that some of my existing workflows could be migrated over.
 

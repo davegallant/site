@@ -30,9 +30,9 @@ I figured this would be a good opportunity to try [pfSense](https://en.wikipedia
 
 I had initially made the assumption that in order to build a router, you would need more than a single NIC (or a dual-port NIC) in order to support both WAN and LAN. This is simply [not the case](https://en.wikipedia.org/wiki/Router_on_a_stick), because VLANs are awesome! In order to create a router, all you need is a single port NIC and a network switch that supports VLANs (also marketed as a managed switch). I picked up the Netgear GS308E because it has both a sufficient amount of ports for my needs, and it supports VLANs. It also has a nice sturdy metal frame which was a pleasant surprise.
 
-After setting up this Netgear switch, it shoud be possible to access the web interface at [http://192.168.0.239](http://192.168.0.239). It may be at a different address. To find the address, try checking your DHCP leases in your router interface (if you plugged it into an existing router). I realized I was unable to access this interface because I was on a different subnet, so I set my machine's address to `192.168.0.22` in order to temporarily setup this switch. I assigned a static ip address to the switch (in `System > Switch Information`) so that it was in the same subnet as the rest of my network.
+After setting up this Netgear switch, it should be possible to access the web interface at [http://192.168.0.239](http://192.168.0.239). It may be at a different address. To find the address, try checking your DHCP leases in your router interface (if you plugged it into an existing router). I realized I was unable to access this interface because I was on a different subnet, so I set my machine's address to `192.168.0.22` in order to temporarily set up this switch. I assigned a static IP address to the switch (in `System > Switch Information`) so that it was in the same subnet as the rest of my network.
 
-The web interface is nothing spectactular, but it allows for managing VLANs.
+The web interface is nothing spectacular, but it allows for managing VLANs.
 
 The following configuration will:
 

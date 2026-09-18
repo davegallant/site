@@ -9,27 +9,27 @@ tags: ["proxmox", "cli", "go", "homelab", "pvectl"]
 images: ["pvectl-demo.png"]
 ---
 
-My home Proxmox cluster has grown into two nodes, a few dozen LXC containers, and a handful of VMs. Recently I've been exploring ways to make this experience more streamlined, especially when creating new containers, shelling into containers, running migrations, restoring from backups, etc. Usually when I need to do this, I either SSH into one of the proxmox nodes or open up the GUI. When on a node, I usually run `pct` or `qm`, and then immediately run into the issue: which ID was the thing I actually wanted? Which node was it running on?
+My home Proxmox cluster has grown into two nodes, a few dozen LXC containers, and a handful of VMs. Recently I've been exploring ways to make this experience more streamlined, especially when creating new containers, shelling into containers, running migrations, restoring from backups, etc. Usually when I need to do this, I either SSH into one of the Proxmox nodes or open up the GUI. When on a node, I usually run `pct` or `qm`, and then immediately run into the issue: which ID was the thing I actually wanted? Which node was it running on?
 <!--more-->
 
 ## Bash wrapper
 
 My initial attempt to relieve some of the complexity was a bash script that shelled out to `pct` and piped the result through `fzf` so I could fuzzy-search containers by name instead of scanning a list of IDs. It worked well enough.
 
-The problem with this approach is that it only worked when I was already on the proxmox node itself, since it called `pct` directly — no running it from my laptop, and it only knew about LXC containers.
+The problem with this approach is that it only worked when I was already on the Proxmox node itself, since it called `pct` directly — no running it from my laptop, and it only knew about LXC containers.
 
 ## Rewriting it against the API
 
-After years of using `kubectl`, I really wished there was something comparable for proxmox. I decided to start making `pvectl`, which communicates with Proxmox with the [Proxmox VE API](https://pve.proxmox.com/wiki/Proxmox_VE_API) directly instead of shelling out to `pct`/`qm`. It can work from any machine that can reach the cluster's API. `ct` and `qm` are separate command trees under the same CLI (`pvectl ct start web`, `pvectl qm start pihole`).
+After years of using `kubectl`, I really wished there was something comparable for Proxmox. I decided to start making `pvectl`, which communicates directly with the [Proxmox VE API](https://pve.proxmox.com/wiki/Proxmox_VE_API) instead of shelling out to `pct`/`qm`. It can work from any machine that can reach the cluster's API. `ct` and `qm` are separate command trees under the same CLI (`pvectl ct start web`, `pvectl qm start pihole`).
 
 A few other things have since been implemented:
 
-- Tab completion suggests container/VM names as you type, so you never touch an id unless you want to.
+- Tab completion suggests container/VM names as you type, so you never touch an ID unless you want to.
 - Anything that runs as a background Proxmox task (start, migrate, backup, snapshot) shows a live spinner and a final pass/fail summary with timing, instead of leaving you guessing whether it's still running.
 - `pvectl setup` will try to store the API token in your OS keychain instead of a plaintext config file.
 - Support for machine-readable output on list/summary commands instead of a table (`--output json`)
 - A raw escape hatch for any Proxmox API endpoint using `pvectl api get/post/put/delete <path>`
-- `pvectl schema` prints the full command tree (names, flags, descriptions) as JSON for introspection. 
+- `pvectl schema` prints the full command tree (names, flags, descriptions) as JSON for introspection.
 
 ![gif](pvectl-demo.gif)
 
@@ -59,7 +59,7 @@ Nix:
 nix profile install github:davegallant/pvectl
 ```
 
-The source and full documentation can be found at [github.com/davegallant/pvectl](https://github.com/davegallant/pvectl). 
+The source and full documentation can be found at [github.com/davegallant/pvectl](https://github.com/davegallant/pvectl).
 
 I'm actively using it against my own cluster. If you decide to try it against yours and something breaks — or behaves differently on a setup I haven't tested — feel free to open an issue or PR.
 

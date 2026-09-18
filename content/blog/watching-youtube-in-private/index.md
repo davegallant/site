@@ -25,7 +25,7 @@ I recently stumbled upon [yewtu.be](https://yewtu.be) and found it intriguing. I
 
 The layout is simple, and **JavaScript is not required**.
 
-I started using [yewtu.be](https://yewtu.be) as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface invidiuous provides due to its simplicity. It's also nice to be in control of my search and watch history.
+I started using [yewtu.be](https://yewtu.be) as my primary client for watching videos. I subscribe to several YouTube channels and I prefer the interface Invidious provides due to its simplicity. It's also nice to be in control of my search and watch history.
 
 A few days ago, yewtu.be went down briefly, and that motivated me enough to self-host invidious. There are several other hosted instances listed [here](https://docs.invidious.io/instances/), but being able to easily backup my own instance (including subscriptions and watch history) is more compelling in my case.
 

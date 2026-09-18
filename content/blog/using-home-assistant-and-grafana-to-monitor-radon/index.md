@@ -9,7 +9,7 @@ author: "Dave Gallant"
 images: ["home-assistant-grafana-dashboard.png"]
 ---
 
-I recently became more concerned about radon since I live and work in a basement daily. I decided to explore some ways to, not only monitor radon levels, but also hook up the metrics to my existing homelab.
+I recently became more concerned about radon since I live and work in a basement daily. I decided to explore ways not only to monitor radon levels but also to hook up the metrics to my existing homelab.
 
 <!--more-->
 ## Radon
@@ -20,7 +20,7 @@ Radon is a radioactive gas that can be found in homes, and at high levels and pe
 
 My first thought was to try to plug into an ecosystem that is already robust. [Home Assistant](https://www.home-assistant.io/) is an open-source home automation platform that allows you to monitor and control various aspects of your home. It supports a wide range of sensors and devices, including radon detectors. By integrating sensors with Home Assistant, it is easy to monitor radon levels in your home and receive alerts if they exceed safe thresholds.
 
-Of course, the first step is to get actual hardware that is designed to detect radon. I went with the [Airthings 325 Corentium Home 2](https://www.airthings.com/en-ca/corentium-home-2-ca), which is the sequel to a well-trusted radon detector. It has a built-in display that shows the current radon levels, and it also has Bluetooth connectivity, which could unlock the ability share metrics with Home Assistant. I was skeptical at first if this could work without having to integrate with a cloud subscription, but it turns out that Home Assistant has a [built-in integration](https://www.home-assistant.io/integrations/airthings_ble/) that can pull in the radon levels and other metrics from the device, and **Corentium Home 2** is on the list of supported devices!
+Of course, the first step is to get actual hardware that is designed to detect radon. I went with the [Airthings 325 Corentium Home 2](https://www.airthings.com/en-ca/corentium-home-2-ca), which is the sequel to a well-trusted radon detector. It has a built-in display that shows the current radon levels, and it also has Bluetooth connectivity, which could unlock the ability to share metrics with Home Assistant. I was skeptical at first if this could work without having to integrate with a cloud subscription, but it turns out that Home Assistant has a [built-in integration](https://www.home-assistant.io/integrations/airthings_ble/) that can pull in the radon levels and other metrics from the device, and **Corentium Home 2** is on the list of supported devices!
 
 One of the downsides of the Corentium Home 2 is that it will not passively sync data over time by itself. It will only sync when you open the app. This is not a problem with the Home Assistant integration, because this integration will pull data periodically, eliminating the need to have to manually sync the data using a mobile app.
 
