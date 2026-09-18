@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on davegallant.ca</title><link>/tags/security/</link><description>Recent content in Security on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Fri, 27 Mar 2026 08:22:01 -0400</lastBuildDate><atom:link href="/tags/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Automatically Rotating AWS Access Keys</title><link>/blog/automatically-rotating-aws-keys/</link><pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate><guid>/blog/automatically-rotating-aws-keys/</guid><description>&lt;p&gt;Rotating credentials is a security best practice. This morning, I read a question about automatically rotating AWS Access Keys without having to go through the hassle of navigating the AWS console. There are some existing solutions already, but I decided to write a &lt;a
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on davegallant.ca</title><link>/tags/security/</link><description>Recent content in Security on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Fri, 18 Sep 2026 07:29:01 -0400</lastBuildDate><atom:link href="/tags/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Automatically Rotating AWS Access Keys</title><link>/blog/automatically-rotating-aws-keys/</link><pubDate>Fri, 17 Sep 2021 12:48:33 -0400</pubDate><guid>/blog/automatically-rotating-aws-keys/</guid><description>&lt;p&gt;Rotating credentials is a security best practice. This morning, I read a question about automatically rotating AWS Access Keys without having to go through the hassle of navigating the AWS console. There are some existing solutions already, but I decided to write a &lt;a
  href="https://gist.github.com/davegallant/2c042686a78684a657fe99e20fa7a924#file-aws_access_key_rotator-py"
  
  
@@ -17,7 +17,7 @@
  
  class="link--external" target="_blank" rel="noreferrer"
  
-&gt;AWS suggests&lt;/a&gt;). Any existing applications, such as terraform, could be have their credentials passed to them from aws-vault, which retrieves them from the OS&amp;rsquo;s secure keystore. There is even a &lt;a
+&gt;AWS suggests&lt;/a&gt;). Any existing applications, such as Terraform, could have their credentials passed to them from aws-vault, which retrieves them from the OS&amp;rsquo;s secure keystore. There is even a &lt;a
  href="https://github.com/99designs/aws-vault/blob/master/USAGE.md#rotating-credentials"
  
  
