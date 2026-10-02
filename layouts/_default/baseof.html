@@ -3,7 +3,7 @@
   {{ partial "head/head.html" . }}
   <body>
     <div class="layout">
-      {{ partialCached "header.html" . "header" }}
+      {{ partialCached "header.html" . .RelPermalink }}
       <main>
         <div class="content">
           {{ block "main" . }}{{ end }}

@@ -15,36 +15,13 @@ function saveTheme(theme) {
   }
 }
 
-function getEffectiveTheme(theme) {
-  if (theme === "auto") {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  }
-  return theme;
-}
-
-function setCommentsTheme(effectiveTheme) {
-  const iframe = document.querySelector(".utterances-frame");
-  if (iframe) {
-    const message = {
-      type: "set-theme",
-      theme: effectiveTheme === "dark" ? "github-dark" : "github-light",
-    };
-    iframe.contentWindow.postMessage(message, "https://utteranc.es");
-  }
-}
-
 function applyTheme(theme) {
-  const effectiveTheme = getEffectiveTheme(theme);
-
   if (theme === "auto") {
     document.documentElement.removeAttribute("data-theme");
   } else {
     document.documentElement.setAttribute("data-theme", theme);
   }
 
-  setCommentsTheme(effectiveTheme);
   updateToggleIcons(theme);
 }
 

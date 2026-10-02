@@ -35,6 +35,13 @@ jobs:
           extended: true
 
       - run: npm ci
+
+      - name: Lint
+        run: |
+          npx prettier --check .
+          npx eslint assets/js/dark-mode.js assets/js/prism.js assets/js/menu.js
+          npx stylelint "assets/css/src/*.css"
+
       - run: hugo --minify
 
       - name: Deploy to GitHub Pages

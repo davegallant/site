@@ -27,8 +27,6 @@ node_modules/
 .yarn/install-state.gz
 .pnp.*
 
-public/
-
 .obsidian/
 
 .direnv/

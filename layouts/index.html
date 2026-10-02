@@ -1,6 +1,9 @@
 {{ define "main" }}
   <div class="content-section">
     <h1>{{ .Title | markdownify }}</h1>
+    {{ with .Site.Params.tagline }}
+      <p class="tagline">{{ delimit . " / " }}</p>
+    {{ end }}
     {{ with .Content }}
       <div>{{ . }}</div>
     {{ end }}
@@ -27,10 +30,6 @@
     <h2>Credits</h2>
     <ul>
       <li>The site is generated with <a href="https://gohugo.io/">hugo</a></li>
-      <li>
-        The comments system is powered by
-        <a href="https://github.com/utterance/utterances">utterances</a>
-      </li>
     </ul>
   </div>
 {{ end }}

@@ -15,18 +15,15 @@ params:
   author: Dave Gallant
   subtitle:
   description: "Dave Gallant is a software developer and a computer enthusiast."
+  tagline:
+    - homelab
+    - self-hosting
+    - privacy
+    - infra
 
   logo:
     text: davegallant.ca
     url: /
-
-  comments:
-    utterances:
-      enable: true
-      issueTerm: "pathname"
-      github:
-        username: davegallant
-        repository: site
 
   prism:
     languages:
