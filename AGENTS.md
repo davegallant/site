@@ -166,7 +166,8 @@ author: "Dave Gallant"
 ## Key Technical Details
 
 - **Syntax highlighting**: Prism.js (not Hugo's built-in Chroma)
-- **Search**: dependency-free `/search/` page (Hugo-generated `search-index.json` + vanilla JS substring match)
+- **Search**: dependency-free `/search/` page (Hugo-generated
+  `search-index.json` + vanilla JS substring match)
 - **Analytics**: Umami (self-hosted)
 - **Fonts**: Fira Code (monospace), Roboto Slab (serif)
 - **Default theme**: Dark mode
