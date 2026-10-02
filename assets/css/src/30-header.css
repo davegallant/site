@@ -48,6 +48,10 @@ header {
   &::placeholder {
     color: var(--fg3);
   }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
 }
 
 #search-results mark {
