@@ -11,7 +11,7 @@
 
   <div class="content-section">
     <h2>Latest posts</h2>
-    {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+    {{ range first 10 (where .Site.RegularPages "Section" "blog") }}
       <article class="post">
         <div class="post-header">
           <div class="post-meta">
