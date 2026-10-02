@@ -11,8 +11,8 @@
     {{ with $.Site.Params.Logo.Text }}
       <div class="logo__text">{{ . }}</div>
     {{ end }}
-    <div class="logo__chevron">></div>
-    <div class="logo__cursor">█</div>
+    <div class="logo__chevron" aria-hidden="true">></div>
+    <div class="logo__cursor" aria-hidden="true">█</div>
   </a>
 
   <div class="search">

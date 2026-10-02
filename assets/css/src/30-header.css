@@ -80,10 +80,6 @@ header {
   &::placeholder {
     color: var(--fg1);
   }
-
-  &[type="search"]::-webkit-search-cancel-button {
-    appearance: none;
-  }
 }
 
 #search__suggestions {

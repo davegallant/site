@@ -2,4 +2,11 @@
   {{- with .page.Date -}}
     <span>{{ .Format "2006-01-02" }}</span>
   {{- end -}}
+  {{- with .page.Params.tags -}}
+    <span class="post-tags">
+      {{- range . -}}
+        <a class="post-tag" href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+      {{- end -}}
+    </span>
+  {{- end -}}
 </div>

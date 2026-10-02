@@ -1,4 +1,6 @@
 <h{{ .Level }} id="{{ .Anchor | safeURL }}">
   {{- .Text | safeHTML -}}
-  <a href="#{{ .Anchor | safeURL }}" class="post-heading__anchor" aria-hidden="true">#</a>
+  <!-- Anchor text intentionally empty (glyph rendered via CSS ::after) so the
+       "#" never leaks into meta descriptions, summaries, or search indexes. -->
+  <a href="#{{ .Anchor | safeURL }}" class="post-heading__anchor" aria-label="Link to this section"></a>
 </h{{ .Level }}>

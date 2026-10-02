@@ -1,12 +1,18 @@
 function getTheme() {
-  if (localStorage && localStorage.getItem("theme")) {
-    return localStorage.getItem("theme");
+  try {
+    return localStorage.getItem("theme") || "auto";
+  } catch {
+    // Storage unavailable (e.g. private browsing): fall back to auto
+    return "auto";
   }
-  return "auto";
 }
 
 function saveTheme(theme) {
-  localStorage.setItem("theme", theme);
+  try {
+    localStorage.setItem("theme", theme);
+  } catch {
+    // Ignore storage failures; the theme still applies for this page view
+  }
 }
 
 function getEffectiveTheme(theme) {

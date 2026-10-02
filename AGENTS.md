@@ -50,6 +50,19 @@ hugo server --buildDrafts  # dev server
 
 There are no tests in this project. Validation is done via linting and successful Hugo builds.
 
+## Linting & Formatting
+
+- **Prettier** (`.prettierrc.json`, `proseWrap: "always"`, `go-template` parser for `layouts/**/*.html`)
+- **ESLint** (`eslint.config.mjs`) for `assets/js/` — `flexsearch.js` is excluded (contains Hugo template expressions)
+- **Stylelint** (`.stylelintrc.json`) for `assets/css/src/` — `00-vendor.css` is excluded (contains Hugo template expressions)
+- **lint-staged** + **husky** pre-commit hook: runs Prettier on staged Markdown and CSS
+
+```sh
+npx prettier --check .
+npx eslint assets/js/dark-mode.js assets/js/prism.js assets/js/menu.js
+npx stylelint "assets/css/src/*.css"
+```
+
 ## CI Pipeline
 
 GitHub Actions (`.github/workflows/publish.yml`) runs on push to `main`:

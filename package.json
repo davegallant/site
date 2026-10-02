@@ -30,5 +30,9 @@
     "stylelint-prettier": "^5.0.0"
   },
   "name": "davegallant.github.io",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "lint-staged": {
+    "*.md": "prettier --write",
+    "assets/css/src/*.css": "prettier --write"
+  }
 }
