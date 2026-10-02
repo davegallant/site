@@ -9,6 +9,7 @@ If you would like to connect with me:
 - [Email](mailto:davegallant@proton.me)
 - [LinkedIn](https://www.linkedin.com/in/dave-gallant)
 - [Mastodon](https://mastodon.social/@davegallant)
+- [&#88;](https://x.com/TheDaveGallant)
 - [GitHub](https://github.com/davegallant)
 - [RSS Feed](https://davegallant.ca/index.xml)
 
