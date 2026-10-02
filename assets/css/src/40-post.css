@@ -38,6 +38,7 @@
   font-family: var(--font-monospace);
   font-size: 0.9rem;
   letter-spacing: 0.05em;
+  margin-bottom: 2rem;
   text-transform: uppercase;
 }
 
