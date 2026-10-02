@@ -9,6 +9,8 @@
       var query = (params.get("q") || "").trim();
       var resultsEl = document.getElementById("search-results");
       if (!resultsEl) return;
+      var headerInput = document.getElementById("search-header-input");
+      if (headerInput && query) headerInput.value = query;
       if (!query) {
         resultsEl.textContent =
           "Use the search box in the header to search posts.";
