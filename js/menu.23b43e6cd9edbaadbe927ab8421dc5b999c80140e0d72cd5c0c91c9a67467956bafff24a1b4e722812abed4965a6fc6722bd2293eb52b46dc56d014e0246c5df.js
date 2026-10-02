@@ -1,0 +1,1 @@
+(()=>{document.addEventListener("keydown",e=>{if(e.key==="Escape"){let t=document.querySelector('.menu__burger input[type="checkbox"]');t&&t.checked&&(t.checked=!1)}});document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){let t=document.getElementById("search-header-input");t&&(e.preventDefault(),t.focus())}});})();
