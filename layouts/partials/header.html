@@ -13,25 +13,15 @@
     {{ end }}
   </a>
 
-  <div class="search">
+  <form class="search" action="/search/" method="get" role="search">
     <input
-      id="search__text"
+      id="search-header-input"
+      name="q"
       type="search"
       placeholder="Search"
       aria-label="Search"
-      autocomplete="off"
-      role="combobox"
-      aria-expanded="false"
-      aria-controls="search__suggestions"
-      aria-autocomplete="list"
     />
-    <div
-      id="search__suggestions"
-      class="search__suggestions--hidden"
-      role="listbox"
-      aria-label="Search suggestions"
-    ></div>
-  </div>
+  </form>
 
   <nav id="menu">
     {{ $currentURL := $.RelPermalink }}

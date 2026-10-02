@@ -1,0 +1,12 @@
+[
+  {{- range $i, $p := where .Site.RegularPages "Type" "in" .Site.MainSections }}
+    {{- if $i }},{{ end }}
+    {
+      "title": {{ $p.Title | jsonify }},
+      "href": {{ $p.RelPermalink | jsonify }},
+      "summary": {{ with $p.Description }}{{ . | jsonify }}{{ else }}{{ $p.Summary | plainify | htmlUnescape | jsonify }}{{ end }},
+      "content": {{ $p.Plain | jsonify }},
+      "tags": {{ $p.Params.tags | jsonify }}
+    }
+  {{- end }}
+]

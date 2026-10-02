@@ -4,6 +4,18 @@ title: davegallant.ca
 enableGitInfo: true
 enableRobotsTXT: true
 
+outputFormats:
+  searchindex:
+    mediaType: application/json
+    baseName: search-index
+    isPlainText: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - searchindex
+
 pagination:
   pagerSize: 20
 

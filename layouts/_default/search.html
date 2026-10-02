@@ -1,0 +1,78 @@
+{{ define "main" }}
+  <div class="content-section">
+    <h1>{{ .Title }}</h1>
+    <form action="/search/" method="get" role="search" class="search-form">
+      <input
+        type="search"
+        name="q"
+        id="search-page-input"
+        placeholder="Search posts..."
+        aria-label="Search posts"
+      />
+      <button type="submit">Search</button>
+    </form>
+    <div id="search-results" aria-live="polite"></div>
+  </div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var query = (params.get("q") || "").trim();
+      var input = document.getElementById("search-page-input");
+      var resultsEl = document.getElementById("search-results");
+      if (!input || !resultsEl) return;
+      if (query) input.value = query;
+      if (!query) return;
+
+      fetch("/search-index.json")
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (pages) {
+          var q = query.toLowerCase();
+          var matches = pages.filter(function (p) {
+            return (
+              p.title.toLowerCase().indexOf(q) !== -1 ||
+              p.content.toLowerCase().indexOf(q) !== -1 ||
+              (p.tags || []).some(function (t) {
+                return t.toLowerCase().indexOf(q) !== -1;
+              })
+            );
+          });
+
+          resultsEl.innerHTML = "";
+          var heading = document.createElement("p");
+          if (matches.length === 0) {
+            heading.textContent = 'No results for "' + query + '".';
+            resultsEl.appendChild(heading);
+            return;
+          }
+          heading.textContent =
+            matches.length +
+            (matches.length === 1 ? " result" : " results") +
+            ' for "' +
+            query +
+            '":';
+          resultsEl.appendChild(heading);
+
+          var list = document.createElement("ul");
+          matches.forEach(function (m) {
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            a.href = m.href;
+            a.textContent = m.title;
+            li.appendChild(a);
+            if (m.summary) {
+              var desc = document.createElement("p");
+              desc.textContent = m.summary;
+              li.appendChild(desc);
+            }
+            list.appendChild(li);
+          });
+          resultsEl.appendChild(list);
+        })
+        .catch(function () {
+          resultsEl.textContent = "Search is temporarily unavailable.";
+        });
+    })();
+  </script>
+{{ end }}
