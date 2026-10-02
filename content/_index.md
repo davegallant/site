@@ -18,8 +18,3 @@ If you would like to connect with me:
 - [GitHub](https://github.com/davegallant)
 - [RSS Feed](https://davegallant.ca/index.xml)
 
-## Credits
-
-- The site is generated with [hugo](https://gohugo.io/)
-- The theme is a modified version of [hugo-theme-gruvbox](https://github.com/schnerring/hugo-theme-gruvbox)
-- The comments system is powered by [utterances](https://github.com/utterance/utterances)
