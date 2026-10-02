@@ -62,14 +62,13 @@ successful Hugo builds.
 
 - **Prettier** (`.prettierrc.json`, `proseWrap: "always"`, `go-template` parser
   for `layouts/**/*.html`)
-- **ESLint** (`eslint.config.mjs`) for `assets/js/` — `flexsearch.js` is
-  excluded (contains Hugo template expressions)
+- **ESLint** (`eslint.config.mjs`) for `assets/js/`
 - **Stylelint** (`.stylelintrc.json`) for `assets/css/src/` — `00-vendor.css` is
   excluded (contains Hugo template expressions)
 - **lint-staged** + **husky** pre-commit hook: runs Prettier on staged Markdown
   and CSS
 - `.prettierignore` excludes `content/` (blog prose not yet conformed) and
-  `assets/js/flexsearch.js`
+  `layouts/index.searchindex.json` (Hugo template, not valid JSON standalone)
 
 ```sh
 just lint   # or the individual commands below
@@ -167,7 +166,7 @@ author: "Dave Gallant"
 ## Key Technical Details
 
 - **Syntax highlighting**: Prism.js (not Hugo's built-in Chroma)
-- **Search**: FlexSearch for client-side full-text search
+- **Search**: dependency-free `/search/` page (Hugo-generated `search-index.json` + vanilla JS substring match)
 - **Analytics**: Umami (self-hosted)
 - **Fonts**: Fira Code (monospace), Roboto Slab (serif)
 - **Default theme**: Dark mode

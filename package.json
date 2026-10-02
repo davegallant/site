@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "@tabler/icons": "^3.0.0",
-    "flexsearch": "^0.8.0",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.29.0",
     "typeface-fira-code": "^1.1.13",
@@ -16,7 +15,6 @@
     "globals": "^17.0.0",
     "husky": "^9.0.0",
     "lint-staged": "^16.0.0",
-    "markdownlint-cli": "^0.48.0",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0",
     "postcss-custom-media": "^12.0.0",
