@@ -42,7 +42,9 @@
         <li class="menu__item">
           <a
             href="{{ .URL }}"
-            {{ if $isActive }}aria-current="page" class="menu__item--active"{{ end }}
+            {{ if $isActive }}
+              aria-current="page" class="menu__item--active"
+            {{ end }}
           >
             {{- .Name -}}
           </a>
@@ -61,9 +63,13 @@
         {{ range $.Site.Menus.main }}
           {{ $menuURL := .URL | relURL }}
           {{ $isActive := or (eq $currentURL $menuURL) (and (ne $menuURL "/") (hasPrefix $currentURL $menuURL)) }}
+          {{ $linkClass := "menu__item" }}
+          {{ if $isActive }}
+            {{ $linkClass = "menu__item menu__item--active" }}
+          {{ end }}
           <li>
             <a
-              class="menu__item{{ if $isActive }} menu__item--active{{ end }}"
+              class="{{ $linkClass }}"
               href="{{ .URL }}"
               {{ if $isActive }}aria-current="page"{{ end }}
             >
