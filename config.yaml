@@ -1,4 +1,4 @@
-baseURL: /
+baseURL: https://davegallant.ca/
 copyright: Dave Gallant
 title: davegallant.ca
 enableGitInfo: true
@@ -57,9 +57,6 @@ menu:
     - name: Blog
       url: /blog
       weight: 2
-
-permalinks:
-  post: "/blog/:year/:month/:day/:slug/"
 
 markup:
   goldmark:

@@ -2,11 +2,7 @@ const path = require("path");
 
 module.exports = () => ({
   plugins: [
-    require("postcss-import")({
-      path: [
-        path.posix.join(__dirname, "themes", "custom-theme", "assets", "css"),
-      ],
-    }),
+    require("postcss-import")(),
     require("postcss-url")([
       {
         filter: "**/typeface-*/files/*",

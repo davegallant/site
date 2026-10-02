@@ -4,7 +4,14 @@ $repository := .Page.Site.Params.comments.utterances.github.repository -}}
 
 <script>
   (function () {
-    const savedTheme = localStorage.getItem("theme") || "auto";
+    const savedTheme = (() => {
+      try {
+        return localStorage.getItem("theme") || "auto";
+      } catch {
+        // Storage unavailable (e.g. private browsing): fall back to auto
+        return "auto";
+      }
+    })();
     let effectiveTheme = savedTheme;
     if (effectiveTheme === "auto") {
       effectiveTheme = window.matchMedia("(prefers-color-scheme: dark)").matches

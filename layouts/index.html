@@ -5,4 +5,21 @@
       <div>{{ . }}</div>
     {{ end }}
   </div>
+
+  <div class="content-section">
+    <h2>Latest posts</h2>
+    {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+      <article class="post">
+        <div class="post-header">
+          <div class="post-meta">
+            {{- with .Date -}}
+              <span>{{ .Format "2006-01-02" }}</span>
+            {{- end }}:
+            <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+          </div>
+        </div>
+      </article>
+    {{ end }}
+    <p><a href="{{ "/blog/" | relURL }}">All posts →</a></p>
+  </div>
 {{ end }}

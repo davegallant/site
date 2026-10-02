@@ -53,7 +53,7 @@
     {{ $increment := .page.Site.Params.imageResize.increment | default 200 }}
     {{ $widths := seq $minWidth $increment $maxWidth }}
     {{ if lt $image.Width $maxWidth }}
-      {{ $widths = $widths | append $image.Width }}
+      {{ $widths = $widths | append $image.Width | uniq }}
     {{ end }}
     {{ $widthsCount := len $widths }}
 

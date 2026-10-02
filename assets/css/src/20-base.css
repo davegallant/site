@@ -42,7 +42,7 @@ video {
 }
 
 figure {
-  display: inline-block;
+  display: block;
 }
 
 figcaption {

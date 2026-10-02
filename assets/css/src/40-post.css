@@ -17,6 +17,22 @@
   font-family: var(--font-monospace);
 }
 
+.post-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: 0.75rem;
+}
+
+.post-tag {
+  color: var(--primary-alt);
+  font-size: 0.9rem;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
 .post-content {
   margin: 1.3rem 0;
 }
@@ -33,8 +49,16 @@
   }
 }
 
+/* Heading anchor: the "#" glyph is rendered via ::after so it never leaks into
+   meta descriptions, summaries, or search indexes as text. Revealed on hover
+   and on keyboard focus (focus-within) for accessibility. */
 .post-heading__anchor {
   display: none;
+  text-decoration: none;
+
+  &::after {
+    content: "#";
+  }
 }
 
 h1:hover,
@@ -42,7 +66,13 @@ h2:hover,
 h3:hover,
 h4:hover,
 h5:hover,
-h6:hover {
+h6:hover,
+h1:focus-within,
+h2:focus-within,
+h3:focus-within,
+h4:focus-within,
+h5:focus-within,
+h6:focus-within {
   & .post-heading__anchor {
     display: inline-block;
   }
@@ -161,7 +191,10 @@ div.code-toolbar > .toolbar > .toolbar-item > .copy-to-clipboard-button > span {
   border: 0;
 }
 
-div.code-toolbar > .toolbar > .toolbar-item > .copy-to-clipboard-button::before {
+div.code-toolbar
+  > .toolbar
+  > .toolbar-item
+  > .copy-to-clipboard-button::before {
   content: "";
   display: block;
   width: 1.4rem;

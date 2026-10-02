@@ -1,3 +1,7 @@
+/* NOTE: the dark theme is declared twice below (once for `prefers-color-scheme`
+   auto mode, once for the explicit `data-theme="dark"` toggle override).
+   Plain CSS can't share the block, so keep the two in sync when editing. */
+
 /* Light theme (default + explicit override for prefers-color-scheme: dark) */
 :root,
 :root[data-theme="light"] {

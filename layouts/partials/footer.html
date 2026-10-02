@@ -12,7 +12,8 @@
 {{ end }}
 
 {{ $prism := resources.Get "js/prism.js" }}
-{{ $bundle := slice $prism | resources.Concat "js/main.js" | js.Build $jsBuildOptions }}
+{{ $menu := resources.Get "js/menu.js" }}
+{{ $bundle := slice $prism $menu | resources.Concat "js/main.js" | js.Build $jsBuildOptions }}
 {{ $flexsearch := resources.Get "js/flexsearch.js" | resources.ExecuteAsTemplate (printf "js/flexsearch.%s.js" .Lang) . | js.Build $jsBuildOptions }}
 
 {{ if hugo.IsProduction }}
