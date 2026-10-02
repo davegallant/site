@@ -11,15 +11,13 @@
     {{ with $.Site.Params.Logo.Text }}
       <div class="logo__text">{{ . }}</div>
     {{ end }}
-    <div class="logo__chevron" aria-hidden="true">></div>
-    <div class="logo__cursor" aria-hidden="true">█</div>
   </a>
 
   <div class="search">
     <input
       id="search__text"
       type="search"
-      placeholder="Search..."
+      placeholder="Search"
       aria-label="Search"
       autocomplete="off"
     />

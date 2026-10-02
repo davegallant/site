@@ -13,40 +13,6 @@ header {
   display: flex;
   font-weight: 700;
   grid-area: heading;
-
-  &:hover .logo__cursor {
-    animation: 1s blink infinite;
-    opacity: 1;
-  }
-}
-
-/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.logo__chevron,
-.logo__cursor {
-  margin-left: 0.5rem;
-}
-
-.logo__cursor {
-  opacity: 0;
-}
-
-.logo__text {
-  display: none;
-}
-
-@media (--md) {
-  .logo__text {
-    display: block;
-  }
 }
 
 /*! purgecss start ignore */
@@ -78,7 +44,7 @@ header {
   }
 
   &::placeholder {
-    color: var(--fg1);
+    color: var(--fg3);
   }
 }
 
