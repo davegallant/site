@@ -4,8 +4,6 @@
 
 This is a space where I document my learnings and share them with others. I hope you find something useful here. Continuous improvement is what motivates me to keep learning.
 
-## Connect
-
 If you would like to connect with me:
 
 - [Email](mailto:davegallant@proton.me)
