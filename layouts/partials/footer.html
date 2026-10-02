@@ -11,20 +11,23 @@
   {{ $jsBuildOptions = $jsBuildOptions | merge (dict "minify" "true") }}
 {{ end }}
 
-{{ $prism := resources.Get "js/prism.js" }}
-{{ $menu := resources.Get "js/menu.js" }}
-{{ $bundle := slice $prism $menu | resources.Concat "js/main.js" | js.Build $jsBuildOptions }}
+{{ $menu := resources.Get "js/menu.js" | js.Build $jsBuildOptions }}
 {{ $flexsearch := resources.Get "js/flexsearch.js" | resources.ExecuteAsTemplate (printf "js/flexsearch.%s.js" .Lang) . | js.Build $jsBuildOptions }}
 
 {{ if hugo.IsProduction }}
-  {{ $bundle = $bundle | fingerprint "sha512" }}
+  {{ $menu = $menu | fingerprint "sha512" }}
   {{ $flexsearch = $flexsearch | fingerprint "sha512" }}
 {{ end }}
 
 {{/* prettier-ignore-start */}}
-<script defer src="{{ $bundle.RelPermalink }}"></script>
+<script defer src="{{ $menu.RelPermalink }}"></script>
 <script defer src="{{ $flexsearch.RelPermalink }}"></script>
+{{/* Only load Prism on pages that actually contain code blocks */}}
+{{ if in .Content "<pre" }}
+  {{ $prism := resources.Get "js/prism.js" | js.Build $jsBuildOptions }}
+  {{ if hugo.IsProduction }}
+    {{ $prism = $prism | fingerprint "sha512" }}
+  {{ end }}
+  <script defer src="{{ $prism.RelPermalink }}"></script>
+{{ end }}
 {{/* prettier-ignore-end */}}
-
-<!-- Extensibility -->
-{{ partial "footer_end.html" . }}

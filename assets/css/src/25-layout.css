@@ -44,7 +44,7 @@ footer {
   grid-area: sidebar;
   margin-top: 3rem;
   position: sticky;
-  top: 2rem;
+  top: 5rem;
 
   @media (--lg) {
     display: flex;

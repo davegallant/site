@@ -5,4 +5,5 @@
   {{ $styles = $styles | minify | fingerprint "sha512" | resources.PostProcess }}
 {{ end }}
 
+
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />

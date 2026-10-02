@@ -9,7 +9,11 @@ export default [
     ignores: ["node_modules/", "public/", "resources/", ".hugo_build.lock"],
   },
   {
-    files: ["assets/js/dark-mode.js", "assets/js/prism.js", "assets/js/menu.js"],
+    files: [
+      "assets/js/dark-mode.js",
+      "assets/js/prism.js",
+      "assets/js/menu.js",
+    ],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

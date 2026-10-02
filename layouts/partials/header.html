@@ -20,15 +20,32 @@
       placeholder="Search"
       aria-label="Search"
       autocomplete="off"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="search__suggestions"
+      aria-autocomplete="list"
     />
-    <div id="search__suggestions" class="search__suggestions--hidden"></div>
+    <div
+      id="search__suggestions"
+      class="search__suggestions--hidden"
+      role="listbox"
+      aria-label="Search suggestions"
+    ></div>
   </div>
 
   <nav id="menu">
+    {{ $currentURL := $.RelPermalink }}
     <ul class="menu--horizontal">
       {{ range $.Site.Menus.main }}
+        {{ $menuURL := .URL | relURL }}
+        {{ $isActive := or (eq $currentURL $menuURL) (and (ne $menuURL "/") (hasPrefix $currentURL $menuURL)) }}
         <li class="menu__item">
-          <a href="{{ .URL }}">{{ .Name }}</a>
+          <a
+            href="{{ .URL }}"
+            {{ if $isActive }}aria-current="page" class="menu__item--active"{{ end }}
+          >
+            {{- .Name -}}
+          </a>
         </li>
       {{ end }}
     </ul>
@@ -42,8 +59,16 @@
 
       <ul class="menu--vertical">
         {{ range $.Site.Menus.main }}
+          {{ $menuURL := .URL | relURL }}
+          {{ $isActive := or (eq $currentURL $menuURL) (and (ne $menuURL "/") (hasPrefix $currentURL $menuURL)) }}
           <li>
-            <a class="menu__item" href="{{ .URL }}">{{ .Name }}</a>
+            <a
+              class="menu__item{{ if $isActive }} menu__item--active{{ end }}"
+              href="{{ .URL }}"
+              {{ if $isActive }}aria-current="page"{{ end }}
+            >
+              {{- .Name -}}
+            </a>
           </li>
         {{ end }}
       </ul>

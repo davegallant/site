@@ -33,6 +33,14 @@
   }
 }
 
+.tagline {
+  color: var(--fg3);
+  font-family: var(--font-monospace);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .post-content {
   margin: 1.3rem 0;
 }

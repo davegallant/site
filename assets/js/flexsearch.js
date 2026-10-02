@@ -18,15 +18,21 @@ backdrop.addEventListener("click", () => hideSuggestions());
 function hideSuggestions() {
   suggestions.classList.add("search__suggestions--hidden");
   backdrop.classList.remove("search__backdrop--visible");
+  search.setAttribute("aria-expanded", "false");
 }
 
 function showSuggestions() {
   suggestions.classList.remove("search__suggestions--hidden");
   backdrop.classList.add("search__backdrop--visible");
+  search.setAttribute("aria-expanded", "true");
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.ctrlKey && e.key === "/") {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+    // Focus search bar with Cmd/Ctrl + K
+    e.preventDefault();
+    search.focus();
+  } else if (e.ctrlKey && e.key === "/") {
     // Focus search bar with CTRL + /
     e.preventDefault();
     search.focus();
@@ -125,7 +131,7 @@ document.addEventListener("keydown", (e) => {
 
     // Deduplicate search results by href
     for (const searchResult of searchResults.flatMap((r) => r.result)) {
-      if (searchResultsMap.has(searchResult.href)) continue;
+      if (searchResultsMap.has(searchResult.doc.href)) continue;
       searchResultsMap.set(searchResult.doc.href, searchResult.doc);
     }
 
@@ -148,6 +154,7 @@ document.addEventListener("keydown", (e) => {
       const suggestion = document.createElement("a");
       suggestion.href = href;
       suggestion.classList.add("search__suggestion-item");
+      suggestion.setAttribute("role", "option");
       suggestions.appendChild(suggestion);
 
       const title = document.createElement("div");

@@ -1,0 +1,7 @@
+# Not parseable standalone (Hugo template expressions are expanded at build time)
+assets/js/flexsearch.js
+assets/css/src/00-vendor.css
+# prettier-plugin-go-template can't handle the dynamic <h{{ .Level }}> tag
+layouts/_default/_markup/render-heading.html
+# Blog prose hasn't been conformed to proseWrap: always yet; excluded until a dedicated reformat pass
+content/

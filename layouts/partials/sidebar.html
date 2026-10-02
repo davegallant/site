@@ -1,6 +1,6 @@
-<div class="sidebar">
-  {{ if .Params.toc }}
-    {{ with .TableOfContents }}
+{{ if .Params.toc }}
+  {{ with .TableOfContents }}
+    <div class="sidebar">
       <aside class="toc">
         <nav>
           <p class="sidebar__heading">Table Of Contents</p>
@@ -8,7 +8,6 @@
         </nav>
       </aside>
       <hr />
-    {{ end }}
+    </div>
   {{ end }}
-
-</div>
+{{ end }}

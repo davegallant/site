@@ -1,1 +1,7 @@
-{"overrides":[{"files":["layouts/**/*.html"],"options":{"parser":"go-template"}}],"plugins":["prettier-plugin-go-template"],"proseWrap":"always"}
+{
+  "overrides": [
+    { "files": ["layouts/**/*.html"], "options": { "parser": "go-template" } }
+  ],
+  "plugins": ["prettier-plugin-go-template"],
+  "proseWrap": "always"
+}
