@@ -1,27 +1,49 @@
 {{ define "main" }}
   <div class="content-section">
     <h1>{{ .Title }}</h1>
-    <form action="/search/" method="get" role="search" class="search-form">
-      <input
-        type="search"
-        name="q"
-        id="search-page-input"
-        placeholder="Search posts..."
-        aria-label="Search posts"
-      />
-      <button type="submit">Search</button>
-    </form>
     <div id="search-results" aria-live="polite"></div>
   </div>
   <script>
     (function () {
       var params = new URLSearchParams(window.location.search);
       var query = (params.get("q") || "").trim();
-      var input = document.getElementById("search-page-input");
       var resultsEl = document.getElementById("search-results");
-      if (!input || !resultsEl) return;
-      if (query) input.value = query;
-      if (!query) return;
+      if (!resultsEl) return;
+      if (!query) {
+        resultsEl.textContent =
+          "Use the search box in the header to search posts.";
+        return;
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/[&<>"']/g, function (c) {
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[c];
+        });
+      }
+
+      function highlight(text, q) {
+        var safeText = escapeHtml(text);
+        var safeQuery = escapeHtml(q);
+        if (!safeQuery) return safeText;
+        var lowerText = safeText.toLowerCase();
+        var lowerQuery = safeQuery.toLowerCase();
+        var out = "";
+        var pos = 0;
+        var idx;
+        while ((idx = lowerText.indexOf(lowerQuery, pos)) !== -1) {
+          out += safeText.slice(pos, idx);
+          out +=
+            "<mark>" + safeText.slice(idx, idx + safeQuery.length) + "</mark>";
+          pos = idx + safeQuery.length;
+        }
+        return out + safeText.slice(pos);
+      }
 
       fetch("/search-index.json")
         .then(function (res) {
@@ -59,11 +81,11 @@
             var li = document.createElement("li");
             var a = document.createElement("a");
             a.href = m.href;
-            a.textContent = m.title;
+            a.innerHTML = highlight(m.title, query);
             li.appendChild(a);
             if (m.summary) {
               var desc = document.createElement("p");
-              desc.textContent = m.summary;
+              desc.innerHTML = highlight(m.summary, query);
               li.appendChild(desc);
             }
             list.appendChild(li);
