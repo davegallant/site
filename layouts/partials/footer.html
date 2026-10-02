@@ -3,6 +3,16 @@
     {{ with $.Site.Copyright }}
       {{ . | safeHTML }}
     {{ end }}
+    {{ with .GitInfo }}
+      ·
+      <a
+        href="https://github.com/davegallant/site/commit/{{ .Hash }}"
+        class="git-sha"
+        title="View this commit on GitHub"
+      >
+        {{- .AbbreviatedHash -}}
+      </a>
+    {{ end }}
   </div>
 </footer>
 
