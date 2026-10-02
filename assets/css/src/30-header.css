@@ -50,42 +50,10 @@ header {
   }
 }
 
-.search-form {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.search-form input[type="search"] {
-  background: var(--bg2);
-  border: 1px solid var(--bg2);
+#search-results mark {
+  background-color: rgba(255, 214, 10, 0.5);
   border-radius: 0.2rem;
-  caret-color: var(--fg);
-  color: var(--fg);
-  flex: 1;
-  outline: none;
-  padding: 0.5rem;
-
-  &:focus {
-    border-color: var(--bg4);
-  }
-
-  &::placeholder {
-    color: var(--fg3);
-  }
-}
-
-.search-form button {
-  background: var(--bg2);
-  border: 1px solid var(--bg2);
-  border-radius: 0.2rem;
-  color: var(--fg);
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-
-  &:hover {
-    border-color: var(--bg3);
-  }
+  padding: 0 0.15rem;
 }
 
 .theme__toggle {
