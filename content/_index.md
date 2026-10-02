@@ -2,7 +2,7 @@
 
 👋 I'm a software tinkerer with a passion for infra, security, privacy, and self-hosting.
 
-This is a space where I document my learnings and share them with others. I hope you find something useful here. Continuous improvement is what motivates me to keep learning.
+This is a space where I document my learnings and share them with others. I hope you find something useful here.
 
 If you would like to connect with me:
 
