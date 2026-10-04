@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Invidious on davegallant.ca</title><link>https://davegallant.ca/tags/invidious/</link><description>Recent content in Invidious on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Fri, 18 Sep 2026 07:29:01 -0400</lastBuildDate><atom:link href="https://davegallant.ca/tags/invidious/index.xml" rel="self" type="application/rss+xml"/><item><title>Watching YouTube in Private</title><link>https://davegallant.ca/blog/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>https://davegallant.ca/blog/watching-youtube-in-private/</guid><description>&lt;p&gt;I recently stumbled upon &lt;a
- href="https://yewtu.be"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
-&gt;yewtu.be&lt;/a&gt; and found it intriguing. It not only allows you to watch YouTube without &lt;em&gt;being on YouTube&lt;/em&gt;, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&amp;rsquo;s a hosted instance of &lt;a
- href="https://invidious.io/"
- 
- 
- class="link--external" target="_blank" rel="noreferrer"
- 
-&gt;invidious&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Invidious on davegallant.ca</title><link>https://davegallant.ca/tags/invidious/</link><description>Recent content in Invidious on davegallant.ca</description><generator>Hugo</generator><language>en</language><copyright>Dave Gallant</copyright><lastBuildDate>Fri, 18 Sep 2026 07:29:01 -0400</lastBuildDate><atom:link href="https://davegallant.ca/tags/invidious/index.xml" rel="self" type="application/rss+xml"/><item><title>Watching YouTube in Private</title><link>https://davegallant.ca/blog/watching-youtube-in-private/</link><pubDate>Sat, 10 Dec 2022 21:46:55 -0500</pubDate><guid>https://davegallant.ca/blog/watching-youtube-in-private/</guid><description>&lt;p&gt;I recently stumbled upon &lt;a&#10; href="https://yewtu.be"&#10; &#10; &#10; class="link--external" target="_blank" rel="noreferrer"&#10; &#10;&gt;yewtu.be&lt;/a&gt; and found it intriguing. It not only allows you to watch YouTube without &lt;em&gt;being on YouTube&lt;/em&gt;, but it also allows you to create an account and subscribe to channels without a Google account. What sort of wizardry is going on under the hood? It turns out that it&amp;rsquo;s a hosted instance of &lt;a&#10; href="https://invidious.io/"&#10; &#10; &#10; class="link--external" target="_blank" rel="noreferrer"&#10; &#10;&gt;invidious&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>
