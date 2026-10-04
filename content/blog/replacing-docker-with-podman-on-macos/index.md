@@ -12,7 +12,7 @@ There are a number of reasons why you might want to replace Docker, especially o
 
 <!--more-->
 
-{{< tweet user="moyix" id="1388586550682861568" >}}
+{{< x user="moyix" id="1388586550682861568" >}}
 
 Docker has been one of the larger influencers in the container world, helping to standardize the [OCI Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/spec.md). For many developers, containers have become synonymous with terms like `docker` and `Dockerfile` (a file containing build instructions for a container image). Docker has certainly made it very convenient to build and run containers, but it is not the only solution for doing so.
 
