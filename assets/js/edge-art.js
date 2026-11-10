@@ -6,6 +6,13 @@ const palettes = {
   light: ["#325571", "#3d6581", "#49758e", "#58869d", "#6b97ac"],
 };
 
+// Parse palette colors once instead of for every triangle on every frame.
+for (const theme of Object.keys(palettes)) {
+  palettes[theme] = palettes[theme].map((color) =>
+    [1, 3, 5].map((channel) => parseInt(color.slice(channel, channel + 2), 16)),
+  );
+}
+
 function noise(x, y) {
   const value = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
   return value - Math.floor(value);
@@ -87,9 +94,8 @@ document.querySelectorAll(".edge-art canvas").forEach((canvas) => {
       const low = Math.floor(shade);
       const high = Math.min(low + 1, palette.length - 1);
       const blend = shade - low;
-      const rgb = [1, 3, 5].map((channel) => {
-        const from = parseInt(palette[low].slice(channel, channel + 2), 16);
-        const to = parseInt(palette[high].slice(channel, channel + 2), 16);
+      const rgb = palette[low].map((from, channel) => {
+        const to = palette[high][channel];
         return Math.round(from + (to - from) * blend);
       });
       context.fillStyle = `rgb(${rgb.join(",")})`;
