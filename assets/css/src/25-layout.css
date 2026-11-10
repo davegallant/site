@@ -1,12 +1,11 @@
 .layout {
   display: grid;
   grid-template-areas:
-    "art-top"
     "header"
     "main"
     "footer"
     "art-bottom";
-  grid-template-rows: auto auto 1fr auto auto;
+  grid-template-rows: auto 1fr auto auto;
   min-height: 100vh;
   min-height: 100dvh;
 }
@@ -31,36 +30,11 @@ footer {
   grid-area: footer;
 }
 
-/* Full-bleed triangular textures frame the page. */
+/* Full-bleed triangular texture below the footer. */
 .edge-art {
   height: 72px;
   pointer-events: none;
   overflow: hidden;
-}
-
-.edge-art--top {
-  background: #486a81;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 78%,
-    94% 100%,
-    87% 76%,
-    80% 96%,
-    73% 72%,
-    66% 100%,
-    59% 79%,
-    52% 97%,
-    45% 73%,
-    38% 100%,
-    31% 77%,
-    24% 96%,
-    17% 72%,
-    10% 100%,
-    4% 78%,
-    0 91%
-  );
-  grid-area: art-top;
 }
 
 .edge-art--bottom {
@@ -103,10 +77,6 @@ footer {
 }
 
 @media (width <= 768px) {
-  .edge-art--top {
-    height: 56px;
-  }
-
   .edge-art--bottom {
     height: 120px;
   }
