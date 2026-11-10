@@ -8,7 +8,7 @@ build: clean
 # Run all linters (prettier, eslint, stylelint)
 lint:
   npx prettier --check .
-  npx eslint assets/js/dark-mode.js assets/js/prism.js assets/js/menu.js
+  npx eslint assets/js/dark-mode.js assets/js/prism.js assets/js/menu.js assets/js/edge-art.js
   npx stylelint "assets/css/src/*.css"
 
 clean:

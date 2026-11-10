@@ -37,8 +37,8 @@
 /* Dark theme (auto via prefers-color-scheme + explicit toggle) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1e1e28;
-    --bg0: #1e1e28;
+    --bg: #24242e;
+    --bg0: #24242e;
     --bg1: #25252f;
     --bg2: #2e2e3a;
     --bg3: #5a5a6a;
@@ -46,7 +46,7 @@
     --fg: #d4d4d4;
     --fg0: #a0a0a0;
     --fg1: #d4d4d4;
-    --fg3: #6a6a6a;
+    --fg3: #969696;
     --fg4: #2e2e3a;
     --yellow1: #e0af68;
     --yellow2: #ff9e64;
@@ -65,8 +65,8 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #1e1e28;
-  --bg0: #1e1e28;
+  --bg: #24242e;
+  --bg0: #24242e;
   --bg1: #25252f;
   --bg2: #2e2e3a;
   --bg3: #5a5a6a;
@@ -74,7 +74,7 @@
   --fg: #d4d4d4;
   --fg0: #a0a0a0;
   --fg1: #d4d4d4;
-  --fg3: #6a6a6a;
+  --fg3: #969696;
   --fg4: #2e2e3a;
   --yellow1: #e0af68;
   --yellow2: #ff9e64;

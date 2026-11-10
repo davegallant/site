@@ -2,8 +2,8 @@ header {
   display: grid;
   font-family: var(--font-monospace);
   font-size: 1.125rem;
-  grid-template-columns: auto auto 1fr auto;
-  grid-template-areas: "heading search nav theme-toggle";
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-areas: "heading nav search theme-toggle";
   padding: 0.75rem;
   transition: background-color 0.3s ease;
 }
@@ -23,20 +23,38 @@ header {
 
 /*! purgecss start ignore */
 
-.search {
+.search-link {
+  align-items: center;
+  color: var(--fg);
   display: flex;
   grid-area: search;
-  margin: 0 1rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.search {
+  margin: 1rem 0;
+}
+
+.search__controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .search input[type="search"] {
-  background: var(--bg2);
+  background: color-mix(in srgb, var(--bg) 88%, white);
   border: 1px solid var(--bg2);
   border-radius: 0.2rem;
   caret-color: var(--fg);
   color: var(--fg);
   outline: none;
-  padding: 0 0.5rem;
+  min-width: 0;
+  padding: 0.5rem;
   width: 100%;
 
   &:hover {
@@ -44,11 +62,11 @@ header {
   }
 
   &:focus {
-    border-color: var(--bg4);
+    border-color: var(--primary);
   }
 
   &::placeholder {
-    color: var(--fg3);
+    color: color-mix(in srgb, var(--fg) 75%, var(--bg));
   }
 
   &::-webkit-search-cancel-button {
@@ -74,7 +92,7 @@ header {
   cursor: pointer;
   display: flex;
   grid-area: theme-toggle;
-  margin: 0 0.5rem;
+  margin-left: 0.25rem;
   padding: 0.25rem;
   transition:
     background-color 0.2s ease,
@@ -151,8 +169,6 @@ nav#menu {
     position: fixed;
     right: 0;
     top: 0;
-    transform: translate(100%, 0);
-    transition: transform 0.5s cubic-bezier(0.9, 0, 0.1, 1);
     width: 50%;
     z-index: 10;
 
@@ -170,62 +186,26 @@ nav#menu {
     height: 24px;
     width: 24px;
 
-    & > * {
-      position: absolute;
+    & .menu__toggle {
+      background: none;
+      border: 0;
+      color: var(--fg);
+      cursor: pointer;
+      height: 24px;
+      padding: 0;
+      position: relative;
+      width: 24px;
+      z-index: 20;
+    }
+
+    & .menu__toggle:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
     }
 
     & svg {
-      width: inherit;
-      z-index: 20;
-      height: inherit;
-
-      & line {
-        transition-duration: 0.5s;
-        transition-property: stroke, opacity, transform;
-        transition-timing-function: cubic-bezier(0.9, 0, 0.1, 1);
-      }
-
-      & line:nth-of-type(1) {
-        transform-origin: center 6px;
-      }
-
-      & line:nth-of-type(2) {
-        transform-origin: center 12px;
-      }
-
-      & line:nth-of-type(3) {
-        transform-origin: center 18px;
-      }
-    }
-
-    & input {
-      height: inherit;
-      opacity: 0;
-      width: inherit;
-      z-index: 30;
-
-      &:checked {
-        & ~ ul.menu--vertical {
-          transform: none;
-        }
-
-        & ~ svg {
-          stroke: var(--fg1);
-
-          & line:nth-of-type(1) {
-            transform: translate(0, 6px) rotate(45deg);
-          }
-
-          & line:nth-of-type(2) {
-            opacity: 0;
-            transform: scale(0.2);
-          }
-
-          & line:nth-of-type(3) {
-            transform: translate(0, -6px) rotate(-45deg);
-          }
-        }
-      }
+      height: 100%;
+      width: 100%;
     }
 
     @media (--md) {

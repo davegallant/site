@@ -1,23 +1,35 @@
-// The mobile burger menu is a CSS-only checkbox toggle. This adds the
-// keyboard affordances a checkbox can't provide on its own.
+const menuToggle = document.querySelector(".menu__toggle");
+const mobileMenu = document.getElementById("mobile-menu");
+
+function setMenuOpen(open) {
+  mobileMenu.hidden = !open;
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute(
+    "aria-label",
+    open ? "Close main menu" : "Open main menu",
+  );
+}
+
+menuToggle.addEventListener("click", () => {
+  setMenuOpen(mobileMenu.hidden);
+});
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    const toggle = document.querySelector(
-      '.menu__burger input[type="checkbox"]',
-    );
-    if (toggle && toggle.checked) {
-      toggle.checked = false;
-    }
+  if (e.key === "Escape" && !mobileMenu.hidden) {
+    setMenuOpen(false);
+    menuToggle.focus();
   }
 });
 
-// Focus the header search with Cmd/Ctrl+K.
+// Open search with Cmd/Ctrl+K, or focus it when already on the search page.
 document.addEventListener("keydown", (e) => {
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-    const searchInput = document.getElementById("search-header-input");
+    const searchInput = document.getElementById("search-input");
+    e.preventDefault();
     if (searchInput) {
-      e.preventDefault();
       searchInput.focus();
+    } else {
+      window.location.href = document.querySelector(".search-link").href;
     }
   }
 });

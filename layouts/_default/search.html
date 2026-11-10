@@ -1,6 +1,23 @@
 {{ define "main" }}
   <div class="content-section">
-    <h1>{{ .Title }}</h1>
+    <h1 class="visually-hidden">{{ .Title }}</h1>
+    <form
+      class="search"
+      action="{{ "/search/" | relURL }}"
+      method="get"
+      role="search"
+    >
+      <div class="search__controls">
+        <input
+          id="search-input"
+          name="q"
+          type="search"
+          placeholder="Search posts…"
+          aria-label="Search posts"
+        />
+        <button type="submit">Search</button>
+      </div>
+    </form>
     <div id="search-results" aria-live="polite"></div>
   </div>
   <script>
@@ -9,42 +26,26 @@
       var query = (params.get("q") || "").trim();
       var resultsEl = document.getElementById("search-results");
       if (!resultsEl) return;
-      var headerInput = document.getElementById("search-header-input");
-      if (headerInput && query) headerInput.value = query;
+      var searchInput = document.getElementById("search-input");
+      if (searchInput) searchInput.value = query;
       if (!query) {
-        resultsEl.textContent =
-          "Use the search box in the header to search posts.";
+        resultsEl.textContent = "Enter a search term to find posts.";
         return;
       }
 
-      function escapeHtml(str) {
-        return str.replace(/[&<>"']/g, function (c) {
-          return {
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;",
-          }[c];
-        });
-      }
-
-      function highlight(text, q) {
-        var safeText = escapeHtml(text);
-        var safeQuery = escapeHtml(q);
-        if (!safeQuery) return safeText;
-        var lowerText = safeText.toLowerCase();
-        var lowerQuery = safeQuery.toLowerCase();
-        var out = "";
+      function highlight(element, text, query) {
+        var lowerText = text.toLowerCase();
+        var lowerQuery = query.toLowerCase();
         var pos = 0;
         var idx;
         while ((idx = lowerText.indexOf(lowerQuery, pos)) !== -1) {
-          out += safeText.slice(pos, idx);
-          out +=
-            "<mark>" + safeText.slice(idx, idx + safeQuery.length) + "</mark>";
-          pos = idx + safeQuery.length;
+          element.appendChild(document.createTextNode(text.slice(pos, idx)));
+          var mark = document.createElement("mark");
+          mark.textContent = text.slice(idx, idx + query.length);
+          element.appendChild(mark);
+          pos = idx + query.length;
         }
-        return out + safeText.slice(pos);
+        element.appendChild(document.createTextNode(text.slice(pos)));
       }
 
       fetch("/search-index.json")
@@ -83,11 +84,11 @@
             var li = document.createElement("li");
             var a = document.createElement("a");
             a.href = m.href;
-            a.innerHTML = highlight(m.title, query);
+            highlight(a, m.title, query);
             li.appendChild(a);
             if (m.summary) {
               var desc = document.createElement("p");
-              desc.innerHTML = highlight(m.summary, query);
+              highlight(desc, m.summary, query);
               li.appendChild(desc);
             }
             list.appendChild(li);

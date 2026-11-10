@@ -13,16 +13,6 @@
     {{ end }}
   </a>
 
-  <form class="search" action="/search/" method="get" role="search">
-    <input
-      id="search-header-input"
-      name="q"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-    />
-  </form>
-
   <nav id="menu">
     {{ $currentURL := $.RelPermalink }}
     <ul class="menu--horizontal">
@@ -43,13 +33,17 @@
     </ul>
 
     <div class="menu__burger">
-      <!-- Invisible checkbox indicating menu state -->
-      <input class="menu__item" type="checkbox" aria-label="Open main menu" />
+      <button
+        class="menu__toggle"
+        type="button"
+        aria-label="Open main menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        {{ partial "icons/tabler-icon.html" "menu-2" }}
+      </button>
 
-      {{ partial "icons/tabler-icon.html" "menu-2" }}
-
-
-      <ul class="menu--vertical">
+      <ul id="mobile-menu" class="menu--vertical" hidden>
         {{ range $.Site.Menus.main }}
           {{ $menuURL := .URL | relURL }}
           {{ $isActive := or (eq $currentURL $menuURL) (and (ne $menuURL "/") (hasPrefix $currentURL $menuURL)) }}
@@ -71,6 +65,7 @@
     </div>
   </nav>
 
+  <a class="search-link" href="{{ "/search/" | relURL }}">Search</a>
   <button
     class="theme__toggle"
     title="Toggle theme (auto / light / dark)"

@@ -1,13 +1,16 @@
+let currentTheme = "auto";
+
 function getTheme() {
   try {
-    return localStorage.getItem("theme") || "auto";
+    return localStorage.getItem("theme") || currentTheme;
   } catch {
     // Storage unavailable (e.g. private browsing): fall back to auto
-    return "auto";
+    return currentTheme;
   }
 }
 
 function saveTheme(theme) {
+  currentTheme = theme;
   try {
     localStorage.setItem("theme", theme);
   } catch {
@@ -16,6 +19,7 @@ function saveTheme(theme) {
 }
 
 function applyTheme(theme) {
+  currentTheme = theme;
   if (theme === "auto") {
     document.documentElement.removeAttribute("data-theme");
   } else {
@@ -41,7 +45,6 @@ function updateToggleIcons(theme) {
 
 function toggleTheme() {
   const cycle = { auto: "light", light: "dark", dark: "auto" };
-  const currentTheme = getTheme();
   const nextTheme = cycle[currentTheme];
   saveTheme(nextTheme);
   applyTheme(nextTheme);
@@ -49,6 +52,7 @@ function toggleTheme() {
 
 // Apply theme immediately to prevent FOUC
 const savedTheme = getTheme();
+currentTheme = savedTheme;
 
 if (savedTheme !== "auto") {
   document.documentElement.setAttribute("data-theme", savedTheme);
@@ -60,7 +64,6 @@ if (savedTheme !== "auto") {
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", () => {
-    const currentTheme = getTheme();
     if (currentTheme === "auto") {
       applyTheme("auto");
     }
@@ -73,5 +76,5 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", toggleTheme);
   });
 
-  applyTheme(getTheme());
+  applyTheme(currentTheme);
 });

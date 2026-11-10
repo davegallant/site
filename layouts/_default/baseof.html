@@ -3,6 +3,9 @@
   {{ partial "head/head.html" . }}
   <body>
     <div class="layout">
+      <div class="edge-art edge-art--top" aria-hidden="true">
+        <canvas></canvas>
+      </div>
       {{ partialCached "header.html" . .RelPermalink }}
       <main>
         <div class="content">
@@ -11,6 +14,14 @@
         {{ partial "sidebar.html" . }}
       </main>
       {{ partial "footer.html" . }}
+      <div class="edge-art edge-art--bottom" aria-hidden="true">
+        <canvas></canvas>
+      </div>
     </div>
+    {{ $edge := resources.Get "js/edge-art.js" | js.Build (dict "target" "es6") }}
+    {{ if hugo.IsProduction }}
+      {{ $edge = $edge | fingerprint "sha512" }}
+    {{ end }}
+    <script defer src="{{ $edge.RelPermalink }}"></script>
   </body>
 </html>

@@ -13,6 +13,7 @@ export default [
       "assets/js/dark-mode.js",
       "assets/js/prism.js",
       "assets/js/menu.js",
+      "assets/js/edge-art.js",
     ],
     languageOptions: {
       ecmaVersion: "latest",
