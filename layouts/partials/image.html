@@ -47,32 +47,26 @@
       height="{{ $image.Height }}"
     />
   {{ else }}
-    <!-- Calculate resize widths in increments of 100px -->
-    {{ $minWidth := .page.Site.Params.imageResize.min | default 300 }}
-    {{ $maxWidth := .page.Site.Params.imageResize.max | default 700 }}
-    {{ $increment := .page.Site.Params.imageResize.increment | default 200 }}
-    {{ $widths := seq $minWidth $increment $maxWidth }}
-    {{ if lt $image.Width $maxWidth }}
-      {{ $widths = $widths | append $image.Width | uniq }}
+    {{/* Cover the 860px content column at up to 2x pixel density. */}}
+    {{ $maxWidth := .page.Site.Params.imageResize.max | default 1720 }}
+    {{ $widths := slice }}
+    {{ range (slice 360 540 700 860 1080 1400 1720) }}
+      {{ if and (le . $maxWidth) (lt . $image.Width) }}
+        {{ $widths = $widths | append . }}
+      {{ end }}
     {{ end }}
-    {{ $widthsCount := len $widths }}
-
-    {{ $sizes := slice }}
+    {{ $widths = $widths | append (math.Min $image.Width $maxWidth | int) | uniq | sort }}
+    {{ $displayWidth := math.Min $image.Width 860 | int }}
+    {{ $sizes := printf "(max-width: %dpx) calc(100vw - 2.2rem), %dpx" (add $displayWidth 36) $displayWidth }}
     {{ $srcSet := slice }}
     {{ $webpSrcSet := slice }}
-    {{ range $i, $width := $widths }}
+    {{ range $width := $widths }}
       {{ if ge $image.Width $width }}
-        {{ if eq $i (sub $widthsCount 1) }}
-          {{ $sizes = $sizes | append (printf "%dpx" $width) }}
-        {{ else }}
-          {{ $maxWidth := (add $width (sub $increment 1)) }}
-          {{ $sizes = $sizes | append (printf "(max-width: %dpx) %dpx" $maxWidth $width) }}
-        {{ end }}
         {{ $resized := $image.Resize (printf "%dx" $width) }}
         {{ $srcSet = $srcSet | append (printf "%s %dw" $resized.RelPermalink $resized.Width) }}
-        {{ if not (eq "webp" $image.MediaType.SubType) }}
-          <!-- If image format is not WebP, add conversions -->
-          {{ $webp := $image.Resize (printf "%dx webp" $width) }}
+        {{ if not (in (slice "webp" "png") $image.MediaType.SubType) }}
+          <!-- Keep PNG screenshots lossless; use high-quality WebP for photos. -->
+          {{ $webp := $image.Resize (printf "%dx webp q90" $width) }}
           {{ $webpSrcSet = $webpSrcSet | append (printf "%s %dw" $webp.RelPermalink $webp.Width) }}
         {{ end }}
       {{ end }}
@@ -80,15 +74,17 @@
 
 
     <picture>
-      <source
-        type="image/webp"
-        {{ with $webpSrcSet }}srcset="{{ delimit . "," }}"{{ end }}
-        {{ with $sizes }}sizes="{{ delimit . "," }}"{{ end }}
-      />
+      {{ if $webpSrcSet }}
+        <source
+          type="image/webp"
+          {{ with $webpSrcSet }}srcset="{{ delimit . "," }}"{{ end }}
+          {{ with $sizes }}sizes="{{ . }}"{{ end }}
+        />
+      {{ end }}
       <img
         src="{{ $image.RelPermalink }}"
         {{ with $srcSet }}srcset="{{ delimit . "," }}"{{ end }}
-        {{ with $sizes }}sizes="{{ delimit . "," }}"{{ end }}
+        sizes="{{ $sizes }}"
         alt="{{ .alt }}"
         {{ with .caption }}title="{{ . | markdownify | plainify }}"{{ end }}
         {{ if .lazy }}loading="lazy"{{ end }}
