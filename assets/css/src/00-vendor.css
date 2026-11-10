@@ -1,8 +1,45 @@
 /*! purgecss start ignore */
 
 /* Typefaces */
-@import "typeface-roboto-slab";
-@import "typeface-fira-code";
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("/fonts/roboto-slab-latin-400.woff2") format("woff2"); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("/fonts/roboto-slab-latin-700.woff2") format("woff2"); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url("/fonts/fira-code-latin-300.woff2") format("woff2"); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("/fonts/fira-code-latin-400.woff2") format("woff2"); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("/fonts/fira-code-latin-700.woff2") format("woff2"); /* Modern Browsers */
+}
 
 /* Normalize */
 @import "normalize.css/normalize.css";
